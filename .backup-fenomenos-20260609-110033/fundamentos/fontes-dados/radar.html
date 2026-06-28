@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radares Meteorológicos &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css?v=393aca93" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/.backup-fenomenos-20260609-110033/fundamentos/fontes-dados/radar.html" />
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e344cc33"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=30646c52"></script>
+      <script src="../../../_static/translations.js?v=71a39b36"></script>
+      <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../fenologia/index.html">8. Fenologia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../analise-integrada/index.html">10. Análise Integrada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../fenomenos-meteorologicos/index.html">11. Fenômenos meteorológicos</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenca.html">Título do Capítulo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../panoptes.html">Projeto Panoptes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coordenacao.html">Coordenação do Projeto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../apoio.html">Apoio financeiro e administrativo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Radares Meteorológicos</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="radares-meteorologicos">
+<h1>Radares Meteorológicos<a class="headerlink" href="#radares-meteorologicos" title="Link para este cabeçalho"></a></h1>
+<p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euis malesuada. Nullam ac erat ante. Sed vel urna at dui iaculis gravida. Praesent euismod, nunc vel congue facilisis, enim erat fringilla urna, a tincidunt nisi nisl in quam. Integer non felis nec erat cursus tincidunt. Donec vel libero at lectus rutrum vestibulum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+<div class="note admonition">
+<p class="admonition-title">Localidade dos radares Meteorológicos no Brasil</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Sul</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Sudeste</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Centro-Oeste</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Nordeste</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Norte</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UF</p></th>
+<th class="head"><p>Município/Localização</p></th>
+<th class="head"><p>Entidade Operadora/Proprietário Finalidade Principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SC</p></td>
+<td><p>Chapecó</p></td>
+<td><p>Defesa Civil de SC Defesa Civil</p></td>
+</tr>
+<tr class="row-odd"><td><p>SC</p></td>
+<td><p>Lontras</p></td>
+<td><p>Defesa Civil de SC Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>SC</p></td>
+<td><p>Araranguá</p></td>
+<td><p>Defesa Civil de SC Defesa Civil</p></td>
+</tr>
+<tr class="row-odd"><td><p>SC</p></td>
+<td><p>Joinville</p></td>
+<td><p>Defesa Civil de SC Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>SC</p></td>
+<td><p>Urubici (Morro da Igreja)</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PR</p></td>
+<td><p>Teixeira Soares</p></td>
+<td><p>Simepar Agricultura / Energia</p></td>
+</tr>
+<tr class="row-even"><td><p>PR</p></td>
+<td><p>Cascavel</p></td>
+<td><p>Simepar Agricultura / Energia</p></td>
+</tr>
+<tr class="row-odd"><td><p>PR</p></td>
+<td><p>Curitiba</p></td>
+<td><p>Simepar Defesa Civil / Área Urbana</p></td>
+</tr>
+<tr class="row-even"><td><p>RS</p></td>
+<td><p>Canguçu</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RS</p></td>
+<td><p>Santiago</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>RS</p></td>
+<td><p>Porto Alegre</p></td>
+<td><p>Defesa Civil do RS Defesa Civil</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UF</p></th>
+<th class="head"><p>Município/Localização</p></th>
+<th class="head"><p>Entidade Operadora/Proprietário Finalidade Principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SP</p></td>
+<td><p>Bauru</p></td>
+<td><p>IPMet / Unesp Pesquisa</p></td>
+</tr>
+<tr class="row-odd"><td><p>SP</p></td>
+<td><p>Presidente Prudente</p></td>
+<td><p>IPMet / Unesp Pesquisa</p></td>
+</tr>
+<tr class="row-even"><td><p>SP</p></td>
+<td><p>São Roque</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RJ</p></td>
+<td><p>Pico do Couto</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>RJ</p></td>
+<td><p>Rio de Janeiro (Sumaré)</p></td>
+<td><p>Climatempo Comercial</p></td>
+</tr>
+<tr class="row-odd"><td><p>MG</p></td>
+<td><p>Almenara</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>MG</p></td>
+<td><p>São Francisco</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-odd"><td><p>MG</p></td>
+<td><p>Três Marias</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>ES</p></td>
+<td><p>Santa Teresa</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UF</p></th>
+<th class="head"><p>Município/Localização</p></th>
+<th class="head"><p>Entidade Operadora/Proprietário Finalidade Principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>DF</p></td>
+<td><p>Gama</p></td>
+<td><p>DECEA (Aeronáutica) Aeronáutica</p></td>
+</tr>
+<tr class="row-odd"><td><p>MS</p></td>
+<td><p>Jaraguari</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>MT</p></td>
+<td><p>Sapezal (Fazenda Tucunaré)</p></td>
+<td><p>AMAGGI Agricultura (particular)</p></td>
+</tr>
+<tr class="row-odd"><td><p>MT</p></td>
+<td><p>Chapada dos Guimarães</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UF</p></th>
+<th class="head"><p>Município/Localização</p></th>
+<th class="head"><p>Entidade Operadora/Proprietário Finalidade Principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BA</p></td>
+<td><p>Salvador</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-odd"><td><p>PE</p></td>
+<td><p>Petrolina</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>AL</p></td>
+<td><p>Maceió</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-odd"><td><p>RN</p></td>
+<td><p>Natal</p></td>
+<td><p>CEMADEN Defesa Civil</p></td>
+</tr>
+<tr class="row-even"><td><p>MA</p></td>
+<td><p>São Luís</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>UF</p></th>
+<th class="head"><p>Município/Localização</p></th>
+<th class="head"><p>Entidade Operadora/Proprietário Finalidade Principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>PA</p></td>
+<td><p>Belém</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PA</p></td>
+<td><p>Santarém</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>PA</p></td>
+<td><p>Cachimbo (Novo Progresso)</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AM</p></td>
+<td><p>Manaus</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>AM</p></td>
+<td><p>São Gabriel da Cachoeira</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AM</p></td>
+<td><p>Tabatinga</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>AM</p></td>
+<td><p>Tefé</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>AC</p></td>
+<td><p>Cruzeiro do Sul</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>AC</p></td>
+<td><p>Rio Branco</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RO</p></td>
+<td><p>Porto Velho</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>RO</p></td>
+<td><p>Vilhena</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RR</p></td>
+<td><p>Boa Vista</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+<tr class="row-even"><td><p>AP</p></td>
+<td><p>Macapá</p></td>
+<td><p>DECEA (Aeronáutica)</p></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Direitos autorais 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72fcc7abd550>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
