@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelagem de perdas e aplicações em decisão &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/modelagem/index.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Introdução à modelagem de perdas agrícolas" href="introducao.html" />
+    <link rel="prev" title="Aula 5 — análise integrada de COPs: recorrência, concentração e valores" href="../sinistros/aulas/recorrencia-agentes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Modelagem de perdas e aplicações em decisão</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="previsao-rendimento-rna.html">Previsão de rendimento com redes neurais — caso da soja</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li class="breadcrumb-item active">Modelagem de perdas e aplicações em decisão</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="../sinistros/aulas/recorrencia-agentes.html" class="btn btn-neutral float-left" title="Aula 5 — análise integrada de COPs: recorrência, concentração e valores" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introducao.html" class="btn btn-neutral float-right" title="Introdução à modelagem de perdas agrícolas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modelagem-de-perdas-e-aplicacoes-em-decisao">
+<h1>Modelagem de perdas e aplicações em decisão<a class="headerlink" href="#modelagem-de-perdas-e-aplicacoes-em-decisao" title="Link permanente para este cabeçalho"></a></h1>
+<p>Este módulo apresenta os fundamentos da modelagem de perdas agrícolas no contexto do Proagro, discutindo como fenômenos meteorológicos adversos afetam a produtividade, como modelos podem quantificar essas relações, quais são as limitações espaciais e temporais para utilização desses modelos, e como ferramentas de geoestatística podem apoiar a mitigação de riscos e a tomada de decisão.</p>
+<p>O objetivo central é fornecer ao leitor — técnico, auditor, perito ou analista — uma base conceitual sólida para compreender como informações meteorológicas e espaciais podem ser integradas aos dados do Sicor para fundamentar decisões relacionadas a comunicações de perdas e indenizações do Proagro.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#o-que-significa-modelar-perdas-agricolas-a-partir-do-clima">O que significa modelar perdas agrícolas a partir do clima</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#principais-objetivos-da-modelagem-de-perdas">Principais objetivos da modelagem de perdas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#exemplos-de-perdas-por-fenomenos-meteorologicos-adversos">Exemplos de perdas por fenômenos meteorológicos adversos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#conexao-com-o-sicor-zarc-e-o-monitoramento-do-proagro">Conexão com o Sicor, ZARC e o monitoramento do Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#como-sao-construidos-os-modelos-de-perdas">Como são construídos os modelos de perdas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#limitacoes-espaciais-e-temporais-dos-modelos">Limitações espaciais e temporais dos modelos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#uso-de-modelos-de-perdas-e-geoestatistica-para-mitigar-riscos-no-proagro">Uso de modelos de perdas e geoestatística para mitigar riscos no Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introducao.html#consideracoes-finais">Considerações finais</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#panorama-geral-das-abordagens-de-modelagem">Panorama geral das abordagens de modelagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#modelos-empiricos-e-estatisticos">Modelos empíricos e estatísticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#modelos-agroclimaticos">Modelos agroclimáticos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#modelos-de-simulacao-de-crescimento-mecanisticos">Modelos de simulação de crescimento (mecanísticos)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#modelos-baseados-em-aprendizado-de-maquina">Modelos baseados em aprendizado de máquina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#quadro-comparativo-das-abordagens">Quadro comparativo das abordagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html#consideracoes-para-aplicacao-no-contexto-do-proagro">Considerações para aplicação no contexto do Proagro</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#contexto-e-relevancia">Contexto e relevância</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#taxonomia-de-modelos-de-aprendizado-de-maquina">Taxonomia de modelos de aprendizado de máquina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#dados-de-entrada-e-engenharia-de-caracteristicas">Dados de entrada e engenharia de características</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#metricas-de-desempenho-e-comparacao-de-modelos">Métricas de desempenho e comparação de modelos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#interpretabilidade-e-ia-explicavel-xai">Interpretabilidade e IA explicável (XAI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#desafios-e-limitacoes">Desafios e limitações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#aplicacoes-no-contexto-do-proagro">Aplicações no contexto do Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html#consideracoes-finais">Considerações finais</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="previsao-rendimento-rna.html">Previsão de rendimento com redes neurais — caso da soja</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#por-que-prever-rendimento">Por que prever rendimento?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#por-que-rnas-funcionam-bem-para-graos">Por que RNAs funcionam bem para grãos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#variavel-alvo-e-covariaveis-tipicas">Variável-alvo e covariáveis típicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#modelo-hibrido-com-3-ramos-paralelos">Modelo hibrido com 3 ramos paralelos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#treinamento-implementacao-keras">Treinamento — implementação Keras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#resultados-tipicos">Resultados típicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#pesos-e-interpretabilidade-shap">Pesos e interpretabilidade (SHAP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#limitacoes">Limitações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html#proximos-passos">Próximos passos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#recorrencia-espacial">Recorrência espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#recorrencia-por-agente">Recorrência por agente</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="perguntas-e-respostas-modulo-4">
+<span id="faq-modelagem"></span><h2>Perguntas e respostas — módulo 4<a class="headerlink" href="#perguntas-e-respostas-modulo-4" title="Link permanente para este cabeçalho"></a></h2>
+<p>Esta seção responde às principais perguntas sobre modelagem de perdas agrícolas, previsão de rendimento e aplicação de aprendizado de máquina no contexto do Proagro.</p>
+<p><strong>O que é um modelo de perdas agrícolas e qual seu papel na análise de COPs?</strong></p>
+<p>Um modelo de perdas agrícolas é uma representação matemática que estima quanto se perdeu ou se espera perder em uma lavoura a partir de variáveis observáveis como chuva, temperatura, tipo de solo e fase fenológica. No contexto do Proagro, esses modelos funcionam como ferramentas de triagem: ao confrontar a perda esperada pelo clima com a perda declarada na COP, geram um indicador de plausibilidade que ajuda a priorizar quais casos merecem análise mais aprofundada. É fundamental distinguir esse uso de um critério automático de aceitação ou rejeição: modelos geram alertas, não vereditos. A decisão final é sempre humana.</p>
+<p><strong>Quais são as quatro famílias de modelos usadas na previsão de perdas?</strong></p>
+<p>O curso apresenta quatro famílias ordenadas por complexidade crescente e interpretabilidade decrescente. Os modelos empíricos e estatísticos (regressão linear, ARIMA, modelos baseados em NDVI) são simples, transparentes e úteis como linha de base. Os modelos agroclimáticos (SPI, SPEI, graus-dia, balanço hídrico de Thornthwaite-Mather) são padronizados e comparáveis entre regiões, sendo a base do ZARC. Os modelos mecanísticos de simulação de cultivo (DSSAT, APSIM, AquaCrop) simulam a planta dia a dia com alta fidelidade física, mas exigem calibração local. Os modelos de aprendizado de máquina (Random Forest, XGBoost, redes neurais LSTM) capturam relações não-lineares complexas com alta acurácia preditiva, mas são menos interpretáveis. A boa prática é triangular fontes e nunca depender de uma única família.</p>
+<p><strong>O que é “detrending” e por que é necessário antes de modelar o efeito do clima na produtividade?</strong></p>
+<p>A produtividade agrícola brasileira cresce de forma contínua por razões tecnológicas — melhoramento genético, adubação, mecanização — independentemente do clima. Se essa tendência tecnológica não for removida da série histórica antes da análise, ela contamina o sinal climático: parece que os anos mais recentes são sempre mais produtivos, mesmo quando o clima foi adverso. O detrending separa essa deriva de longo prazo da variação interanual causada pelo clima, deixando no resíduo apenas a flutuação meteorológica que interessa modelar.</p>
+<p><strong>O que é o coeficiente Ky do FAO-33 e como ele quantifica o impacto da seca por fase fenológica?</strong></p>
+<p>O Ky é o fator de resposta da cultura ao déficit hídrico, tabulado pelo FAO para cada cultura e cada fase fenológica <span id="id1">[<a class="reference internal" href="../../referencias.html#id237" title="J. Doorenbos and A. H. Kassam. Yield response to water. FAO Irrigation and Drainage Paper 33. FAO, Rome, 1979. URL: https://www.fao.org/4/i2800e/i2800e.pdf.">3</a>]</span>. Ele expressa o quanto uma fração de déficit hídrico se traduz em perda relativa de rendimento: perdas relativas = Ky × (1 − ETa/ETc), onde ETa é a evapotranspiração real e ETc é a evapotranspiração máxima. Nas fases reprodutivas (floração e enchimento de grãos), o Ky é mais elevado, o que explica matematicamente por que o mesmo déficit hídrico causa danos muito maiores nessas fases do que na fase vegetativa.</p>
+<p><strong>O que são redes neurais artificiais e como elas são aplicadas na previsão de rendimento?</strong></p>
+<p>Redes neurais são modelos computacionais inspirados no funcionamento dos neurônios biológicos, capazes de aprender padrões complexos e não-lineares em grandes volumes de dados. Na previsão de rendimento agrícola, arquiteturas como LSTM (Long Short-Term Memory) são especialmente adequadas por capturam a dependência temporal dos dados climáticos ao longo do ciclo da cultura. Resultados típicos para soja no Brasil com modelos ensemble de aprendizado de máquina apontam erro percentual médio de cerca de 6% na escala nacional e 16% na escala municipal — indicando que o modelo é útil como ferramenta de referência, mas que a variabilidade local ainda impõe limitações.</p>
+<p><strong>O que é “risco de base” no contexto da modelagem e como ele se diferencia do risco de base espacial?</strong></p>
+<p>O risco de base, no contexto da modelagem, é o desalinhamento entre o índice ou modelo utilizado e a perda real da lavoura. Pode ser espacial (o índice é medido longe da gleba), temporal (a janela do índice não coincide com a fase crítica da cultura) ou de design (o proxy usado é inadequado para o fenômeno — por exemplo, usar SPI para caracterizar um problema térmico). Um bom modelo minimiza o risco de base ao selecionar variáveis relevantes, escala adequada e janela temporal alinhada às fases sensíveis da cultura.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="../sinistros/aulas/recorrencia-agentes.html" class="btn btn-neutral float-left" title="Aula 5 — análise integrada de COPs: recorrência, concentração e valores" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introducao.html" class="btn btn-neutral float-right" title="Introdução à modelagem de perdas agrícolas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c102ef2910>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

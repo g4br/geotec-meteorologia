@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análise de sinistros, outliers e tipologias de risco meteorológico &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/index.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Identificação de outliers e inconsistências meteorológicas em sinistros" href="inconsistencias.html" />
+    <link rel="prev" title="Bloco 3 — IDW, spline RBF e krigagem ordinária" href="../analise-espacial/praticas/idw-spline-krigagem.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aulas/index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li class="breadcrumb-item active">Análise de sinistros, outliers e tipologias de risco meteorológico</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="../analise-espacial/praticas/idw-spline-krigagem.html" class="btn btn-neutral float-left" title="Bloco 3 — IDW, spline RBF e krigagem ordinária" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="inconsistencias.html" class="btn btn-neutral float-right" title="Identificação de outliers e inconsistências meteorológicas em sinistros" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analise-de-sinistros-outliers-e-tipologias-de-risco-meteorologico">
+<h1>Análise de sinistros, outliers e tipologias de risco meteorológico<a class="headerlink" href="#analise-de-sinistros-outliers-e-tipologias-de-risco-meteorologico" title="Link permanente para este cabeçalho"></a></h1>
+<p>Nos módulos anteriores, desenvolvemos um conjunto robusto de técnicas que nos permitiram visualizar, quantificar e interpretar padrões espaciais no Proagro. Aprendemos a identificar onde as perdas se concentram, a verificar se essas concentrações são estatisticamente significativas e a estimar condições climáticas em localizações sem medição direta. Essas ferramentas responderam fundamentalmente à pergunta sobre <em>onde</em> as coisas acontecem no território. Agora, damos um passo adiante: não basta saber onde — precisamos entender <em>o que está acontecendo</em> naqueles locais e, mais importante, se o que está acontecendo faz sentido quando confrontado com a realidade climática objetivamente verificável.</p>
+<p>Esta seção reúne os estudos de caso que fecham o curso: dado um conjunto de Comunicações
+de Perda (COP) do Proagro, <strong>a meteorologia registrada é compatível com o evento
+declarado?</strong> Uma COP por seca deveria coincidir com um déficit de chuva; uma por chuva
+excessiva, com um excesso; uma por geada, com temperaturas suficientemente baixas. Quando
+os dados meteorológicos <strong>não</strong> sustentam o evento declarado, a COP merece um olhar mais
+atento.</p>
+<p>O objetivo central deste módulo é utilizar <strong>informações meteorológicas rigorosas</strong> como âncora para identificar padrões atípicos, recorrências suspeitas e possíveis inconsistências em comunicações de perda. Partimos do princípio fundamental de que o Proagro cobre perdas decorrentes de fenômenos naturais adversos — e a imensa maioria dessas alegações envolve eventos climáticos: seca, chuva excessiva, geada, granizo, vendaval. Portanto, verificar se o fenômeno alegado efetivamente ocorreu no local e período declarados, e se sua intensidade é compatível com a magnitude da perda reportada, constitui o <strong>primeiro e mais fundamental filtro de consistência</strong>.</p>
+<p>É fundamental estabelecer desde já o que este módulo <em>não</em> é e <em>não</em> faz. Não construímos um sistema automático de detecção de fraude que rotula casos como fraudulentos com base em algoritmos. Identificamos anomalias estatísticas e padrões suspeitos que geram <strong>hipóteses para investigação humana qualificada</strong>. Geramos hipóteses, não vereditos. Apontamos caminhos para investigação, não conclusões definitivas.</p>
+<section id="o-pipeline-conceitual">
+<h2>O pipeline conceitual<a class="headerlink" href="#o-pipeline-conceitual" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os três casos — seca em soja, chuva excessiva em trigo e geada em trigo — seguem o mesmo
+encadeamento <strong>Conceito → Fenômeno → Dado → Indicador</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Recorte temático</strong>: filtrar as COPs por fenômeno e cultura no recorte do Sicor.</p></li>
+<li><p><strong>Vínculo espacial</strong>: associar cada COP às fontes meteorológicas que a cobrem — a grade
+(MERGE para chuva, SAMeT para temperatura) e as estações INMET mais próximas.</p></li>
+<li><p><strong>Anomalia</strong>: comparar o <strong>observado</strong> com a <strong>climatologia</strong> do mesmo dia-do-ano, na
+janela do evento e ao longo do ciclo (em decêndios). A anomalia é simplesmente
+<span class="math notranslate nohighlight">\(\text{observado} - \text{climatologia}\)</span>.</p></li>
+<li><p><strong>Flag de plausibilidade</strong>: marcar as COPs em que a anomalia contradiz o evento
+declarado.</p></li>
+</ol>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Os <em>flags</em> são indicadores de <strong>plausibilidade</strong>, para <strong>priorização e investigação</strong> —
+nunca um veredito sobre a operação. Um <em>flag</em> não diz que houve fraude; diz que aquele
+caso merece análise pericial humana, porque os dados meteorológicos disponíveis não
+confirmam, à primeira vista, o evento declarado. A leitura final é sempre humana, e a
+ausência de <em>flag</em> tampouco atesta a perda. Os exemplos são <strong>educacionais</strong>.</p>
+</div>
+</section>
+<section id="anomalia-em-relacao-a-climatologia">
+<h2>Anomalia em relação à climatologia<a class="headerlink" href="#anomalia-em-relacao-a-climatologia" title="Link permanente para este cabeçalho"></a></h2>
+<p>O cerne de todos os casos é a anomalia decendial. Compara-se o acumulado (ou a média)
+observado em um decêndio com a média climatológica dos mesmos dias-do-ano:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Observado: soma do decêndio na grade (MERGE), no pixel mais próximo da COP.</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_prec</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="n">lon_cop</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="n">lat_cop</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+       <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">dec_inicio</span><span class="p">,</span> <span class="n">dec_fim</span><span class="p">))[</span><span class="s1">&#39;rdp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># Climatologia: soma dos mesmos dias-do-ano na climatologia de longo prazo.</span>
+<span class="n">datas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">dec_inicio</span><span class="p">,</span> <span class="n">dec_fim</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="n">doys</span> <span class="o">=</span> <span class="p">[</span><span class="n">d</span><span class="o">.</span><span class="n">dayofyear</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">]</span>
+<span class="n">clima</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_prec_clima</span><span class="p">[</span><span class="s1">&#39;pmed&#39;</span><span class="p">]</span>
+         <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">ds_prec_clima</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">doys</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="n">anomalia_mm</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span> <span class="o">-</span> <span class="nb">float</span><span class="p">(</span><span class="n">clima</span><span class="p">)</span>   <span class="c1"># negativa = mais seco que o normal</span>
+</pre></div>
+</div>
+<p>Esse mesmo raciocínio, com temperatura mínima no lugar da chuva, sustenta o caso da geada.</p>
+</section>
+<section id="a-climatologia-de-referencia">
+<h2>A climatologia de referência<a class="headerlink" href="#a-climatologia-de-referencia" title="Link permanente para este cabeçalho"></a></h2>
+<p>A anomalia só faz sentido contra uma <strong>linha de base</strong> bem definida. Nos exemplos, a
+climatologia é a <strong>média de longo prazo por dia-do-ano</strong>, calculada a partir das próprias
+séries das grades nacionais: precipitação do <strong>MERGE/CPTEC</strong> (série desde 1998) e
+temperatura do <strong>SAMeT/CPTEC</strong> (desde 2000). Para cada dia-do-ano, toma-se a média
+histórica naquele pixel; a anomalia de um decêndio é a diferença entre o observado no
+período e a soma (ou média) climatológica dos mesmos dias-do-ano.</p>
+<p>Três pontos importam para a leitura:</p>
+<ul class="simple">
+<li><p><strong>A linha de base define o “normal”.</strong> Mudar o período-base ou a fonte da grade muda as
+anomalias — e, portanto, os flags. A climatologia usada deve ser sempre declarada.</p></li>
+<li><p><strong>A resolução da grade limita o que é visível.</strong> O MERGE tem ~10 km; um veranico de
+gleba ou uma geada de baixada podem não aparecer no pixel. Isso é decisivo para a
+interpretação dos flags (ver a ressalva abaixo).</p></li>
+<li><p><strong>Janela do evento × ciclo.</strong> Calcular a anomalia tanto na janela declarada quanto no
+ciclo completo reduz a chance de um evento real, mas mal datado, passar despercebido.</p></li>
+</ul>
+</section>
+<section id="como-ler-e-como-nao-usar-um-flag">
+<h2>Como ler — e como <strong>não</strong> usar — um flag<a class="headerlink" href="#como-ler-e-como-nao-usar-um-flag" title="Link permanente para este cabeçalho"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p>Repetir “não é veredito” não basta: o flag só permanece um instrumento de priorização
+se for <strong>usado</strong> como tal. As salvaguardas abaixo são parte do método, não um adendo.</p>
+</div>
+<ul class="simple">
+<li><p><strong>Custo do falso positivo é assimétrico.</strong> Um falso positivo recai sobre um produtor
+legítimo — priorizado para fiscalização ou com indenização questionada por uma limitação
+do <em>dado</em>, não por irregularidade. Esse custo deve pesar mais que a conveniência de
+“fechar a fila”.</p></li>
+<li><p><strong>Limitação da grade gera falso positivo.</strong> Como a grade de ~10 km não captura extremos
+localizados, uma seca ou geada <strong>real</strong> de gleba pode produzir um flag de
+“implausível”. Antes de tratar um caso como suspeito, verifique se a divergência não é,
+na verdade, ausência de estação próxima ou pixel grosseiro (o diagnóstico individual
+MERGE × INMET existe para isso).</p></li>
+<li><p><strong>A decisão humana deve ser registrada.</strong> O flag entra no laudo como um indício entre
+outros; a conclusão pericial — confirmando ou afastando o indício — deve ser explicitada
+e justificada, nunca substituída pelo escore.</p></li>
+<li><p><strong>Ausência de flag não atesta a perda.</strong> Um caso não-flagado apenas não levantou
+contradição com os dados disponíveis; não é prova de regularidade.</p></li>
+</ul>
+</section>
+<section id="pipeline-auditorial-bloco-a-vs-bloco-b">
+<h2>Pipeline auditorial — bloco A vs bloco B<a class="headerlink" href="#pipeline-auditorial-bloco-a-vs-bloco-b" title="Link permanente para este cabeçalho"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Bloco</p></th>
+<th class="head"><p>Foco</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A — Plausibilidade</strong></p></td>
+<td><p>Cada COP analisada individualmente contra dados
+meteorológicos objetivos (Aulas 1-3).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B — Padrões agregados</strong></p></td>
+<td><p>Recorrência espacial, concentração de peritos/IFs,
+tríades produtor × perito × IF, raio de atuação, razão
+pago/crédito (Aulas 4-5).</p></td>
+</tr>
+</tbody>
+</table>
+<p>A inteligência operacional surge do <strong>cruzamento</strong> entre os dois
+blocos — COPs com flag A ativo <strong>em região com sinal B ativo</strong> são
+prioridade.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Conteúdo conceitual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#estrutura-de-dados-para-analise-de-consistencia">Estrutura de dados para análise de consistência</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#tipologia-de-outliers-meteorologicos">Tipologia de outliers meteorológicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#ferramentas-e-indicadores-para-deteccao">Ferramentas e indicadores para detecção</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#workflow-operacional-integrado">Workflow operacional integrado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#limitacoes-e-cuidados-essenciais">Limitações e cuidados essenciais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#conclusao-da-secao">Conclusão da seção</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#id2">Tipologia de outliers meteorológicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#id7">Ferramentas e indicadores para detecção</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#id14">Workflow operacional integrado</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#id16">Limitações e cuidados essenciais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inconsistencias.html#id21">Conclusão da seção</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#identificacao-de-regioes-ou-culturas-com-padroes-atipicos">1. identificação de regiões ou culturas com padrões atípicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#avaliacao-de-clusters-temporais-e-espaciais">2. avaliação de clusters temporais e espaciais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#deteccao-de-cops-repetidas-em-anos-sem-eventos-climaticos-adversos">3. detecção de COPs repetidas em anos sem eventos climáticos adversos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#limitacoes-e-consideracoes">4. limitações e considerações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#questoes-para-reflexao">5. questões para reflexão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#sintese-da-secao">6. síntese da seção</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html#orientacoes-para-uso-didatico-deste-material">7. orientações para uso didático deste material</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tipologia.html#conceito-de-inconsistencias-meteorologicas">1. conceito de inconsistências meteorológicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipologia.html#construcao-de-indicadores-por-nivel-de-agregacao">2. construção de indicadores por nível de agregação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipologia.html#exemplos-de-consultas-sql-para-construcao-de-indicadores">3. exemplos de consultas SQL para construção de indicadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipologia.html#deteccao-de-padroes-atipicos-de-acionamento">4. detecção de padrões atípicos de acionamento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipologia.html#limitacoes-e-consideracoes-eticas">5. limitações e considerações éticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipologia.html#sintese-da-secao">6. síntese da seção</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#fundamentos-de-analise-espacial-no-contexto-do-credito-rural">1. fundamentos de análise espacial no contexto do crédito rural</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#geracao-de-mapas-de-risco-agricola-e-climatico">2. geração de mapas de risco agrícola e climático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#interpolacao-espacial-de-indicadores">3. interpolação espacial de indicadores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#identificacao-de-areas-prioritarias-para-vistoria-e-monitoramento">4. identificação de áreas prioritárias para vistoria e monitoramento</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#segmentacao-espacial-de-risco-e-precificacao-de-seguro">5. segmentação espacial de risco e precificação de seguro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#analise-de-padroes-espaciais-atipicos-por-ator">6. análise de padrões espaciais atípicos por ator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#comparacao-zarc-vs-perdas-efetivas">7. comparação ZARC vs. perdas efetivas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aplicacoes.html#sintese-e-boas-praticas">8. síntese e boas práticas</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Estudos de caso (plausibilidade por COP)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="seca-soja.html">Caso 1 — seca em soja</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="seca-soja.html#raciocinio-do-flag">Raciocínio do flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seca-soja.html#leitura">Leitura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seca-soja.html#um-falso-positivo-plausivel">Um falso positivo plausível</a></li>
+<li class="toctree-l2"><a class="reference internal" href="seca-soja.html#limiares-e-cobertura-do-dado">Limiares e cobertura do dado</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="chuva-trigo.html#logica-invertida-do-flag">Lógica invertida do flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chuva-trigo.html#fallback-hierarquico-inmet-merge">Fallback hierárquico INMET → MERGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chuva-trigo.html#leitura">Leitura</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="geada-trigo.html">Caso 3 — geada em trigo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="geada-trigo.html#raciocinio-fisico">Raciocínio físico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geada-trigo.html#raciocinio-do-flag">Raciocínio do flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geada-trigo.html#leitura">Leitura</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Aulas práticas (notebooks)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="aulas/index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</div>
+</section>
+<section id="perguntas-e-respostas-modulo-3">
+<span id="faq-sinistros"></span><h2>Perguntas e respostas — módulo 3<a class="headerlink" href="#perguntas-e-respostas-modulo-3" title="Link permanente para este cabeçalho"></a></h2>
+<p>Esta seção aborda as principais dúvidas sobre análise de sinistros, identificação de inconsistências meteorológicas e padrões de recorrência no Proagro. As respostas partem do pressuposto de que o leitor conhece os fundamentos dos módulos anteriores, mas não tem formação em meteorologia ou estatística.</p>
+<p><strong>Como se conecta uma COP do Sicor com os dados climáticos de uma estação do INMET?</strong></p>
+<p>A conexão é espacial e temporal, não por chave cadastral direta. Cada COP no Sicor possui as coordenadas da gleba (latitude e longitude do centroide); cada estação do INMET possui sua localização conhecida. O vínculo é estabelecido calculando a distância entre a gleba e todas as estações disponíveis — usando a fórmula de Haversine para distâncias sobre a esfera terrestre — e selecionando as três mais próximas. Usa-se um conjunto de três estações (e não apenas a mais próxima) para garantir robustez: se a estação principal tiver lacunas de dados, as adjacentes complementam. A dimensão temporal é dada pelas datas declaradas na COP (início e fim do evento, início e fim do ciclo da cultura).</p>
+<p><strong>O que é anomalia de precipitação e como ela evidencia uma seca real?</strong></p>
+<p>A anomalia de precipitação é a diferença entre o volume de chuva observado em um período e a média climatológica dos mesmos dias em anos anteriores: anomalia = observado − climatologia. Uma anomalia negativa significa que choveu menos do que o esperado para aquela época e local. Para verificar a plausibilidade de uma COP por seca, calcula-se essa anomalia tanto na janela de tempo declarada quanto ao longo de todo o ciclo da cultura, em decêndios (períodos de dez dias). Uma COP é marcada como meteorologicamente implausível apenas quando nem a janela declarada nem nenhum decêndio do ciclo mostram déficit — uma regra deliberadamente conservadora para evitar falsos positivos.</p>
+<p><strong>O que é o produto MERGE e por que é mais útil do que usar só as estações do INMET?</strong></p>
+<p>O MERGE é um produto de precipitação em grade desenvolvido pelo CPTEC/INPE que funde estimativas de satélite (constelação IMERG-GPM da NASA) com dados de estações pluviométricas (INMET, ANA, CEMADEN), produzindo um campo contínuo de chuva sobre a América do Sul com resolução de aproximadamente 10 km e série desde 1998 <span id="id1">[<a class="reference internal" href="../../referencias.html#id250" title="J. R. Rozante, D. S. Moreira, L. G. G. de Goncalves, and D. A. Vila. Combining TRMM and surface observations of precipitation: technique and validation over South America. Weather and Forecasting, 25(3):885–894, 2010. doi:10.1175/2010WAF2222325.1.">63</a>]</span>. Sua vantagem sobre as estações isoladas é a cobertura espacial completa: enquanto as estações são medidas pontuais com lacunas entre elas, o MERGE fornece estimativa para qualquer ponto do território, incluindo glebas distantes de qualquer estação. A contrapartida é que, por ser uma média de área, o MERGE pode não capturar eventos muito localizados como um veranico de gleba ou uma célula convectiva isolada.</p>
+<p><strong>Como identificar padrões atípicos de recorrência de COPs?</strong></p>
+<p>A análise de recorrência identifica produtores, glebas ou regiões que acumulam comunicações de perda em múltiplas safras. Tecnicamente, agrupam-se as COPs pelo identificador do produtor ou pelas coordenadas da gleba e contam-se as safras distintas em que houve registro. O ponto crítico é que recorrência, por si só, não indica irregularidade: regiões com risco climático crônico (semiárido, áreas sujeitas a veranico ou geada frequente) naturalmente acumulam sinistros ao longo dos anos. O que eleva a suspeita é a convergência de múltiplos sinais: recorrência alta combinada com COPs meteorologicamente implausíveis, raio de atuação atípico de peritos ou concentração entre agentes.</p>
+<p><strong>O que é risco de base e por que o falso positivo é mais custoso do que parece?</strong></p>
+<p>Risco de base é o desalinhamento entre o que o índice climático indica e o que efetivamente aconteceu na gleba. Uma estação distante ou um pixel grosseiro pode registrar precipitação normal enquanto aquela propriedade específica sofreu um veranico real — o sistema classifica a COP como implausível, mas a perda foi genuína. Esse é o falso positivo: um produtor legítimo colocado sob suspeita por uma limitação do dado, não por irregularidade. O custo assimétrico está em que esse produtor pode ter sua indenização questionada ou ser priorizado para fiscalização sem razão. Por isso, um flag de implausibilidade é sempre o início de uma investigação, nunca uma conclusão.</p>
+<p><strong>Como o padrão de atuação de um perito pode ser analisado sem presumir má-fé?</strong></p>
+<p>Analisam-se indicadores como o raio geográfico de atuação (até que distância o perito realiza vistorias), a concentração de COPs com determinadas instituições financeiras, a latência entre a comunicação da COP e a visita de campo, e a proporção de COPs deferidas. Cada um desses indicadores tem explicações legítimas: um perito que cobre área extensa pode simplesmente ser especialista em uma cultura rara naquela região. O que merece aprofundamento é a convergência de múltiplos desvios sem explicação estrutural — e mesmo assim, a conclusão sobre conduta é sempre matéria de perícia humana qualificada, não de algoritmo.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="../analise-espacial/praticas/idw-spline-krigagem.html" class="btn btn-neutral float-left" title="Bloco 3 — IDW, spline RBF e krigagem ordinária" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="inconsistencias.html" class="btn btn-neutral float-right" title="Identificação de outliers e inconsistências meteorológicas em sinistros" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c100847650>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

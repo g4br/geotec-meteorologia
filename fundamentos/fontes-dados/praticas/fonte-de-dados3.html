@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/fundamentos/fontes-dados/praticas/fonte-de-dados3.html" />
+      <script src="../../../../_static/jquery.js"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+      <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../../_static/clipboard.min.js"></script>
+      <script src="../../../../_static/copybutton.js"></script>
+      <script src="../../../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" />
+    <link rel="next" title="Aula prática 4a — download das grades do CPTEC (MERGE e SAMeT)" href="fonte-de-dados4-downloaddadoscptec.html" />
+    <link rel="prev" title="Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja" href="fonte-de-dados2.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../risco/index.html">O que é risco agrícola?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../eventos/index.html">Tipos de eventos adversos no campo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adversos/adversos.html">Eventos climáticos adversos</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../estacoes.html">Estações meteorológicas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gridded.html">Dados em grade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../satelite-meteorologico.html">Satélites meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../radar.html">Radares meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../indicacao-dados.html">Indicação fontes de dados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../exemplo-graus-dia-trigo.html">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fontes de informação meteorológica (informações granulares)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+      <li class="breadcrumb-item active">Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="fonte-de-dados2.html" class="btn btn-neutral float-left" title="Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="fonte-de-dados4-downloaddadoscptec.html" class="btn btn-neutral float-right" title="Aula prática 4a — download das grades do CPTEC (MERGE e SAMeT)" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-pratica-3-chuva-excessiva-em-trigo-do-ciclo-e-gdd">
+<h1>Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD<a class="headerlink" href="#aula-pratica-3-chuva-excessiva-em-trigo-do-ciclo-e-gdd" title="Link permanente para este cabeçalho"></a></h1>
+<p>A terceira aula prática reaproveita o pipeline da
+<a class="reference internal" href="fonte-de-dados2.html"><span class="doc">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</span></a> para um evento e cultura diferentes: <strong>Chuva
+excessiva em trigo</strong>. Mudamos três coisas:</p>
+<ul class="simple">
+<li><p>o filtro do evento (<code class="docutils literal notranslate"><span class="pre">nome_evento</span> <span class="pre">==</span> <span class="pre">'Chuva</span> <span class="pre">excessiva'</span></code>) e da
+cultura (<code class="docutils literal notranslate"><span class="pre">produto</span> <span class="pre">==</span> <span class="pre">'trigo'</span></code>);</p></li>
+<li><p>o cálculo agora destaca a <strong>fração da chuva do evento sobre o total
+da safra</strong> e a <strong>máxima chuva diária</strong>;</p></li>
+<li><p>os parâmetros do GDD são os do trigo (<span class="math notranslate nohighlight">\(T_b = 5\,^\circ\!C\)</span>,
+<span class="math notranslate nohighlight">\(T_M = 26\,^\circ\!C\)</span>, fases Zadoks).</p></li>
+</ul>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#objetivo" id="id4">Objetivo</a></p></li>
+<li><p><a class="reference internal" href="#pre-requisitos" id="id5">Pré-requisitos</a></p></li>
+<li><p><a class="reference internal" href="#passo-1-filtrar-trigo-chuva-excessiva" id="id6">Passo 1 — filtrar trigo + chuva excessiva</a></p></li>
+<li><p><a class="reference internal" href="#passo-2-mapa-exploratorio-no-folium" id="id7">Passo 2 — mapa exploratório no Folium</a></p></li>
+<li><p><a class="reference internal" href="#passo-3-top-3-estacoes-inmet-haversine" id="id8">Passo 3 — top 3 estações INMET (Haversine)</a></p></li>
+<li><p><a class="reference internal" href="#passo-4-recortar-a-safra-e-calcular-acumulados" id="id9">Passo 4 — recortar a safra e calcular acumulados</a></p></li>
+<li><p><a class="reference internal" href="#passo-5-pico-diario-por-estacao" id="id10">Passo 5 — pico diário por estação</a></p></li>
+<li><p><a class="reference internal" href="#passo-6-gdd-com-os-parametros-do-trigo-zadoks" id="id11">Passo 6 — GDD com os parâmetros do trigo (Zadoks)</a></p></li>
+<li><p><a class="reference internal" href="#passo-7-grafico-integrado-precipitacao-gdd-fases" id="id12">Passo 7 — gráfico integrado precipitação + GDD + fases</a></p></li>
+<li><p><a class="reference internal" href="#discussao" id="id13">Discussão</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id14">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="objetivo">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Objetivo</a><a class="headerlink" href="#objetivo" title="Link permanente para este cabeçalho"></a></h2>
+<p>Estabelecer um segundo <em>case</em> para o fluxo COP → estação INMET
+próxima → análise meteorológica, agora com foco em <strong>excesso hídrico</strong>
+e fenologia do trigo.</p>
+</section>
+<section id="pre-requisitos">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Pré-requisitos</a><a class="headerlink" href="#pre-requisitos" title="Link permanente para este cabeçalho"></a></h2>
+<p>Concluir <a class="reference internal" href="fonte-de-dados2.html"><span class="doc">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</span></a> (carrega Sicor, normaliza coordenadas,
+constrói <code class="docutils literal notranslate"><span class="pre">contagem_filtrada</span></code> e o catálogo INMET).</p>
+</section>
+<section id="passo-1-filtrar-trigo-chuva-excessiva">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Passo 1 — filtrar trigo + chuva excessiva</a><a class="headerlink" href="#passo-1-filtrar-trigo-chuva-excessiva" title="Link permanente para este cabeçalho"></a></h2>
+<p>A partir do <code class="docutils literal notranslate"><span class="pre">df_sicor</span></code> já limpo da aula anterior:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">azarados_chuva</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;produto&#39;</span><span class="p">]</span>     <span class="o">==</span> <span class="s1">&#39;trigo&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;nome_evento&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Chuva excessiva&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">azarados_chuva</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">azarados_chuva</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude_centroide&#39;</span><span class="p">])[</span><span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;contagem&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;contagem&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-2-mapa-exploratorio-no-folium">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Passo 2 — mapa exploratório no Folium</a><a class="headerlink" href="#passo-2-mapa-exploratorio-no-folium" title="Link permanente para este cabeçalho"></a></h2>
+<p>Plot rápido para confirmar que os pontos estão no Sul (onde o trigo
+brasileiro se concentra):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+
+<span class="n">center_lat</span> <span class="o">=</span> <span class="n">azarados_chuva</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">center_lon</span> <span class="o">=</span> <span class="n">azarados_chuva</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">center_lat</span><span class="p">,</span> <span class="n">center_lon</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">dados</span> <span class="o">=</span> <span class="n">azarados_chuva</span><span class="p">[</span><span class="n">azarados_chuva</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dados</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
+        <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]],</span>
+        <span class="n">radius</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">],</span>
+        <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Para o caso de estudo, escolhemos o <em>top 1</em> (maior contagem):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">top_azarado</span> <span class="o">=</span> <span class="n">azarados_chuva</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">top_azarado</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span> <span class="n">top_azarado</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>E sobrepomos com uma camada de satélite Esri para ver a paisagem
+agrícola:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;https://server.arcgisonline.com/ArcGIS/rest/services/&#39;</span>
+           <span class="s1">&#39;World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">&#39;</span><span class="p">),</span>
+    <span class="n">attr</span><span class="o">=</span><span class="s1">&#39;Esri&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">([</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">],</span> <span class="n">popup</span><span class="o">=</span><span class="s1">&#39;Local COP recorrente&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-3-top-3-estacoes-inmet-haversine">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Passo 3 — top 3 estações INMET (Haversine)</a><a class="headerlink" href="#passo-3-top-3-estacoes-inmet-haversine" title="Link permanente para este cabeçalho"></a></h2>
+<p>A função <code class="docutils literal notranslate"><span class="pre">haversine</span></code> da <a class="reference internal" href="fonte-de-dados2.html"><span class="doc">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</span></a> é reaproveitada:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inmet_coords</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s1">&#39;coordenadas-inmet.csv&#39;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">inmet_coords</span><span class="p">[</span><span class="s1">&#39;estacoes_proximas&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inmet_coords</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">haversine</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">top3</span> <span class="o">=</span> <span class="n">inmet_coords</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;estacoes_proximas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>E carregamos os CSVs com o mesmo <em>loop</em> + padronização de colunas da
+aula anterior, produzindo <code class="docutils literal notranslate"><span class="pre">df_all</span></code> e <code class="docutils literal notranslate"><span class="pre">df_prec</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_prec</span> <span class="o">=</span> <span class="n">df_all</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">df_all</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;COD&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;PREC&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-4-recortar-a-safra-e-calcular-acumulados">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Passo 4 — recortar a safra e calcular acumulados</a><a class="headerlink" href="#passo-4-recortar-a-safra-e-calcular-acumulados" title="Link permanente para este cabeçalho"></a></h2>
+<p>Pegamos o primeiro registro da gleba e recortamos a série de
+precipitação no ciclo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_azarado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span>  <span class="o">==</span> <span class="n">lat</span><span class="p">)</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">lon</span><span class="p">)]</span>
+<span class="n">evento</span> <span class="o">=</span> <span class="n">df_azarado</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">dt_plantio</span>       <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_inicio_plantio&#39;</span><span class="p">]</span>
+<span class="n">dt_colheita</span>      <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_fim_colheita&#39;</span><span class="p">]</span>
+<span class="n">dt_inicio_evento</span> <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_inicio_evento&#39;</span><span class="p">]</span>
+<span class="n">dt_fim_evento</span>    <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_fim_evento&#39;</span><span class="p">]</span>
+
+<span class="n">df_prec</span> <span class="o">=</span> <span class="n">df_prec</span><span class="p">[</span><span class="n">dt_plantio</span><span class="p">:</span><span class="n">dt_colheita</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Três métricas operacionais para a alegação de excesso:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">chuva_safra</span>  <span class="o">=</span> <span class="n">df_prec</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">chuva_evento</span> <span class="o">=</span> <span class="n">df_prec</span><span class="p">[</span><span class="n">dt_inicio_evento</span><span class="p">:</span><span class="n">dt_fim_evento</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># % do total da safra que caiu no período do evento</span>
+<span class="n">pct</span> <span class="o">=</span> <span class="n">chuva_evento</span> <span class="o">/</span> <span class="n">chuva_safra</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Para uma alegação de <em>Chuva excessiva</em> ganhar plausibilidade,
+esperamos um percentual elevado da safra concentrado em poucos
+dias do evento. Valores &lt; 10–15% em janelas curtas indicam que
+o “evento” pode ter sido apenas chuva normal.</p>
+</div>
+<p>E a duração do evento e da safra:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+
+<span class="n">dur_evento</span> <span class="o">=</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_fim_evento</span><span class="p">,</span>    <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+              <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_inicio_evento</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">dur_safra</span>  <span class="o">=</span> <span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_colheita</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+              <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_plantio</span><span class="p">,</span>  <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-5-pico-diario-por-estacao">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Passo 5 — pico diário por estação</a><a class="headerlink" href="#passo-5-pico-diario-por-estacao" title="Link permanente para este cabeçalho"></a></h2>
+<p>Reamostragem horária → diária e máximo da janela:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_prec_diario</span> <span class="o">=</span> <span class="n">df_prec</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_prec</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">date</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># Máxima diária por estação e sua data</span>
+<span class="k">for</span> <span class="n">stn</span> <span class="ow">in</span> <span class="n">df_prec_diario</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+    <span class="n">imax</span> <span class="o">=</span> <span class="n">df_prec_diario</span><span class="p">[</span><span class="n">stn</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+    <span class="n">vmax</span> <span class="o">=</span> <span class="n">df_prec_diario</span><span class="p">[</span><span class="n">stn</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">stn</span><span class="si">}</span><span class="s1">  →  </span><span class="si">{</span><span class="n">vmax</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm em </span><span class="si">{</span><span class="n">imax</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Visualizando as duas estações válidas em barras paralelas com
+<code class="docutils literal notranslate"><span class="pre">matplotlib.dates</span></code>:</p>
+<figure class="align-center" id="id1">
+<img alt="Precipitação diária comparada entre duas estações." src="../../../../_images/cell032_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 8 - </span><span class="caption-text">Precipitação diária nas duas estações INMET válidas do <em>top 3</em>.
+A barra de cada estação fica deslocada de meio dia para evitar
+sobreposição visual.</span><a class="headerlink" href="#id1" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passo-6-gdd-com-os-parametros-do-trigo-zadoks">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Passo 6 — GDD com os parâmetros do trigo (Zadoks)</a><a class="headerlink" href="#passo-6-gdd-com-os-parametros-do-trigo-zadoks" title="Link permanente para este cabeçalho"></a></h2>
+<p>Reaproveitamos <code class="docutils literal notranslate"><span class="pre">graus_dia_acumulado</span></code> da <a class="reference internal" href="fonte-de-dados2.html"><span class="doc">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</span></a>,
+mas trocamos as constantes e as fases:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TB</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c1"># Temperatura base do trigo</span>
+<span class="n">TM</span> <span class="o">=</span> <span class="mi">26</span>   <span class="c1"># Teto fisiológico</span>
+
+<span class="n">fases_gdd</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Z10 - Emergência&#39;</span><span class="p">:</span>              <span class="mi">140</span><span class="p">,</span>
+    <span class="s1">&#39;Z13 - 3ª folha&#39;</span><span class="p">:</span>                <span class="mi">240</span><span class="p">,</span>
+    <span class="s1">&#39;Z21 - Início perfilhamento&#39;</span><span class="p">:</span>    <span class="mi">400</span><span class="p">,</span>
+    <span class="s1">&#39;Z30 - Elongação (1º nó)&#39;</span><span class="p">:</span>       <span class="mi">640</span><span class="p">,</span>
+    <span class="s1">&#39;Z39 - Folha bandeira&#39;</span><span class="p">,</span>          <span class="mi">820</span><span class="p">,</span>
+    <span class="s1">&#39;Z55 - Espigamento&#39;</span><span class="p">:</span>            <span class="mi">1020</span><span class="p">,</span>
+    <span class="s1">&#39;Z65 - Floração&#39;</span><span class="p">:</span>               <span class="mi">1200</span><span class="p">,</span>
+    <span class="s1">&#39;Z75 - Grão leitoso&#39;</span><span class="p">:</span>           <span class="mi">1400</span><span class="p">,</span>
+    <span class="s1">&#39;Z85 - Grão duro&#39;</span><span class="p">:</span>              <span class="mi">1620</span><span class="p">,</span>
+    <span class="s1">&#39;Z92 - Maturidade&#39;</span><span class="p">:</span>             <span class="mi">1900</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">prec_esperada</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Z10 - Emergência&#39;</span><span class="p">:</span>              <span class="mi">25</span><span class="p">,</span>
+    <span class="s1">&#39;Z13 - 3ª folha&#39;</span><span class="p">:</span>                <span class="mi">20</span><span class="p">,</span>
+    <span class="s1">&#39;Z21 - Início perfilhamento&#39;</span><span class="p">:</span>    <span class="mi">30</span><span class="p">,</span>
+    <span class="s1">&#39;Z30 - Elongação (1º nó)&#39;</span><span class="p">:</span>       <span class="mi">40</span><span class="p">,</span>
+    <span class="c1"># …  (~350–450 mm em todo o ciclo)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Identificamos em que fase estava o trigo no meio do evento:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dti</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_inicio_evento</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">dtf</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_fim_evento</span><span class="p">,</span>    <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">dt_meio</span> <span class="o">=</span> <span class="n">dti</span> <span class="o">+</span> <span class="p">(</span><span class="n">dtf</span> <span class="o">-</span> <span class="n">dti</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="n">df_fases</span><span class="p">[(</span><span class="n">df_fases</span><span class="p">[</span><span class="s1">&#39;data_inicio&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">dt_meio</span><span class="p">)</span> <span class="o">&amp;</span>
+         <span class="p">(</span><span class="n">df_fases</span><span class="p">[</span><span class="s1">&#39;data_fim&#39;</span><span class="p">]</span>    <span class="o">&gt;=</span> <span class="n">dt_meio</span><span class="p">)]</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-7-grafico-integrado-precipitacao-gdd-fases">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Passo 7 — gráfico integrado precipitação + GDD + fases</a><a class="headerlink" href="#passo-7-grafico-integrado-precipitacao-gdd-fases" title="Link permanente para este cabeçalho"></a></h2>
+<p>O gráfico final do notebook <strong>superpõe</strong>:</p>
+<ul class="simple">
+<li><p>barras diárias de precipitação,</p></li>
+<li><p>linhas de GDD acumulado (literatura × observado),</p></li>
+<li><p>faixas verticais coloridas demarcando cada fase Zadoks,</p></li>
+<li><p>uma marcação do intervalo do evento.</p></li>
+</ul>
+<figure class="align-center" id="id2">
+<img alt="Precipitação diária com fases fenológicas do trigo destacadas." src="../../../../_images/cell036_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 9 - </span><span class="caption-text">Acumulado diário com as fases fenológicas do trigo (Zadoks)
+destacadas. A coluna do evento é evidente nas barras mais altas.</span><a class="headerlink" href="#id2" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>E a versão <em>literatura × observado</em>:</p>
+<figure class="align-center" id="id3">
+<img alt="Comparação precipitação esperada × observada por fase fenológica do trigo." src="../../../../_images/cell039_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 10 - </span><span class="caption-text">Comparação <strong>literatura × observado</strong> por fase Zadoks. Excedentes
+nas fases Z65–Z75 (floração e grão leitoso) configuram o quadro
+típico de germinação na espiga em trigo.</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="discussao">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Discussão</a><a class="headerlink" href="#discussao" title="Link permanente para este cabeçalho"></a></h2>
+<p>Trigo tem demanda hídrica total de ~350–450 mm — muito menor que a
+da soja. Isso muda dois comportamentos diagnósticos:</p>
+<ul class="simple">
+<li><p>a fração <code class="docutils literal notranslate"><span class="pre">chuva_evento</span> <span class="pre">/</span> <span class="pre">chuva_safra</span></code> tende a ser maior para o
+mesmo volume absoluto de chuva;</p></li>
+<li><p>eventos de excesso hídrico em <strong>Z65 (floração)</strong> e
+<strong>Z75 (grão leitoso)</strong> geram impactos qualitativos (germinação na
+espiga, PHS) que não aparecem em soja.</p></li>
+</ul>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../../sinistros/aulas/chuva-trigo.html"><span class="doc">Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo</span></a> — versão completa
+multi-estação com fallback para grade MERGE quando a estação
+INMET tem falhas.</p></li>
+<li><p><a class="reference internal" href="../../eventos/index.html"><span class="doc">Tipos de eventos adversos no campo</span></a> — definição e mecanismos do evento
+“Chuva excessiva”.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="fonte-de-dados2.html" class="btn btn-neutral float-left" title="Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="fonte-de-dados4-downloaddadoscptec.html" class="btn btn-neutral float-right" title="Aula prática 4a — download das grades do CPTEC (MERGE e SAMeT)" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c10077b6d0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplo aplicado: estádio fenológico do trigo por graus-dia &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/fundamentos/fontes-dados/exemplo-graus-dia-trigo.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Aulas práticas — fontes de dados meteorológicos" href="praticas/index.html" />
+    <link rel="prev" title="Plataformas de visualização de dados meteorológicos" href="plataformas-visualizacao.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../risco/index.html">O que é risco agrícola?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventos/index.html">Tipos de eventos adversos no campo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adversos/adversos.html">Eventos climáticos adversos</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="estacoes.html">Estações meteorológicas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="gridded.html">Dados em grade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="satelite-meteorologico.html">Satélites meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radar.html">Radares meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="indicacao-dados.html">Indicação fontes de dados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="praticas/index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fontes de informação meteorológica (informações granulares)</a></li>
+      <li class="breadcrumb-item active">Exemplo aplicado: estádio fenológico do trigo por graus-dia</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="plataformas-visualizacao.html" class="btn btn-neutral float-left" title="Plataformas de visualização de dados meteorológicos" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="praticas/index.html" class="btn btn-neutral float-right" title="Aulas práticas — fontes de dados meteorológicos" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="exemplo-aplicado-estadio-fenologico-do-trigo-por-graus-dia">
+<h1>Exemplo aplicado: estádio fenológico do trigo por graus-dia<a class="headerlink" href="#exemplo-aplicado-estadio-fenologico-do-trigo-por-graus-dia" title="Link permanente para este cabeçalho"></a></h1>
+<p>As seções anteriores mostraram <em>onde</em> obter dados meteorológicos. Esta fecha o ciclo
+<strong>Conceito → Fenômeno → Dado → Indicador</strong> com um exemplo prático: a partir da temperatura
+diária de uma estação, estimar em que fase de desenvolvimento o trigo estava em cada data.
+Saber a fase fenológica é o que permite julgar se um evento meteorológico foi realmente
+crítico — a mesma chuva ou a mesma geada tem efeito muito diferente conforme a planta
+esteja no perfilhamento ou na floração.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Exemplo <strong>educacional</strong>, não operacional. Ele ilustra o raciocínio agrometeorológico;
+não é uma rotina de decisão automática. A leitura final de qualquer caso é humana.</p>
+</div>
+<section id="o-conceito-de-graus-dia">
+<h2>O conceito de graus-dia<a class="headerlink" href="#o-conceito-de-graus-dia" title="Link permanente para este cabeçalho"></a></h2>
+<p>A temperatura funciona como o “relógio” do desenvolvimento das culturas (ver
+<a class="reference internal" href="../risco/principais-elementos.html"><span class="doc">Principais elementos climáticos que afetam a agricultura</span></a>). A planta só acumula desenvolvimento acima de uma
+<strong>temperatura base</strong> (<span class="math notranslate nohighlight">\(T_b\)</span>) e deixa de ganhar acima de uma <strong>temperatura máxima
+cardeal</strong> (<span class="math notranslate nohighlight">\(T_M\)</span>). Os graus-dia (GD) de cada dia medem esse acúmulo térmico pelo
+método da média simples:</p>
+<div class="math notranslate nohighlight" id="equation-eq-fenomenos-graus-dia">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-fenomenos-graus-dia" title="Link permanente para essa equação"></a></span>\[GD = \frac{T_{max} + T_{min}}{2} - T_b\]</div>
+<p>com <span class="math notranslate nohighlight">\(T_{max}\)</span> limitada a <span class="math notranslate nohighlight">\(T_M\)</span>, <span class="math notranslate nohighlight">\(T_{min}\)</span> limitada a <span class="math notranslate nohighlight">\(T_b\)</span> por
+baixo, e <span class="math notranslate nohighlight">\(GD = 0\)</span> quando o resultado seria negativo. Somando os GD dia a dia
+obtém-se o <strong>GDD acumulado</strong>, que cresce de forma previsível ao longo do ciclo. Cada fase
+fenológica é atingida em torno de um valor característico de GDD acumulado — e é assim que
+se converte uma série de temperatura em um calendário de fases.</p>
+<p>Para o trigo, usam-se <span class="math notranslate nohighlight">\(T_b \approx 5\ ^\circ C\)</span> e <span class="math notranslate nohighlight">\(T_M \approx 26\ ^\circ C\)</span>,
+e as fases seguem a escala Zadoks <span id="id1">[<a class="reference internal" href="../../../referencias.html#id156" title="Jan C. Zadoks. A decimal code for the growth stages of cereals. 1974. URL: https://doi.org/10.1111/J.1365-3180.1974.TB01084.X.">65</a>]</span>.</p>
+</section>
+<section id="o-codigo">
+<h2>O código<a class="headerlink" href="#o-codigo" title="Link permanente para este cabeçalho"></a></h2>
+<p>O script é linear: define as constantes, gera uma série diária de temperatura (aqui
+sintética, só para rodar sem download — na prática viria do INMET), calcula os graus-dia
+acumulados e localiza a data em que cada fase é alcançada.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="ch">#!/usr/bin/env python3</span>
+<span class="linenos">  2</span><span class="c1"># Exemplo educacional — não operacional.</span>
+<span class="linenos">  3</span><span class="c1"># Estádio fenológico do trigo a partir de graus-dia acumulados (GDD).</span>
+<span class="linenos">  4</span><span class="c1">#</span>
+<span class="linenos">  5</span><span class="c1"># A série de temperatura aqui é SINTÉTICA e serve só para tornar o exemplo</span>
+<span class="linenos">  6</span><span class="c1"># reprodutível sem depender de download. Na prática, TMAX e TMIN diárias vêm</span>
+<span class="linenos">  7</span><span class="c1"># das estações do INMET (ver a seção &quot;Estações meteorológicas&quot;).</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 10</span><span class="c1"># IMPORTS</span>
+<span class="linenos"> 11</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="linenos"> 16</span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="linenos"> 17</span>
+<span class="linenos"> 18</span>
+<span class="linenos"> 19</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 20</span><span class="c1"># CONFIGURAÇÕES</span>
+<span class="linenos"> 21</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 22</span>
+<span class="linenos"> 23</span><span class="c1"># Temperaturas cardeais do trigo (°C):</span>
+<span class="linenos"> 24</span><span class="c1"># abaixo da base não há acúmulo térmico; acima da máxima, não acrescenta mais.</span>
+<span class="linenos"> 25</span><span class="n">TEMP_BASE</span> <span class="o">=</span> <span class="mf">5.0</span>
+<span class="linenos"> 26</span><span class="n">TEMP_MAXIMA</span> <span class="o">=</span> <span class="mf">26.0</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="c1"># Data de semeadura do ciclo analisado.</span>
+<span class="linenos"> 29</span><span class="n">DATA_SEMEADURA</span> <span class="o">=</span> <span class="s1">&#39;2023-06-01&#39;</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="c1"># Fases fenológicas do trigo na escala Zadoks, com o GDD acumulado típico</span>
+<span class="linenos"> 32</span><span class="c1"># (°C·dia, base 5 °C) em que cada uma costuma ser atingida no Sul do Brasil.</span>
+<span class="linenos"> 33</span><span class="c1"># A antese (Z61) é a fase mais sensível ao clima.</span>
+<span class="linenos"> 34</span><span class="n">FASES_ZADOKS</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 35</span>    <span class="s1">&#39;Z10 - Emergência&#39;</span><span class="p">:</span>              <span class="mi">90</span><span class="p">,</span>
+<span class="linenos"> 36</span>    <span class="s1">&#39;Z13 - 3ª folha&#39;</span><span class="p">:</span>               <span class="mi">180</span><span class="p">,</span>
+<span class="linenos"> 37</span>    <span class="s1">&#39;Z21 - Início perfilhamento&#39;</span><span class="p">:</span>   <span class="mi">315</span><span class="p">,</span>
+<span class="linenos"> 38</span>    <span class="s1">&#39;Z30 - Elongação (1º nó)&#39;</span><span class="p">:</span>      <span class="mi">505</span><span class="p">,</span>
+<span class="linenos"> 39</span>    <span class="s1">&#39;Z39 - Folha bandeira&#39;</span><span class="p">:</span>         <span class="mi">675</span><span class="p">,</span>
+<span class="linenos"> 40</span>    <span class="s1">&#39;Z50 - Espigamento&#39;</span><span class="p">:</span>            <span class="mi">810</span><span class="p">,</span>
+<span class="linenos"> 41</span>    <span class="s1">&#39;Z61 - Antese/Floração&#39;</span><span class="p">:</span>       <span class="mi">1000</span><span class="p">,</span>
+<span class="linenos"> 42</span>    <span class="s1">&#39;Z71 - Grão leitoso&#39;</span><span class="p">:</span>          <span class="mi">1170</span><span class="p">,</span>
+<span class="linenos"> 43</span>    <span class="s1">&#39;Z83 - Grão duro&#39;</span><span class="p">:</span>             <span class="mi">1395</span><span class="p">,</span>
+<span class="linenos"> 44</span>    <span class="s1">&#39;Z92 - Maturação fisiológica&#39;</span><span class="p">:</span> <span class="mi">1620</span><span class="p">,</span>
+<span class="linenos"> 45</span><span class="p">}</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span>
+<span class="linenos"> 48</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 49</span><span class="c1"># FUNÇÕES</span>
+<span class="linenos"> 50</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 51</span>
+<span class="linenos"> 52</span><span class="k">def</span><span class="w"> </span><span class="nf">calcular_graus_dia_diario</span><span class="p">(</span><span class="n">temp_maxima</span><span class="p">,</span> <span class="n">temp_minima</span><span class="p">,</span> <span class="n">temp_base</span><span class="p">,</span> <span class="n">temp_maxima_cardeal</span><span class="p">):</span>
+<span class="linenos"> 53</span>    <span class="c1"># Graus-dia pelo método da média simples com limites cardeais:</span>
+<span class="linenos"> 54</span>    <span class="c1"># GD = (Tmax + Tmin) / 2 - Tbase, truncando Tmax na máxima cardeal,</span>
+<span class="linenos"> 55</span>    <span class="c1"># Tmin na base, e zerando valores negativos.</span>
+<span class="linenos"> 56</span>    <span class="n">temp_maxima</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">temp_maxima</span><span class="p">,</span> <span class="n">temp_maxima_cardeal</span><span class="p">)</span>
+<span class="linenos"> 57</span>    <span class="n">temp_minima</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">temp_minima</span><span class="p">,</span> <span class="n">temp_base</span><span class="p">)</span>
+<span class="linenos"> 58</span>    <span class="n">graus_dia</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp_maxima</span> <span class="o">+</span> <span class="n">temp_minima</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">temp_base</span>
+<span class="linenos"> 59</span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">graus_dia</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="linenos"> 60</span>
+<span class="linenos"> 61</span>
+<span class="linenos"> 62</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 63</span><span class="c1"># SÉRIE DE TEMPERATURA (sintética, só para o exemplo)</span>
+<span class="linenos"> 64</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 65</span>
+<span class="linenos"> 66</span><span class="c1"># 150 dias a partir da semeadura, do inverno à primavera no Sul do Brasil.</span>
+<span class="linenos"> 67</span><span class="n">data_inicio</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">DATA_SEMEADURA</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos"> 68</span><span class="n">datas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">data_inicio</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">)</span>
+<span class="linenos"> 69</span>
+<span class="linenos"> 70</span><span class="c1"># Aquecimento sazonal suave (≈12 °C no inverno → ≈22 °C no fim da primavera),</span>
+<span class="linenos"> 71</span><span class="c1"># com uma amplitude diária de cerca de 10 °C. Determinístico, sem ruído.</span>
+<span class="linenos"> 72</span><span class="n">dia_do_ciclo</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">datas</span><span class="p">))</span>
+<span class="linenos"> 73</span><span class="n">temp_media</span> <span class="o">=</span> <span class="mi">12</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">dia_do_ciclo</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">datas</span><span class="p">))</span>
+<span class="linenos"> 74</span><span class="n">temp_maxima</span> <span class="o">=</span> <span class="n">temp_media</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="linenos"> 75</span><span class="n">temp_minima</span> <span class="o">=</span> <span class="n">temp_media</span> <span class="o">-</span> <span class="mi">5</span>
+<span class="linenos"> 76</span>
+<span class="linenos"> 77</span><span class="n">df_temp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;TMAX&#39;</span><span class="p">:</span> <span class="n">temp_maxima</span><span class="p">,</span> <span class="s1">&#39;TMIN&#39;</span><span class="p">:</span> <span class="n">temp_minima</span><span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="n">datas</span><span class="p">)</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span>
+<span class="linenos"> 80</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 81</span><span class="c1"># PROCESSAMENTO — graus-dia acumulados</span>
+<span class="linenos"> 82</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calculando graus-dia diários e acumulados...&#39;</span><span class="p">)</span>
+<span class="linenos"> 85</span>
+<span class="linenos"> 86</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;GD&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">calcular_graus_dia_diario</span><span class="p">(</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;TMAX&#39;</span><span class="p">],</span> <span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;TMIN&#39;</span><span class="p">],</span>
+<span class="linenos"> 87</span>                                          <span class="n">TEMP_BASE</span><span class="p">,</span> <span class="n">TEMP_MAXIMA</span><span class="p">)</span>
+<span class="linenos"> 88</span><span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;GD_ACUM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;GD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span>
+<span class="linenos"> 91</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 92</span><span class="c1"># DATAS DE CADA FASE FENOLÓGICA</span>
+<span class="linenos"> 93</span><span class="c1"># ============================================================</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Localizando a data em que cada fase é atingida...&#39;</span><span class="p">)</span>
+<span class="linenos"> 96</span>
+<span class="linenos"> 97</span><span class="n">linhas_fases</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos"> 98</span><span class="k">for</span> <span class="n">fase</span><span class="p">,</span> <span class="n">gd_referencia</span> <span class="ow">in</span> <span class="n">FASES_ZADOKS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="linenos"> 99</span>    <span class="n">atingiu</span> <span class="o">=</span> <span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;GD_ACUM&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">gd_referencia</span>
+<span class="linenos">100</span>    <span class="k">if</span> <span class="n">atingiu</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<span class="linenos">101</span>        <span class="n">data_fase</span> <span class="o">=</span> <span class="n">atingiu</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="linenos">102</span>        <span class="n">linhas_fases</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+<span class="linenos">103</span>            <span class="s1">&#39;fase&#39;</span><span class="p">:</span> <span class="n">fase</span><span class="p">,</span>
+<span class="linenos">104</span>            <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data_fase</span><span class="o">.</span><span class="n">date</span><span class="p">(),</span>
+<span class="linenos">105</span>            <span class="s1">&#39;gd_referencia&#39;</span><span class="p">:</span> <span class="n">gd_referencia</span><span class="p">,</span>
+<span class="linenos">106</span>            <span class="s1">&#39;gd_acumulado&#39;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data_fase</span><span class="p">,</span> <span class="s1">&#39;GD_ACUM&#39;</span><span class="p">]),</span> <span class="mi">1</span><span class="p">),</span>
+<span class="linenos">107</span>        <span class="p">})</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span><span class="n">df_fases</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">linhas_fases</span><span class="p">)</span>
+<span class="linenos">110</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="c1"># ============================================================</span>
+<span class="linenos">113</span><span class="c1"># SAÍDA</span>
+<span class="linenos">114</span><span class="c1"># ============================================================</span>
+<span class="linenos">115</span>
+<span class="linenos">116</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="linenos">117</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Semeadura: </span><span class="si">{</span><span class="n">DATA_SEMEADURA</span><span class="si">}</span><span class="s1"> | Tbase: </span><span class="si">{</span><span class="n">TEMP_BASE</span><span class="si">}</span><span class="s1"> °C | Tmax: </span><span class="si">{</span><span class="n">TEMP_MAXIMA</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+<span class="linenos">118</span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="linenos">119</span><span class="nb">print</span><span class="p">(</span><span class="n">df_fases</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="resultado">
+<h2>Resultado<a class="headerlink" href="#resultado" title="Link permanente para este cabeçalho"></a></h2>
+<p>A saída associa cada fase à data estimada e ao GDD acumulado correspondente:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>------------------------------------------------------------
+Semeadura: 2023-06-01 | Tbase: 5.0 °C | Tmax: 26.0 °C
+------------------------------------------------------------
+                       fase       data  gd_referencia  gd_acumulado
+           Z10 - Emergência 2023-06-13             90          96.2
+             Z13 - 3ª folha 2023-06-24            180         186.4
+ Z21 - Início perfilhamento 2023-07-09            315         322.4
+    Z30 - Elongação (1º nó) 2023-07-27            505         505.4
+       Z39 - Folha bandeira 2023-08-12            675         686.2
+          Z50 - Espigamento 2023-08-23            810         820.4
+      Z61 - Antese/Floração 2023-09-06           1000        1002.9
+         Z71 - Grão leitoso 2023-09-19           1170         1184.0
+            Z83 - Grão duro 2023-10-04           1395         1407.0
+Z92 - Maturação fisiológica 2023-10-18           1620         1628.3
+</pre></div>
+</div>
+<p>Com esse calendário em mãos, o passo seguinte é cruzar as datas das fases com o período de
+um evento adverso declarado em uma Comunicação de Perda (COP). Se a janela do evento cair
+sobre a antese (Z61) — a fase mais sensível —, o indício de dano é muito mais forte do que
+se cair sobre uma fase vegetativa. Esse cruzamento é um instrumento de <strong>priorização</strong>: ele
+ajuda a ordenar o que merece análise pericial, sem substituí-la.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="plataformas-visualizacao.html" class="btn btn-neutral float-left" title="Plataformas de visualização de dados meteorológicos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="praticas/index.html" class="btn btn-neutral float-right" title="Aulas práticas — fontes de dados meteorológicos" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1015e55d0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

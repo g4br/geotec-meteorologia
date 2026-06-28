@@ -1,0 +1,612 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 1 — plausibilidade meteorológica: seca em soja &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/aulas/seca-soja.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo" href="chuva-trigo.html" />
+    <link rel="prev" title="Aulas práticas — plausibilidade meteorológica e recorrência" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+      <li class="breadcrumb-item active">Aula 1 — plausibilidade meteorológica: seca em soja</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="index.html" class="btn btn-neutral float-left" title="Aulas práticas — plausibilidade meteorológica e recorrência" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="chuva-trigo.html" class="btn btn-neutral float-right" title="Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-1-plausibilidade-meteorologica-seca-em-soja">
+<h1>Aula 1 — plausibilidade meteorológica: seca em soja<a class="headerlink" href="#aula-1-plausibilidade-meteorologica-seca-em-soja" title="Link permanente para este cabeçalho"></a></h1>
+<p>Este é o pipeline didático mais completo do curso. Vamos verificar,
+para todas as COPs deferidas de <strong>Seca × Soja</strong> na safra de verão
+2022/23 (Sul do Brasil), se a anomalia de precipitação observada na
+grade MERGE/CPTEC é <strong>compatível</strong> com a alegação de seca.</p>
+<p>A pergunta central:</p>
+<blockquote>
+<div><p><em>A anomalia de precipitação observada nos dados em grade
+(MERGE/CPTEC), comparada à climatologia, é compatível com a
+ocorrência de seca declarada na COP?</em></p>
+</div></blockquote>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#dados-utilizados" id="id12">Dados utilizados</a></p></li>
+<li><p><a class="reference internal" href="#passo-0-carregamento-e-preparacao" id="id13">Passo 0 — carregamento e preparação</a></p>
+<ul>
+<li><p><a class="reference internal" href="#funcoes-utilitarias-de-leitura" id="id14">Funções utilitárias de leitura</a></p></li>
+<li><p><a class="reference internal" href="#leitura-do-inmet" id="id15">Leitura do INMET</a></p></li>
+<li><p><a class="reference internal" href="#recorte-sicor-com-correcao-de-coordenadas" id="id16">Recorte Sicor com correção de coordenadas</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#passo-1-datas-de-referencia" id="id17">Passo 1 — datas de referência</a></p></li>
+<li><p><a class="reference internal" href="#passo-2-tres-estacoes-inmet-mais-proximas-haversine-vetorizado" id="id18">Passo 2 — três estações INMET mais próximas (Haversine vetorizado)</a></p></li>
+<li><p><a class="reference internal" href="#passo-3-anomalia-de-precipitacao-na-janela-do-evento" id="id19">Passo 3 — anomalia de precipitação na janela do evento</a></p></li>
+<li><p><a class="reference internal" href="#passo-4-anomalia-decendial-ciclo-completo" id="id20">Passo 4 — anomalia decendial (ciclo completo)</a></p></li>
+<li><p><a class="reference internal" href="#passo-5-metricas-agregadas-e-flags-de-implausibilidade" id="id21">Passo 5 — métricas agregadas e flags de implausibilidade</a></p></li>
+<li><p><a class="reference internal" href="#passo-6-distribuicao-das-anomalias" id="id22">Passo 6 — distribuição das anomalias</a></p></li>
+<li><p><a class="reference internal" href="#passo-7-mapa-dos-casos-suspeitos" id="id23">Passo 7 — mapa dos casos suspeitos</a></p></li>
+<li><p><a class="reference internal" href="#passo-8-diagnostico-detalhado-merge-inmet" id="id24">Passo 8 — diagnóstico detalhado (MERGE × INMET)</a></p></li>
+<li><p><a class="reference internal" href="#passo-9-top-3-casos-suspeitos-lote" id="id25">Passo 9 — top 3 casos suspeitos (lote)</a></p></li>
+<li><p><a class="reference internal" href="#passo-10-exploracao-livre" id="id26">Passo 10 — exploração livre</a></p></li>
+<li><p><a class="reference internal" href="#sintese" id="id27">Síntese</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id28">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="dados-utilizados">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Dados utilizados</a><a class="headerlink" href="#dados-utilizados" title="Link permanente para este cabeçalho"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fonte</p></th>
+<th class="head"><p>Conteúdo</p></th>
+<th class="head"><p>Formato</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MERGE/CPTEC</p></td>
+<td><p>Precipitação diária em grade (~0,1°)</p></td>
+<td><p>GRIB2</p></td>
+</tr>
+<tr class="row-odd"><td><p>SAMeT/CPTEC TMAX/TMIN</p></td>
+<td><p>Temperaturas diárias em grade</p></td>
+<td><p>NetCDF</p></td>
+</tr>
+<tr class="row-even"><td><p>Climatologia MERGE/SAMeT</p></td>
+<td><p>Normais diárias (por <code class="docutils literal notranslate"><span class="pre">dayofyear</span></code>)</p></td>
+<td><p>NetCDF</p></td>
+</tr>
+<tr class="row-odd"><td><p>INMET</p></td>
+<td><p>Séries horárias das estações automáticas</p></td>
+<td><p>CSV (um por estação/ano)</p></td>
+</tr>
+<tr class="row-even"><td><p>Sicor (recorte V2)</p></td>
+<td><p>COPs deferidas com metadados agronômicos</p></td>
+<td><p>CSV</p></td>
+</tr>
+<tr class="row-odd"><td><p>Malha IBGE 2023</p></td>
+<td><p>Polígonos municipais SIRGAS 2000</p></td>
+<td><p>Shapefile</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No notebook original, os caminhos apontam para o disco local do
+instrutor (<code class="docutils literal notranslate"><span class="pre">/media/ED520C85.../MESTRADO/...</span></code>). Substitua por uma
+variável <code class="docutils literal notranslate"><span class="pre">DATA_DIR</span></code> ajustada ao seu ambiente. O período de
+análise (<code class="docutils literal notranslate"><span class="pre">2022-06-01</span></code> → <code class="docutils literal notranslate"><span class="pre">2023-07-31</span></code>) cobre o ciclo da safra
+de verão 2022/23.</p>
+</div>
+</section>
+<section id="passo-0-carregamento-e-preparacao">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Passo 0 — carregamento e preparação</a><a class="headerlink" href="#passo-0-carregamento-e-preparacao" title="Link permanente para este cabeçalho"></a></h2>
+<section id="funcoes-utilitarias-de-leitura">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Funções utilitárias de leitura</a><a class="headerlink" href="#funcoes-utilitarias-de-leitura" title="Link permanente para este cabeçalho"></a></h3>
+<p>Encapsulamos a leitura em três funções pequenas — uma por produto
+de grade — que sempre fazem o mesmo: listar arquivos para o
+período, abrir com <code class="docutils literal notranslate"><span class="pre">xr.open_mfdataset</span></code> concatenando por <code class="docutils literal notranslate"><span class="pre">time</span></code>
+e recortar para o <em>bounding box</em> do Brasil.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span><span class="o">,</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span><span class="o">,</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cfeature</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+
+<span class="n">startdate</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s1">&#39;2022-06-01&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">enddate</span>   <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s1">&#39;2023-07-31&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">ds_prec</span>       <span class="o">=</span> <span class="n">open_merge</span><span class="p">(</span><span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">ds_prec_clima</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_clima</span><span class="si">}</span><span class="s1">/MERGE_CPTEC_*.nc&#39;</span><span class="p">,</span>
+                                   <span class="n">combine</span><span class="o">=</span><span class="s1">&#39;nested&#39;</span><span class="p">,</span> <span class="n">concat_dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span>
+                       <span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span><span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="leitura-do-inmet">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Leitura do INMET</a><a class="headerlink" href="#leitura-do-inmet" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">open_inmet</span><span class="p">(</span><span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lê, padroniza e concatena CSVs horários do INMET.&quot;&quot;&quot;</span>
+    <span class="n">anoi</span><span class="p">,</span> <span class="n">anof</span> <span class="o">=</span> <span class="n">startdate</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">enddate</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">arquivos</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ano</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">anoi</span><span class="p">,</span> <span class="n">anof</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">arquivos</span> <span class="o">+=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_inmet</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ano</span><span class="si">}</span><span class="s1">/*.CSV&#39;</span><span class="p">))</span>
+    <span class="c1"># ... encoding=&#39;latin1&#39;, sep=&#39;;&#39;, decimal=&#39;,&#39;, skiprows=8 ...</span>
+    <span class="c1"># ... renomeia colunas, extrai COD do nome do arquivo,</span>
+    <span class="c1"># ... constrói índice DATA+HORA, troca -9999 por NaN.</span>
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="n">df_inmet</span> <span class="o">=</span> <span class="n">open_inmet</span><span class="p">(</span><span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">)</span>
+
+<span class="c1"># Shift de -12h para alinhar UTC ao dia civil brasileiro</span>
+<span class="n">df_inmet</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_inmet</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="recorte-sicor-com-correcao-de-coordenadas">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Recorte Sicor com correção de coordenadas</a><a class="headerlink" href="#recorte-sicor-com-correcao-de-coordenadas" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_sicor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sicor-interest.anom.csv&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="n">mask_lat</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span> <span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">LAT_MIN</span><span class="p">,</span> <span class="n">LAT_MAX</span><span class="p">)</span>
+<span class="n">mask_lon</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">LON_MIN</span><span class="p">,</span> <span class="n">LON_MAX</span><span class="p">)</span>
+<span class="n">df_sicor</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span><span class="n">mask_lat</span> <span class="o">&amp;</span> <span class="n">mask_lon</span><span class="p">]</span>
+
+<span class="n">seca_soja</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;produto&#39;</span><span class="p">]</span>         <span class="o">==</span> <span class="s1">&#39;soja&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;nome_evento&#39;</span><span class="p">]</span>     <span class="o">==</span> <span class="s1">&#39;Seca&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;dt_fim_plantio&#39;</span><span class="p">]</span>  <span class="o">&gt;=</span> <span class="n">startdate</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;dt_fim_colheita&#39;</span><span class="p">]</span>  <span class="o">&lt;</span>  <span class="n">enddate</span><span class="p">)</span>
+<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># Deduplicação por (ref_bacen, nu_ordem)</span>
+<span class="n">seca_soja</span> <span class="o">=</span> <span class="p">(</span><span class="n">seca_soja</span>
+             <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_ordem&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_indice&#39;</span><span class="p">])</span>
+             <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_ordem&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Mapa exploratório (Folium):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mapa</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">28</span><span class="p">,</span> <span class="o">-</span><span class="mi">53</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">control_scale</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">seca_soja</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">folium</span><span class="o">.</span><span class="n">CircleMarker</span><span class="p">(</span>
+        <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]],</span>
+        <span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">mapa</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="passo-1-datas-de-referencia">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Passo 1 — datas de referência</a><a class="headerlink" href="#passo-1-datas-de-referencia" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;data_ref_evento&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;dt_inicio_evento&#39;</span><span class="p">]</span>
+                                 <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">]))</span>
+<span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;duracao_evento_dias&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;dt_fim_evento&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;dt_inicio_evento&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-2-tres-estacoes-inmet-mais-proximas-haversine-vetorizado">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Passo 2 — três estações INMET mais próximas (Haversine vetorizado)</a><a class="headerlink" href="#passo-2-tres-estacoes-inmet-mais-proximas-haversine-vetorizado" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">haversine_km</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">):</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mf">6371.0</span>
+    <span class="n">lat1_r</span><span class="p">,</span> <span class="n">lat2_r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span>
+    <span class="n">dlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span><span class="p">)</span>
+    <span class="n">dlon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlat</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat1_r</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">lat2_r</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlon</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">R</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">a</span><span class="p">))</span>
+
+<span class="n">lat_est</span><span class="p">,</span> <span class="n">lon_est</span><span class="p">,</span> <span class="n">cod_est</span> <span class="o">=</span> <span class="n">df_coords</span><span class="p">[[</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;Código&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+<span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;cod_estacao_</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;dist_estacao_</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">_km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+
+<span class="c1"># Loop vetorizado por COP: top 3 estações</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">seca_soja</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">haversine_km</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">],</span>
+                      <span class="n">lat_est</span><span class="p">,</span> <span class="n">lon_est</span><span class="p">)</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">d</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+        <span class="n">seca_soja</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;cod_estacao_</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">cod_est</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">rank</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">seca_soja</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;dist_estacao_</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">_km&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">rank</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-3-anomalia-de-precipitacao-na-janela-do-evento">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Passo 3 — anomalia de precipitação na janela do evento</a><a class="headerlink" href="#passo-3-anomalia-de-precipitacao-na-janela-do-evento" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para cada COP calculamos:</p>
+<ol class="arabic simple">
+<li><p><strong>Observado</strong> (MERGE acumulado na janela);</p></li>
+<li><p><strong>Climatologia</strong> (normal do mesmo período);</p></li>
+<li><p><strong>Anomalia</strong> (obs − clima) em mm.</p></li>
+</ol>
+<p>Sinal <strong>negativo</strong> → choveu <em>menos</em> que o normal → plausível com seca.
+Sinal <strong>positivo</strong> → choveu <em>mais</em> que o normal → suspeito.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doy_para_idx</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span>
+                 <span class="nb">enumerate</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ds_prec_clima</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">))}</span>
+
+<span class="n">resultados</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">seca_soja</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span>
+    <span class="n">di</span><span class="p">,</span> <span class="n">dfm</span>  <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dt_inicio_evento&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dt_fim_evento&#39;</span><span class="p">]</span>
+
+    <span class="n">obs</span>   <span class="o">=</span> <span class="n">ds_prec</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span> \
+                    <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">di</span><span class="p">,</span> <span class="n">dfm</span><span class="p">))[</span><span class="s1">&#39;rdp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+    <span class="n">doys</span>  <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">dayofyear</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">di</span><span class="p">,</span> <span class="n">dfm</span><span class="p">)]</span>
+    <span class="n">clima</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">ds_prec_clima</span><span class="o">.</span><span class="n">pmed</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">doy_para_idx</span><span class="p">[</span><span class="n">d</span><span class="p">])</span>
+                       <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                       <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">doys</span><span class="p">))</span>
+    <span class="n">resultados</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">:</span>       <span class="n">row</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">],</span>
+                       <span class="s1">&#39;prec_evento_mm&#39;</span><span class="p">:</span>  <span class="n">obs</span><span class="p">,</span>
+                       <span class="s1">&#39;clim_evento_mm&#39;</span><span class="p">:</span>  <span class="n">clima</span><span class="p">,</span>
+                       <span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">:</span>  <span class="n">obs</span> <span class="o">-</span> <span class="n">clima</span><span class="p">})</span>
+
+<span class="n">seca_soja</span> <span class="o">=</span> <span class="n">seca_soja</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">),</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-4-anomalia-decendial-ciclo-completo">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Passo 4 — anomalia decendial (ciclo completo)</a><a class="headerlink" href="#passo-4-anomalia-decendial-ciclo-completo" title="Link permanente para este cabeçalho"></a></h2>
+<p>Por que decêndios?</p>
+<ul class="simple">
+<li><p>unidade temporal do <strong>ZARC</strong> <span id="id1">[<a class="reference internal" href="../../../referencias.html#id239" title="Embrapa. Zoneamento agrícola de risco climático (ZARC): como funciona. 2023. URL: https://www.embrapa.br/rede-zarc-embrapa/sobre-o-zarc.">23</a>]</span>;</p></li>
+<li><p>alinha com <strong>fases fenológicas</strong> (V1-V6 vs R1-R3 vs R5-R6) <span id="id2">[<a class="reference internal" href="../../../referencias.html#id57" title="Walter R. Fehr and Charles E. Caviness. Stages of soybean development. 1977. URL: https://dr.lib.iastate.edu/handle/20.500.12876/90239.">81</a>]</span>;</p></li>
+<li><p>mais fino que mensal, mais robusto que diário.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gerar_decendios</span><span class="p">(</span><span class="n">d_ini</span><span class="p">,</span> <span class="n">d_fim</span><span class="p">,</span> <span class="n">n_dias</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">blocos</span><span class="p">,</span> <span class="n">atual</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">d_ini</span>
+    <span class="k">while</span> <span class="n">atual</span> <span class="o">&lt;</span> <span class="n">d_fim</span><span class="p">:</span>
+        <span class="n">fim</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">atual</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">n_dias</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">d_fim</span><span class="p">)</span>
+        <span class="n">blocos</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">atual</span><span class="p">,</span> <span class="n">fim</span><span class="p">))</span>
+        <span class="n">atual</span> <span class="o">=</span> <span class="n">fim</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">blocos</span>
+
+<span class="n">resultados_dec</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">seca_soja</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">di</span><span class="p">,</span> <span class="n">dfm</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+            <span class="n">gerar_decendios</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;dt_inicio_plantio&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dt_fim_colheita&#39;</span><span class="p">])):</span>
+        <span class="n">obs</span>  <span class="o">=</span> <span class="n">ds_prec</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">],</span>
+                            <span class="n">latitude</span> <span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span>
+                            <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span> \
+                       <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">di</span><span class="p">,</span> <span class="n">dfm</span><span class="p">))[</span><span class="s1">&#39;rdp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">clim</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">ds_prec_clima</span><span class="o">.</span><span class="n">pmed</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">doy_para_idx</span><span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">])</span>
+                    <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">],</span>
+                         <span class="n">lat</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">di</span><span class="p">,</span> <span class="n">dfm</span><span class="p">))</span>
+        <span class="n">resultados_dec</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">:</span>         <span class="n">row</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">],</span>
+                                <span class="s1">&#39;decendio_num&#39;</span><span class="p">:</span>      <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+                                <span class="s1">&#39;decendio_ini&#39;</span><span class="p">:</span>      <span class="n">di</span><span class="p">,</span>
+                                <span class="s1">&#39;decendio_fim&#39;</span><span class="p">:</span>      <span class="n">dfm</span><span class="p">,</span>
+                                <span class="s1">&#39;prec_decendio_mm&#39;</span><span class="p">:</span>  <span class="n">obs</span><span class="p">,</span>
+                                <span class="s1">&#39;clim_decendio_mm&#39;</span><span class="p">:</span>  <span class="n">clim</span><span class="p">,</span>
+                                <span class="s1">&#39;anom_decendio_mm&#39;</span><span class="p">:</span>  <span class="n">obs</span> <span class="o">-</span> <span class="n">clim</span><span class="p">})</span>
+
+<span class="n">df_decendios</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados_dec</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-5-metricas-agregadas-e-flags-de-implausibilidade">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Passo 5 — métricas agregadas e flags de implausibilidade</a><a class="headerlink" href="#passo-5-metricas-agregadas-e-flags-de-implausibilidade" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_metricas</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_decendios</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+    <span class="n">n_decendios_ciclo</span>    <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;decendio_num&#39;</span><span class="p">,</span>     <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+    <span class="n">n_decendios_anom_neg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;anom_decendio_mm&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+    <span class="n">n_decendios_anom_pos</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;anom_decendio_mm&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()),</span>
+    <span class="n">anom_minima_mm</span>       <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;anom_decendio_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">),</span>
+    <span class="n">anom_acum_ciclo_mm</span>   <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;anom_decendio_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">),</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+
+<span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;flag_seca_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;flag_seca_sem_anom_ciclo&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="p">(</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;anom_acum_ciclo_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;anom_acum_ciclo_mm&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;flag_seca_implausivel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;flag_seca_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">&amp;</span>
+    <span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;flag_seca_sem_anom_ciclo&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-6-distribuicao-das-anomalias">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Passo 6 — distribuição das anomalias</a><a class="headerlink" href="#passo-6-distribuicao-das-anomalias" title="Link permanente para este cabeçalho"></a></h2>
+<figure class="align-center" id="id3">
+<img alt="Histograma das anomalias na janela do evento e no ciclo completo." src="../../../_images/cell044_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 57 - </span><span class="caption-text">Distribuição das anomalias em duas escalas. Para um conjunto de
+COPs de seca, a <strong>massa</strong> deveria estar à esquerda de zero
+(anomalias negativas). As COPs à direita são as que acionam o
+flag de implausibilidade.</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passo-7-mapa-dos-casos-suspeitos">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Passo 7 — mapa dos casos suspeitos</a><a class="headerlink" href="#passo-7-mapa-dos-casos-suspeitos" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suspeitos</span> <span class="o">=</span> <span class="n">seca_soja</span><span class="p">[</span><span class="n">seca_soja</span><span class="p">[</span><span class="s1">&#39;flag_seca_implausivel&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total de casos suspeitos: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">suspeitos</span><span class="p">)</span><span class="si">:</span><span class="s1">,</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">suspeitos</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">suspeitos</span><span class="p">[</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">())</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id4">
+<img alt="Mapa Cartopy das COPs suspeitas no Sul do Brasil." src="../../../_images/cell048_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 58 - </span><span class="caption-text">Casos com <code class="docutils literal notranslate"><span class="pre">flag_seca_implausivel</span></code> ativos. Cores na escala
+<code class="docutils literal notranslate"><span class="pre">RdYlBu</span></code> (vermelho = déficit, azul = excesso). Como o flag
+isola excessos, os pontos ficam predominantemente no lado azul.</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passo-8-diagnostico-detalhado-merge-inmet">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Passo 8 — diagnóstico detalhado (MERGE × INMET)</a><a class="headerlink" href="#passo-8-diagnostico-detalhado-merge-inmet" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para o caso de <strong>maior anomalia positiva</strong>, plotamos:</p>
+<ol class="arabic simple">
+<li><p><strong>Mapa de contexto</strong> — grade MERGE + COP + estações;</p></li>
+<li><p><strong>DataFrame temporal</strong> com 7 séries diárias (MERGE pixel COP +
+MERGE pixel 3 estações + INMET 3 estações);</p></li>
+<li><p><strong>Série diária</strong> com janela do evento destacada;</p></li>
+<li><p><strong>Barras por decêndio</strong> com cobertura INMET.</p></li>
+</ol>
+<figure class="align-center" id="id5">
+<img alt="Mapa de contexto com grade MERGE, centróide COP e estações INMET." src="../../../_images/cell053_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 59 - </span><span class="caption-text">Mapa de contexto sobre imagem de satélite. Pontos brancos: grade
+MERGE. Estrela dourada: centróide da COP. Círculos coloridos:
+estações INMET (top 3).</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<img alt="Série temporal diária MERGE vs INMET no ciclo." src="../../../_images/cell057_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 60 - </span><span class="caption-text">Série diária no ciclo completo. Linha preta grossa: MERGE no
+pixel da COP. Tracejadas claras: MERGE nos pixels das 3
+estações. Sólidas escuras: INMET. Faixa dourada: janela do
+evento declarado pelo perito.</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<img alt="Barras MERGE × INMET por decêndio." src="../../../_images/cell059_out02.png" />
+<figcaption>
+<p><span class="caption-number">Figura 61 - </span><span class="caption-text">Comparativo MERGE × INMET por decêndio. Anotações marcam a
+cobertura INMET (<code class="docutils literal notranslate"><span class="pre">✗</span></code> = sem dado; <code class="docutils literal notranslate"><span class="pre">XX%</span></code> = cobertura parcial).
+Discordâncias podem indicar evento convectivo local que o MERGE
+suavizou.</span><a class="headerlink" href="#id7" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passo-9-top-3-casos-suspeitos-lote">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Passo 9 — top 3 casos suspeitos (lote)</a><a class="headerlink" href="#passo-9-top-3-casos-suspeitos-lote" title="Link permanente para este cabeçalho"></a></h2>
+<p>Encapsuladas as visualizações em duas funções, geramos perfil de
+anomalia + comparativo MERGE × INMET para os 3 casos com maior
+anomalia positiva:</p>
+<figure class="align-center" id="id8">
+<img alt="Perfil de anomalia decendial (caso 1)." src="../../../_images/cell064_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 62 - </span><span class="caption-text">Perfil de anomalia por decêndio (caso 1). Barras vermelhas →
+déficit; barras azuis → excesso; faixa dourada → janela do
+evento declarado pelo perito.</span><a class="headerlink" href="#id8" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<img alt="Comparativo MERGE × INMET por decêndio (caso 1)." src="../../../_images/cell064_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 63 - </span><span class="caption-text">Comparativo MERGE × INMET por decêndio para o mesmo caso 1.</span><a class="headerlink" href="#id9" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id10">
+<img alt="Perfil de anomalia decendial (caso 2)." src="../../../_images/cell064_out2.png" />
+<figcaption>
+<p><span class="caption-number">Figura 64 - </span><span class="caption-text">Caso 2.</span><a class="headerlink" href="#id10" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="Perfil de anomalia decendial (caso 3)." src="../../../_images/cell064_out4.png" />
+<figcaption>
+<p><span class="caption-number">Figura 65 - </span><span class="caption-text">Caso 3.</span><a class="headerlink" href="#id11" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passo-10-exploracao-livre">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">Passo 10 — exploração livre</a><a class="headerlink" href="#passo-10-exploracao-livre" title="Link permanente para este cabeçalho"></a></h2>
+<p>Trocando <code class="docutils literal notranslate"><span class="pre">ref_analise</span></code> por qualquer <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> de <code class="docutils literal notranslate"><span class="pre">suspeitos</span></code>
+(ou do conjunto completo) reproduzimos o diagnóstico para outro caso:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ref_analise</span> <span class="o">=</span> <span class="n">suspeitos</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">plot_anomalia_decendios</span><span class="p">(</span><span class="n">ref_analise</span><span class="p">,</span> <span class="n">df_decendios</span><span class="p">,</span> <span class="n">seca_soja</span><span class="p">)</span>
+<span class="n">plot_merge_vs_inmet</span>   <span class="p">(</span><span class="n">ref_analise</span><span class="p">,</span> <span class="n">df_decendios</span><span class="p">,</span> <span class="n">seca_soja</span><span class="p">,</span>
+                         <span class="n">df_inmet</span><span class="p">,</span> <span class="n">df_coords</span><span class="p">,</span> <span class="n">ds_prec</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sintese">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">Síntese</a><a class="headerlink" href="#sintese" title="Link permanente para este cabeçalho"></a></h2>
+<p>O DataFrame <code class="docutils literal notranslate"><span class="pre">seca_soja</span></code> foi enriquecido com:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 25.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Coluna nova</p></th>
+<th class="head"><p>Origem</p></th>
+<th class="head"><p>O que representa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_ref_evento</span></code></p></td>
+<td><p>COP + RCP</p></td>
+<td><p>Melhor estimativa da data de início</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cod_estacao_1/2/3</span></code></p></td>
+<td><p>INMET</p></td>
+<td><p>3 estações mais próximas</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">anom_evento_mm</span></code></p></td>
+<td><p>MERGE − clima</p></td>
+<td><p>Anomalia na janela do evento</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">anom_acum_ciclo_mm</span></code></p></td>
+<td><p>MERGE − clima</p></td>
+<td><p>Anomalia acumulada no ciclo</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">flag_seca_implausivel</span></code></p></td>
+<td><p>lógica composta</p></td>
+<td><p>Ambos flags ativos</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>Estes flags <strong>não acusam fraude</strong> — apenas indicam <em>onde olhar</em>.
+Toda investigação adicional deve combinar campo, agronomia
+local, ZARC e parecer técnico.</p>
+</div>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id28" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="chuva-trigo.html"><span class="doc">Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo</span></a> — mesma estrutura com lógica <strong>invertida</strong>.</p></li>
+<li><p><a class="reference internal" href="geada-trigo.html"><span class="doc">Aula 3 — plausibilidade meteorológica: geada em trigo</span></a> — fenômeno de microescala com SAMeT TMIN.</p></li>
+<li><p><a class="reference internal" href="recorrencia-espacial.html"><span class="doc">Aula 4 — recorrência espacial e atores: Sul × SEALBA</span></a> — visão regional de longo prazo.</p></li>
+<li><p><a class="reference internal" href="../inconsistencias.html"><span class="doc">Identificação de outliers e inconsistências meteorológicas em sinistros</span></a> — fundamentos teóricos do conceito de
+outlier meteorológico.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="Aulas práticas — plausibilidade meteorológica e recorrência" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="chuva-trigo.html" class="btn btn-neutral float-right" title="Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1011f1390>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

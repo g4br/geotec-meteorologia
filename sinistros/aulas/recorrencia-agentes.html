@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 5 — análise integrada de COPs: recorrência, concentração e valores &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/aulas/recorrencia-agentes.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Modelagem de perdas e aplicações em decisão" href="../../modelagem/index.html" />
+    <link rel="prev" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" href="recorrencia-espacial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+      <li class="breadcrumb-item active">Aula 5 — análise integrada de COPs: recorrência, concentração e valores</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="recorrencia-espacial.html" class="btn btn-neutral float-left" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../../modelagem/index.html" class="btn btn-neutral float-right" title="Modelagem de perdas e aplicações em decisão" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-5-analise-integrada-de-cops-recorrencia-concentracao-e-valores">
+<h1>Aula 5 — análise integrada de COPs: recorrência, concentração e valores<a class="headerlink" href="#aula-5-analise-integrada-de-cops-recorrencia-concentracao-e-valores" title="Link permanente para este cabeçalho"></a></h1>
+<p>Esta é a aula menos meteorológica do módulo. Mudamos o foco para a
+<strong>leitura crítica dos dados administrativos do Sicor</strong> — quem
+pericia muito, quem paga mais, quem se repete ano a ano. Os
+indicadores aqui são os que <strong>TCU e BCB</strong> costumam usar em
+auditorias.</p>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#bloco-1-preparacao-e-mapa-nacional-por-evento" id="id13">Bloco 1 — preparação e mapa nacional por evento</a></p>
+<ul>
+<li><p><a class="reference internal" href="#deduplicacao-por-ref-bacen-nu-ordem" id="id14">Deduplicação por (<code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code>, <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#bloco-2-caso-de-estudo-produtor-com-maior-recorrencia" id="id15">Bloco 2 — caso de estudo: produtor com maior recorrência</a></p></li>
+<li><p><a class="reference internal" href="#bloco-3-concentracao-de-peritos-e-ifs" id="id16">Bloco 3 — concentração de peritos e IFs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#volume-por-perito" id="id17">Volume por perito</a></p></li>
+<li><p><a class="reference internal" href="#indicador-ivip-vinculos-if-perito" id="id18">Indicador IVIP (vínculos IF × perito)</a></p></li>
+<li><p><a class="reference internal" href="#triades-produtor-perito-if" id="id19">Tríades produtor × perito × IF</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#bloco-4-raio-de-atuacao-por-perito" id="id20">Bloco 4 — raio de atuação por perito</a></p></li>
+<li><p><a class="reference internal" href="#bloco-5-razao-pago-credito-contratado" id="id21">Bloco 5 — razão pago / crédito contratado</a></p></li>
+<li><p><a class="reference internal" href="#sintese-final" id="id22">Síntese final</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id23">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="bloco-1-preparacao-e-mapa-nacional-por-evento">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Bloco 1 — preparação e mapa nacional por evento</a><a class="headerlink" href="#bloco-1-preparacao-e-mapa-nacional-por-evento" title="Link permanente para este cabeçalho"></a></h2>
+<p>Mesmas três correções padrão: longitude invertida, recorte ao
+<em>bounding box</em> do Brasil, e <strong>truncamento de hashes</strong> anonimizados
+para 12 caracteres:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sicor-interest.anom.csv&#39;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span> <span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="o">-</span><span class="mi">34</span><span class="p">,</span>  <span class="mi">6</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="o">-</span><span class="mi">75</span><span class="p">,</span> <span class="o">-</span><span class="mi">33</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;cd_cpf_produtor_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;cd_cpf_cnpj_periciadora_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_dap_hash&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">12</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Mapa de densidade nacional por evento (hexbin):</p>
+<figure class="align-center" id="id3">
+<img alt="Hexbin nacional — Chuva excessiva." src="../../../_images/cell007_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 95 - </span><span class="caption-text">Densidade nacional de COPs — <strong>Chuva excessiva</strong>.</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<img alt="Hexbin nacional — Seca." src="../../../_images/cell007_out4.png" />
+<figcaption>
+<p><span class="caption-number">Figura 96 - </span><span class="caption-text">Densidade nacional de COPs — <strong>Seca</strong>.</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="Hexbin nacional — Geada." src="../../../_images/cell007_out6.png" />
+<figcaption>
+<p><span class="caption-number">Figura 97 - </span><span class="caption-text">Densidade nacional de COPs — <strong>Geada</strong>.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<section id="deduplicacao-por-ref-bacen-nu-ordem">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Deduplicação por (<code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code>, <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>)</a><a class="headerlink" href="#deduplicacao-por-ref-bacen-nu-ordem" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para análises de recorrência por produtor/perito/IF precisamos de
+<strong>uma linha por COP única</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_sicor_unique</span> <span class="o">=</span> <span class="n">gdf_sicor</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span>
+    <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_ordem&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Regra de uso de dois DataFrames</p>
+<ul class="simple">
+<li><p><strong>Contagem de COPs</strong> → <code class="docutils literal notranslate"><span class="pre">df_azarado</span></code> (bruto, com glebas);</p></li>
+<li><p><strong>Contratos únicos</strong> → <code class="docutils literal notranslate"><span class="pre">ref_bacen.nunique()</span></code>;</p></li>
+<li><p><strong>Valores financeiros</strong> → <code class="docutils literal notranslate"><span class="pre">df_az_unique</span></code> (deduplicado).</p></li>
+</ul>
+<p>Somar valores do bruto superestimaria o crédito em ~Nx (N =
+glebas por contrato).</p>
+</div>
+</section>
+</section>
+<section id="bloco-2-caso-de-estudo-produtor-com-maior-recorrencia">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Bloco 2 — caso de estudo: produtor com maior recorrência</a><a class="headerlink" href="#bloco-2-caso-de-estudo-produtor-com-maior-recorrencia" title="Link permanente para este cabeçalho"></a></h2>
+<p>Como warm-up didático, exploramos o produtor com <strong>mais
+acionamentos</strong> na base. Calculamos métricas no DataFrame
+deduplicado:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;latencia_visita_dias&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;dt_visita&#39;</span><span class="p">])</span> <span class="o">-</span>
+    <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+
+<span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;razao_pago_credito&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;vl_pago_total&#39;</span><span class="p">]</span> <span class="o">/</span>
+    <span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;div_area_pct&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;vl_area_informada&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;area_gleba_ha&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+    <span class="o">/</span> <span class="n">df_az_unique</span><span class="p">[</span><span class="s1">&#39;vl_area_informada&#39;</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id6">
+<img alt="Linha do tempo do produtor estudado — volume + crédito × pago." src="../../../_images/cell019_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 98 - </span><span class="caption-text">Linha do tempo do produtor — superior: volume anual (COPs vs
+contratos únicos); inferior: crédito contratado × valor pago
+(R$ mil).</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="bloco-3-concentracao-de-peritos-e-ifs">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Bloco 3 — concentração de peritos e IFs</a><a class="headerlink" href="#bloco-3-concentracao-de-peritos-e-ifs" title="Link permanente para este cabeçalho"></a></h2>
+<section id="volume-por-perito">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Volume por perito</a><a class="headerlink" href="#volume-por-perito" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cops_por_perito</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sicor_unique</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">total_contratos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+         <span class="n">anos_ativos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">valor_mediano</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">),</span>
+         <span class="n">ifs_atendidas</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">cops_por_perito</span><span class="p">[</span><span class="s1">&#39;contratos_por_ano&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">cops_por_perito</span><span class="p">[</span><span class="s1">&#39;total_contratos&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">cops_por_perito</span><span class="p">[</span><span class="s1">&#39;anos_ativos&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id7">
+<img alt="Top 15 peritos por volume." src="../../../_images/cell030_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 99 - </span><span class="caption-text">Top 15 peritos por volume de contratos. Anotação à direita
+mostra contratos/ano. O <strong>TCU (Acórdão 2493/2024)</strong> identificou
+peritos com mais de 750 perícias/ano <span id="id1">[<a class="reference internal" href="../../../referencias.html#id245" title="Tribunal de Contas da União. Acórdão n. 2493/2024 – plenário: auditoria operacional no proagro e no ZARC. Technical Report, TCU, 2024. URL: https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2493/2024/Plen%C3%A1rio.">5</a>]</span> —
+logisticamente inviável se cada perícia exige visita a campo.</span><a class="headerlink" href="#id7" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="indicador-ivip-vinculos-if-perito">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Indicador IVIP (vínculos IF × perito)</a><a class="headerlink" href="#indicador-ivip-vinculos-if-perito" title="Link permanente para este cabeçalho"></a></h3>
+<p>O <strong>IVIP</strong> mede o quanto uma IF concentra suas COPs em poucos
+peritos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vinculo_perito_if</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sicor_unique</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">total_contratos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+         <span class="n">valor_total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">total_por_if</span> <span class="o">=</span> <span class="n">vinculo_perito_if</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">)[</span><span class="s1">&#39;total_contratos&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">vinculo_perito_if</span><span class="p">[</span><span class="s1">&#39;pct_da_if&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">vinculo_perito_if</span><span class="p">[</span><span class="s1">&#39;total_contratos&#39;</span><span class="p">]</span> <span class="o">/</span>
+    <span class="n">vinculo_perito_if</span><span class="p">[</span><span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">total_por_if</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="triades-produtor-perito-if">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Tríades produtor × perito × IF</a><a class="headerlink" href="#triades-produtor-perito-if" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">triade</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sicor_unique</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;cd_cpf_produtor_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">total_contratos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+         <span class="n">anos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">unique</span><span class="p">())),</span>
+         <span class="n">valor_total</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;total_contratos&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">triades_relevantes</span> <span class="o">=</span> <span class="n">triade</span><span class="p">[</span><span class="n">triade</span><span class="p">[</span><span class="s1">&#39;total_contratos&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Um caso com 3 recorrências em 3 anos é comum (vínculo estável). Um
+caso com 10 recorrências em 2 anos é bem menos comum.</p>
+</section>
+</section>
+<section id="bloco-4-raio-de-atuacao-por-perito">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Bloco 4 — raio de atuação por perito</a><a class="headerlink" href="#bloco-4-raio-de-atuacao-por-perito" title="Link permanente para este cabeçalho"></a></h2>
+<p>Um perito que vistoria glebas a centenas de quilômetros de
+distância na mesma semana <strong>não pode</strong> estar fazendo trabalho
+criterioso.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">raio_atuacao</span><span class="p">(</span><span class="n">grupo</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raio médio e máximo (km) por perito — aproximação 1° ≈ 111 km.&quot;&quot;&quot;</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">grupo</span><span class="p">[[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;raio_med_km&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;raio_max_km&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+                           <span class="s1">&#39;lat_centroide&#39;</span><span class="p">:</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                           <span class="s1">&#39;lon_centroide&#39;</span><span class="p">:</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+    <span class="n">lat_c</span><span class="p">,</span> <span class="n">lon_c</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">lat_c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">lon_c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">111</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;raio_med_km&#39;</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+                       <span class="s1">&#39;raio_max_km&#39;</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                       <span class="s1">&#39;lat_centroide&#39;</span><span class="p">:</span> <span class="n">lat_c</span><span class="p">,</span>
+                       <span class="s1">&#39;lon_centroide&#39;</span><span class="p">:</span> <span class="n">lon_c</span><span class="p">})</span>
+
+<span class="n">raio_perito</span> <span class="o">=</span> <span class="n">gdf_coords</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">raio_atuacao</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id8">
+<img alt="Distribuição do raio máximo de atuação por perito." src="../../../_images/cell041_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 100 - </span><span class="caption-text">Histograma e scatter (volume × dispersão) do raio máximo por
+perito. A mediana costuma ficar abaixo de 100 km. <strong>Peritos com
+raio &gt; 300 km são candidatos naturais à investigação</strong>.</span><a class="headerlink" href="#id8" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id9">
+<img alt="Mapa Cartopy de centroides de atuação por perito." src="../../../_images/cell043_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 101 - </span><span class="caption-text">Cartopy com centroides geográficos dos peritos. Tamanho =
+volume. Vermelho = raio &gt; 300 km.</span><a class="headerlink" href="#id9" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="bloco-5-razao-pago-credito-contratado">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Bloco 5 — razão pago / crédito contratado</a><a class="headerlink" href="#bloco-5-razao-pago-credito-contratado" title="Link permanente para este cabeçalho"></a></h2>
+<p>Pergunta crítica: <em>o Proagro paga mais ou menos que o solicitado?</em></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 80.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Razão</p></th>
+<th class="head"><p>Interpretação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&lt; 1,0</p></td>
+<td><p>Pagou <strong>menos</strong> que o solicitado — caso <strong>comum</strong> (cobertura parcial).</p></td>
+</tr>
+<tr class="row-odd"><td><p>= 1,0</p></td>
+<td><p>Pagou exatamente o solicitado — perda total.</p></td>
+</tr>
+<tr class="row-even"><td><p>&gt; 1,0</p></td>
+<td><p>Pagou <strong>mais</strong> que o solicitado — <strong>atípico, merece atenção</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Cálculo correto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_sicor_unique</span><span class="p">[</span><span class="s1">&#39;razao_pago_credito&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sicor_unique</span><span class="p">[</span><span class="s1">&#39;vl_pago_total&#39;</span><span class="p">]</span> <span class="o">/</span>
+    <span class="n">gdf_sicor_unique</span><span class="p">[</span><span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Razão por perito (somente peritos com ≥ 5 COPs para relevância
+estatística):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">razao_por_perito</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sicor_unique</span>
+    <span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;razao_pago_credito&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">n_cops</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+         <span class="n">razao_mediana</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;razao_pago_credito&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">),</span>
+         <span class="n">razao_p90</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;razao_pago_credito&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">0.90</span><span class="p">)),</span>
+         <span class="n">valor_pago_sum</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;vl_pago_total&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;n_cops &gt;= 5&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;razao_mediana&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id10">
+<img alt="Scatter volume × razão por perito." src="../../../_images/cell056_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 102 - </span><span class="caption-text">Scatter volume × razão por perito. O <strong>quadrante superior
+direito</strong> (alta razão E alto volume) é o mais relevante
+analiticamente.</span><a class="headerlink" href="#id10" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id11">
+<img alt="Boxplot da razão pago/crédito por evento." src="../../../_images/cell062_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 103 - </span><span class="caption-text">Boxplot da razão por <strong>tipo de evento</strong>. Permite ver se há
+diferenças sistemáticas — perda total tende a ocorrer mais em
+alguns eventos (geada, granizo).</span><a class="headerlink" href="#id11" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id12">
+<img alt="Mapa de COPs com razão pago/crédito &gt; 1." src="../../../_images/cell065_out11.png" />
+<figcaption>
+<p><span class="caption-number">Figura 104 - </span><span class="caption-text">Mapa de COPs onde o pagamento foi <strong>maior que o solicitado</strong>.
+Esses casos justificam revisão caso a caso.</span><a class="headerlink" href="#id12" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="sintese-final">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Síntese final</a><a class="headerlink" href="#sintese-final" title="Link permanente para este cabeçalho"></a></h2>
+<p>Esta aula consolidou cinco perspectivas administrativas que
+<strong>complementam</strong> as análises meteorológicas das aulas 1-3:</p>
+<ol class="arabic simple">
+<li><p><strong>Densidade espacial por evento</strong> → onde estão os hotspots
+nacionais (cont. da Aula 4);</p></li>
+<li><p><strong>Recorrência por produtor</strong> → quem aciona muito, quão diverso é
+o portfólio;</p></li>
+<li><p><strong>Concentração de peritos e IFs</strong> → IVIP, top peritos por
+volume, tríades recorrentes;</p></li>
+<li><p><strong>Raio de atuação</strong> → indicador físico difícil de manipular;</p></li>
+<li><p><strong>Razão pago / crédito</strong> → comportamento financeiro relativo.</p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>Nenhum indicador isolado <strong>acusa</strong> irregularidade. A função do
+conjunto é <strong>filtrar onde investigar</strong> — TCU/BCB usam combinação
+de indicadores convergentes para priorizar auditoria
+<span id="id2">[<a class="reference internal" href="../../../referencias.html#id245" title="Tribunal de Contas da União. Acórdão n. 2493/2024 – plenário: auditoria operacional no proagro e no ZARC. Technical Report, TCU, 2024. URL: https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2493/2024/Plen%C3%A1rio.">5</a>]</span>.</p>
+</div>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../tipologia.html"><span class="doc">Tipologias de inconsistências meteorológicas em sinistros</span></a> — categorização teórica das inconsistências.</p></li>
+<li><p><a class="reference internal" href="../aplicacoes.html"><span class="doc">Aplicações práticas da análise e interpolação espacial</span></a> — síntese aplicada com pipeline completo.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="recorrencia-espacial.html" class="btn btn-neutral float-left" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../../modelagem/index.html" class="btn btn-neutral float-right" title="Modelagem de perdas e aplicações em decisão" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c100f3fa50>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

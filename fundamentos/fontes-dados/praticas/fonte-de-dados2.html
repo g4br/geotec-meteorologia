@@ -1,0 +1,735 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/fundamentos/fontes-dados/praticas/fonte-de-dados2.html" />
+      <script src="../../../../_static/jquery.js"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+      <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../../_static/clipboard.min.js"></script>
+      <script src="../../../../_static/copybutton.js"></script>
+      <script src="../../../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" />
+    <link rel="next" title="Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD" href="fonte-de-dados3.html" />
+    <link rel="prev" title="Aula prática 1 — download e leitura dos dados do INMET" href="fonte-de-dados1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../risco/index.html">O que é risco agrícola?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../eventos/index.html">Tipos de eventos adversos no campo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adversos/adversos.html">Eventos climáticos adversos</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../estacoes.html">Estações meteorológicas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gridded.html">Dados em grade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../satelite-meteorologico.html">Satélites meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../radar.html">Radares meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../indicacao-dados.html">Indicação fontes de dados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../exemplo-graus-dia-trigo.html">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fontes de informação meteorológica (informações granulares)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+      <li class="breadcrumb-item active">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="fonte-de-dados1.html" class="btn btn-neutral float-left" title="Aula prática 1 — download e leitura dos dados do INMET" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="fonte-de-dados3.html" class="btn btn-neutral float-right" title="Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-pratica-2-sicor-inmet-plausibilidade-espacial-e-gdd-da-soja">
+<h1>Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja<a class="headerlink" href="#aula-pratica-2-sicor-inmet-plausibilidade-espacial-e-gdd-da-soja" title="Link permanente para este cabeçalho"></a></h1>
+<p>Esta aula integra <strong>três bases</strong> num único fluxo de trabalho:</p>
+<ul class="simple">
+<li><p>o recorte do Sicor com COPs deferidas (<code class="docutils literal notranslate"><span class="pre">sicor-interest-data.csv</span></code>),</p></li>
+<li><p>o catálogo de estações automáticas do INMET
+(<code class="docutils literal notranslate"><span class="pre">coordenadas-inmet.csv</span></code>),</p></li>
+<li><p>os CSVs horários do INMET baixados na <a class="reference internal" href="fonte-de-dados1.html"><span class="doc">aula anterior</span></a>.</p></li>
+</ul>
+<p>A partir delas, construímos uma rotina exploratória que (i) limpa as
+coordenadas do Sicor, (ii) destaca padrões espaciais suspeitos de COPs
+recorrentes, (iii) localiza as três estações INMET mais próximas de um
+ponto via fórmula de Haversine e (iv) estima o estádio fenológico da
+soja por acúmulo de <strong>graus-dia (GDD)</strong> para verificar se o evento
+declarado é plausível no momento da fenologia da cultura.</p>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#objetivo" id="id8">Objetivo</a></p></li>
+<li><p><a class="reference internal" href="#dados-utilizados" id="id9">Dados utilizados</a></p></li>
+<li><p><a class="reference internal" href="#a-consulta-sql-que-originou-o-sicor" id="id10">A consulta SQL que originou o Sicor</a></p></li>
+<li><p><a class="reference internal" href="#passo-1-carga-e-diagnostico-das-coordenadas" id="id11">Passo 1 — carga e diagnóstico das coordenadas</a></p></li>
+<li><p><a class="reference internal" href="#passo-2-diagnostico-de-pontos-com-muitas-cops" id="id12">Passo 2 — diagnóstico de pontos com muitas COPs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#deduplicacao-por-data-de-comunicacao" id="id13">Deduplicação por data de comunicação</a></p></li>
+<li><p><a class="reference internal" href="#heatmap-interativo-no-folium" id="id14">Heatmap interativo no Folium</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#passo-3-caso-de-estudo-a-coordenada-mais-recorrente" id="id15">Passo 3 — caso de estudo: a coordenada mais recorrente</a></p></li>
+<li><p><a class="reference internal" href="#passo-4-catalogo-de-coordenadas-do-inmet-via-bash" id="id16">Passo 4 — catálogo de coordenadas do INMET via bash</a></p></li>
+<li><p><a class="reference internal" href="#passo-5-as-tres-estacoes-inmet-mais-proximas-haversine" id="id17">Passo 5 — As três estações INMET mais próximas (Haversine)</a></p></li>
+<li><p><a class="reference internal" href="#passo-6-carregar-as-series-das-estacoes-proximas" id="id18">Passo 6 — carregar as séries das estações próximas</a></p></li>
+<li><p><a class="reference internal" href="#passo-7-chuva-no-periodo-do-evento-no-ciclo" id="id19">Passo 7 — chuva no período do evento × no ciclo</a></p></li>
+<li><p><a class="reference internal" href="#passo-8-estadio-fenologico-via-graus-dia-soja" id="id20">Passo 8 — estádio fenológico via graus-dia (soja)</a></p></li>
+<li><p><a class="reference internal" href="#passo-9-comparacao-com-a-literatura" id="id21">Passo 9 — comparação com a literatura</a></p></li>
+<li><p><a class="reference internal" href="#discussao" id="id22">Discussão</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id23">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="objetivo">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Objetivo</a><a class="headerlink" href="#objetivo" title="Link permanente para este cabeçalho"></a></h2>
+<p>Demonstrar o <strong>fluxo central da disciplina</strong>: cruzar uma COP do Sicor
+com observações meteorológicas próximas e verificar se o evento
+alegado é consistente com (a) a chuva acumulada no período do evento,
+(b) a chuva acumulada no ciclo completo e (c) a fase fenológica
+provável da cultura na data do evento.</p>
+</section>
+<section id="dados-utilizados">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Dados utilizados</a><a class="headerlink" href="#dados-utilizados" title="Link permanente para este cabeçalho"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 35.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Arquivo</p></th>
+<th class="head"><p>Origem</p></th>
+<th class="head"><p>Conteúdo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sicor-interest-data.csv</span></code></p></td>
+<td><p>Recorte SQL do banco Sicor (ver bloco SQL abaixo)</p></td>
+<td><p>COPs deferidas × ZARC × glebas × RCP, todas as culturas e
+safras disponíveis.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">coordenadas-inmet.csv</span></code></p></td>
+<td><p>Cabeçalho dos CSVs do INMET (gerado por shell)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cod,</span> <span class="pre">latitude,</span> <span class="pre">longitude</span></code> de ~560 estações automáticas.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">INMET/&lt;ano&gt;/*.CSV</span></code></p></td>
+<td><p>Download da <a class="reference internal" href="fonte-de-dados1.html"><span class="doc">aula 1</span></a></p></td>
+<td><p>Séries horárias de temperatura, precipitação, vento, etc.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="a-consulta-sql-que-originou-o-sicor">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">A consulta SQL que originou o Sicor</a><a class="headerlink" href="#a-consulta-sql-que-originou-o-sicor" title="Link permanente para este cabeçalho"></a></h2>
+<p>O recorte <code class="docutils literal notranslate"><span class="pre">sicor-interest-data.csv</span></code> é o resultado de uma única
+consulta integrada ao banco do Sicor — ela mescra a COP, o RCP, o
+ZARC e a geometria da gleba. Conhecer essa origem é importante: a
+fonte explica os valores estranhos que precisaremos limpar adiante
+(longitudes positivas, latitudes no hemisfério norte) e as colunas que
+serão usadas em todas as próximas aulas.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O cruzamento com o ZARC só retorna linhas para soja, milho e
+trigo — as únicas culturas atualmente carregadas na tabela ZARC.
+Para as demais culturas, <code class="docutils literal notranslate"><span class="pre">data_inicial_decendio</span></code>,
+<code class="docutils literal notranslate"><span class="pre">data_final_decendio</span></code> e <code class="docutils literal notranslate"><span class="pre">risco_percentual</span></code> virão <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, o
+que não indica erro.</p>
+</div>
+</section>
+<section id="passo-1-carga-e-diagnostico-das-coordenadas">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Passo 1 — carga e diagnóstico das coordenadas</a><a class="headerlink" href="#passo-1-carga-e-diagnostico-das-coordenadas" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df_sicor</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sicor-interest-data.csv&#39;</span><span class="p">)</span>
+<span class="n">df_sicor</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Olhando os extremos das colunas espaciais, aparecem dois sintomas
+clássicos do recorte:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>   <span class="c1"># 65.66</span>
+<span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>    <span class="c1">#  47.89</span>
+</pre></div>
+</div>
+<p>Brasil não tem longitude positiva nem latitude maior que ~6°N. O banco
+armazena longitudes como valor absoluto (sem o sinal de oeste) e tem
+registros espúrios fora do território nacional. Fazemos duas correções
+sequenciais:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 4 - </span><span class="caption-text">Restauração do sinal da longitude + corte para a bounding box do Brasil.</span><a class="headerlink" href="#id1" title="Link Permanente para esse código"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Correção 1 — restaurar o hemisfério oeste</span>
+<span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># Correção 2 — cortar para a bounding box do Brasil</span>
+<span class="n">df_sicor</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">][</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">34</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span> <span class="o">&lt;=</span>   <span class="mi">6</span><span class="p">)</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="p">]</span>
+<span class="n">df_sicor</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span>
+    <span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">][</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">75</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">33</span><span class="p">)</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Filtramos depois a cultura de interesse:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_sicor</span><span class="p">[</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;produto&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;soja&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-2-diagnostico-de-pontos-com-muitas-cops">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Passo 2 — diagnóstico de pontos com muitas COPs</a><a class="headerlink" href="#passo-2-diagnostico-de-pontos-com-muitas-cops" title="Link permanente para este cabeçalho"></a></h2>
+<p>Quando uma mesma coordenada (mesmo lat/lon de centróide) aparece em
+dezenas de COPs, há indício de <strong>cooperativa</strong> (várias glebas
+registradas no endereço da matriz) ou de centroide compartilhado por
+muitas glebas pequenas. Esse caso precisa ser tratado antes de mapear,
+caso contrário um único endereço suprime o sinal regional.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 5 - </span><span class="caption-text">Contagem de COPs por par (lon, lat).</span><a class="headerlink" href="#id2" title="Link Permanente para esse código"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contagem</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude_centroide&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;contagem&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;contagem&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">absurdos</span> <span class="o">=</span> <span class="n">contagem</span><span class="p">[</span><span class="n">contagem</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Visualizando a distribuição desses “absurdos” com Cartopy:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 6 - </span><span class="caption-text">Mapa Cartopy dos pontos com &gt; 10 COPs no mesmo centróide.</span><a class="headerlink" href="#id3" title="Link Permanente para esse código"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cfeature</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="n">proj</span><span class="p">})</span>
+
+<span class="n">margin</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span>
+    <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">margin</span><span class="p">,</span>
+    <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">margin</span><span class="p">,</span>
+    <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>  <span class="o">-</span> <span class="n">margin</span><span class="p">,</span>
+    <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="o">+</span> <span class="n">margin</span><span class="p">,</span>
+<span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">proj</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">feat</span> <span class="ow">in</span> <span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">STATES</span><span class="p">,</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">feat</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">,</span>  <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f0f0f0&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">OCEAN</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#d4e6f1&#39;</span><span class="p">)</span>
+
+<span class="n">sizes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">],</span>
+                  <span class="p">[</span><span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span>
+                  <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">300</span><span class="p">])</span>
+
+<span class="n">sc</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">],</span> <span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">],</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">absurdos</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span><span class="n">sizes</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">proj</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Contagem&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribuição espacial dos &quot;absurdos&quot;&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<figure class="align-center" id="id4">
+<img alt="Mapa dos centróides do Sicor com mais de 10 COPs." src="../../../../_images/cell020_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 5 - </span><span class="caption-text">Centróides do Sicor com mais de 10 COPs no mesmo ponto. A
+concentração no oeste do Paraná é compatível com um centróide
+institucional (cooperativa).</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<section id="deduplicacao-por-data-de-comunicacao">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Deduplicação por data de comunicação</a><a class="headerlink" href="#deduplicacao-por-data-de-comunicacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>A solução adotada na aula é <strong>contar datas de comunicação únicas</strong>
+(<code class="docutils literal notranslate"><span class="pre">nunique('dt_comunicacao')</span></code>) — assim cada par (lon, lat) é
+penalizado quando o mesmo dia é repetido em várias glebas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contagem_filtrada</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude_centroide&#39;</span><span class="p">])[</span><span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;contagem&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;contagem&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">contagem_filtrada</span> <span class="o">=</span> <span class="n">contagem_filtrada</span><span class="p">[</span><span class="n">contagem_filtrada</span><span class="p">[</span><span class="s1">&#39;contagem&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>E refazemos o mapa com a contagem corrigida:</p>
+<figure class="align-center" id="id5">
+<img alt="Mapa Cartopy das localidades que registraram ≥ 3 COPs em datas distintas." src="../../../../_images/cell025_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 6 - </span><span class="caption-text">Após a deduplicação por <code class="docutils literal notranslate"><span class="pre">dt_comunicacao</span></code>, o mapa fica dominado
+pelos focos típicos do Sul do Brasil — mais coerente com a
+distribuição climática da soja.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="heatmap-interativo-no-folium">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Heatmap interativo no Folium</a><a class="headerlink" href="#heatmap-interativo-no-folium" title="Link permanente para este cabeçalho"></a></h3>
+<p>Cartopy é ótimo para figuras estáticas. Para inspeção em sala,
+<code class="docutils literal notranslate"><span class="pre">folium</span></code> oferece um <em>heatmap</em> interativo construído a partir de um
+mapa Leaflet:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">folium.plugins</span><span class="w"> </span><span class="kn">import</span> <span class="n">HeatMap</span>
+
+<span class="n">center_lat</span> <span class="o">=</span> <span class="n">contagem_filtrada</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">center_lon</span> <span class="o">=</span> <span class="n">contagem_filtrada</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="n">center_lat</span><span class="p">,</span> <span class="n">center_lon</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">heat_data</span> <span class="o">=</span> <span class="n">contagem_filtrada</span><span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;contagem&#39;</span><span class="p">]</span>
+<span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">HeatMap</span><span class="p">(</span><span class="n">heat_data</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">blur</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_zoom</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="passo-3-caso-de-estudo-a-coordenada-mais-recorrente">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Passo 3 — caso de estudo: a coordenada mais recorrente</a><a class="headerlink" href="#passo-3-caso-de-estudo-a-coordenada-mais-recorrente" title="Link permanente para este cabeçalho"></a></h2>
+<p>Escolhemos o ponto com maior contagem e levantamos suas COPs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coord</span> <span class="o">=</span> <span class="n">contagem_filtrada</span><span class="p">[[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">coord</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df_azarado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">lon</span><span class="p">)</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span>  <span class="o">==</span> <span class="n">lat</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>E o marcamos no mapa Folium criado acima:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">([</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">],</span> <span class="n">popup</span><span class="o">=</span><span class="s1">&#39;Local COP recorrente&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-4-catalogo-de-coordenadas-do-inmet-via-bash">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Passo 4 — catálogo de coordenadas do INMET via bash</a><a class="headerlink" href="#passo-4-catalogo-de-coordenadas-do-inmet-via-bash" title="Link permanente para este cabeçalho"></a></h2>
+<p>Antes de buscar a estação mais próxima precisamos de um único CSV
+com as coordenadas de todas as ~560 estações. Em vez de escrever um
+parser Python, usamos um pipe Bash que extrai o cabeçalho de cada CSV
+do INMET:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 7 - </span><span class="caption-text">Pipe que monta <code class="docutils literal notranslate"><span class="pre">coordenadas-inmet.csv</span></code> em uma linha por estação.</span><a class="headerlink" href="#id6" title="Link Permanente para esse código"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span><span class="s1">&#39;CODIGO&#39;</span><span class="w"> </span>-A2<span class="w"> </span>INMET/2024/*.CSV<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/^.*CSV//; s/,/./g&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">&#39;;&#39;</span><span class="w"> </span>-f2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;^--&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="p">|</span><span class="w"> </span>paste<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>-d<span class="s1">&#39;,&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>coordenadas-inmet.csv
+
+head<span class="w"> </span>coordenadas-inmet.csv
+<span class="c1"># A042, -15.599722, -48.131111</span>
+<span class="c1"># A045, -15.596491, -47.625801</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="passo-5-as-tres-estacoes-inmet-mais-proximas-haversine">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Passo 5 — As três estações INMET mais próximas (Haversine)</a><a class="headerlink" href="#passo-5-as-tres-estacoes-inmet-mais-proximas-haversine" title="Link permanente para este cabeçalho"></a></h2>
+<p>Distâncias entre pontos de lon/lat na superfície terrestre devem ser
+calculadas pela fórmula de Haversine:</p>
+<div class="math notranslate nohighlight">
+\[d = 2r \arcsin\!\left(\sqrt{
+    \sin^2\!\left(\frac{\phi_2-\phi_1}{2}\right)
+    + \cos\phi_1 \cos\phi_2
+    \sin^2\!\left(\frac{\lambda_2-\lambda_1}{2}\right)
+}\right)\]</div>
+<p>onde <span class="math notranslate nohighlight">\(r = 6\,371\)</span> km é o raio médio da Terra,
+<span class="math notranslate nohighlight">\(\phi\)</span> é latitude e <span class="math notranslate nohighlight">\(\lambda\)</span> é longitude (ambos em
+radianos). Em Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">haversine</span><span class="p">(</span><span class="n">lat1</span><span class="p">,</span> <span class="n">lon1</span><span class="p">,</span> <span class="n">lat2</span><span class="p">,</span> <span class="n">lon2</span><span class="p">):</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="mi">6371</span>  <span class="c1"># km</span>
+    <span class="n">phi1</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat1</span><span class="p">),</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat2</span><span class="p">)</span>
+    <span class="n">dphi</span>    <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lat2</span> <span class="o">-</span> <span class="n">lat1</span><span class="p">)</span>
+    <span class="n">dlambda</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">lon2</span> <span class="o">-</span> <span class="n">lon1</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dphi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi1</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi2</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">dlambda</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">R</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Aplicando à tabela de coordenadas e mantendo as três mais próximas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inmet_coords</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="s1">&#39;coordenadas-inmet.csv&#39;</span><span class="p">,</span>
+    <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cod&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">inmet_coords</span><span class="p">[</span><span class="s1">&#39;estacoes_proximas&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">inmet_coords</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">row</span><span class="p">:</span> <span class="n">haversine</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]),</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">top3</span> <span class="o">=</span> <span class="n">inmet_coords</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;estacoes_proximas&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1">#     cod   latitude  longitude  estacoes_proximas</span>
+<span class="c1"># ... A837 -28.859211 -52.542387  19.71 km</span>
+<span class="c1"># ... A883 -28.653333 -53.111944  40.37 km</span>
+<span class="c1"># ... A839 -28.226667 -52.403611  69.73 km</span>
+</pre></div>
+</div>
+<p>E adicionamos esses pontos ao mapa Folium para mostrar as distâncias
+ao ponto azarado:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">top3</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]],</span>
+        <span class="n">popup</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;cod&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> — </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;estacoes_proximas&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> km&quot;</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;cod&#39;</span><span class="p">],</span>
+        <span class="n">icon</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">Icon</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="s1">&#39;cloud&#39;</span><span class="p">),</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Por que três estações e não só uma? A mais próxima pode ter
+<strong>falhas</strong> justamente no período crítico do evento (falta de
+energia, manutenção, vandalismo). Ter três como <em>backup</em> é uma
+prática de robustez que repetimos em todas as próximas aulas.</p>
+</div>
+</section>
+<section id="passo-6-carregar-as-series-das-estacoes-proximas">
+<h2><a class="toc-backref" href="#id18" role="doc-backlink">Passo 6 — carregar as séries das estações próximas</a><a class="headerlink" href="#passo-6-carregar-as-series-das-estacoes-proximas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os 19 nomes de coluna originais do INMET são longos e instáveis.
+Padronizamos para nomes curtos antes de concatenar:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+
+<span class="n">COLUNAS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;DATA&#39;</span><span class="p">,</span> <span class="s1">&#39;HORA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PREC&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PATM&#39;</span><span class="p">,</span> <span class="s1">&#39;PATM_MAX&#39;</span><span class="p">,</span> <span class="s1">&#39;PATM_MIN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;RAD&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;TD&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TMAX&#39;</span><span class="p">,</span> <span class="s1">&#39;TMIN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TD_MAX&#39;</span><span class="p">,</span> <span class="s1">&#39;TD_MIN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;UR_MAX&#39;</span><span class="p">,</span> <span class="s1">&#39;UR_MIN&#39;</span><span class="p">,</span> <span class="s1">&#39;UR&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;VENTO_DIR&#39;</span><span class="p">,</span> <span class="s1">&#39;VENTO_RAJ&#39;</span><span class="p">,</span> <span class="s1">&#39;VENTO_VEL&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">STN</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">stn</span> <span class="ow">in</span> <span class="n">top3</span><span class="o">.</span><span class="n">cod</span><span class="o">.</span><span class="n">to_list</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INMET/*/*</span><span class="si">{</span><span class="n">stn</span><span class="si">}</span><span class="s1">*.CSV&#39;</span><span class="p">):</span>
+        <span class="n">df_stn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span>
+                             <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="n">df_stn</span> <span class="o">=</span> <span class="n">df_stn</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="o">~</span><span class="n">df_stn</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Unnamed&#39;</span><span class="p">)]</span>
+        <span class="n">df_stn</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">COLUNAS</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">df_stn</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+        <span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;HORA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;HORA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                             <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; UTC&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                             <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^(\d</span><span class="si">{2}</span><span class="s1">)(\d</span><span class="si">{2}</span><span class="s1">)$&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;\1:\2&#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+        <span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;COD&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">stn</span>
+        <span class="n">df_stn</span><span class="o">.</span><span class="n">index</span>   <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">df_stn</span><span class="p">[</span><span class="s1">&#39;HORA&#39;</span><span class="p">])</span>
+        <span class="n">STN</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_stn</span><span class="p">)</span>
+
+<span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">STN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>E geramos um <em>wide</em> de precipitação para somar por janelas de tempo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_prec</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_all</span><span class="p">[[</span><span class="s1">&#39;COD&#39;</span><span class="p">,</span> <span class="s1">&#39;PREC&#39;</span><span class="p">]]</span>
+           <span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">df_all</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;COD&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;PREC&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-7-chuva-no-periodo-do-evento-no-ciclo">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Passo 7 — chuva no período do evento × no ciclo</a><a class="headerlink" href="#passo-7-chuva-no-periodo-do-evento-no-ciclo" title="Link permanente para este cabeçalho"></a></h2>
+<p>Pegamos o evento da primeira linha da gleba azarada e calculamos
+acumulados:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">evento</span> <span class="o">=</span> <span class="n">df_azarado</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dt_inicio_evento</span> <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_inicio_evento&#39;</span><span class="p">]</span>
+<span class="n">dt_fim_evento</span>    <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_fim_evento&#39;</span><span class="p">]</span>
+<span class="n">dt_plantio</span>       <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_inicio_plantio&#39;</span><span class="p">]</span>
+<span class="n">dt_colheita</span>      <span class="o">=</span> <span class="n">evento</span><span class="p">[</span><span class="s1">&#39;dt_fim_colheita&#39;</span><span class="p">]</span>
+
+<span class="n">chuva_evento</span> <span class="o">=</span> <span class="n">df_prec</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dt_inicio_evento</span><span class="p">:</span><span class="n">dt_fim_evento</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">chuva_safra</span>  <span class="o">=</span> <span class="n">df_prec</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dt_plantio</span><span class="p">:</span><span class="n">dt_colheita</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="c1"># chuva_evento  →  A837 25.2 mm | A839 53.2 mm | A883 8.6 mm</span>
+<span class="c1"># chuva_safra   →  A837 687    | A839 1049    | A883 862  mm</span>
+</pre></div>
+</div>
+<p>Já temos um primeiro indicador: a chuva do período do evento
+representa menos de 5–8% da chuva da safra, o que é compatível com a
+alegação de seca em soja desse caso.</p>
+</section>
+<section id="passo-8-estadio-fenologico-via-graus-dia-soja">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Passo 8 — estádio fenológico via graus-dia (soja)</a><a class="headerlink" href="#passo-8-estadio-fenologico-via-graus-dia-soja" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para refinar a análise, queremos saber em <strong>qual estádio fenológico</strong>
+a soja se encontrava no meio do evento. O método clássico é o acúmulo
+de <strong>graus-dia</strong> com método da média simples:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{GD} = \frac{T_{\max} + T_{\min}}{2} - T_b\]</div>
+<p>com <span class="math notranslate nohighlight">\(T_b = 10\,^\circ\!C\)</span> e teto <span class="math notranslate nohighlight">\(T_M = 38\,^\circ\!C\)</span>
+para a soja. Pareceres negativos são zerados.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">TB</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">TM</span> <span class="o">=</span> <span class="mi">38</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">graus_dia_diario</span><span class="p">(</span><span class="n">tmax</span><span class="p">,</span> <span class="n">tmin</span><span class="p">,</span> <span class="n">tb</span><span class="o">=</span><span class="n">TB</span><span class="p">,</span> <span class="n">tm</span><span class="o">=</span><span class="n">TM</span><span class="p">):</span>
+    <span class="n">tmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">tmax</span><span class="p">,</span> <span class="n">tm</span><span class="p">)</span>
+    <span class="n">tmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span> <span class="n">tb</span><span class="p">)</span>
+    <span class="n">gd</span> <span class="o">=</span> <span class="p">(</span><span class="n">tmax</span> <span class="o">+</span> <span class="n">tmin</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">tb</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">gd</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">graus_dia_acumulado</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">col_tmax</span><span class="o">=</span><span class="s1">&#39;TMAX&#39;</span><span class="p">,</span> <span class="n">col_tmin</span><span class="o">=</span><span class="s1">&#39;TMIN&#39;</span><span class="p">,</span>
+                         <span class="n">col_prec</span><span class="o">=</span><span class="s1">&#39;PREC&#39;</span><span class="p">,</span> <span class="n">data_semeadura</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">gd_maturacao</span><span class="o">=</span><span class="mi">1500</span><span class="p">):</span>
+    <span class="n">df_dia</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;D&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="n">col_tmax</span><span class="p">:</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span>
+                                    <span class="n">col_tmin</span><span class="p">:</span> <span class="s1">&#39;min&#39;</span><span class="p">,</span>
+                                    <span class="n">col_prec</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">})</span>
+    <span class="n">df_dia</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="n">col_tmax</span><span class="p">,</span> <span class="n">col_tmin</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">data_semeadura</span><span class="p">:</span>
+        <span class="n">df_dia</span> <span class="o">=</span> <span class="n">df_dia</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data_semeadura</span><span class="p">:]</span>
+    <span class="n">df_dia</span><span class="p">[</span><span class="s1">&#39;GD&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">graus_dia_diario</span><span class="p">(</span><span class="n">df_dia</span><span class="p">[</span><span class="n">col_tmax</span><span class="p">],</span> <span class="n">df_dia</span><span class="p">[</span><span class="n">col_tmin</span><span class="p">])</span>
+    <span class="n">df_dia</span><span class="p">[</span><span class="s1">&#39;GD_ACUM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_dia</span><span class="p">[</span><span class="s1">&#39;GD&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+
+    <span class="n">fases</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;VE - Emergência&#39;</span><span class="p">:</span>           <span class="mi">50</span><span class="p">,</span>
+        <span class="s1">&#39;V2 - 2º nó&#39;</span><span class="p">:</span>               <span class="mi">130</span><span class="p">,</span>
+        <span class="s1">&#39;V4 - 4º nó&#39;</span><span class="p">:</span>               <span class="mi">230</span><span class="p">,</span>
+        <span class="s1">&#39;R1 - Início floração&#39;</span><span class="p">:</span>     <span class="mi">550</span><span class="p">,</span>
+        <span class="s1">&#39;R3 - Início enchimento&#39;</span><span class="p">:</span>   <span class="mi">750</span><span class="p">,</span>
+        <span class="s1">&#39;R5 - Enchimento grão&#39;</span><span class="p">:</span>     <span class="mi">950</span><span class="p">,</span>
+        <span class="s1">&#39;R7 - Maturidade fisiol.&#39;</span><span class="p">:</span> <span class="mi">1250</span><span class="p">,</span>
+        <span class="s1">&#39;R8 - Maturação plena&#39;</span><span class="p">:</span>    <span class="n">gd_maturacao</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">datas_fases</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">fase</span><span class="p">,</span> <span class="n">gd_ref</span> <span class="ow">in</span> <span class="n">fases</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">df_dia</span><span class="p">[</span><span class="s1">&#39;GD_ACUM&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">gd_ref</span>
+        <span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">datas_fases</span><span class="p">[</span><span class="n">fase</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+
+    <span class="n">prec_por_fase</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">fases_ordem</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">fases</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fase</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fases_ordem</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fase</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">datas_fases</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">dt_ini</span> <span class="o">=</span> <span class="n">datas_fases</span><span class="p">[</span><span class="n">fases_ordem</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">df_dia</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">dt_fim</span> <span class="o">=</span> <span class="n">datas_fases</span><span class="p">[</span><span class="n">fase</span><span class="p">]</span>
+        <span class="n">prec_por_fase</span><span class="p">[</span><span class="n">fase</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;data_inicio&#39;</span><span class="p">:</span> <span class="n">dt_ini</span><span class="p">,</span>
+            <span class="s1">&#39;data_fim&#39;</span><span class="p">:</span>    <span class="n">dt_fim</span><span class="p">,</span>
+            <span class="s1">&#39;dias&#39;</span><span class="p">:</span>        <span class="p">(</span><span class="n">dt_fim</span> <span class="o">-</span> <span class="n">dt_ini</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="p">,</span>
+            <span class="s1">&#39;tmax&#39;</span><span class="p">:</span>        <span class="n">df_dia</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dt_ini</span><span class="p">:</span><span class="n">dt_fim</span><span class="p">,</span> <span class="n">col_tmax</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+            <span class="s1">&#39;prec_mm&#39;</span><span class="p">:</span>     <span class="n">df_dia</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dt_ini</span><span class="p">:</span><span class="n">dt_fim</span><span class="p">,</span> <span class="n">col_prec</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span>
+            <span class="s1">&#39;gd_acum&#39;</span><span class="p">:</span>     <span class="n">df_dia</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dt_fim</span><span class="p">,</span> <span class="s1">&#39;GD_ACUM&#39;</span><span class="p">],</span>
+        <span class="p">}</span>
+    <span class="n">df_fases</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prec_por_fase</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">df_fases</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;FASE&#39;</span>
+    <span class="k">return</span> <span class="n">df_dia</span><span class="p">,</span> <span class="n">fases</span><span class="p">,</span> <span class="n">df_fases</span>
+</pre></div>
+</div>
+<p>Aplicamos à estação mais próxima e identificamos em que fase caiu o
+meio do evento:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stn</span> <span class="o">=</span> <span class="s1">&#39;A837&#39;</span>
+<span class="n">df_stn</span> <span class="o">=</span> <span class="n">df_all</span><span class="p">[</span><span class="n">df_all</span><span class="p">[</span><span class="s1">&#39;COD&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">stn</span><span class="p">][[</span><span class="s1">&#39;TMAX&#39;</span><span class="p">,</span> <span class="s1">&#39;TMIN&#39;</span><span class="p">,</span> <span class="s1">&#39;PREC&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_gd</span><span class="p">,</span> <span class="n">fases</span><span class="p">,</span> <span class="n">df_fases</span> <span class="o">=</span> <span class="n">graus_dia_acumulado</span><span class="p">(</span>
+    <span class="n">df_stn</span><span class="p">,</span> <span class="n">data_semeadura</span><span class="o">=</span><span class="n">dt_plantio</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="n">dti</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_inicio_evento</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">dtf</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">dt_fim_evento</span><span class="p">,</span>    <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">dt_meio</span> <span class="o">=</span> <span class="n">dti</span> <span class="o">+</span> <span class="p">(</span><span class="n">dtf</span> <span class="o">-</span> <span class="n">dti</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="n">df_fases</span><span class="p">[(</span><span class="n">df_fases</span><span class="p">[</span><span class="s1">&#39;data_inicio&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">dt_meio</span><span class="p">)</span> <span class="o">&amp;</span>
+         <span class="p">(</span><span class="n">df_fases</span><span class="p">[</span><span class="s1">&#39;data_fim&#39;</span><span class="p">]</span>    <span class="o">&gt;=</span> <span class="n">dt_meio</span><span class="p">)]</span>
+<span class="c1"># FASE                       data_inicio          data_fim         ...</span>
+<span class="c1"># R5 - Enchimento grão       2024-01-18 00:00:00  2024-02-11 ...</span>
+</pre></div>
+</div>
+<p>O meio do evento caiu em <strong>R5 (Enchimento de Grão)</strong> — a fase mais
+sensível ao déficit hídrico em soja. Isso é coerente com a alegação
+de “Seca” registrada na COP.</p>
+</section>
+<section id="passo-9-comparacao-com-a-literatura">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Passo 9 — comparação com a literatura</a><a class="headerlink" href="#passo-9-comparacao-com-a-literatura" title="Link permanente para este cabeçalho"></a></h2>
+<p>Por fim, comparamos a chuva e os graus-dia <strong>observados por fase</strong>
+com valores típicos de literatura, num único gráfico:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">prec_esperada</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;VE - Emergência&#39;</span><span class="p">:</span>           <span class="mi">25</span><span class="p">,</span>
+    <span class="s1">&#39;V2 - 2º nó&#39;</span><span class="p">:</span>                <span class="mi">30</span><span class="p">,</span>
+    <span class="s1">&#39;V4 - 4º nó&#39;</span><span class="p">:</span>                <span class="mi">35</span><span class="p">,</span>
+    <span class="s1">&#39;R1 - Início floração&#39;</span><span class="p">:</span>      <span class="mi">53</span><span class="p">,</span>
+    <span class="s1">&#39;R3 - Início enchimento&#39;</span><span class="p">:</span>   <span class="mi">117</span><span class="p">,</span>
+    <span class="s1">&#39;R5 - Enchimento grão&#39;</span><span class="p">:</span>     <span class="mi">125</span><span class="p">,</span>
+    <span class="s1">&#39;R7 - Maturidade fisiol.&#39;</span><span class="p">:</span> <span class="mi">132</span><span class="p">,</span>
+    <span class="s1">&#39;R8 - Maturação plena&#39;</span><span class="p">:</span>      <span class="mi">43</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">fases_gdd</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;VE - Emergência&#39;</span><span class="p">:</span>           <span class="mi">50</span><span class="p">,</span>
+    <span class="s1">&#39;V2 - 2º nó&#39;</span><span class="p">:</span>               <span class="mi">130</span><span class="p">,</span>
+    <span class="s1">&#39;V4 - 4º nó&#39;</span><span class="p">:</span>               <span class="mi">230</span><span class="p">,</span>
+    <span class="s1">&#39;R1 - Início floração&#39;</span><span class="p">:</span>     <span class="mi">550</span><span class="p">,</span>
+    <span class="s1">&#39;R3 - Início enchimento&#39;</span><span class="p">:</span>   <span class="mi">750</span><span class="p">,</span>
+    <span class="s1">&#39;R5 - Enchimento grão&#39;</span><span class="p">:</span>     <span class="mi">950</span><span class="p">,</span>
+    <span class="s1">&#39;R7 - Maturidade fisiol.&#39;</span><span class="p">:</span> <span class="mi">1250</span><span class="p">,</span>
+    <span class="s1">&#39;R8 - Maturação plena&#39;</span><span class="p">:</span>    <span class="mi">1500</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># … construção do gráfico de barras (Prec) + linhas (GDD)</span>
+<span class="c1"># com eixo secundário (twinx) e literatura vs observado.</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id7">
+<img alt="Precipitação e GDD por fase fenológica — literatura vs observado." src="../../../../_images/cell062_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 7 - </span><span class="caption-text">Comparação <strong>literatura × observado</strong> por fase fenológica da soja.
+No exemplo, observa-se déficit hídrico significativo em R3 e R5
+na estação A837 — coerente com a alegação de seca no COP.</span><a class="headerlink" href="#id7" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="discussao">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Discussão</a><a class="headerlink" href="#discussao" title="Link permanente para este cabeçalho"></a></h2>
+<p>Esta aula sintetiza o <strong>algoritmo central</strong> que o curso aplicará
+sucessivamente para cada tipo de evento (chuva excessiva, geada, calor
+extremo) em <a class="reference internal" href="fonte-de-dados3.html"><span class="doc">Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD</span></a> e nas aulas do
+<a class="reference internal" href="../../../sinistros/index.html"><span class="doc">Análise de sinistros, outliers e tipologias de risco meteorológico</span></a>:</p>
+<ol class="arabic simple">
+<li><p>carregar o recorte de COPs do Sicor e limpar coordenadas;</p></li>
+<li><p>agrupar por centróide para localizar concentrações suspeitas;</p></li>
+<li><p>selecionar um ponto de interesse;</p></li>
+<li><p>encontrar as três estações INMET mais próximas (Haversine);</p></li>
+<li><p>abrir as séries dessas estações com schema padronizado;</p></li>
+<li><p>somar a chuva no período do evento e no ciclo completo;</p></li>
+<li><p>estimar o estádio fenológico via GDD;</p></li>
+<li><p>comparar observado × literatura.</p></li>
+</ol>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="fonte-de-dados3.html"><span class="doc">Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD</span></a> — mesma rotina para <em>Chuva excessiva</em> em
+trigo (Tb = 5°C, novas faixas fenológicas).</p></li>
+<li><p><a class="reference internal" href="fonte-de-dados4-manipulandodadosgrade.html"><span class="doc">Aula prática 4b — manipulando dados em grade com xarray e Cartopy</span></a> — quando a estação INMET
+está longe demais, recorremos ao MERGE/SAMeT em grade.</p></li>
+<li><p><a class="reference internal" href="../../risco/mecanismos.html"><span class="doc">Mecanismos fisiológicos</span></a> — base conceitual de graus-dia e
+fenologia.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="fonte-de-dados1.html" class="btn btn-neutral float-left" title="Aula prática 1 — download e leitura dos dados do INMET" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="fonte-de-dados3.html" class="btn btn-neutral float-right" title="Aula prática 3 — chuva excessiva em trigo: % do ciclo e GDD" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1004efe50>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

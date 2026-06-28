@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análise de recorrência &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/modelagem/recorrencia.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Síntese final do curso" href="../sintese/index.html" />
+    <link rel="prev" title="Previsão de rendimento com redes neurais — caso da soja" href="previsao-rendimento-rna.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="previsao-rendimento-rna.html">Previsão de rendimento com redes neurais — caso da soja</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Análise de recorrência</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recorrencia-espacial">Recorrência espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recorrencia-por-agente">Recorrência por agente</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Modelagem de perdas e aplicações em decisão</a></li>
+      <li class="breadcrumb-item active">Análise de recorrência</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="previsao-rendimento-rna.html" class="btn btn-neutral float-left" title="Previsão de rendimento com redes neurais — caso da soja" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../sintese/index.html" class="btn btn-neutral float-right" title="Síntese final do curso" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analise-de-recorrencia">
+<h1>Análise de recorrência<a class="headerlink" href="#analise-de-recorrencia" title="Link permanente para este cabeçalho"></a></h1>
+<p>A recorrência é detectada por uma agregação simples sobre o recorte do Sicor: conta-se
+quantas comunicações distintas estão associadas a cada <strong>localidade</strong> e a cada <strong>agente</strong>.
+O instrumento é o <code class="docutils literal notranslate"><span class="pre">groupby</span></code> do pandas combinado com <code class="docutils literal notranslate"><span class="pre">nunique</span></code> sobre a data de
+comunicação — assim, várias linhas de uma mesma safra não inflam artificialmente a
+contagem.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># Exemplo educacional — não operacional.</span>
+<span class="c1"># Recorrência de COPs por localidade e por agente.</span>
+<span class="c1">#</span>
+<span class="c1"># A contagem de recorrência é uma agregação simples (groupby) sobre o recorte</span>
+<span class="c1"># do Sicor. Aqui um pequeno conjunto sintético ilustra a lógica. Cada COP é</span>
+<span class="c1"># identificada por coordenada, agente e data de comunicação.</span>
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># IMPORTS</span>
+<span class="c1"># ============================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># DADOS DE EXEMPLO (COPs com coordenada, agente e data)</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">cops</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;longitude&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="o">-</span><span class="mf">53.39</span><span class="p">,</span> <span class="o">-</span><span class="mf">53.39</span><span class="p">,</span> <span class="o">-</span><span class="mf">53.39</span><span class="p">,</span> <span class="o">-</span><span class="mf">52.10</span><span class="p">,</span> <span class="o">-</span><span class="mf">52.10</span><span class="p">,</span> <span class="o">-</span><span class="mf">51.00</span><span class="p">],</span>
+    <span class="s1">&#39;latitude&#39;</span><span class="p">:</span>        <span class="p">[</span><span class="o">-</span><span class="mf">27.36</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.36</span><span class="p">,</span> <span class="o">-</span><span class="mf">27.36</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.00</span><span class="p">,</span> <span class="o">-</span><span class="mf">28.00</span><span class="p">,</span> <span class="o">-</span><span class="mf">29.50</span><span class="p">],</span>
+    <span class="s1">&#39;cd_perito&#39;</span><span class="p">:</span>       <span class="p">[</span><span class="s1">&#39;P1&#39;</span><span class="p">,</span>    <span class="s1">&#39;P1&#39;</span><span class="p">,</span>   <span class="s1">&#39;P2&#39;</span><span class="p">,</span>   <span class="s1">&#39;P1&#39;</span><span class="p">,</span>   <span class="s1">&#39;P1&#39;</span><span class="p">,</span>   <span class="s1">&#39;P3&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;2021-01-10&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-01-15&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-01-20&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;2021-02-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2022-02-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-03-01&#39;</span><span class="p">],</span>
+<span class="p">})</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># RECORRÊNCIA ESPACIAL — COPs por localidade ao longo do tempo</span>
+<span class="c1"># ============================================================</span>
+
+<span class="c1"># Conta datas de comunicação distintas por coordenada (uma por safra, idealmente).</span>
+<span class="n">recorrencia_espacial</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">cops</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">])[</span><span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;n_comunicacoes&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;n_comunicacoes&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recorrência por localidade:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recorrencia_espacial</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># RECORRÊNCIA POR AGENTE</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">recorrencia_agente</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">cops</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cd_perito&#39;</span><span class="p">)[</span><span class="s1">&#39;dt_comunicacao&#39;</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;n_comunicacoes&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;n_comunicacoes&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Recorrência por agente:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recorrencia_agente</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="recorrencia-espacial">
+<h2>Recorrência espacial<a class="headerlink" href="#recorrencia-espacial" title="Link permanente para este cabeçalho"></a></h2>
+<p>Agrupando por coordenada (longitude/latitude do centroide da gleba) e contando datas de
+comunicação distintas, localizam-se os pontos que declararam perdas em <strong>múltiplas safras</strong>.
+Esses pontos podem então ser cruzados com a análise de plausibilidade
+(<a class="reference internal" href="../sinistros/index.html"><span class="doc">Análise de sinistros, outliers e tipologias de risco meteorológico</span></a>): uma localidade que recorre <em>e</em> cujas COPs são meteorologicamente
+implausíveis concentra dois sinais de priorização.</p>
+<p>A leitura espacial também se conecta com a <a class="reference internal" href="../analise-espacial/index.html"><span class="doc">Análise espacial, estatística e técnicas de interpolação</span></a>: a recorrência,
+mapeada, pode formar <em>clusters</em> — e os mesmos cuidados se aplicam (MAUP, falácia ecológica,
+o fato de que concentração não é prova).</p>
+</section>
+<section id="recorrencia-por-agente">
+<h2>Recorrência por agente<a class="headerlink" href="#recorrencia-por-agente" title="Link permanente para este cabeçalho"></a></h2>
+<p>A mesma lógica, agrupando por identificador do agente, revela quem está associado a mais
+comunicações. Aqui o cuidado interpretativo é ainda maior: a carga de trabalho varia
+legitimamente entre agentes e regiões. A contagem bruta é só o ponto de partida; números
+altos pedem contexto (área de atuação, número de operações sob responsabilidade) antes de
+qualquer conclusão.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Recorrência <strong>não</strong> é sinônimo de irregularidade. Regiões de alto risco climático
+recorrem por razões legítimas, e agentes que cobrem áreas extensas naturalmente
+acumulam comunicações. A análise de recorrência <strong>prioriza</strong> o que investigar — a
+leitura final é humana e exige contexto.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="previsao-rendimento-rna.html" class="btn btn-neutral float-left" title="Previsão de rendimento com redes neurais — caso da soja" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../sintese/index.html" class="btn btn-neutral float-right" title="Síntese final do curso" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c10073cfd0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

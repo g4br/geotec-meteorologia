@@ -1,0 +1,242 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caso 2 — chuva excessiva em trigo &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/chuva-trigo.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Caso 3 — geada em trigo" href="geada-trigo.html" />
+    <link rel="prev" title="Caso 1 — seca em soja" href="seca-soja.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aulas/index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+      <li class="breadcrumb-item active">Caso 2 — chuva excessiva em trigo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="seca-soja.html" class="btn btn-neutral float-left" title="Caso 1 — seca em soja" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="geada-trigo.html" class="btn btn-neutral float-right" title="Caso 3 — geada em trigo" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="caso-2-chuva-excessiva-em-trigo">
+<h1>Caso 2 — chuva excessiva em trigo<a class="headerlink" href="#caso-2-chuva-excessiva-em-trigo" title="Link permanente para este cabeçalho"></a></h1>
+<p>O trigo é cultura de inverno, e o excesso de chuva — sobretudo perto da colheita — degrada
+a qualidade dos grãos e favorece doenças <span id="id1">[<a class="reference internal" href="../../referencias.html#id198" title="Kalíbia Jane P. Alves and José Maurício C. Fernandes. Influência da temperatura e da umidade relativa do ar na esporulação de Magnaporthe grisea em trigo. Fitopatologia Brasileira, 31(6):579–584, 12 2006. URL: https://doi.org/10.1590/s0100-41582006000600007, doi:10.1590/s0100-41582006000600007.">40</a>]</span> (ver <a class="reference internal" href="../fundamentos/risco/risco-climatico.html"><span class="doc">Agrometeorologia dos cultivos</span></a>).
+Este caso espelha o anterior, mas com a <strong>lógica invertida</strong>: uma COP por chuva excessiva
+é plausível quando a precipitação observada ficou <strong>acima</strong> da climatologia (anomalia
+positiva). É implausível quando <em>não</em> houve excesso.</p>
+<section id="logica-invertida-do-flag">
+<h2>Lógica invertida do flag<a class="headerlink" href="#logica-invertida-do-flag" title="Link permanente para este cabeçalho"></a></h2>
+<p>O sinal da comparação inverte em relação à seca: agora a suspeita recai sobre anomalias
+<strong>não positivas</strong> (<code class="docutils literal notranslate"><span class="pre">&lt;=</span> <span class="pre">0</span></code>) — declarou-se excesso de chuva, mas choveu o normal ou menos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># Exemplo educacional — não operacional.</span>
+<span class="c1"># Flag de plausibilidade para COPs de chuva excessiva em trigo.</span>
+<span class="c1">#</span>
+<span class="c1"># Lógica INVERTIDA em relação à seca: a suspeita recai sobre anomalias NÃO</span>
+<span class="c1"># positivas (declarou excesso de chuva, mas não choveu mais que o normal).</span>
+<span class="c1"># As anomalias (observado - climatologia, em mm) são dadas; positiva = mais</span>
+<span class="c1"># chuvoso que o normal.</span>
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># IMPORTS</span>
+<span class="c1"># ============================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># DADOS DE EXEMPLO (anomalias já calculadas, em mm)</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">chuva_trigo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;ref_bacen&#39;</span><span class="p">:</span>          <span class="p">[</span><span class="s1">&#39;B1&#39;</span><span class="p">,</span> <span class="s1">&#39;B2&#39;</span><span class="p">,</span> <span class="s1">&#39;B3&#39;</span><span class="p">,</span> <span class="s1">&#39;B4&#39;</span><span class="p">,</span> <span class="s1">&#39;B5&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">:</span>     <span class="p">[</span> <span class="mf">90.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">20.0</span><span class="p">,</span>  <span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">150.0</span><span class="p">,</span>  <span class="mf">10.0</span><span class="p">],</span>
+    <span class="s1">&#39;anom_acum_ciclo_mm&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">220.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">60.0</span><span class="p">,</span>  <span class="mf">40.0</span><span class="p">,</span> <span class="mf">180.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">30.0</span><span class="p">],</span>
+<span class="p">})</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># FLAGS DE PLAUSIBILIDADE (lógica invertida: anom &lt;= 0 é suspeito)</span>
+<span class="c1"># ============================================================</span>
+
+<span class="c1"># Flag 1: sem excesso na janela do evento.</span>
+<span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;flag_chuva_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Flag 2: sem excesso acumulado no ciclo.</span>
+<span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;flag_chuva_sem_anom_ciclo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;anom_acum_ciclo_mm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;anom_acum_ciclo_mm&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Flag combinado: declarou excesso de chuva, mas não houve excesso em nenhum recorte.</span>
+<span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;flag_chuva_implausivel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;flag_chuva_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">&amp;</span>
+    <span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;flag_chuva_sem_anom_ciclo&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># DIAGNÓSTICO</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">n_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chuva_trigo</span><span class="p">)</span>
+<span class="n">n_implausivel</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">chuva_trigo</span><span class="p">[</span><span class="s1">&#39;flag_chuva_implausivel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total de COPs:              </span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Implausíveis (priorizar):   </span><span class="si">{</span><span class="n">n_implausivel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chuva_trigo</span><span class="p">[[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;anom_evento_mm&#39;</span><span class="p">,</span> <span class="s1">&#39;anom_acum_ciclo_mm&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;flag_chuva_implausivel&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="fallback-hierarquico-inmet-merge">
+<h2>Fallback hierárquico INMET → MERGE<a class="headerlink" href="#fallback-hierarquico-inmet-merge" title="Link permanente para este cabeçalho"></a></h2>
+<p>Este caso introduz um refinamento importante para a qualidade do dado. A estação INMET, por
+ser uma medida direta no solo, é preferível para a precipitação pontual; a grade MERGE
+entra como <strong>alternativa</strong> quando não há estação com cobertura temporal suficiente na
+janela. A estratégia é hierárquica e <strong>explícita</strong> (sem troca silenciosa de fonte): tenta-se
+primeiro a estação mais próxima com cobertura acima de um limiar; só então recorre-se ao
+MERGE no centroide da COP, registrando qual fonte foi usada em cada caso.</p>
+<p>Essa rastreabilidade da fonte é parte da auditabilidade: ao priorizar uma COP, sabe-se se a
+anomalia veio de uma estação próxima (mais confiável) ou de uma estimativa em grade.</p>
+</section>
+<section id="leitura">
+<h2>Leitura<a class="headerlink" href="#leitura" title="Link permanente para este cabeçalho"></a></h2>
+<p>Como na seca, <code class="docutils literal notranslate"><span class="pre">flag_chuva_implausivel</span></code> apenas ordena a investigação: marca as COPs em que
+a chuva excessiva declarada não aparece nos dados. Comparar MERGE e INMET decêndio a
+decêndio, para o caso selecionado, ajuda a separar divergência de dado de incompatibilidade
+real — e a decisão final continua sendo do perito.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="seca-soja.html" class="btn btn-neutral float-left" title="Caso 1 — seca em soja" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="geada-trigo.html" class="btn btn-neutral float-right" title="Caso 3 — geada em trigo" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1032c7810>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

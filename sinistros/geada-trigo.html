@@ -1,0 +1,255 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caso 3 — geada em trigo &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/geada-trigo.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Aulas práticas — plausibilidade meteorológica e recorrência" href="aulas/index.html" />
+    <link rel="prev" title="Caso 2 — chuva excessiva em trigo" href="chuva-trigo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aulas/index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+      <li class="breadcrumb-item active">Caso 3 — geada em trigo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="chuva-trigo.html" class="btn btn-neutral float-left" title="Caso 2 — chuva excessiva em trigo" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="aulas/index.html" class="btn btn-neutral float-right" title="Aulas práticas — plausibilidade meteorológica e recorrência" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="caso-3-geada-em-trigo">
+<h1>Caso 3 — geada em trigo<a class="headerlink" href="#caso-3-geada-em-trigo" title="Link permanente para este cabeçalho"></a></h1>
+<p>A geada é um risco crítico para o trigo, sobretudo nas fases de espigamento e floração
+<span id="id1">[<a class="reference internal" href="../../referencias.html#id203" title="Deyvid Bueno. Impacto das geadas no manejo e fisiologia das plantas. Agrotécnico – Estresse vegetal, Manejo Agrícola, Nutrição Mineral de Plantas, 2024. Publicado em 23 jun. 2024. Acesso em 2025. URL: https://agrotecnico.com.br/geadas-no-manejo-e-fisiologia-das-plantas/.">54</a>, <a class="reference internal" href="../../referencias.html#id204" title="Bruno Mantovanelli. Efeito das geadas na agricultura. Irriga Global, 2025. Publicado em 18 de julho de 2025. Acesso em 2025. URL: https://irrigaglobal.com/efeito-das-geadas-na-agricultura/.">55</a>]</span> (ver <a class="reference internal" href="../fundamentos/risco/risco-climatico.html"><span class="doc">Agrometeorologia dos cultivos</span></a>). Aqui a variável muda: em vez de chuva
+(MERGE), usa-se a <strong>temperatura mínima</strong> (TMIN) da grade SAMeT e das estações INMET. Uma
+COP por geada é plausível quando, na janela do evento, a TMIN ficou suficientemente baixa.</p>
+<section id="raciocinio-fisico">
+<h2>Raciocínio físico<a class="headerlink" href="#raciocinio-fisico" title="Link permanente para este cabeçalho"></a></h2>
+<p>A geada agrícola exige temperaturas próximas ou abaixo de 0 °C junto ao solo <span id="id2">[<a class="reference internal" href="../../referencias.html#id255" title="P. C. Sentelhas, A. A. Ortolani, and J. R. M. Pezzopane. Estimativa da temperatura mínima de relva e da diferença de temperatura entre o abrigo e a relva em noites de geada. Bragantia, 54(2):437–445, 1995. doi:10.1590/S0006-87051995000200023.">80</a>]</span>. Isso permite
+um <strong>descarte físico</strong> direto: se a TMIN absoluta observada na janela do evento foi
+claramente alta (por exemplo, acima de 4 °C), a geada é fisicamente implausível —
+independentemente de qualquer anomalia. O caso combina, então, dois critérios: a anomalia
+de TMIN (esfriou menos que o normal?) e o valor <strong>absoluto</strong> de TMIN (esfriou o bastante
+para gear?).</p>
+</section>
+<section id="raciocinio-do-flag">
+<h2>Raciocínio do flag<a class="headerlink" href="#raciocinio-do-flag" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># Exemplo educacional — não operacional.</span>
+<span class="c1"># Flag de plausibilidade para COPs de geada em trigo.</span>
+<span class="c1">#</span>
+<span class="c1"># Usa a temperatura mínima (TMIN, °C), não a chuva. Combina dois critérios:</span>
+<span class="c1">#   (1) anomalia de TMIN não negativa (não esfriou mais que o normal); e</span>
+<span class="c1">#   (2) descarte físico: TMIN absoluta na janela acima de 4 °C — alta demais</span>
+<span class="c1">#       para gear. Os valores aqui são dados (sintéticos), para focar na regra.</span>
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># IMPORTS</span>
+<span class="c1"># ============================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># CONFIGURAÇÕES</span>
+<span class="c1"># ============================================================</span>
+
+<span class="c1"># Acima deste valor de TMIN absoluta, geada é fisicamente implausível.</span>
+<span class="n">TMIN_LIMITE_GEADA</span> <span class="o">=</span> <span class="mf">4.0</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># DADOS DE EXEMPLO</span>
+<span class="c1"># ============================================================</span>
+
+<span class="c1"># tmin_evento_c : TMIN mínima absoluta observada na janela do evento (°C)</span>
+<span class="c1"># anom_evento_c : anomalia de TMIN na janela (observado - climatologia, °C)</span>
+<span class="n">geada_trigo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;ref_bacen&#39;</span><span class="p">:</span>     <span class="p">[</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span>  <span class="s1">&#39;C2&#39;</span><span class="p">,</span>  <span class="s1">&#39;C3&#39;</span><span class="p">,</span>  <span class="s1">&#39;C4&#39;</span><span class="p">,</span>  <span class="s1">&#39;C5&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span>   <span class="mf">1.0</span><span class="p">,</span>   <span class="mf">8.0</span><span class="p">,</span>   <span class="mf">6.5</span><span class="p">,</span>  <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span>
+    <span class="s1">&#39;anom_evento_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span>  <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span>   <span class="mf">3.0</span><span class="p">,</span>   <span class="mf">2.0</span><span class="p">,</span>  <span class="o">-</span><span class="mf">3.5</span><span class="p">],</span>
+<span class="p">})</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># FLAGS DE PLAUSIBILIDADE</span>
+<span class="c1"># ============================================================</span>
+
+<span class="c1"># Flag 1: não esfriou mais que o normal (anomalia de TMIN &gt;= 0).</span>
+<span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;anom_evento_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;anom_evento_c&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Flag 2: descarte físico — TMIN absoluta alta demais para gear.</span>
+<span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_tmin_abs_alta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">TMIN_LIMITE_GEADA</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Flag combinado: geada declarada, mas TMIN não baixou (anomalia) e/ou não</span>
+<span class="c1"># chegou perto de zero (físico). O descarte físico basta para a suspeita.</span>
+<span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_implausivel&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_tmin_abs_alta&#39;</span><span class="p">]</span> <span class="o">|</span>
+    <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">&amp;</span>
+     <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+<span class="p">)</span>
+
+
+<span class="c1"># ============================================================</span>
+<span class="c1"># DIAGNÓSTICO</span>
+<span class="c1"># ============================================================</span>
+
+<span class="n">n_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">geada_trigo</span><span class="p">)</span>
+<span class="n">n_implausivel</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_implausivel&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Total de COPs:              </span><span class="si">{</span><span class="n">n_total</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Implausíveis (priorizar):   </span><span class="si">{</span><span class="n">n_implausivel</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">geada_trigo</span><span class="p">[[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">,</span> <span class="s1">&#39;anom_evento_c&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;flag_geada_implausivel&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>No material completo, esses critérios de grade são ainda <strong>corroborados pelas estações
+INMET</strong> mais próximas (a menor TMIN observada nas estações) e consolidados em um escore de
+plausibilidade de 0 a 100, que combina várias dimensões — anomalia, valor absoluto na
+grade e corroboração das estações. O escore é uma forma de <strong>ordenar</strong> os casos por grau de
+suspeita, do mais ao menos implausível.</p>
+</section>
+<section id="leitura">
+<h2>Leitura<a class="headerlink" href="#leitura" title="Link permanente para este cabeçalho"></a></h2>
+<p>O descarte físico torna este caso particularmente robusto: uma geada declarada em uma
+janela com TMIN bem acima de zero é uma das incompatibilidades mais claras. Ainda assim,
+vale o mesmo princípio dos casos anteriores — o flag e o escore <strong>priorizam</strong> a análise; a
+confirmação de dano (que depende de fase fenológica, duração e intensidade da geada) é
+pericial e humana.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="chuva-trigo.html" class="btn btn-neutral float-left" title="Caso 2 — chuva excessiva em trigo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="aulas/index.html" class="btn btn-neutral float-right" title="Aulas práticas — plausibilidade meteorológica e recorrência" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1064ce610>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

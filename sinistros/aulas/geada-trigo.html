@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 3 — plausibilidade meteorológica: geada em trigo &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/aulas/geada-trigo.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" href="recorrencia-espacial.html" />
+    <link rel="prev" title="Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo" href="chuva-trigo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+      <li class="breadcrumb-item active">Aula 3 — plausibilidade meteorológica: geada em trigo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="chuva-trigo.html" class="btn btn-neutral float-left" title="Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="recorrencia-espacial.html" class="btn btn-neutral float-right" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-3-plausibilidade-meteorologica-geada-em-trigo">
+<h1>Aula 3 — plausibilidade meteorológica: geada em trigo<a class="headerlink" href="#aula-3-plausibilidade-meteorologica-geada-em-trigo" title="Link permanente para este cabeçalho"></a></h1>
+<p>Esta aula <strong>fecha o trio Seca/Chuva/Geada</strong> das aulas 1 e 2. Aqui
+trabalhamos com <strong>temperatura mínima</strong> (TMIN do SAMeT/CPTEC) e damos
+um <strong>salto metodológico</strong>: além de flags binários, construímos um
+<strong>score multidimensional 0-100</strong> e uma classificação operacional em
+quatro categorias.</p>
+<section id="novidades-em-relacao-as-aulas-anteriores">
+<h2>Novidades em relação às aulas anteriores<a class="headerlink" href="#novidades-em-relacao-as-aulas-anteriores" title="Link permanente para este cabeçalho"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Novidade</p></th>
+<th class="head"><p>Onde aparece</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>TMIN como variável primária</strong></p></td>
+<td><p>Passos 0.4, 4, 7, 8</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>FillValue não-padrão</strong> da climatologia SAMeT</p></td>
+<td><p>Passo 0.4 (<code class="docutils literal notranslate"><span class="pre">-999e6</span></code> mascarado manualmente)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Mapa Folium interativo</strong> por COP suspeita</p></td>
+<td><p>Passo 10.5</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Score 0-100</strong> + 4 classes operacionais</p></td>
+<td><p>Passo 11</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Métricas INMET paralelas</strong> com <code class="docutils literal notranslate"><span class="pre">joblib</span></code></p></td>
+<td><p>Passo 8</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="passo-0-carregamento-e-particularidades-do-samet">
+<h2>Passo 0 — carregamento e particularidades do SAMeT<a class="headerlink" href="#passo-0-carregamento-e-particularidades-do-samet" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ds_tmin</span> <span class="o">=</span> <span class="n">open_tmin</span><span class="p">(</span><span class="n">startdate</span><span class="p">,</span> <span class="n">enddate</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">doy_tmin</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">ds_tmin</span><span class="o">.</span><span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">dayofyear</span>
+<span class="n">ds_tmin</span> <span class="o">=</span> <span class="n">ds_tmin</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">dayofyear</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">doy_tmin</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+
+<span class="n">ds_tmin_clima</span> <span class="o">=</span> <span class="p">(</span><span class="n">xr</span><span class="o">.</span><span class="n">open_mfdataset</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path_clima</span><span class="si">}</span><span class="s1">/*TMIN*.nc&#39;</span><span class="p">,</span>
+                                    <span class="n">combine</span><span class="o">=</span><span class="s1">&#39;nested&#39;</span><span class="p">,</span> <span class="n">concat_dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+                   <span class="o">.</span><span class="n">load</span><span class="p">()</span>
+                   <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lon</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">LON_MIN</span><span class="p">,</span> <span class="n">LON_MAX</span><span class="p">),</span>
+                        <span class="n">lat</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">LAT_MIN</span><span class="p">,</span> <span class="n">LAT_MAX</span><span class="p">))</span>
+                   <span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+
+<span class="c1"># Tratamento do FillValue -999e6 — mascara valores absurdos</span>
+<span class="n">ds_tmin_clima</span><span class="p">[</span><span class="s1">&#39;ttmin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_tmin_clima</span><span class="p">[</span><span class="s1">&#39;ttmin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+    <span class="n">ds_tmin_clima</span><span class="p">[</span><span class="s1">&#39;ttmin&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">100</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>A climatologia SAMeT (NetCDF) usa <code class="docutils literal notranslate"><span class="pre">_FillValue</span> <span class="pre">=</span> <span class="pre">-999000000.0</span></code>
+— <strong>não é o -9999 típico</strong> e não é mascarada automaticamente
+pelo xarray em todas as versões. Sem o <code class="docutils literal notranslate"><span class="pre">.where(...</span> <span class="pre">&gt;</span> <span class="pre">-100)</span></code>,
+esses pixels contaminam médias e anomalias com números absurdos.</p>
+</div>
+<section id="agregacao-diaria-do-inmet">
+<h3>Agregação diária do INMET<a class="headerlink" href="#agregacao-diaria-do-inmet" title="Link permanente para este cabeçalho"></a></h3>
+<p>Sem shift de 12 h (aquele era específico para chuva). Para TMIN, a
+agregação é simplesmente o <code class="docutils literal notranslate"><span class="pre">min()</span></code> das 24 leituras horárias:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">df_inmet_raw</span><span class="p">[[</span><span class="s1">&#39;COD&#39;</span><span class="p">,</span> <span class="s1">&#39;TMIN&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">temp</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
+<span class="n">df_inmet</span> <span class="o">=</span> <span class="p">(</span><span class="n">temp</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;DATA&#39;</span><span class="p">,</span> <span class="s1">&#39;COD&#39;</span><span class="p">])</span>
+                 <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">TMIN</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;TMIN&#39;</span><span class="p">,</span> <span class="s1">&#39;min&#39;</span><span class="p">))</span>
+                 <span class="o">.</span><span class="n">reset_index</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="passo-1-recorte-geada-em-trigo">
+<h2>Passo 1 — recorte: geada em trigo<a class="headerlink" href="#passo-1-recorte-geada-em-trigo" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">startdate</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s1">&#39;2020-04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">enddate</span>   <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s1">&#39;2021-04-01&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">geada_trigo</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;nome_evento&#39;</span><span class="p">]</span>      <span class="o">==</span> <span class="s1">&#39;Geada&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;produto&#39;</span><span class="p">]</span>          <span class="o">==</span> <span class="s1">&#39;trigo&#39;</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;dt_inicio_plantio&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">startdate</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">df_sicor</span><span class="p">[</span><span class="s1">&#39;dt_fim_colheita&#39;</span><span class="p">]</span>   <span class="o">&lt;</span>  <span class="n">enddate</span><span class="p">)</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_ordem&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_indice&#39;</span><span class="p">])</span>
+     <span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nu_ordem&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
+     <span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>A safra de 2020 concentra a maior parte das COPs, em parte pelas
+geadas severas de agosto/setembro de 2020 no Sul.</p>
+</section>
+<section id="passo-4-mapa-de-tres-paineis-para-o-decendio-chave">
+<h2>Passo 4 — mapa de três painéis para o decêndio-chave<a class="headerlink" href="#passo-4-mapa-de-tres-paineis-para-o-decendio-chave" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TARGET_DATE</span> <span class="o">=</span> <span class="s1">&#39;2020-09-01&#39;</span>
+<span class="n">DEC_INI</span>     <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">TARGET_DATE</span><span class="p">)</span> <span class="o">-</span> <span class="n">dt</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">DEC_FIM</span>     <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">TARGET_DATE</span><span class="p">)</span>
+
+<span class="n">obs_dec</span>    <span class="o">=</span> <span class="n">ds_tmin</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">slice</span><span class="p">(</span><span class="n">DEC_INI</span><span class="p">,</span> <span class="n">DEC_FIM</span><span class="p">))[</span><span class="s1">&#39;tmin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">clima_dec</span>  <span class="o">=</span> <span class="p">(</span><span class="n">ds_tmin_clima</span><span class="p">[</span><span class="s1">&#39;ttmin&#39;</span><span class="p">]</span>
+               <span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">ds_tmin_clima</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
+                     <span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">DEC_INI</span><span class="o">.</span><span class="n">dayofyear</span><span class="p">,</span> <span class="n">DEC_FIM</span><span class="o">.</span><span class="n">dayofyear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)))</span>
+               <span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<span class="n">anom_dec</span>   <span class="o">=</span> <span class="n">obs_dec</span> <span class="o">-</span> <span class="n">clima_dec</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<img alt="Três painéis: TMIN observada, climatologia, anomalia." src="../../../_images/cell030_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 75 - </span><span class="caption-text">Decomposição visual do decêndio 22/08 → 01/09/2020. Observado
+(esquerda) − Climatologia (centro) = Anomalia (direita).
+<code class="docutils literal notranslate"><span class="pre">turbo</span></code> para valores absolutos, <code class="docutils literal notranslate"><span class="pre">RdBu_r</span></code> para anomalia:
+azul = mais frio (compatível com geada), vermelho = mais
+quente (suspeito).</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passos-5-8-estacoes-proximas-metricas-paralelizadas">
+<h2>Passos 5-8 — estações próximas + métricas paralelizadas<a class="headerlink" href="#passos-5-8-estacoes-proximas-metricas-paralelizadas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Idem aulas anteriores para o vínculo espacial (Haversine
+vetorizado). A <strong>novidade</strong> está nas métricas INMET paralelizadas
+com <code class="docutils literal notranslate"><span class="pre">joblib</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">metricas_estacoes</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">df_inmet</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Métricas INMET das 3 estações mais próximas na janela do evento.&quot;&quot;&quot;</span>
+    <span class="n">d_ini</span><span class="p">,</span> <span class="n">d_fim</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dt_inicio_evento&#39;</span><span class="p">],</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;dt_fim_evento&#39;</span><span class="p">]</span>
+    <span class="n">tmins</span><span class="p">,</span> <span class="n">n_valid</span><span class="p">,</span> <span class="n">n_abaixo_4</span> <span class="o">=</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+        <span class="n">cod</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;cod_estacao_</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">cod</span><span class="p">):</span> <span class="k">continue</span>
+        <span class="n">serie</span> <span class="o">=</span> <span class="n">df_inmet</span><span class="p">[(</span><span class="n">df_inmet</span><span class="p">[</span><span class="s1">&#39;COD&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">cod</span><span class="p">)</span> <span class="o">&amp;</span>
+                          <span class="p">(</span><span class="n">df_inmet</span><span class="p">[</span><span class="s1">&#39;DATA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="n">d_ini</span><span class="p">,</span> <span class="n">d_fim</span><span class="p">))][</span><span class="s1">&#39;TMIN&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">serie</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+            <span class="n">n_valid</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">tmins</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">serie</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="n">n_abaixo_4</span> <span class="o">+=</span> <span class="p">(</span><span class="n">serie</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;stn_tmin_mean&#39;</span><span class="p">:</span>  <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">tmins</span><span class="p">)</span> <span class="k">if</span> <span class="n">tmins</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+        <span class="s1">&#39;stn_tmin_min&#39;</span><span class="p">:</span>   <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span> <span class="p">(</span><span class="n">tmins</span><span class="p">)</span> <span class="k">if</span> <span class="n">tmins</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+        <span class="s1">&#39;stn_n_valid&#39;</span><span class="p">:</span>    <span class="n">n_valid</span><span class="p">,</span>
+        <span class="s1">&#39;stn_n_abaixo_4&#39;</span><span class="p">:</span> <span class="n">n_abaixo_4</span><span class="p">,</span>
+    <span class="p">}</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="n">rows</span>       <span class="o">=</span> <span class="p">[</span><span class="n">row</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">geada_trigo</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+<span class="n">resultados</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="s1">&#39;loky&#39;</span><span class="p">)(</span>
+    <span class="n">delayed</span><span class="p">(</span><span class="n">metricas_estacoes</span><span class="p">)(</span><span class="n">row</span><span class="p">,</span> <span class="n">df_inmet_f</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">)</span>
+
+<span class="n">stn_metrics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">resultados</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">geada_trigo</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-9-flags-de-plausibilidade">
+<h2>Passo 9 — flags de plausibilidade<a class="headerlink" href="#passo-9-flags-de-plausibilidade" title="Link permanente para este cabeçalho"></a></h2>
+<div class="warning admonition">
+<p class="admonition-title">Sinal da anomalia em geada</p>
+<ul class="simple">
+<li><p>Aula 1 (Seca): suspeito = anom <strong>positiva</strong> de chuva;</p></li>
+<li><p>Aula 2 (Chuva): suspeito = anom <strong>negativa</strong> de chuva;</p></li>
+<li><p><strong>Aula 3 (Geada): suspeito = anom POSITIVA de TMIN</strong> (fez
+<em>mais calor</em> do que o normal num evento declarado como geada).</p></li>
+</ul>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_sem_anom_evento&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;anom_evento_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;anom_evento_c&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_sem_anom_ciclo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;anom_mean_ciclo_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;anom_mean_ciclo_c&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="c1"># Flag absoluto (descarte físico): TMIN &gt; 4°C na janela é incompatível</span>
+<span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;flag_geada_tmin_abs_evento&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">geada_trigo</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">4.0</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-10-diagnostico-individual-tmin-grade-inmet">
+<h2>Passo 10 — diagnóstico individual TMIN-grade × INMET<a class="headerlink" href="#passo-10-diagnostico-individual-tmin-grade-inmet" title="Link permanente para este cabeçalho"></a></h2>
+<figure class="align-center" id="id4">
+<img alt="Distribuição de COPs por decêndio." src="../../../_images/cell024_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 76 - </span><span class="caption-text">Distribuição decendial de comunicação × início de colheita
+para Geada em Trigo. Para geada, a comunicação tende a
+anteceder a colheita (a geada destrói a planta antes da época
+normal <span id="id1">[<a class="reference internal" href="../../../referencias.html#id203" title="Deyvid Bueno. Impacto das geadas no manejo e fisiologia das plantas. Agrotécnico – Estresse vegetal, Manejo Agrícola, Nutrição Mineral de Plantas, 2024. Publicado em 23 jun. 2024. Acesso em 2025. URL: https://agrotecnico.com.br/geadas-no-manejo-e-fisiologia-das-plantas/.">54</a>, <a class="reference internal" href="../../../referencias.html#id204" title="Bruno Mantovanelli. Efeito das geadas na agricultura. Irriga Global, 2025. Publicado em 18 de julho de 2025. Acesso em 2025. URL: https://irrigaglobal.com/efeito-das-geadas-na-agricultura/.">55</a>]</span>).</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="Série temporal TMIN grade × INMET com linha 0°C." src="../../../_images/cell059_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 77 - </span><span class="caption-text">Série diária de TMIN no ciclo. Linha horizontal em 0°C =
+limiar de geada <span id="id2">[<a class="reference internal" href="../../../referencias.html#id255" title="P. C. Sentelhas, A. A. Ortolani, and J. R. M. Pezzopane. Estimativa da temperatura mínima de relva e da diferença de temperatura entre o abrigo e a relva em noites de geada. Bragantia, 54(2):437–445, 1995. doi:10.1590/S0006-87051995000200023.">80</a>]</span>. Para uma COP plausível, esperamos pelo menos
+uma série atravessar a linha dos 0°C dentro da janela
+dourada.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="passo-11-score-multidimensional-0-100">
+<h2>Passo 11 — score multidimensional 0-100<a class="headerlink" href="#passo-11-score-multidimensional-0-100" title="Link permanente para este cabeçalho"></a></h2>
+<p>A novidade central da aula. Em vez de um <em>flag</em> binário, geramos um
+<strong>score contínuo 0-100</strong> combinando 5 dimensões de evidência:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 6.0%" />
+<col style="width: 35.0%" />
+<col style="width: 12.0%" />
+<col style="width: 47.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dim.</p></th>
+<th class="head"><p>Indicador</p></th>
+<th class="head"><p>Peso máx</p></th>
+<th class="head"><p>O que captura</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">anom_evento_c</span></code> (anomalia SAMeT na janela)</p></td>
+<td><p>24</p></td>
+<td><p>Sinal direto na janela declarada</p></td>
+</tr>
+<tr class="row-odd"><td><p>D2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">anom_mean_ciclo_c</span></code> (anomalia média do ciclo)</p></td>
+<td><p>18</p></td>
+<td><p>Contexto do ciclo</p></td>
+</tr>
+<tr class="row-even"><td><p>D3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">frac_decendios_frio</span></code></p></td>
+<td><p>14</p></td>
+<td><p>Fração do ciclo em déficit térmico</p></td>
+</tr>
+<tr class="row-odd"><td><p>D4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tmin_evento_c</span></code> (TMIN absoluta SAMeT)</p></td>
+<td><p>28</p></td>
+<td><p>Valor físico observado</p></td>
+</tr>
+<tr class="row-even"><td><p>D5</p></td>
+<td><p>Intensidade INMET (FORTE/MODERADA/FRACA/AUSENTE)</p></td>
+<td><p>16</p></td>
+<td><p>Corroboração <em>in situ</em></p></td>
+</tr>
+</tbody>
+</table>
+<p>Classificação operacional a partir do score:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 20.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Classe</p></th>
+<th class="head"><p>Faixa de score</p></th>
+<th class="head"><p>Semântica operacional</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>CONFIRMADO</strong></p></td>
+<td><p>80-100</p></td>
+<td><p>Evidência convergente alta</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>APROVADO</strong></p></td>
+<td><p>60-79</p></td>
+<td><p>Evidência suficiente</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>REVISÃO</strong></p></td>
+<td><p>40-59</p></td>
+<td><p>Ambíguo, requer análise humana</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>REPROVADO</strong></p></td>
+<td><p>0-39</p></td>
+<td><p>Contradição entre declaração e dados</p></td>
+</tr>
+</tbody>
+</table>
+<p>Função de pontuação:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">classificar_intensidade_geada</span><span class="p">(</span><span class="n">tmin</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">tmin</span><span class="p">):</span>  <span class="k">return</span> <span class="s1">&#39;SEM DADO&#39;</span>
+    <span class="k">if</span> <span class="n">tmin</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>      <span class="k">return</span> <span class="s1">&#39;FORTE&#39;</span>
+    <span class="k">if</span> <span class="n">tmin</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span>      <span class="k">return</span> <span class="s1">&#39;MODERADA&#39;</span>
+    <span class="k">if</span> <span class="n">tmin</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">:</span>      <span class="k">return</span> <span class="s1">&#39;FRACA&#39;</span>
+    <span class="k">return</span> <span class="s1">&#39;AUSENTE&#39;</span>
+
+<span class="n">SCORE_INTENSIDADE</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;FORTE&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;MODERADA&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;FRACA&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                      <span class="s1">&#39;AUSENTE&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;SEM DADO&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">score_plausibilidade_geada</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># D1: anomalia SAMeT na janela</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;anom_evento_c&#39;</span><span class="p">]):</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;anom_evento_c&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="c1"># D2: anomalia média do ciclo</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;anom_mean_ciclo_c&#39;</span><span class="p">]):</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;anom_mean_ciclo_c&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">9</span><span class="p">))</span>
+    <span class="c1"># D3: fração decêndios frios</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;frac_decendios_frio&#39;</span><span class="p">)):</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;frac_decendios_frio&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">14</span>
+    <span class="c1"># D4: TMIN absoluta SAMeT</span>
+    <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]):</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;tmin_evento_c&#39;</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">7</span>
+        <span class="n">score</span>  <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="c1"># D5: corroboração INMET</span>
+    <span class="n">intensidade</span> <span class="o">=</span> <span class="n">classificar_intensidade_geada</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;stn_tmin_min&#39;</span><span class="p">))</span>
+    <span class="n">score</span> <span class="o">+=</span> <span class="n">SCORE_INTENSIDADE</span><span class="p">[</span><span class="n">intensidade</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">score</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">classificar_score</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">80</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;CONFIRMADO&#39;</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;APROVADO&#39;</span>
+    <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">40</span><span class="p">:</span> <span class="k">return</span> <span class="s1">&#39;REVISÃO&#39;</span>
+    <span class="k">return</span>       <span class="s1">&#39;REPROVADO&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="passo-12-mapa-final-por-classe">
+<h2>Passo 12 — mapa final por classe<a class="headerlink" href="#passo-12-mapa-final-por-classe" title="Link permanente para este cabeçalho"></a></h2>
+<figure class="align-center" id="id6">
+<img alt="Mapa Cartopy de classificação operacional por COP." src="../../../_images/cell068_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 78 - </span><span class="caption-text">Mapa Cartopy estático colorido pela classe de plausibilidade.
+Convenção: verde escuro = CONFIRMADO; azul = APROVADO; laranja
+= REVISÃO; vermelho = REPROVADO. REPROVADO e REVISÃO recebem
+<code class="docutils literal notranslate"><span class="pre">zorder</span></code> maior para ficarem visíveis sobre os demais.</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A versão Folium do mesmo mapa coloca cada classe em uma
+<code class="docutils literal notranslate"><span class="pre">FeatureGroup</span></code> separada — o usuário liga/desliga cada classe no
+<code class="docutils literal notranslate"><span class="pre">LayerControl</span></code> para focar em um conjunto específico.</p>
+</section>
+<section id="sintese">
+<h2>Síntese<a class="headerlink" href="#sintese" title="Link permanente para este cabeçalho"></a></h2>
+<p>O DataFrame <code class="docutils literal notranslate"><span class="pre">geada_trigo</span></code> foi enriquecido com:</p>
+<ul class="simple">
+<li><p>anomalias SAMeT (janela do evento + ciclo + decêndios);</p></li>
+<li><p>métricas INMET paralelizadas (média, mínima, dias ≤ 4°C);</p></li>
+<li><p>três flags binários (anom evento, anom ciclo, descarte físico
+por TMIN &gt; 4°C);</p></li>
+<li><p>score contínuo 0-100;</p></li>
+<li><p>classificação operacional em 4 categorias;</p></li>
+<li><p>intensidade agronômica (FORTE/MODERADA/FRACA/AUSENTE).</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>O score é uma <strong>heurística composta</strong> — não é um modelo
+estatístico validado. Os pesos foram calibrados pedagogicamente
+pela frequência de cada sinal num conjunto pequeno e
+anonimizado. Em uso operacional, recalibre com seu próprio
+conjunto de COPs revisadas manualmente.</p>
+</div>
+</section>
+<section id="proximos-passos">
+<h2>Próximos passos<a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="recorrencia-espacial.html"><span class="doc">Aula 4 — recorrência espacial e atores: Sul × SEALBA</span></a> — análise regional comparativa Sul ×
+SEALBA, mudando o foco da COP individual para o conjunto.</p></li>
+<li><p><a class="reference internal" href="../tipologia.html"><span class="doc">Tipologias de inconsistências meteorológicas em sinistros</span></a> — discussão teórica sobre os tipos de
+inconsistência meteorológica.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="chuva-trigo.html" class="btn btn-neutral float-left" title="Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="recorrencia-espacial.html" class="btn btn-neutral float-right" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c10114b5d0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

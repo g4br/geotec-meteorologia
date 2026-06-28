@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula 4 — recorrência espacial e atores: Sul × SEALBA &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/aulas/recorrencia-espacial.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Aula 5 — análise integrada de COPs: recorrência, concentração e valores" href="recorrencia-agentes.html" />
+    <link rel="prev" title="Aula 3 — plausibilidade meteorológica: geada em trigo" href="geada-trigo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+      <li class="breadcrumb-item active">Aula 4 — recorrência espacial e atores: Sul × SEALBA</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="geada-trigo.html" class="btn btn-neutral float-left" title="Aula 3 — plausibilidade meteorológica: geada em trigo" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="recorrencia-agentes.html" class="btn btn-neutral float-right" title="Aula 5 — análise integrada de COPs: recorrência, concentração e valores" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-4-recorrencia-espacial-e-atores-sul-sealba">
+<h1>Aula 4 — recorrência espacial e atores: Sul × SEALBA<a class="headerlink" href="#aula-4-recorrencia-espacial-e-atores-sul-sealba" title="Link permanente para este cabeçalho"></a></h1>
+<p>Nas aulas 1-3 construímos análises <strong>COP a COP</strong> baseadas em
+variáveis meteorológicas. Esta aula muda o ponto de vista:</p>
+<ul class="simple">
+<li><p>o <strong>sujeito</strong> agora não é a COP individual, mas <strong>conjuntos</strong> de
+COPs (municípios, produtores, células espaciais, peritos, IFs);</p></li>
+<li><p>os <strong>indicadores</strong> não são meteorológicos, mas
+<strong>administrativos</strong> — recorrência, concentração, atores;</p></li>
+<li><p>o <strong>método central</strong> é a <strong>análise comparativa</strong> entre duas
+regiões: o <strong>Sul</strong> (RS, SC, PR) e o <strong>SEALBA</strong> (SE, AL, BA).</p></li>
+</ul>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#recortes-regionais" id="id19">Recortes regionais</a></p></li>
+<li><p><a class="reference internal" href="#secao-1-escala-municipal-top-20-heatmap-coropletico" id="id20">Seção 1 — escala municipal: top 20 + heatmap + coroplético</a></p></li>
+<li><p><a class="reference internal" href="#secao-2-escala-do-produtor" id="id21">Seção 2 — escala do produtor</a></p></li>
+<li><p><a class="reference internal" href="#secao-3-escala-da-gleba-arredondamento-de-coordenadas" id="id22">Seção 3 — escala da gleba: arredondamento de coordenadas</a></p></li>
+<li><p><a class="reference internal" href="#secao-4-densidade-espacial-hexbin-sem-ponderacao-por-anos" id="id23">Seção 4 — densidade espacial (hexbin sem ponderação por anos)</a></p></li>
+<li><p><a class="reference internal" href="#secao-5-analise-de-atores-perito-if-triades" id="id24">Seção 5 — análise de atores (perito × IF × tríades)</a></p></li>
+<li><p><a class="reference internal" href="#secao-6-concentracao-de-auditores-lorenz-e-gini" id="id25">Seção 6 — concentração de auditores: lorenz e gini</a></p>
+<ul>
+<li><p><a class="reference internal" href="#interpretacao-tipica" id="id26">Interpretação típica</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id27">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="recortes-regionais">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Recortes regionais</a><a class="headerlink" href="#recortes-regionais" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ESTADOS_SUL</span>    <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;RS&#39;</span><span class="p">,</span> <span class="s1">&#39;SC&#39;</span><span class="p">,</span> <span class="s1">&#39;PR&#39;</span><span class="p">]</span>
+<span class="n">ESTADOS_SEALBA</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span> <span class="s1">&#39;AL&#39;</span><span class="p">,</span> <span class="s1">&#39;BA&#39;</span><span class="p">]</span>
+
+<span class="n">gdf_sul_def</span> <span class="o">=</span> <span class="n">gdf_sicor</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">gdf_sicor</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ESTADOS_SUL</span><span class="p">))</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">gdf_sicor</span><span class="p">[</span><span class="s1">&#39;status_cop&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;deferida&#39;</span><span class="p">)</span>
+<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">gdf_sealba_def</span> <span class="o">=</span> <span class="n">gdf_sicor</span><span class="p">[</span>
+    <span class="p">(</span><span class="n">gdf_sicor</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">ESTADOS_SEALBA</span><span class="p">))</span> <span class="o">&amp;</span>
+    <span class="p">(</span><span class="n">gdf_sicor</span><span class="p">[</span><span class="s1">&#39;status_cop&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;deferida&#39;</span><span class="p">)</span>
+<span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Restringimos a <code class="docutils literal notranslate"><span class="pre">status_cop</span> <span class="pre">==</span> <span class="pre">'deferida'</span></code> porque a deferida é a
+COP efetivamente reconhecida pelo programa, refletindo o evento
+como risco coberto. Análises de “padrão de pagamento” e
+“concentração de peritos” só fazem sentido sobre o conjunto
+deferido.</p>
+</div>
+</section>
+<section id="secao-1-escala-municipal-top-20-heatmap-coropletico">
+<h2><a class="toc-backref" href="#id20" role="doc-backlink">Seção 1 — escala municipal: top 20 + heatmap + coroplético</a><a class="headerlink" href="#secao-1-escala-municipal-top-20-heatmap-coropletico" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para cada recorte (Brasil, Sul, SEALBA), três visualizações
+encadeadas:</p>
+<ul class="simple">
+<li><p><strong>tabela ranking</strong> com volumes (operações, COPs por evento, razão
+COPs/operação);</p></li>
+<li><p><strong>heatmap</strong> município × evento;</p></li>
+<li><p><strong>coroplético</strong> sobre malha IBGE.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">recorr_mun</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_estado&#39;</span><span class="p">,</span> <span class="s1">&#39;nome_evento&#39;</span><span class="p">])</span>
+      <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">n_cops</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+           <span class="n">n_operacoes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">))</span>
+      <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">pivot_ops</span> <span class="o">=</span> <span class="n">recorr_mun</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_estado&#39;</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;nome_evento&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;n_operacoes&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<img alt="Heatmap município × evento (Top 20 nacional)." src="../../../_images/cell011_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 79 - </span><span class="caption-text">Heatmap município × evento para os Top 20 municípios do Brasil
+por volume de operações. Cor = nº de operações. Permite ver
+visualmente quais municípios são “puros” (1 evento dominante)
+vs “diversos” (vários eventos).</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<img alt="Coroplético Top 20 nacional." src="../../../_images/cell013_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 80 - </span><span class="caption-text">Coroplético dos Top 20 municípios sobre a malha IBGE.</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<img alt="Heatmap município × evento Sul (Top 20)." src="../../../_images/cell016_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 81 - </span><span class="caption-text">Heatmap município × evento — recorte <strong>Sul</strong>.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id6">
+<img alt="Coroplético Top 20 Sul." src="../../../_images/cell017_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 82 - </span><span class="caption-text">Coroplético Top 20 — Sul.</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id7">
+<img alt="Heatmap município × evento SEALBA (Top 20)." src="../../../_images/cell020_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 83 - </span><span class="caption-text">Heatmap município × evento — recorte <strong>SEALBA</strong>.</span><a class="headerlink" href="#id7" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id8">
+<img alt="Coroplético Top 20 SEALBA." src="../../../_images/cell021_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 84 - </span><span class="caption-text">Coroplético Top 20 — SEALBA.</span><a class="headerlink" href="#id8" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="secao-2-escala-do-produtor">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Seção 2 — escala do produtor</a><a class="headerlink" href="#secao-2-escala-do-produtor" title="Link permanente para este cabeçalho"></a></h2>
+<p>Três indicadores complementares por produtor:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Indicador</p></th>
+<th class="head"><p>Pergunta</p></th>
+<th class="head"><p>Cálculo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_operacoes</span></code></p></td>
+<td><p>Quantos contratos diferentes?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ref_bacen.nunique()</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_anos</span></code></p></td>
+<td><p>Em quantos anos distintos?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ano_emissao.nunique()</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_eventos_distintos</span></code></p></td>
+<td><p>Quantos tipos de evento?</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nome_evento.nunique()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p><strong>Recorrência ≠ irregularidade.</strong> Um produtor com muitas COPs
+pode estar em região com eventos frequentes, ter vários
+contratos simultâneos, ou ser cooperado com vários registros
+passando por uma IF cooperativa.</p>
+</div>
+<figure class="align-center" id="id9">
+<img alt="Histograma + boxplot de operações por produtor — Sul." src="../../../_images/cell026_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 85 - </span><span class="caption-text">Histograma (escala log) e boxplot por evento — Sul. A
+distribuição é tipicamente lei de potência: cauda longa de
+produtores muito recorrentes.</span><a class="headerlink" href="#id9" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id10">
+<img alt="Histograma + boxplot de operações por produtor — SEALBA." src="../../../_images/cell031_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 86 - </span><span class="caption-text">O mesmo gráfico para SEALBA. A distribuição de recorrência
+tende a ser <strong>mais concentrada</strong> no semi-árido.</span><a class="headerlink" href="#id10" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="secao-3-escala-da-gleba-arredondamento-de-coordenadas">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Seção 3 — escala da gleba: arredondamento de coordenadas</a><a class="headerlink" href="#secao-3-escala-da-gleba-arredondamento-de-coordenadas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Em vez de criar um grid sofisticado (H3, S2), arredondamos
+lat/lon para 2 casas decimais (~1 km² por célula):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gdf_sul_def</span><span class="p">[</span><span class="s1">&#39;lat_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_sul_def</span><span class="p">[</span><span class="s1">&#39;latitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">gdf_sul_def</span><span class="p">[</span><span class="s1">&#39;lon_round&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_sul_def</span><span class="p">[</span><span class="s1">&#39;longitude_centroide&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">recorr_esp_sul</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sul_def</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;lat_round&#39;</span><span class="p">,</span> <span class="s1">&#39;lon_round&#39;</span><span class="p">,</span> <span class="s1">&#39;nome_evento&#39;</span><span class="p">])</span>
+                <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">n_anos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+                     <span class="n">n_operacoes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+                     <span class="n">n_cops</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">))</span>
+                <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+                <span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;n_anos&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Mapas de hotspots persistentes (hexbin com
+<code class="docutils literal notranslate"><span class="pre">reduce_C_function=np.max(n_anos)</span></code>) — um mapa por evento:</p>
+<figure class="align-center" id="id11">
+<img alt="Recorrência espacial — Sul, evento Chuva excessiva." src="../../../_images/cell036_out01.png" />
+<figcaption>
+<p><span class="caption-number">Figura 87 - </span><span class="caption-text">Recorrência espacial — Sul, <strong>Chuva excessiva</strong>. Cor da hex =
+número máximo de anos distintos com COP entre as células-base
+agrupadas.</span><a class="headerlink" href="#id11" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id12">
+<img alt="Recorrência espacial — Sul, evento Geada." src="../../../_images/cell036_out21.png" />
+<figcaption>
+<p><span class="caption-number">Figura 88 - </span><span class="caption-text">Recorrência espacial — Sul, <strong>Geada</strong>.</span><a class="headerlink" href="#id12" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id13">
+<img alt="Recorrência espacial — Sul, evento Seca." src="../../../_images/cell036_out4.png" />
+<figcaption>
+<p><span class="caption-number">Figura 89 - </span><span class="caption-text">Recorrência espacial — Sul, <strong>Seca</strong>.</span><a class="headerlink" href="#id13" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id14">
+<img alt="Recorrência espacial — SEALBA." src="../../../_images/cell039_out02.png" />
+<figcaption>
+<p><span class="caption-number">Figura 90 - </span><span class="caption-text">Recorrência espacial — <strong>SEALBA</strong>. Note a concentração em
+municípios da zona da mata sergipana e do sertão alagoano.</span><a class="headerlink" href="#id14" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="secao-4-densidade-espacial-hexbin-sem-ponderacao-por-anos">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Seção 4 — densidade espacial (hexbin sem ponderação por anos)</a><a class="headerlink" href="#secao-4-densidade-espacial-hexbin-sem-ponderacao-por-anos" title="Link permanente para este cabeçalho"></a></h2>
+<p>A Seção 3 perguntou <em>“a mesma área retorna em anos diferentes?”</em>;
+agora perguntamos <em>“onde fica a maior densidade absoluta,
+independente do tempo?”</em></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Seção 3</p></th>
+<th class="head"><p>Seção 4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pondera por <code class="docutils literal notranslate"><span class="pre">n_anos</span></code> (max)</p></td>
+<td><p>Soma todas as COPs (count)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Foca em <strong>persistência</strong></p></td>
+<td><p>Foca em <strong>volume</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Mostra hotspots <strong>crônicos</strong></p></td>
+<td><p>Mostra eventos <strong>massivos</strong> pontuais</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-center" id="id15">
+<img alt="Hexbin densidade — Sul, Chuva excessiva." src="../../../_images/cell042_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 91 - </span><span class="caption-text">Hexbin de densidade total — Sul, Chuva excessiva.</span><a class="headerlink" href="#id15" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id16">
+<img alt="Hexbin densidade — Sul, Seca." src="../../../_images/cell042_out4.png" />
+<figcaption>
+<p><span class="caption-number">Figura 92 - </span><span class="caption-text">Hexbin de densidade total — Sul, Seca.</span><a class="headerlink" href="#id16" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id17">
+<img alt="Hexbin densidade — SEALBA." src="../../../_images/cell044_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 93 - </span><span class="caption-text">Hexbin de densidade — SEALBA.</span><a class="headerlink" href="#id17" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="secao-5-analise-de-atores-perito-if-triades">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Seção 5 — análise de atores (perito × IF × tríades)</a><a class="headerlink" href="#secao-5-analise-de-atores-perito-if-triades" title="Link permanente para este cabeçalho"></a></h2>
+<p>Três níveis em ordem crescente de granularidade:</p>
+<ul class="simple">
+<li><p><strong>Perito</strong> — quem assina os laudos;</p></li>
+<li><p><strong>IF</strong> (Instituição Financeira) — quem origina o crédito;</p></li>
+<li><p><strong>Tríades produtor × perito × IF</strong> — combinações recorrentes
+ao longo dos anos.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">perfil_perito_sul</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sul_def</span><span class="p">[</span><span class="n">gdf_sul_def</span><span class="p">[</span><span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">n_cops</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+         <span class="n">n_operacoes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">n_produtores</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;cd_cpf_produtor_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">n_municipios</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">n_anos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">vl_pago</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;vl_pago_total&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="n">trios_sul</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">gdf_sul_def</span><span class="p">[</span><span class="n">gdf_sul_def</span><span class="p">[</span><span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;cd_cpf_produtor_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_cpf_perito_hash&#39;</span><span class="p">,</span> <span class="s1">&#39;cnpj_if_hash&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">n_cops</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span>
+         <span class="n">n_operacoes</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">n_anos</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">,</span> <span class="s1">&#39;nunique&#39;</span><span class="p">),</span>
+         <span class="n">vl_pago</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;vl_pago_total&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;n_anos&#39;</span><span class="p">,</span> <span class="s1">&#39;n_operacoes&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">trios_sul_rec</span> <span class="o">=</span> <span class="n">trios_sul</span><span class="p">[</span><span class="n">trios_sul</span><span class="p">[</span><span class="s1">&#39;n_anos&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="secao-6-concentracao-de-auditores-lorenz-e-gini">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Seção 6 — concentração de auditores: lorenz e gini</a><a class="headerlink" href="#secao-6-concentracao-de-auditores-lorenz-e-gini" title="Link permanente para este cabeçalho"></a></h2>
+<p>A <strong>Curva de Lorenz</strong> (Max Otto Lorenz) <span id="id1">[<a class="reference internal" href="../../../referencias.html#id274" title="Max O. Lorenz. Methods of measuring the concentration of wealth. Publications of the American Statistical Association, 9(70):209–219, 1905. doi:10.2307/2276207.">83</a>]</span> mostra a
+distribuição completa de operações entre os peritos em um único
+gráfico. O <strong>coeficiente de Gini</strong> (Corrado Gini) <span id="id2">[<a class="reference internal" href="../../../referencias.html#id275" title="Corrado Gini. Variabilità e Mutabilità: Contributo allo Studio delle Distribuzioni e delle Relazioni Statistiche. Tipografia di Paolo Cuppini, Bologna, 1912.">84</a>]</span>
+resume essa desigualdade em um número entre 0 (igualdade perfeita) e
+1 (concentração máxima).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vals_sul</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">perfil_perito_sul</span><span class="p">[</span><span class="s1">&#39;n_operacoes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">x_sul</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals_sul</span><span class="p">))</span>
+<span class="n">y_sul</span>    <span class="o">=</span> <span class="n">vals_sul</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">/</span> <span class="n">vals_sul</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">gini_sul</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">y_sul</span><span class="p">,</span> <span class="n">x_sul</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">gini_calc</span><span class="p">(</span><span class="n">serie</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Gini via fórmula direta com índices.&quot;&quot;&quot;</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">serie</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">v</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">((</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">idx</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">v</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span> <span class="o">-</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id18">
+<img alt="Curvas de Lorenz Sul × SEALBA." src="../../../_images/cell058_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 94 - </span><span class="caption-text">Curvas de Lorenz lado a lado para Sul e SEALBA. Linha
+diagonal = igualdade perfeita (todos os peritos com o mesmo
+volume); área entre a curva e a diagonal = grau de
+concentração (Gini).</span><a class="headerlink" href="#id18" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<section id="interpretacao-tipica">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink">Interpretação típica</a><a class="headerlink" href="#interpretacao-tipica" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Recorte</p></th>
+<th class="head"><p>Gini</p></th>
+<th class="head"><p>Leitura</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Sul (RS, SC, PR)</strong></p></td>
+<td><p>~0,66</p></td>
+<td><p>Concentração <strong>alta</strong> — Pareto típico: ~20% dos peritos
+respondem por ~80% das operações.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>SEALBA (SE, AL, BA)</strong></p></td>
+<td><p>mais baixo</p></td>
+<td><p>Concentração menor — número de peritos por região é
+relativamente menor, mas a carga média é mais distribuída.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Causas prováveis no Sul:</p>
+<ul class="simple">
+<li><p>maior <strong>volume absoluto</strong> — economia de escala favorece
+especialização;</p></li>
+<li><p>cultivos dominantes (soja-verão + trigo-inverno) demandam
+expertise técnica similar — peritos especializados ganham
+vantagem competitiva;</p></li>
+<li><p>carga média elevada (~300 operações/perito).</p></li>
+</ul>
+</section>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="recorrencia-agentes.html"><span class="doc">Aula 5 — análise integrada de COPs: recorrência, concentração e valores</span></a> — análise integrada com razão pago /
+crédito, raio de atuação por perito, tríades recorrentes.</p></li>
+<li><p><a class="reference internal" href="../recorrencia.html"><span class="doc">Análise de recorrência meteorológica em áreas e culturas</span></a> — fundamentos teóricos da análise de
+recorrência.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="geada-trigo.html" class="btn btn-neutral float-left" title="Aula 3 — plausibilidade meteorológica: geada em trigo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="recorrencia-agentes.html" class="btn btn-neutral float-right" title="Aula 5 — análise integrada de COPs: recorrência, concentração e valores" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c101163310>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

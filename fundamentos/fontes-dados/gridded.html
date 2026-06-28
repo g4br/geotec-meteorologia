@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dados em grade &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/fundamentos/fontes-dados/gridded.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/tabs.js"></script>
+      <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Satélites meteorológicos" href="satelite-meteorologico.html" />
+    <link rel="prev" title="Estações meteorológicas" href="estacoes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../risco/index.html">O que é risco agrícola?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../eventos/index.html">Tipos de eventos adversos no campo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adversos/adversos.html">Eventos climáticos adversos</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="estacoes.html">Estações meteorológicas</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Dados em grade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="satelite-meteorologico.html">Satélites meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radar.html">Radares meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="indicacao-dados.html">Indicação fontes de dados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="exemplo-graus-dia-trigo.html">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="praticas/index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fontes de informação meteorológica (informações granulares)</a></li>
+      <li class="breadcrumb-item active">Dados em grade</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="estacoes.html" class="btn btn-neutral float-left" title="Estações meteorológicas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="satelite-meteorologico.html" class="btn btn-neutral float-right" title="Satélites meteorológicos" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dados-em-grade">
+<h1>Dados em grade<a class="headerlink" href="#dados-em-grade" title="Link permanente para este cabeçalho"></a></h1>
+<p>Um dado em grade (ou “grid data”) refere-se a informações meteorológicas, climáticas ou ambientais distribuídas espacialmente em pontos regulares de uma grade (ou malha) sobre uma região de interesse. Ou seja, em vez de medir variáveis apenas em locais específicos — como estações meteorológicas —, cria-se uma matriz espacial regular (2D ou 3D, latitude-longitude-altitude, tempo e, eventualmente, níveis verticais) em que cada célula contém um valor da variável (ex.: temperatura, precipitação, vento). Isso viabiliza análises, simulações e visualizações contínuas sobre grandes áreas, preenchendo lacunas entre pontos de observação e permitindo a execução de modelos ambientais e climáticos.</p>
+<div class="note admonition">
+<p class="admonition-title">Formatos comuns para dados meteorológicos</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">NetCDF</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">GRIB2</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p><strong>NetCDF (Network Common Data Form)</strong>: é um formato auto-descritivo, portátil e amplamente adotado para armazenamento e compartilhamento de dados científicos multidimensionais em grade.</p>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p><strong>GRIB2 (GRIdded Binary, versão 2)</strong>: é outro formato padrão internacional para dados meteorológicos em grade, especialmente voltado para operações e transmissão de modelos numéricos de previsão do tempo.</p>
+</div></div>
+</div>
+<section id="merge-cptec-inpe">
+<h2>MERGE/CPTEC-INPE<a class="headerlink" href="#merge-cptec-inpe" title="Link permanente para este cabeçalho"></a></h2>
+<p>O MERGE (<a class="reference external" href="https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/Rozante_et.al.2020.pdf">Rozante et al., CPTEC/INPE</a>), desenvolvido pelo Centro de Previsão de Tempo e Estudos Climáticos (CPTEC) do Instituto Nacional de Pesquisas Espaciais (INPE), representa uma das principais inovações nacionais na geração de campos de precipitação em grade para a América do Sul <span id="id1">[<a class="reference internal" href="../../../referencias.html#id250" title="J. R. Rozante, D. S. Moreira, L. G. G. de Goncalves, and D. A. Vila. Combining TRMM and surface observations of precipitation: technique and validation over South America. Weather and Forecasting, 25(3):885–894, 2010. doi:10.1175/2010WAF2222325.1.">63</a>]</span>.</p>
+<p>O MERGE é um produto que integra observações de precipitação provenientes de três fontes principais: satélites meteorológicos, radares meteorológicos e estações pluviométricas, tanto automáticas como convencionais. Essa abordagem multissensorial permite gerar dados de precipitação em alta resolução espacial (aprox. 10 km), cobrindo tanto áreas densamente monitoradas quanto regiões remotas desprovidas de estações de medição próximas.</p>
+<p>O processo de fusão dos dados é feito por meio da análise objetiva de Barnes (função de ponderação gaussiana que atribui pesos diferentes às observações com base na distância em relação ao ponto de grade a ser estimado. O método reconhece que observações mais próximas devem ter maior influência no valor interpolado do que aquelas mais distantes).</p>
+<p>O algoritmo consiste em associar pesos diferenciados aos dados de cada fonte, privilegiando as observações de superfície (estações e radares) nas regiões de influência dessas fontes e utilizando as estimativas de satélite em regiões desprovidas dessas informações. Esse método garante máxima representatividade espacial e minimiza vieses sistemáticos.</p>
+<p>Além da interpolação, o produto MERGE passa por rigoroso controle de qualidade automático e manual, com eliminação de valores suspeitos — tanto para garantir a confiabilidade dos dados quanto para preservar a consistência estatística.</p>
+<p><strong>Especificações Técnicas MERGE</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Informação</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Resolução espacial:</p></td>
+<td><p>Cerca de 10 km (0,1° x 0,1°)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resolução temporal</p></td>
+<td><p>Diário (acumulados padronizados entre as 12 e 12Z)</p></td>
+</tr>
+<tr class="row-even"><td><p>Abrangência</p></td>
+<td><p>América do Sul e oceanos adjacentes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Período da série</p></td>
+<td><p>Desde Janeiro de 1998 até o presente</p></td>
+</tr>
+<tr class="row-even"><td><p>Fonte de dados</p></td>
+<td><p>IMERG-GPM NASA, INMET, ANA, CEMADEN, SIMEPAR, IAC, DAEE, ONS, INEMA, FUNCEME, CEMTEC</p></td>
+</tr>
+<tr class="row-odd"><td><p>Formatos de saída</p></td>
+<td><p>GRIB2 (diário) e NetCDF (climatologias)</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Fontes de Dados: Constelação de satélites do Integrated Multi-satellite Retrievals for Global Precipitation Measurement (IMERG-GPM NASA), Instituto Nacional de Meteorologia (INMET), Agência Nacional de Águas e Saneamento Básico (ANA), Centro Nacional de Monitoramento e Alertas de Desastres Naturais (CEMADEN), Sistema de Tecnologia e Monitoramento Ambiental do Paraná (SIMEPAR), Instituto Agronômico de Campinas (IAC), Departamento de Águas e Energia Elétrica do Estado de São Paulo (DAEE), Operador Nacional do Sistema Elétrico (ONS), Centros regionais de meteorologia e recursos hídricos, Instituto do Meio Ambiente e Recursos Hídricos da Bahia (INEMA), Fundação Cearense de Meteorologia e Recursos Hídricos (FUNCEME), Centro de Monitoramento do Tempo e do Clima de Mato Grosso do Sul (CEMTEC).</em></p>
+<p>Os arquivos diários do MERGE vêm em GRIB2 e são lidos com <code class="docutils literal notranslate"><span class="pre">xarray</span></code> usando o motor
+<code class="docutils literal notranslate"><span class="pre">cfgrib</span></code>. A variável de precipitação é <code class="docutils literal notranslate"><span class="pre">rdp</span></code> e as coordenadas são <code class="docutils literal notranslate"><span class="pre">longitude</span></code> e
+<code class="docutils literal notranslate"><span class="pre">latitude</span></code>. Para obter a chuva estimada sobre uma gleba, seleciona-se o ponto de grade
+mais próximo da sua coordenada:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="c1"># Precipitação diária do MERGE (GRIB2).</span>
+<span class="n">ds_prec</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;MERGE_CPTEC_20240115.grib2&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;cfgrib&#39;</span><span class="p">)</span>
+
+<span class="c1"># Valor no ponto de grade mais próximo da gleba (lat/lon do centroide).</span>
+<span class="n">lat_gleba</span><span class="p">,</span> <span class="n">lon_gleba</span> <span class="o">=</span> <span class="o">-</span><span class="mf">27.36</span><span class="p">,</span> <span class="o">-</span><span class="mf">53.39</span>
+<span class="n">prec_mm</span> <span class="o">=</span> <span class="n">ds_prec</span><span class="p">[</span><span class="s1">&#39;rdp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">lat_gleba</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="n">lon_gleba</span><span class="p">,</span>
+                             <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Precipitação estimada: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">prec_mm</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> mm&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="samet-cptec-inpe">
+<h2>SAMeT/CPTEC-INPE<a class="headerlink" href="#samet-cptec-inpe" title="Link permanente para este cabeçalho"></a></h2>
+<p>O SAMeT (South American Mapping of Temperature; <a class="reference external" href="https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/Rozante_et_al_2021.pdf">Rozante et al., 2021</a>) é um produto operacionalizado pelo CPTEC/INPE que fornece mapas diários de temperatura mínima, máxima e média em grade regular sobre a América do Sul <span id="id2">[<a class="reference internal" href="../../../referencias.html#id277" title="José Roberto Rozante, Enver Ramirez, and Alex de Almeida Fernandes. A newly developed South American Mapping of Temperature with estimated lapse rate corrections. International Journal of Climatology, 42(4):2135–2152, 2022. doi:10.1002/joc.7356.">64</a>]</span>. Ele oferece dados essenciais para análises de geadas, ondas de calor e estudos climáticos, com alta resolução e realismo espacial.</p>
+<p>O SAMeT busca solucionar limitações das grades de temperatura baseadas apenas em estações meteorológicas ou reanálises. O método combina observações de superfície de temperatura a 2 metros com dados da reanálise ERA5, empregando uma correção topográfica baseada na taxa de decaimento vertical da temperatura (“lapse rate”), estimada de forma dinâmica para diferentes regiões e estações do ano.</p>
+<p>A metodologia do SAMeT integra observações de estações meteorológicas e informações do ERA5, atribuindo maior peso às observações locais. Utiliza regressão linear entre temperatura e altitude, com base em décadas de ERA5 e dados do modelo digital de elevação (GTOPO30), para corrigir os dados. Após as correções, as temperaturas são interpoladas para uma grade de 5 km de resolução, devolvendo o campo ajustado para a altitude real (nível do terreno).</p>
+<p><strong>Especificações Técnicas SAMeT</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Informação</p></th>
+<th class="head"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Resolução espacial:</p></td>
+<td><p>Cerca de 5 km (0,05° x 0,05°)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Resolução temporal</p></td>
+<td><p>Diário (mínima, máxima e média)</p></td>
+</tr>
+<tr class="row-even"><td><p>Abrangência</p></td>
+<td><p>América do Sul (com tratamento para quatro grandes sub-regiões</p></td>
+</tr>
+<tr class="row-odd"><td><p>Período da série</p></td>
+<td><p>Desde Janeiro de 2000 até o presente</p></td>
+</tr>
+<tr class="row-even"><td><p>Fonte de dados</p></td>
+<td><p>ERA5, SYNOP, METAR, estações automáticas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Formatos de saída</p></td>
+<td><p>NetCDF</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Fonte de dados: “Os dados provêm de diferentes fontes (estações meteorológicas), recebidos operacionalmente pelo Centro de Previsão de Tempo e Estudos Climáticos/Instituto Nacional de Pesquisas Espaciais (CPTEC/INPE). Com relação à frequência de amostragem, algumas fontes reportam dados diários, como é o caso das Observações Sinóticas de Superfície (SYNOP) do Sistema Global de Telecomunicações (GTS), e a Tmax​ ou a Tmin​ são obtidas diretamente. Para as outras fontes que fornecem séries temporais horárias de temperatura — como o Relatório Meteorológico de Aeródromo (METAR), as plataformas de coleta de dados (PCDs) e os centros meteorológicos regionais —, a Tmax​ e a Tmin​ são obtidas a partir do ciclo diurno de cada estação meteorológica.”</em></p>
+<p>Os campos do SAMeT vêm em NetCDF, com um arquivo para temperatura mínima e outro para a
+máxima. São lidos com <code class="docutils literal notranslate"><span class="pre">xarray</span></code> (motor <code class="docutils literal notranslate"><span class="pre">netcdf4</span></code>); as variáveis são <code class="docutils literal notranslate"><span class="pre">tmin</span></code> e
+<code class="docutils literal notranslate"><span class="pre">tmax</span></code> e as coordenadas são <code class="docutils literal notranslate"><span class="pre">lon</span></code> e <code class="docutils literal notranslate"><span class="pre">lat</span></code>. A extração pontual é análoga à do MERGE:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="n">ds_tmin</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;SAMeT_CPTEC_TMIN_20240115.nc&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;netcdf4&#39;</span><span class="p">)</span>
+<span class="n">ds_tmax</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;SAMeT_CPTEC_TMAX_20240115.nc&#39;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;netcdf4&#39;</span><span class="p">)</span>
+
+<span class="n">lat_gleba</span><span class="p">,</span> <span class="n">lon_gleba</span> <span class="o">=</span> <span class="o">-</span><span class="mf">27.36</span><span class="p">,</span> <span class="o">-</span><span class="mf">53.39</span>
+<span class="n">tmin</span> <span class="o">=</span> <span class="n">ds_tmin</span><span class="p">[</span><span class="s1">&#39;tmin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">lat_gleba</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="n">lon_gleba</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="n">ds_tmax</span><span class="p">[</span><span class="s1">&#39;tmax&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">lat</span><span class="o">=</span><span class="n">lat_gleba</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="n">lon_gleba</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;TMIN: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">tmin</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> °C | TMAX: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">tmax</span><span class="p">)</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1"> °C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Com TMIN e TMAX em grade é possível, por exemplo, alimentar o cálculo de graus-dia (ver
+<a class="reference internal" href="exemplo-graus-dia-trigo.html"><span class="doc">Exemplo aplicado: estádio fenológico do trigo por graus-dia</span></a>) em qualquer ponto, mesmo sem estação próxima.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="estacoes.html" class="btn btn-neutral float-left" title="Estações meteorológicas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="satelite-meteorologico.html" class="btn btn-neutral float-right" title="Satélites meteorológicos" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1026103d0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

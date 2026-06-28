@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualização preliminar: mapas de calor e densidade kernel &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/heatmap-kernel.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Quantificando autocorrelação espacial: O índice I de Moran" href="imoran.html" />
+    <link rel="prev" title="Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro" href="estatistica.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Visualização preliminar: mapas de calor e densidade kernel</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introducao-a-exploracao-visual">Introdução à exploração visual</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fundamentos-teoricos-dos-mapas-de-densidade-kernel">Fundamentos teóricos dos mapas de densidade kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aplicacoes-no-contexto-do-proagro">Aplicações no contexto do Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacao-analitica-e-consideracoes-metodologicas">Interpretação analítica e considerações metodológicas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusao">Conclusão</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+      <li class="breadcrumb-item active">Visualização preliminar: mapas de calor e densidade kernel</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="estatistica.html" class="btn btn-neutral float-left" title="Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="imoran.html" class="btn btn-neutral float-right" title="Quantificando autocorrelação espacial: O índice I de Moran" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="visualizacao-preliminar-mapas-de-calor-e-densidade-kernel">
+<h1>Visualização preliminar: mapas de calor e densidade kernel<a class="headerlink" href="#visualizacao-preliminar-mapas-de-calor-e-densidade-kernel" title="Link permanente para este cabeçalho"></a></h1>
+<section id="introducao-a-exploracao-visual">
+<h2>Introdução à exploração visual<a class="headerlink" href="#introducao-a-exploracao-visual" title="Link permanente para este cabeçalho"></a></h2>
+<p>A análise exploratória de dados constitui etapa fundamental no processo de investigação científica, sendo particularmente relevante no domínio da análise espacial. Antes da aplicação de testes estatísticos formais como o Índice I de Moran ou análises LISA — técnicas que geram métricas quantitativas, valores-p e índices numéricos — é necessário desenvolver uma compreensão intuitiva do comportamento espacial dos dados. Esta abordagem segue o princípio metodológico estabelecido na análise de dados de que a visualização gráfica precede e orienta a quantificação estatística.</p>
+<p>Os mapas de densidade, frequentemente denominados “mapas de calor”, representam ferramentas primárias para exploração espacial inicial. Estas técnicas transformam distribuições pontuais aparentemente caóticas em superfícies contínuas que permitem identificar visualmente padrões de concentração e dispersão espacial. No contexto do Proagro, a transformação de Comunicações de Perda individuais em superfícies de densidade possibilita a identificação imediata de aglomerações geográficas que permaneceriam ocultas em representações tabulares.</p>
+</section>
+<section id="fundamentos-teoricos-dos-mapas-de-densidade-kernel">
+<h2>Fundamentos teóricos dos mapas de densidade kernel<a class="headerlink" href="#fundamentos-teoricos-dos-mapas-de-densidade-kernel" title="Link permanente para este cabeçalho"></a></h2>
+<section id="conceituacao-e-principios-matematicos">
+<h3>Conceituação e princípios matemáticos<a class="headerlink" href="#conceituacao-e-principios-matematicos" title="Link permanente para este cabeçalho"></a></h3>
+<p>Um mapa de densidade Kernel consiste em uma técnica estatística de suavização que transforma dados pontuais em superfícies contínuas de densidade, revelando padrões de concentração espacial através de abordagem visualmente intuitiva e matematicamente fundamentada <span id="id1">[<a class="reference internal" href="../../referencias.html#id272" title="Bernard W. Silverman. Density Estimation for Statistics and Data Analysis. Chapman and Hall, London, 1986.">71</a>]</span>.</p>
+</section>
+<section id="modelagem-conceitual-a-metafora-da-influencia-espacial">
+<h3>Modelagem conceitual: A metáfora da influência espacial<a class="headerlink" href="#modelagem-conceitual-a-metafora-da-influencia-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<p>A técnica opera sob o princípio de que cada evento georreferenciado exerce influência em sua vizinhança espacial, com intensidade decrescente conforme aumenta a distância. Cada ponto (por exemplo, uma Comunicação de Perda) funciona como epicentro de uma função de influência que se propaga radialmente, análoga a uma fonte de luminosidade ou calor em meio difuso.</p>
+</section>
+<section id="formalizacao-matematica">
+<h3>Formalização matemática<a class="headerlink" href="#formalizacao-matematica" title="Link permanente para este cabeçalho"></a></h3>
+<p>O processo de construção de mapas de densidade Kernel compreende quatro etapas fundamentais:</p>
+<p><strong>Etapa 1: Definição da Função Kernel</strong></p>
+<p>Para cada ponto <span class="math notranslate nohighlight">\(i\)</span> com coordenadas <span class="math notranslate nohighlight">\((x_i, y_i)\)</span>, define-se uma função de influência espacial <span class="math notranslate nohighlight">\(K(\cdot)\)</span>, que determina o decaimento da influência com o aumento da distância. Entre as formulações matemáticas mais comuns encontram-se:</p>
+<ul class="simple">
+<li><p><strong>Kernel Gaussiano</strong>: <span class="math notranslate nohighlight">\(K(d) = \frac{1}{\sqrt{2\pi}} \exp\left(-\frac{1}{2}d^2\right)\)</span></p></li>
+<li><p><strong>Kernel Epanechnikov</strong>: <span class="math notranslate nohighlight">\(K(d) = \frac{3}{4}(1-d^2) \quad \text{para} \quad |d| \leq 1\)</span></p></li>
+<li><p><strong>Kernel Quartic</strong>: <span class="math notranslate nohighlight">\(K(d) = \frac{15}{16}(1-d^2)^2 \quad \text{para} \quad |d| \leq 1\)</span></p></li>
+</ul>
+<p>onde <span class="math notranslate nohighlight">\(d\)</span> representa a distância normalizada pelo parâmetro de suavização.</p>
+<p><strong>Etapa 2: Agregação das Funções de Influência</strong></p>
+<p>A densidade em qualquer localização <span class="math notranslate nohighlight">\((x, y)\)</span> do espaço é calculada por meio da soma ponderada de todas as funções kernel centradas nos pontos observados:</p>
+<div class="math notranslate nohighlight">
+\[\hat{f}(x, y) = \frac{1}{n h^2} \sum_{i=1}^{n} K\left(\frac{d_i}{h}\right)\]</div>
+<p>onde:
+- <span class="math notranslate nohighlight">\(d_i\)</span> representa a distância euclidiana entre <span class="math notranslate nohighlight">\((x, y)\)</span> e o ponto <span class="math notranslate nohighlight">\(i\)</span>
+- <span class="math notranslate nohighlight">\(h\)</span> denota o parâmetro de suavização (bandwidth)
+- <span class="math notranslate nohighlight">\(n\)</span> corresponde ao número total de observações
+- <span class="math notranslate nohighlight">\(K(\cdot)\)</span> é a função kernel selecionada</p>
+<p><strong>Etapa 3: Normalização e Construção da Superfície</strong></p>
+<p>O resultado da agregação é normalizado para produzir uma superfície de densidade probabilística, garantindo que a integral sobre toda a área de estudo seja unitária.</p>
+<p><strong>Etapa 4: Representação Visual</strong></p>
+<p>A superfície numérica resultante é mapeada para uma paleta de cores, estabelecendo correspondência entre valores de densidade e gradientes cromáticos:</p>
+<ul class="simple">
+<li><p><strong>Regiões de baixa densidade</strong>: Tons frios (azul, verde)</p></li>
+<li><p><strong>Regiões de densidade intermediária</strong>: Tons médios (amarelo, laranja)</p></li>
+<li><p><strong>Regiões de alta densidade</strong>: Tons quentes (vermelho, magenta)</p></li>
+</ul>
+</section>
+<section id="parametro-de-suavizacao-selecao-e-implicacoes">
+<h3>Parâmetro de suavização: seleção e implicações<a class="headerlink" href="#parametro-de-suavizacao-selecao-e-implicacoes" title="Link permanente para este cabeçalho"></a></h3>
+<p>O parâmetro de suavização <span class="math notranslate nohighlight">\(h\)</span> (bandwidth) é um parâmetro crítico na construção de mapas de densidade, determinando o raio de influência de cada observação. A seleção adequada deste parâmetro é fundamental para balancear viés e variância na estimação.</p>
+</section>
+<section id="efeitos-do-parametro-de-suavizacao">
+<h3>Efeitos do parâmetro de suavização<a class="headerlink" href="#efeitos-do-parametro-de-suavizacao" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Valores Reduzidos (:math:`h leq 10text{km}`)</strong>:
+- <strong>Vantagem</strong>: Elevada resolução espacial, captura de padrões locais
+- <strong>Desvantagem</strong>: Superfície excessivamente fragmentada, amplificação de ruído aleatório
+- <strong>Aplicação recomendada</strong>: Análises em escala municipal com alta densidade amostral</p>
+<p><strong>Valores Intermediários (:math:`20text{km} leq h leq 30text{km}`)</strong>:
+- <strong>Vantagem</strong>: Equilíbrio entre detalhamento e suavização, padrões regionalmente interpretáveis
+- <strong>Desvantagem</strong>: Possível mascaramento de aglomerados muito localizados
+- <strong>Aplicação recomendada</strong>: Análises em escala microrregional — configuração recomendada para a maioria das aplicações no Proagro</p>
+<p><strong>Valores Elevados (:math:`h geq 50text{km}`)</strong>:
+- <strong>Vantagem</strong>: Identificação de padrões macrorregionais robustos
+- <strong>Desvantagem</strong>: Excessiva homogeneização, perda de variação local significativa
+- <strong>Aplicação recomendada</strong>: Análises em escala estadual ou regional</p>
+</section>
+<section id="metodologia-de-selecao">
+<h3>Metodologia de seleção<a class="headerlink" href="#metodologia-de-selecao" title="Link permanente para este cabeçalho"></a></h3>
+<p>recomenda-se usar abordagem multi-escala, gerando superfícies com diferentes valores de <span class="math notranslate nohighlight">\(h\)</span> e comparando a persistência de padrões espaciais. Padrões que se mantêm consistentes através de múltiplas escalas de suavização apresentam maior robustez analítica.</p>
+</section>
+</section>
+<section id="aplicacoes-no-contexto-do-proagro">
+<h2>Aplicações no contexto do Proagro<a class="headerlink" href="#aplicacoes-no-contexto-do-proagro" title="Link permanente para este cabeçalho"></a></h2>
+<section id="tipologias-de-mapas-de-densidade">
+<h3>Tipologias de mapas de densidade<a class="headerlink" href="#tipologias-de-mapas-de-densidade" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="densidade-absoluta-de-comunicacoes-de-perda">
+<h3>Densidade absoluta de comunicações de perda<a class="headerlink" href="#densidade-absoluta-de-comunicacoes-de-perda" title="Link permanente para este cabeçalho"></a></h3>
+<p>A aplicação fundamental consiste no mapeamento da densidade de COPs, onde cada comunicação constitui uma observação pontual. Esta abordagem permite identificar concentrações geográficas de sinistros declarados.</p>
+<p><strong>Variações Analíticas</strong>:</p>
+<p><strong>Densidade por Fenômeno Adverso</strong>
+- Mapeamento de COPs por <strong>seca</strong>
+- Mapeamento de COPs por <strong>chuva excessiva</strong>
+- Mapeamento de COPs por <strong>geada</strong>
+- Mapeamento de COPs por <strong>granizo</strong></p>
+<p>A comparação entre estes mapas permite identificar inconsistências espaciais, como a coexistência de hotspots de seca e chuva excessiva em uma mesma região geográfica durante idêntico período sazonal.</p>
+<p><strong>Densidade por Cultura Agrícola</strong>
+- Mapeamento de COPs em <strong>soja</strong>
+- Mapeamento de COPs em <strong>milho</strong>
+- Mapeamento de COPs em <strong>café, algodão, feijão</strong>, etc.</p>
+<p>Esta estratificação revela padrões de vulnerabilidade específicos por cultura, permitindo diferenciar entre eventos climáticos generalizados e impactos seletivos.</p>
+</section>
+<section id="densidade-ponderada-por-atributos-economicos">
+<h3>Densidade ponderada por atributos econômicos<a class="headerlink" href="#densidade-ponderada-por-atributos-economicos" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para capturar a dimensão econômica do risco, implementam-se mapas de densidade ponderada, onde cada observação contribui proporcionalmente a atributos específicos.</p>
+<p><strong>Formulação Matemática</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{f}_w(x, y) = \frac{1}{n h^2} \sum_{i=1}^{n} w_i \cdot K\left(\frac{d_i}{h}\right)\]</div>
+<p>onde <span class="math notranslate nohighlight">\(w_i\)</span> representa o peso atribuído à observação <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p><strong>Modalidades de Ponderação</strong>:</p>
+<p><strong>Ponderação por Valor de Indenização</strong>
+- Identificação de concentrações de impacto econômico
+- Priorização de auditorias de alto valor
+- Avaliação do impacto fiscal regional</p>
+<p><strong>Ponderação por Percentual de Perda</strong>
+- Identificação de regiões com perdas severas
+- Diferenciação entre frequência e intensidade de sinistros</p>
+<p><strong>Ponderação por Área Afetada</strong>
+- Mensuração do território produtivo comprometido
+- Identificação de impactos em escala territorial</p>
+</section>
+<section id="taxa-de-sinistralidade-espacializada">
+<h3>Taxa de sinistralidade espacializada<a class="headerlink" href="#taxa-de-sinistralidade-espacializada" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para controlar o efeito de concentração da atividade agrícola, calcula-se a taxa de sinistralidade espacial por meio de normalização pela densidade de operações de crédito:</p>
+<div class="math notranslate nohighlight">
+\[\text{Taxa}(x, y) = \frac{\hat{f}_{\text{COPs}}(x, y)}{\hat{f}_{\text{operações}}(x, y)}\]</div>
+<p>Esta abordagem permite diferenciar entre:
+- <strong>Áreas com elevada frequência absoluta de sinistros</strong> (devido à concentração de operações)
+- <strong>Áreas com elevado risco relativo</strong> (alta proporção de sinistros por operação)</p>
+</section>
+</section>
+<section id="interpretacao-analitica-e-consideracoes-metodologicas">
+<h2>Interpretação analítica e considerações metodológicas<a class="headerlink" href="#interpretacao-analitica-e-consideracoes-metodologicas" title="Link permanente para este cabeçalho"></a></h2>
+<section id="contextualizacao-de-padroes-espaciais">
+<h3>Contextualização de padrões espaciais<a class="headerlink" href="#contextualizacao-de-padroes-espaciais" title="Link permanente para este cabeçalho"></a></h3>
+<p>A interpretação adequada de hotspots requer contextualização multivariada:</p>
+<p><strong>Contextualização Climática</strong>
+- Comparação com dados meteorológicos observados
+- Verificação de coerência espacial entre sinistros declarados e fenômenos documentados
+- Identificação de anomalias espaciais (hotspots em regiões sem suporte climático)</p>
+<p><strong>Contextualização Agroeconômica</strong>
+- Análise da relação entre densidade de sinistros e densidade de operações
+- Diferenciação entre concentração absoluta e risco relativo
+- Identificação de vulnerabilidades regionais específicas</p>
+<p><strong>Contextualização Temporal</strong>
+- Análise de persistência de padrões através de múltiplas safras
+- Diferenciação entre:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Hotspots persistentes</strong>: vulnerabilidade estrutural</p></li>
+<li><p><strong>Hotspots episódicos</strong>: eventos climáticos pontuais</p></li>
+<li><p><strong>Hotspots migratórios</strong>: resposta a variabilidade climática interanual</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="limitacoes-e-precaucoes-metodologicas">
+<h3>Limitações e precauções metodológicas<a class="headerlink" href="#limitacoes-e-precaucoes-metodologicas" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Efeito de Borda</strong>
+- Subestimação da densidade nas fronteiras da área de estudo
+- Estratégias de mitigação: implementação de buffers espaciais</p>
+<p><strong>Seleção de Parâmetros</strong>
+- Sensibilidade dos resultados à escolha do bandwidth
+- Necessidade de análise de sensibilidade multi-escala</p>
+<p><strong>Interpretação Estatística</strong>
+- Mapas de densidade constituem ferramentas exploratórias
+- Padrões visuais requerem confirmação por meio de testes de significância estatística
+- Complementaridade com métodos inferenciais espaciais</p>
+</section>
+<section id="diretrizes-para-elaboracao-e-apresentacao">
+<h3>Diretrizes para elaboração e apresentação<a class="headerlink" href="#diretrizes-para-elaboracao-e-apresentacao" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Elementos Obrigatórios</strong>:
+- Legenda quantificada e dimensionalmente explícita
+- Elementos de referência geográfica (limites administrativos, hidrografia)
+- Documentação completa de parâmetros técnicos
+- Escala cartográfica e orientação espacial</p>
+<p><strong>Recomendações de Visualização</strong>:
+- Utilização de gradientes cromáticos intuitivos
+- Sobreposição de pontos individuais com transparência adequada
+- Apresentação comparativa quando aplicável</p>
+</section>
+</section>
+<section id="conclusao">
+<h2>Conclusão<a class="headerlink" href="#conclusao" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os mapas de densidade Kernel representam ferramentas indispensáveis para análise exploratória espacial no contexto do Proagro, permitindo:</p>
+<ul class="simple">
+<li><p>Identificação visual de padrões de concentração geográfica</p></li>
+<li><p>Formulação de hipóteses sobre determinantes espaciais do risco agrícola</p></li>
+<li><p>Comunicação eficaz de padrões espaciais para stakeholders diversos</p></li>
+<li><p>Orientação para análises estatísticas espaciais subsequentes</p></li>
+</ul>
+<p>Contudo, sua aplicação deve considerar as limitações inerentes à técnica, particularmente no que concerne à seleção de parâmetros e contextualização analítica. A integração com métodos estatísticos formais constitui abordagem metodológica recomendada para produção de inferências espaciais robustas.</p>
+<figure class="align-center" id="id2">
+<img alt="Mapa de densidade Kernel de COPs por seca" src="caminho/para/figura2.png" />
+<figcaption>
+<p><span class="caption-number">Figura 30 - </span><span class="caption-text"><strong>Figura 2</strong>: Mapa de densidade Kernel de Comunicações de Perda por seca, safra 2022/23. Cores quentes indicam áreas com alta concentração de COPs. Raio de busca: 30 km. Pontos pretos representam COPs individuais.</span><a class="headerlink" href="#id2" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="estatistica.html" class="btn btn-neutral float-left" title="Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="imoran.html" class="btn btn-neutral float-right" title="Quantificando autocorrelação espacial: O índice I de Moran" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c100717c50>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

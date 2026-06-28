@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloco 1 — KDE e I de Moran global (município) &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/praticas/kde-moran.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="next" title="Bloco 2 — LISA, MAUP, falácia ecológica e Getis-Ord Gi*" href="lisa-maup-gistar.html" />
+    <link rel="prev" title="Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP" href="exemplo-aula1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Aulas práticas — análise espacial, estatística e interpolação</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#sequencia-sugerida">Sequência sugerida</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+      <li class="breadcrumb-item active">Bloco 1 — KDE e I de Moran global (município)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="exemplo-aula1.html" class="btn btn-neutral float-left" title="Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="lisa-maup-gistar.html" class="btn btn-neutral float-right" title="Bloco 2 — LISA, MAUP, falácia ecológica e Getis-Ord Gi*" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bloco-1-kde-e-i-de-moran-global-municipio">
+<h1>Bloco 1 — KDE e I de Moran global (município)<a class="headerlink" href="#bloco-1-kde-e-i-de-moran-global-municipio" title="Link permanente para este cabeçalho"></a></h1>
+<p>Pergunta condutora da aula:</p>
+<blockquote>
+<div><p><em>“Onde se concentram os sinistros de soja no Brasil? Essa
+concentração é fruto do acaso ou existe um padrão espacial real?”</em></p>
+</div></blockquote>
+<p>Duas técnicas respondem essas perguntas em sequência:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Técnica</p></th>
+<th class="head"><p>Pergunta que responde</p></th>
+<th class="head"><p>Tipo de dado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>KDE</strong> (Kernel Density Estimation)</p></td>
+<td><p><em>Onde os sinistros se concentram?</em></p></td>
+<td><p>Pontos (coordenadas das glebas)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>I de Moran Global</strong></p></td>
+<td><p><em>Existe padrão espacial ou é aleatório?</em></p></td>
+<td><p>Valores por área (município)</p></td>
+</tr>
+</tbody>
+</table>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#dependencias" id="id10">Dependências</a></p></li>
+<li><p><a class="reference internal" href="#parte-1-carga-e-exploracao" id="id11">Parte 1 — carga e exploração</a></p></li>
+<li><p><a class="reference internal" href="#parte-2-kde-kernel-density-estimation" id="id12">Parte 2 — KDE (kernel density estimation)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#efeito-do-bandwidth" id="id13">Efeito do bandwidth</a></p></li>
+<li><p><a class="reference internal" href="#seca-chuva-excessiva-padroes-distintos" id="id14">Seca × chuva excessiva: padrões distintos</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#parte-3-do-ponto-para-o-municipio" id="id15">Parte 3 — do ponto para o município</a></p></li>
+<li><p><a class="reference internal" href="#parte-4-i-de-moran-global" id="id16">Parte 4 — I de Moran global</a></p>
+<ul>
+<li><p><a class="reference internal" href="#matriz-de-vizinhanca-queen" id="id17">Matriz de vizinhança queen</a></p></li>
+<li><p><a class="reference internal" href="#tratamento-de-islands" id="id18">Tratamento de <em>islands</em></a></p></li>
+<li><p><a class="reference internal" href="#calculo-com-permutacoes-de-monte-carlo" id="id19">Cálculo com permutações de Monte Carlo</a></p></li>
+<li><p><a class="reference internal" href="#distribuicao-nula-com-inset" id="id20">Distribuição nula com inset</a></p></li>
+<li><p><a class="reference internal" href="#diagrama-de-moran" id="id21">Diagrama de Moran</a></p></li>
+<li><p><a class="reference internal" href="#i-de-moran-por-fenomeno" id="id22">I de Moran por fenômeno</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#resumo-do-bloco" id="id23">Resumo do bloco</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id24">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="dependencias">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Dependências</a><a class="headerlink" href="#dependencias" title="Link permanente para este cabeçalho"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>geopandas<span class="w"> </span>cartopy<span class="w"> </span>libpysal<span class="w"> </span>esda<span class="w"> </span>splot<span class="w"> </span>mapclassify
+</pre></div>
+</div>
+</section>
+<section id="parte-1-carga-e-exploracao">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Parte 1 — carga e exploração</a><a class="headerlink" href="#parte-1-carga-e-exploracao" title="Link permanente para este cabeçalho"></a></h2>
+<p>Repetimos a limpeza do Sicor do Bloco 0 e simplificamos as
+coordenadas para reduzir custo computacional:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;sicor-interest-data.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;latitude_centroide&#39;</span><span class="p">:</span>  <span class="s1">&#39;latitude&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;longitude_centroide&#39;</span><span class="p">:</span> <span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">],</span>  <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span> <span class="p">][(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span> <span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">34</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span> <span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">6</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">75</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">33</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+
+<span class="c1"># Simplifica as coordenadas para reduzir pontos coincidentes</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Exploração inicial:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;nome_evento&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span>  <span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;ano_emissao&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Gráfico rápido de barras por fenômeno:</p>
+<figure class="align-center" id="id1">
+<img alt="COPs por fenômeno adverso (soja)." src="../../../_images/cell017_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 39 - </span><span class="caption-text">Frequência de COPs por fenômeno adverso para soja no recorte.</span><a class="headerlink" href="#id1" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Mapa rápido das COPs por fenômeno (Cartopy):</p>
+<figure class="align-center" id="id2">
+<img alt="Mapa das COPs de soja coloridas por fenômeno." src="../../../_images/cell021_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 40 - </span><span class="caption-text">COPs por fenômeno — seca em vermelho, chuva excessiva em azul,
+granizo em roxo, geada em verde-água.</span><a class="headerlink" href="#id2" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="parte-2-kde-kernel-density-estimation">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Parte 2 — KDE (kernel density estimation)</a><a class="headerlink" href="#parte-2-kde-kernel-density-estimation" title="Link permanente para este cabeçalho"></a></h2>
+<div class="tip admonition">
+<p class="admonition-title">Analogia da vela</p>
+<p>Imagine cada COP como uma <strong>vela acesa</strong> no mapa. Cada vela emite
+luz que se espalha — mais forte no centro, mais fraca nas bordas.
+Onde tem muitas velas juntas, a luz é intensa. O KDE soma as
+“luzes” e produz uma superfície contínua. O <strong>bandwidth</strong> é o
+alcance da luz de cada vela.</p>
+</div>
+<p>Passos do KDE:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">gaussian_kde</span>
+
+<span class="n">df_seca</span>           <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;nome_evento&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Seca&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">longitude_seca</span>    <span class="o">=</span> <span class="n">df_seca</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">latitude_seca</span>     <span class="o">=</span> <span class="n">df_seca</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">coordenadas_seca</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">longitude_seca</span><span class="p">,</span> <span class="n">latitude_seca</span><span class="p">])</span>
+<span class="n">coordenadas_seca</span>  <span class="o">=</span> <span class="n">coordenadas_seca</span><span class="p">[:,</span> <span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">coordenadas_seca</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+
+<span class="c1"># 200×200 grade</span>
+<span class="n">lon_min</span><span class="p">,</span> <span class="n">lon_max</span> <span class="o">=</span> <span class="n">df_seca</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">df_seca</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">lat_min</span><span class="p">,</span> <span class="n">lat_max</span> <span class="o">=</span> <span class="n">df_seca</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span> <span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">df_seca</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span> <span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span>
+
+<span class="n">grade_lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lon_min</span><span class="p">,</span> <span class="n">lon_max</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">grade_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">lat_min</span><span class="p">,</span> <span class="n">lat_max</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">grade_lon_2d</span><span class="p">,</span> <span class="n">grade_lat_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">grade_lon</span><span class="p">,</span> <span class="n">grade_lat</span><span class="p">)</span>
+
+<span class="n">kde</span>            <span class="o">=</span> <span class="n">gaussian_kde</span><span class="p">(</span><span class="n">coordenadas_seca</span><span class="p">,</span> <span class="n">bw_method</span><span class="o">=</span><span class="s1">&#39;scott&#39;</span><span class="p">)</span>
+<span class="n">pontos_grade</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">grade_lon_2d</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">grade_lat_2d</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">densidade_2d</span>   <span class="o">=</span> <span class="n">kde</span><span class="p">(</span><span class="n">pontos_grade</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">grade_lon_2d</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id3">
+<img alt="Mapa KDE de COPs de soja por seca." src="../../../_images/cell037_out11.png" />
+<figcaption>
+<p><span class="caption-number">Figura 41 - </span><span class="caption-text">Painel à esquerda: KDE da concentração de COPs por seca em soja.
+À direita: pontos individuais sobre o mapa para conferência
+visual.</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p><strong>Alta densidade de COPs não significa necessariamente mais risco
+real.</strong> Pode apenas indicar mais área de soja — e portanto mais
+contratos, e mais COPs naturalmente. Para separar os efeitos,
+normaliza-se pela área plantada ou pelo número de contratos.</p>
+</div>
+<section id="efeito-do-bandwidth">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Efeito do bandwidth</a><a class="headerlink" href="#efeito-do-bandwidth" title="Link permanente para este cabeçalho"></a></h3>
+<figure class="align-center" id="id4">
+<img alt="Comparação de três valores de bandwidth para o KDE da seca." src="../../../_images/cell040_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 42 - </span><span class="caption-text">Três bandwidths para o mesmo conjunto: pequeno (esquerda) revela
+detalhes locais e ruído; Scott (centro) é o compromisso
+automático; grande (direita) borra tudo em uma única mancha.</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="seca-chuva-excessiva-padroes-distintos">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Seca × chuva excessiva: padrões distintos</a><a class="headerlink" href="#seca-chuva-excessiva-padroes-distintos" title="Link permanente para este cabeçalho"></a></h3>
+<figure class="align-center" id="id5">
+<img alt="KDE de seca vs chuva excessiva no Sul." src="../../../_images/cell043_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 43 - </span><span class="caption-text">KDE comparado entre seca e chuva excessiva no Sul do Brasil. Se
+os mapas mostram padrões distintos, isso reforça que os
+fenômenos têm lógicas espaciais diferentes.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="parte-3-do-ponto-para-o-municipio">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Parte 3 — do ponto para o município</a><a class="headerlink" href="#parte-3-do-ponto-para-o-municipio" title="Link permanente para este cabeçalho"></a></h2>
+<p>O I de Moran trabalha com <strong>valores associados a áreas</strong>. Contamos
+COPs por município e ligamos ao shapefile do IBGE:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cops_por_municipio</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">size</span><span class="p">()</span>
+      <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;total_cops&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">cops_por_municipio</span><span class="p">[</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">cops_por_municipio</span><span class="p">[</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="n">gdf_mun</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;BR_Municipios_2024.zip&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s1">&#39;EPSG:4674&#39;</span><span class="p">)</span>
+<span class="n">gdf_mun</span><span class="p">[</span><span class="s1">&#39;CD_MUN&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_mun</span><span class="p">[</span><span class="s1">&#39;CD_MUN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">gdf_analise</span> <span class="o">=</span> <span class="n">gdf_mun</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">cops_por_municipio</span><span class="p">,</span>
+    <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;CD_MUN&#39;</span><span class="p">,</span> <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;cd_ibge_municipio&#39;</span><span class="p">,</span>
+    <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">gdf_analise</span><span class="p">[</span><span class="s1">&#39;total_cops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf_analise</span><span class="p">[</span><span class="s1">&#39;total_cops&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Mapa coroplético:</p>
+<figure class="align-center" id="id6">
+<img alt="Mapa coroplético de COPs por município." src="../../../_images/cell056_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 44 - </span><span class="caption-text">Mapa coroplético com total de COPs por município. Comparado ao
+KDE, agrega por fronteira administrativa — útil para gestão e
+tomada de decisão, mas sujeito ao <strong>MAUP</strong> (Bloco 2).</span><a class="headerlink" href="#id6" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="parte-4-i-de-moran-global">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">Parte 4 — I de Moran global</a><a class="headerlink" href="#parte-4-i-de-moran-global" title="Link permanente para este cabeçalho"></a></h2>
+<section id="matriz-de-vizinhanca-queen">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Matriz de vizinhança queen</a><a class="headerlink" href="#matriz-de-vizinhanca-queen" title="Link permanente para este cabeçalho"></a></h3>
+<p>Dois municípios são vizinhos Queen se compartilham qualquer parte da
+fronteira (mesmo um único ponto):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queen</span>
+
+<span class="n">pesos</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf_analise</span><span class="p">,</span> <span class="n">use_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Média de vizinhos por município: </span><span class="si">{</span><span class="n">pesos</span><span class="o">.</span><span class="n">mean_neighbors</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id7">
+<img alt="Vizinhança Queen do município com mais COPs." src="../../../_images/cell065_out1.png" />
+<figcaption>
+<p><span class="caption-number">Figura 45 - </span><span class="caption-text">Município com mais COPs (vermelho) e seus vizinhos Queen (azul).
+Visualizar a vizinhança é a melhor forma de pegar erros antes do
+I de Moran.</span><a class="headerlink" href="#id7" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="tratamento-de-islands">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Tratamento de <em>islands</em></a><a class="headerlink" href="#tratamento-de-islands" title="Link permanente para este cabeçalho"></a></h3>
+<p>Municípios sem vizinhos (<em>islands</em>, ex.: Fernando de Noronha) devem
+ser removidos antes do cálculo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf_analise</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Islands:&#39;</span><span class="p">,</span> <span class="n">w</span><span class="o">.</span><span class="n">islands</span><span class="p">)</span>
+
+<span class="n">gdf_sem_islands</span> <span class="o">=</span> <span class="p">(</span><span class="n">gdf_analise</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">w</span><span class="o">.</span><span class="n">islands</span><span class="p">)</span>
+                              <span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                              <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf_sem_islands</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>   <span class="c1"># padronização por linha</span>
+</pre></div>
+</div>
+</section>
+<section id="calculo-com-permutacoes-de-monte-carlo">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Cálculo com permutações de Monte Carlo</a><a class="headerlink" href="#calculo-com-permutacoes-de-monte-carlo" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">esda.moran</span><span class="w"> </span><span class="kn">import</span> <span class="n">Moran</span>
+
+<span class="n">valores</span>      <span class="o">=</span> <span class="n">gdf_sem_islands</span><span class="p">[</span><span class="s1">&#39;total_cops&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">moran_global</span> <span class="o">=</span> <span class="n">Moran</span><span class="p">(</span><span class="n">valores</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  I observado:     </span><span class="si">{</span><span class="n">moran_global</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Valor esperado:  </span><span class="si">{</span><span class="n">moran_global</span><span class="o">.</span><span class="n">EI</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  p-valor (sim.):  </span><span class="si">{</span><span class="n">moran_global</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  z-score:         </span><span class="si">{</span><span class="n">moran_global</span><span class="o">.</span><span class="n">z_sim</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="distribuicao-nula-com-inset">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Distribuição nula com inset</a><a class="headerlink" href="#distribuicao-nula-com-inset" title="Link permanente para este cabeçalho"></a></h3>
+<figure class="align-center" id="id8">
+<img alt="Distribuição nula do I de Moran com inset do valor observado." src="../../../_images/cell076_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 46 - </span><span class="caption-text">Distribuição nula construída por 999 permutações. O valor
+observado fica tão longe da nuvem aleatória que um <em>inset</em>
+precisa ser usado para mostrá-lo.</span><a class="headerlink" href="#id8" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="diagrama-de-moran">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Diagrama de Moran</a><a class="headerlink" href="#diagrama-de-moran" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">splot.esda</span><span class="w"> </span><span class="kn">import</span> <span class="n">moran_scatterplot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">moran_scatterplot</span><span class="p">(</span><span class="n">moran_global</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">aspect_equal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-center" id="id9">
+<img alt="Diagrama de Moran para total_cops." src="../../../_images/cell079_out0.png" />
+<figcaption>
+<p><span class="caption-number">Figura 47 - </span><span class="caption-text">Diagrama de Moran. A maioria dos pontos cai nos quadrantes HH
+e LL, comprovando autocorrelação positiva — clusters de muitas
+COPs cercados por muitas COPs, e o oposto.</span><a class="headerlink" href="#id9" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="i-de-moran-por-fenomeno">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">I de Moran por fenômeno</a><a class="headerlink" href="#i-de-moran-por-fenomeno" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">fenomeno</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Seca&#39;</span><span class="p">,</span> <span class="s1">&#39;Chuva excessiva&#39;</span><span class="p">,</span> <span class="s1">&#39;Granizo&#39;</span><span class="p">,</span> <span class="s1">&#39;Geada&#39;</span><span class="p">]:</span>
+    <span class="n">valores_f</span> <span class="o">=</span> <span class="n">gdf_analise</span><span class="p">[</span><span class="n">fenomeno</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">moran_f</span>   <span class="o">=</span> <span class="n">Moran</span><span class="p">(</span><span class="n">valores_f</span><span class="p">,</span> <span class="n">pesos</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fenomeno</span><span class="si">:</span><span class="s1">&lt;20</span><span class="si">}</span><span class="s1"> I=</span><span class="si">{</span><span class="n">moran_f</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">  p=</span><span class="si">{</span><span class="n">moran_f</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A <strong>seca</strong> tende a ter o maior I (padrão regional forte, cobre
+extensões grandes); o <strong>granizo</strong> tem I bem menor (fenômeno
+localizado de microescala).</p>
+</section>
+</section>
+<section id="resumo-do-bloco">
+<h2><a class="toc-backref" href="#id23" role="doc-backlink">Resumo do bloco</a><a class="headerlink" href="#resumo-do-bloco" title="Link permanente para este cabeçalho"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+<col style="width: 30.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Técnica</p></th>
+<th class="head"><p>O que faz</p></th>
+<th class="head"><p>Entrada → Saída</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KDE</p></td>
+<td><p>Estima densidade contínua a partir de pontos</p></td>
+<td><p>Coordenadas → superfície de calor</p></td>
+</tr>
+<tr class="row-odd"><td><p>I de Moran</p></td>
+<td><p>Testa autocorrelação espacial global via permutação</p></td>
+<td><p>Valores por município + W → I, p-valor, diagrama</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="lisa-maup-gistar.html"><span class="doc">Bloco 2 — LISA, MAUP, falácia ecológica e Getis-Ord Gi*</span></a> — <strong>onde</strong> estão os clusters (LISA), efeito
+da escala (MAUP) e confirmação com Gi*.</p></li>
+<li><p><a class="reference internal" href="../imoran.html"><span class="doc">Quantificando autocorrelação espacial: O índice I de Moran</span></a> — fundamentos teóricos do I de Moran.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="exemplo-aula1.html" class="btn btn-neutral float-left" title="Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="lisa-maup-gistar.html" class="btn btn-neutral float-right" title="Bloco 2 — LISA, MAUP, falácia ecológica e Getis-Ord Gi*" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c102f87550>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

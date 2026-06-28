@@ -1,0 +1,406 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aula prática 1 — download e leitura dos dados do INMET &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/fundamentos/fontes-dados/praticas/fonte-de-dados1.html" />
+      <script src="../../../../_static/jquery.js"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+      <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../../_static/clipboard.min.js"></script>
+      <script src="../../../../_static/copybutton.js"></script>
+      <script src="../../../../_static/translations.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../../search.html" />
+    <link rel="next" title="Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja" href="fonte-de-dados2.html" />
+    <link rel="prev" title="Catálogo de fontes de dados meteorológicos" href="fonte-de-dados-linksdasfontes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../risco/index.html">O que é risco agrícola?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../eventos/index.html">Tipos de eventos adversos no campo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../adversos/adversos.html">Eventos climáticos adversos</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../estacoes.html">Estações meteorológicas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../gridded.html">Dados em grade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../satelite-meteorologico.html">Satélites meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../radar.html">Radares meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../indicacao-dados.html">Indicação fontes de dados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../exemplo-graus-dia-trigo.html">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fontes de informação meteorológica (informações granulares)</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+      <li class="breadcrumb-item active">Aula prática 1 — download e leitura dos dados do INMET</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="fonte-de-dados-linksdasfontes.html" class="btn btn-neutral float-left" title="Catálogo de fontes de dados meteorológicos" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="fonte-de-dados2.html" class="btn btn-neutral float-right" title="Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aula-pratica-1-download-e-leitura-dos-dados-do-inmet">
+<h1>Aula prática 1 — download e leitura dos dados do INMET<a class="headerlink" href="#aula-pratica-1-download-e-leitura-dos-dados-do-inmet" title="Link permanente para este cabeçalho"></a></h1>
+<p>Esta primeira aula prática introduz o ambiente de trabalho (Python +
+Bash no mesmo notebook), faz o <strong>download massivo dos dados horários do
+INMET (2014–2025)</strong> contornando a proteção anti-bot do servidor, e
+mostra como ler um CSV padronizado em <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<nav class="contents local" id="nesta-aula">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta aula</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#objetivo" id="id4">Objetivo</a></p></li>
+<li><p><a class="reference internal" href="#pre-requisitos" id="id5">Pré-requisitos</a></p></li>
+<li><p><a class="reference internal" href="#bash-dentro-do-python" id="id6">Bash dentro do Python</a></p></li>
+<li><p><a class="reference internal" href="#download-dos-csvs-do-inmet-20142025" id="id7">Download dos CSVs do INMET (2014–2025)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#normalizacao-dos-nomes-de-arquivo" id="id8">Normalização dos nomes de arquivo</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#leitura-do-csv-do-inmet-em-pandas" id="id9">Leitura do CSV do INMET em pandas</a></p>
+<ul>
+<li><p><a class="reference internal" href="#construindo-o-indice-temporal" id="id10">Construindo o índice temporal</a></p></li>
+<li><p><a class="reference internal" href="#recorte-de-colunas-de-interesse-e-janela-temporal" id="id11">Recorte de colunas de interesse e janela temporal</a></p></li>
+<li><p><a class="reference internal" href="#substituicao-do-codigo-de-ausencia" id="id12">Substituição do código de ausência</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#visualizacoes-rapidas" id="id13">Visualizações rápidas</a></p></li>
+<li><p><a class="reference internal" href="#discussao" id="id14">Discussão</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id15">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="objetivo">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Objetivo</a><a class="headerlink" href="#objetivo" title="Link permanente para este cabeçalho"></a></h2>
+<p>Ao final você será capaz de:</p>
+<ul class="simple">
+<li><p>alternar comandos Python e Bash dentro do mesmo Jupyter Notebook;</p></li>
+<li><p>baixar os dados históricos do INMET ano a ano e organizá-los em
+pastas;</p></li>
+<li><p>ler um CSV horário do INMET com o cabeçalho correto (8 linhas de
+metadados, <code class="docutils literal notranslate"><span class="pre">;</span></code> como separador, <code class="docutils literal notranslate"><span class="pre">,</span></code> como decimal, encoding
+<code class="docutils literal notranslate"><span class="pre">latin1</span></code>, <code class="docutils literal notranslate"><span class="pre">-9999</span></code> como <code class="docutils literal notranslate"><span class="pre">NaN</span></code>);</p></li>
+<li><p>extrair as colunas de interesse (temperatura, precipitação) e
+recortar uma janela temporal.</p></li>
+</ul>
+</section>
+<section id="pre-requisitos">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Pré-requisitos</a><a class="headerlink" href="#pre-requisitos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p>Python 3 com <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> e <code class="docutils literal notranslate"><span class="pre">glob</span></code>.</p></li>
+<li><p>Ambiente em que comandos Bash (<code class="docutils literal notranslate"><span class="pre">!</span></code>) sejam aceitos — Jupyter
+Notebook, JupyterLab, Google Colab ou Kaggle.</p></li>
+<li><p>~25 GB de espaço em disco para armazenar todos os anos.</p></li>
+</ul>
+</section>
+<section id="bash-dentro-do-python">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Bash dentro do Python</a><a class="headerlink" href="#bash-dentro-do-python" title="Link permanente para este cabeçalho"></a></h2>
+<p>No Jupyter, qualquer linha iniciada por <code class="docutils literal notranslate"><span class="pre">!</span></code> é enviada ao shell. O
+notebook usa cinco comandos do dia a dia:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 85.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Comando</p></th>
+<th class="head"><p>Função</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!ls</span></code></p></td>
+<td><p>Lista o conteúdo da pasta atual.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!cd</span></code></p></td>
+<td><p>Muda de diretório (em Colab use <code class="docutils literal notranslate"><span class="pre">%cd</span></code>; <code class="docutils literal notranslate"><span class="pre">!cd</span></code> muda apenas
+para a linha do shell e o efeito não persiste).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!mkdir</span></code> / <code class="docutils literal notranslate"><span class="pre">!rm</span></code> / <code class="docutils literal notranslate"><span class="pre">!mv</span></code></p></td>
+<td><p>Cria, remove e move arquivos/diretórios.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!wget</span></code> / <code class="docutils literal notranslate"><span class="pre">!curl</span></code></p></td>
+<td><p>Baixa arquivos da internet.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">!sed</span></code> / <code class="docutils literal notranslate"><span class="pre">!grep</span></code> / <code class="docutils literal notranslate"><span class="pre">!cut</span></code> / <code class="docutils literal notranslate"><span class="pre">!paste</span></code></p></td>
+<td><p>Pequenas transformações de texto via linha de comando.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para blocos com muitas linhas Bash, a célula pode começar com a
+<em>shebang</em> <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> em vez de prefixar cada linha:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 1 - </span><span class="caption-text">Mesma sintaxe Bash, mas executando a célula inteira no shell.</span><a class="headerlink" href="#id1" title="Link Permanente para esse código"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Vários comandos sem ! em cada linha&quot;</span>
+<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span><span class="w"> </span>i&lt;<span class="o">=</span><span class="m">5</span><span class="p">;</span><span class="w"> </span>i++<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;iteração </span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="download-dos-csvs-do-inmet-20142025">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Download dos CSVs do INMET (2014–2025)</a><a class="headerlink" href="#download-dos-csvs-do-inmet-20142025" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os dados estão disponíveis em
+<a class="reference external" href="https://portal.inmet.gov.br/dadoshistoricos">https://portal.inmet.gov.br/dadoshistoricos</a>, um arquivo ZIP por ano.
+O servidor bloqueia clientes que não pareçam navegadores comuns —
+respondendo <em>HTTP 403</em>. A solução usada na aula combina três truques:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-A</span></code> define um <code class="docutils literal notranslate"><span class="pre">User-Agent</span></code> de Firefox.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> define o <code class="docutils literal notranslate"><span class="pre">Referer</span></code> apontando para a própria página de
+download.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-L</span></code> segue redirecionamentos.</p></li>
+</ol>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 2 - </span><span class="caption-text">Loop em Bash que baixa e descompacta os ZIPs de 2014 a 2025.</span><a class="headerlink" href="#id2" title="Link Permanente para esse código"></a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">ano</span><span class="o">=</span><span class="m">2014</span><span class="p">;</span><span class="w"> </span>ano&lt;<span class="o">=</span><span class="m">2025</span><span class="p">;</span><span class="w"> </span>ano++<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>curl<span class="w"> </span>-L<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-A<span class="w"> </span><span class="s2">&quot;Mozilla/5.0 (X11; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-e<span class="w"> </span><span class="s2">&quot;https://portal.inmet.gov.br/dadoshistoricos&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>-o<span class="w"> </span><span class="nv">$ano</span>.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="s2">&quot;https://portal.inmet.gov.br/uploads/dadoshistoricos/</span><span class="nv">$ano</span><span class="s2">.zip&quot;</span>
+<span class="w">    </span>unzip<span class="w"> </span><span class="nv">$ano</span>.zip
+<span class="k">done</span>
+</pre></div>
+</div>
+</div>
+<section id="normalizacao-dos-nomes-de-arquivo">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Normalização dos nomes de arquivo</a><a class="headerlink" href="#normalizacao-dos-nomes-de-arquivo" title="Link permanente para este cabeçalho"></a></h3>
+<p>Os arquivos descompactados vêm com acentos e espaços que dificultam a
+indexação por glob. O utilitário <code class="docutils literal notranslate"><span class="pre">detox</span></code> reescreve cada nome para
+ASCII seguro:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt<span class="w"> </span>install<span class="w"> </span>detox
+detox<span class="w"> </span>*.CSV
+</pre></div>
+</div>
+<p>Em seguida o notebook reorganiza tudo em uma pasta por ano:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+<span class="k">for</span><span class="w"> </span><span class="o">((</span><span class="nv">ano</span><span class="o">=</span><span class="m">2014</span><span class="p">;</span><span class="w"> </span>ano&lt;<span class="o">=</span><span class="m">2025</span><span class="p">;</span><span class="w"> </span>ano++<span class="o">))</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$ano</span>
+<span class="w">    </span>mv<span class="w"> </span>*<span class="nv">$ano</span>*.CSV<span class="w"> </span><span class="nv">$ano</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>Resultado final: árvore <code class="docutils literal notranslate"><span class="pre">2014/</span></code>, <code class="docutils literal notranslate"><span class="pre">2015/</span></code>, …, <code class="docutils literal notranslate"><span class="pre">2025/</span></code>, cada uma
+contendo aproximadamente 560 CSVs (um por estação automática).</p>
+</section>
+</section>
+<section id="leitura-do-csv-do-inmet-em-pandas">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">Leitura do CSV do INMET em pandas</a><a class="headerlink" href="#leitura-do-csv-do-inmet-em-pandas" title="Link permanente para este cabeçalho"></a></h2>
+<p>O cabeçalho do INMET tem 8 linhas de metadados antes da tabela. Os
+parâmetros corretos para <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> são:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3 - </span><span class="caption-text">Parâmetros canônicos para abrir um CSV horário do INMET.</span><a class="headerlink" href="#id3" title="Link Permanente para esse código"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">arquivos</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;*/*A806*&#39;</span><span class="p">)</span>  <span class="c1"># exemplo: Florianópolis (SC) — estação A806</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">arquivos</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">arquivos</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span>
+    <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
+    <span class="n">skiprows</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Os nomes de coluna originais vêm em português e com unidades:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="c1"># Index([&#39;DATA (YYYY-MM-DD)&#39;, &#39;HORA (UTC)&#39;,</span>
+<span class="c1">#        &#39;PRECIPITAÇÃO TOTAL, HORÁRIO (mm)&#39;,</span>
+<span class="c1">#        &#39;PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)&#39;,</span>
+<span class="c1">#        ...</span>
+<span class="c1">#        &#39;VENTO, VELOCIDADE HORARIA (m/s)&#39;, &#39;Unnamed: 19&#39;], dtype=&#39;object&#39;)</span>
+</pre></div>
+</div>
+<section id="construindo-o-indice-temporal">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Construindo o índice temporal</a><a class="headerlink" href="#construindo-o-indice-temporal" title="Link permanente para este cabeçalho"></a></h3>
+<p>As colunas de data e hora chegam separadas. Para virar uma série
+temporal indexada por <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code>, basta concatená-las:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;DATA (YYYY-MM-DD)&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;HORA (UTC)&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="recorte-de-colunas-de-interesse-e-janela-temporal">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Recorte de colunas de interesse e janela temporal</a><a class="headerlink" href="#recorte-de-colunas-de-interesse-e-janela-temporal" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para o restante da aula trabalhamos apenas com temperatura máxima e
+precipitação acumulada, em um recorte de março de 2014:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">colunas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;DATA (YYYY-MM-DD)&#39;</span><span class="p">,</span> <span class="s1">&#39;HORA (UTC)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PRECIPITAÇÃO TOTAL, HORÁRIO (mm)&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">df_interesse</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">colunas</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df_interesse</span> <span class="o">=</span> <span class="n">df_interesse</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2014-03-01&#39;</span><span class="p">:</span><span class="s1">&#39;2014-03-31&#39;</span><span class="p">]</span>
+
+<span class="n">df_interesse</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)&#39;</span><span class="p">:</span> <span class="s1">&#39;tmax&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;PRECIPITAÇÃO TOTAL, HORÁRIO (mm)&#39;</span><span class="p">:</span> <span class="s1">&#39;prec&#39;</span><span class="p">,</span>
+<span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="substituicao-do-codigo-de-ausencia">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">Substituição do código de ausência</a><a class="headerlink" href="#substituicao-do-codigo-de-ausencia" title="Link permanente para este cabeçalho"></a></h3>
+<p>O INMET codifica valores ausentes como <code class="docutils literal notranslate"><span class="pre">-9999</span></code>. Sem tratamento,
+qualquer cálculo (média, soma, mínimo) será arruinado por esses
+valores. A normalização é uma linha:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df_interesse</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df_interesse</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="visualizacoes-rapidas">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Visualizações rápidas</a><a class="headerlink" href="#visualizacoes-rapidas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para validar o recorte, dois gráficos simples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">df_interesse</span><span class="p">[</span><span class="s1">&#39;tmax&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Tmax horária — A806/Florianópolis — março/2014&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">df_interesse</span><span class="p">[</span><span class="s1">&#39;prec&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Precipitação horária — A806/Florianópolis — março/2014&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="discussao">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Discussão</a><a class="headerlink" href="#discussao" title="Link permanente para este cabeçalho"></a></h2>
+<p>O notebook estabelece a <strong>disciplina mínima</strong> para trabalhar com dados
+do INMET no restante do curso:</p>
+<ul class="simple">
+<li><p>sempre pular as 8 linhas de cabeçalho;</p></li>
+<li><p>sempre trocar <code class="docutils literal notranslate"><span class="pre">-9999</span></code> por <code class="docutils literal notranslate"><span class="pre">NaN</span></code>;</p></li>
+<li><p>sempre indexar pelo <em>datetime</em> — sem isso, agregações horárias →
+diárias (<code class="docutils literal notranslate"><span class="pre">resample('D')</span></code>) e cortes <code class="docutils literal notranslate"><span class="pre">df.loc[d1:d2]</span></code> não funcionam.</p></li>
+</ul>
+<p>O mesmo padrão de leitura ressurge nas próximas aulas, encapsulado em
+uma função reutilizável (ver <a class="reference internal" href="fonte-de-dados2.html"><span class="doc">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</span></a>).</p>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="fonte-de-dados2.html"><span class="doc">Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja</span></a> — usar a base do Sicor, encontrar as estações
+INMET mais próximas e calcular GDD da soja.</p></li>
+<li><p><a class="reference internal" href="../estacoes.html"><span class="doc">Estações meteorológicas</span></a> — características das redes INMET, CEMADEN e ANA.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="fonte-de-dados-linksdasfontes.html" class="btn btn-neutral float-left" title="Catálogo de fontes de dados meteorológicos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="fonte-de-dados2.html" class="btn btn-neutral float-right" title="Aula prática 2 — Sicor + INMET: plausibilidade espacial e GDD da soja" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1003c9ad0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

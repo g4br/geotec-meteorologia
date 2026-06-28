@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análise espacial, estatística e técnicas de interpolação &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/index.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro" href="estatistica.html" />
+    <link rel="prev" title="Uma breve apresentação de sistemas e plataformas de alerta meteorológico" href="../fundamentos/sistema-alertas/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Análise espacial, estatística e técnicas de interpolação</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li class="breadcrumb-item active">Análise espacial, estatística e técnicas de interpolação</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="../fundamentos/sistema-alertas/index.html" class="btn btn-neutral float-left" title="Uma breve apresentação de sistemas e plataformas de alerta meteorológico" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="estatistica.html" class="btn btn-neutral float-right" title="Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="analise-espacial-estatistica-e-tecnicas-de-interpolacao">
+<h1>Análise espacial, estatística e técnicas de interpolação<a class="headerlink" href="#analise-espacial-estatistica-e-tecnicas-de-interpolacao" title="Link permanente para este cabeçalho"></a></h1>
+<p>Quando um técnico do Banco Central analisa uma Comunicação de Perda (COP) do Proagro, tradicionalmente examina informações como: qual cultura foi afetada, qual fenômeno causou a perda, qual o valor declarado, quem é o produtor, qual instituição financeira concedeu o crédito. São perguntas sobre o quê aconteceu.</p>
+<p>Mas há uma dimensão muitas vezes subutilizada e que pode revelar padrões cruciais para a compreensão do risco: onde aconteceu. Esta é a essência da análise espacial — uma família de técnicas que incorpora a geografia como elemento central da análise, reconhecendo que a localização não é apenas um atributo a mais, mas sim uma fonte de informação em si mesma.</p>
+<p>Os fenômenos meteorológicos e as perdas que eles causam <strong>não se distribuem ao acaso no
+espaço</strong>: secas, geadas e excessos de chuva têm geografia, e as Comunicações de Perda
+(COP) tendem a se concentrar em certas regiões e épocas. Esta seção apresenta as
+ferramentas de estatística espacial que transformam um amontoado de pontos em padrão
+legível — densidade, agrupamento (<em>clusters</em>) e interpolação — sempre aplicadas ao
+contexto do crédito rural.</p>
+<p>No contexto do crédito rural e do Proagro, a análise espacial nos permite fazer perguntas fundamentais que análises tradicionais (puramente tabulares ou estatísticas) não conseguem responder adequadamente:</p>
+<ul class="simple">
+<li><p>Por que determinados municípios concentram muito mais COPs do que seus vizinhos, mesmo cultivando as mesmas culturas e enfrentando condições climáticas semelhantes?</p></li>
+<li><p>Uma gleba que sofreu perda por seca está realmente localizada em uma região onde os dados meteorológicos confirmam déficit hídrico significativo?</p></li>
+<li><p>Perdas declaradas por geada se concentram espacialmente de forma coerente com o padrão conhecido de ocorrência desse fenômeno (áreas mais baixas, vales, proximidade de corpos d’água)?</p></li>
+<li><p>Existe algum padrão geográfico suspeito na atuação de determinado perito, instituição financeira ou grupo de produtores?</p></li>
+</ul>
+<p>O encadeamento segue o do material do curso: primeiro descrever <em>onde</em> há concentração de
+COPs (densidade de pontos), depois testar se essa concentração é um <strong>padrão espacial
+estatisticamente relevante</strong> (autocorrelação), localizar os agrupamentos (<em>clusters</em>
+locais) e, por fim, estimar valores entre estações (interpolação).</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Um <em>cluster</em> de COPs é um ponto de partida para investigação, <strong>não</strong> um veredito.
+Concentração espacial pode refletir tanto risco climático real quanto características
+da própria base (densidade de lavouras, comportamento de agentes). A leitura final é
+sempre humana — estes métodos servem para <strong>priorizar</strong> o que merece olhar atento.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Para quem já trabalha com SIG, vários destes métodos têm equivalente direto no QGIS: a
+densidade de pontos é o <em>Mapa de calor (KDE)</em>; a interpolação aparece em
+<em>Interpolação IDW/TIN</em> e nas ferramentas SAGA/GRASS; a autocorrelação (Moran, LISA,
+Gi*) está nos plugins de estatística espacial. O ganho de fazer em Python é a
+<strong>reprodutibilidade</strong> — o mesmo cálculo, auditável e repetível, integrado ao cruzamento
+com o SICOR.</p>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Conteúdo da Análise Espacial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="estatistica.html#contexto-e-motivacao">Contexto e motivação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="estatistica.html#fundamentos-teoricos">Fundamentos teóricos</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html#introducao-a-exploracao-visual">Introdução à exploração visual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html#fundamentos-teoricos-dos-mapas-de-densidade-kernel">Fundamentos teóricos dos mapas de densidade kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html#aplicacoes-no-contexto-do-proagro">Aplicações no contexto do Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html#interpretacao-analitica-e-consideracoes-metodologicas">Interpretação analítica e considerações metodológicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html#conclusao">Conclusão</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#da-intuicao-visual-a-certeza-estatistica">Da intuição visual à certeza estatística</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#fundamentos-teoricos-do-indice-i-de-moran">Fundamentos teóricos do índice I de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#mecanica-do-calculo-compreendendo-a-formula">Mecânica do cálculo: compreendendo a fórmula</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#testes-de-significancia-estatistica">Testes de significância estatística</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#interpretacao-do-indice-i-de-moran-no-contexto-do-proagro">Interpretação do índice I de Moran no contexto do Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#o-diagrama-de-dispersao-de-moran">O diagrama de dispersão de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#limitacoes-e-armadilhas-do-indice-i-de-moran">Limitações e armadilhas do índice I de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#boas-praticas-e-checklist-de-verificacao">Boas práticas e checklist de verificação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#casos-especiais-e-consideracoes-avancadas">Casos especiais e considerações avançadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#sintese-e-integracao-com-outros-modulos-do-geotec">Síntese e integração com outros módulos do geotec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#recursos-adicionais-e-implementacao-pratica">Recursos adicionais e implementação prática</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#glossario-de-termos-tecnicos">Glossário de termos técnicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html#conclusao-o-i-de-moran-como-pilar-da-analise-espacial">Conclusão: O I de Moran como pilar da análise espacial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#o-desafio-da-estimativa-espacial-de-variaveis-climaticas">O desafio da estimativa espacial de variáveis climáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#as-tres-principais-tecnicas-de-interpolacao">As três principais técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#comparacao-entre-os-tres-metodos">Comparação entre os três métodos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#incertezas-na-interpolacao-espacial">Incertezas na interpolação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#limitacoes-gerais-da-interpolacao">Limitações gerais da interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#sintese-e-recomendacoes-praticas">Síntese e recomendações práticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#integracao-com-outros-modulos-e-analises">Integração com outros módulos e análises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html#conclusao-interpolacao-como-ferramenta-de-apoio-nao-substituto">Conclusão: interpolação como ferramenta de apoio, não substituto</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html#densidade-de-pontos-kde">Densidade de pontos: KDE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html#i-de-moran-global-existe-padrao">I de Moran global: existe padrão?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html#lisa-onde-estao-os-clusters">LISA: onde estão os clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html#getis-ord-gi-hotspots-e-coldspots">Getis-Ord Gi*: hotspots e coldspots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html#duas-armadilhas-a-evitar">Duas armadilhas a evitar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html#idw-inverse-distance-weighting">IDW — inverse distance weighting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html#spline-funcoes-de-base-radial">Spline (funções de base radial)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html#krigagem">Krigagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html#qual-metodo-usar">Qual método usar?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Aulas práticas (notebooks)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="praticas/index.html#sequencia-sugerida">Sequência sugerida</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="perguntas-e-respostas-modulo-2">
+<span id="faq-analise-espacial"></span><h2>Perguntas e respostas — módulo 2<a class="headerlink" href="#perguntas-e-respostas-modulo-2" title="Link permanente para este cabeçalho"></a></h2>
+<p>Esta seção consolida as principais perguntas sobre análise espacial, estatística e interpolação aplicadas ao Proagro. As respostas são calibradas para quem não tem formação em estatística, mas precisa interpretar mapas e resultados de análises espaciais.</p>
+<p><strong>O que é a Primeira Lei da Geografia de Tobler e por que ela fundamenta toda análise espacial?</strong></p>
+<p>Enunciada por Waldo Tobler em 1970, a lei afirma que “tudo está relacionado com tudo, mas coisas próximas estão mais relacionadas do que coisas distantes”. Essa propriedade é o que torna legítimo estimar a chuva de uma gleba a partir de estações vizinhas, ou esperar que municípios contíguos apresentem padrões de sinistralidade semelhantes quando afetados pelo mesmo sistema climático. Sem essa dependência espacial, toda interpolação e toda análise de clusters seriam matematicamente insustentáveis <span id="id1">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
+<p><strong>Qual a diferença entre um mapa de pontos e um mapa de densidade Kernel (KDE)?</strong></p>
+<p>Um mapa de pontos mostra onde cada COP ocorreu. Com milhares de pontos sobrepostos, o resultado é uma mancha ilegível. O KDE transforma esses pontos em uma superfície contínua de intensidade — cada COP “irradia” influência ao redor, e onde várias COPs se concentram forma-se um hotspot. O resultado é o mapa de calor familiar, útil para identificar regiões de alta concentração. O KDE é, porém, uma ferramenta exploratória: sugere onde olhar, não prova nada. O parâmetro crítico é o bandwidth (raio de suavização): muito pequeno gera ruído; muito grande apaga detalhes relevantes.</p>
+<p><strong>O que é autocorrelação espacial e por que ela é esperada em dados climáticos?</strong></p>
+<p>Autocorrelação espacial é a tendência de valores em locais próximos serem mais parecidos entre si do que seria esperado ao acaso. Fenômenos climáticos como secas e geadas são, por natureza, regionais: o sistema atmosférico que reduz a chuva cobre dezenas a centenas de quilômetros, afetando municípios contíguos de forma semelhante. Portanto, encontrar autocorrelação positiva em COPs por seca é o padrão esperado quando os dados refletem clima real. Quando COPs por seca não apresentam autocorrelação compatível com o déficit hídrico registrado, isso levanta questões para investigação.</p>
+<p><strong>O que o Índice I de Moran mede e como interpretar seus valores?</strong></p>
+<p>O I de Moran <span id="id2">[<a class="reference internal" href="../../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span> é a medida global de autocorrelação espacial mais utilizada. Ele resume se os valores próximos entre si são mais parecidos (autocorrelação positiva, I próximo de +1), aleatórios (I próximo de 0) ou opostos (I próximo de −1). Um I de 0,45 com p-valor de 0,001 indica padrão espacial forte e estatisticamente significativo; um I de 0,45 com p-valor de 0,14 não permite concluir nada. Magnitude e significância são complementares — nunca substitutas.</p>
+<p><strong>O que é a LISA e como ela difere do I de Moran global?</strong></p>
+<p>O I global resume tudo em um número — diz se há padrão, mas não onde. A LISA (Local Indicators of Spatial Association) <span id="id3">[<a class="reference internal" href="../../referencias.html#id247" title="Luc Anselin. Local indicators of spatial association—LISA. Geographical Analysis, 27(2):93–115, 1995. doi:10.1111/j.1538-4632.1995.tb00338.x.">68</a>]</span> abre esse número, atribuindo a cada município seu próprio indicador local com sua classificação (HH, LL, HL, LH) e seu p-valor. Um cluster HH significativo é um município com muitas COPs cercado de vizinhos também com muitas COPs — o núcleo de um hotspot real, confirmado estatisticamente. É a LISA que torna a análise espacial acionável: ela diz <em>onde</em> concentrar a atenção.</p>
+<p><strong>O que é o MAUP e por que o resultado muda quando muda a escala geográfica?</strong></p>
+<p>O MAUP (Modifiable Areal Unit Problem) descreve o fato de que os resultados de uma análise espacial mudam quando se muda a unidade de agregação. Analisar por município, por microrregião ou por estado produz I de Moran diferentes — todos corretos, apenas respondendo a escalas distintas. A lição prática: sempre reportar a escala usada e testar em mais de uma para verificar a robustez dos achados <span id="id4">[<a class="reference internal" href="../../referencias.html#id249" title="S. Openshaw. The modifiable areal unit problem. Technical Report 38, Geo Books, 1984.">69</a>]</span>.</p>
+<p><strong>O que é a falácia ecológica e por que não posso concluir que um produtor é irregular porque seu município aparece como hotspot?</strong></p>
+<p>A falácia ecológica é o erro de transferir conclusões sobre agregados (municípios) para indivíduos (produtores ou glebas). Um município hotspot significa que a região, como um todo, concentra muitas COPs — não que qualquer produtor específico dentro dele seja irregular. Dentro de um hotspot pode haver produtores completamente regulares ao lado de situações diversas. O hotspot prioriza onde olhar; nunca condena ninguém <span id="id5">[<a class="reference internal" href="../../referencias.html#id311" title="W. S. Robinson. Ecological correlations and the behavior of individuals. American Sociological Review, 15(3):351–357, 1950. doi:10.2307/2087176.">70</a>]</span>.</p>
+<p><strong>Para que serve a interpolação espacial e quando ela é necessária?</strong></p>
+<p>A interpolação estima o valor de uma variável em locais sem medição direta, usando os valores de estações vizinhas. É necessária porque a rede de estações do INMET cobre o Brasil de forma irregular — há regiões com lacunas de centenas de quilômetros. Sem interpolação, não é possível estimar quanto choveu em uma gleba específica que não possui estação próxima. A interpolação só é válida porque a Lei de Tobler garante que estações próximas sejam boas representantes da gleba vizinha.</p>
+<p><strong>Qual a diferença entre IDW, Spline e Krigagem?</strong></p>
+<p>O IDW (Inverse Distance Weighting) é o método mais simples: pondera as estações pelo inverso da distância, dando mais peso às mais próximas. É rápido e transparente, mas não fornece medida de incerteza e pode gerar anéis concêntricos artificiais (efeito bull’s-eye) em torno de cada estação. A Spline ajusta uma superfície matematicamente suave, produzindo mapas mais naturais, mas também sem medida de incerteza. A Krigagem, o método geoestatístico de referência, vai além: aprende a estrutura de correlação espacial dos dados pelo semivariograma e entrega, junto com cada estimativa, a variância associada — uma medida de incerteza. Essa variância é decisiva quando a confiabilidade da estimativa afeta uma decisão de indenização (Matheron, 1963; Krige, 1951).</p>
+<p><strong>O que é o risco de base espacial e por que ele importa para o Proagro?</strong></p>
+<p>O risco de base espacial é a diferença entre o que o índice climático medido na estação indica e o que de fato ocorreu na gleba. Quanto mais distante a estação, menor a correlação com a lavoura, e maior a chance de erro: a estação pode registrar chuva normal enquanto a gleba vizinha sofreu um veranico localizado, ou vice-versa. Estudos indicam que o desempenho de índices climáticos degrada significativamente além de 20–25 km da estação de referência, gerando tanto falsos positivos (pagamento indevido) quanto falsos negativos (produtor legítimo não amparado).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="../fundamentos/sistema-alertas/index.html" class="btn btn-neutral float-left" title="Uma breve apresentação de sistemas e plataformas de alerta meteorológico" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="estatistica.html" class="btn btn-neutral float-right" title="Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1019cb550>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

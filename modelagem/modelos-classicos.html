@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelos clássicos para previsão de produtividade agrícola &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/modelagem/modelos-classicos.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Aprendizado de máquina para previsão de rendimentos agrícolas" href="aprendizado-de-maquina.html" />
+    <link rel="prev" title="Introdução à modelagem de perdas agrícolas" href="introducao.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Modelos clássicos para previsão de produtividade agrícola</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#panorama-geral-das-abordagens-de-modelagem">Panorama geral das abordagens de modelagem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-empiricos-e-estatisticos">Modelos empíricos e estatísticos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-agroclimaticos">Modelos agroclimáticos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-de-simulacao-de-crescimento-mecanisticos">Modelos de simulação de crescimento (mecanísticos)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-baseados-em-aprendizado-de-maquina">Modelos baseados em aprendizado de máquina</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quadro-comparativo-das-abordagens">Quadro comparativo das abordagens</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#consideracoes-para-aplicacao-no-contexto-do-proagro">Considerações para aplicação no contexto do Proagro</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="previsao-rendimento-rna.html">Previsão de rendimento com redes neurais — caso da soja</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Modelagem de perdas e aplicações em decisão</a></li>
+      <li class="breadcrumb-item active">Modelos clássicos para previsão de produtividade agrícola</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="introducao.html" class="btn btn-neutral float-left" title="Introdução à modelagem de perdas agrícolas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="aprendizado-de-maquina.html" class="btn btn-neutral float-right" title="Aprendizado de máquina para previsão de rendimentos agrícolas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="modelos-classicos-para-previsao-de-produtividade-agricola">
+<h1>Modelos clássicos para previsão de produtividade agrícola<a class="headerlink" href="#modelos-classicos-para-previsao-de-produtividade-agricola" title="Link permanente para este cabeçalho"></a></h1>
+<p>A previsão de produtividade agrícola constitui elemento central na modelagem de perdas, uma vez que a quantificação de uma perda pressupõe a comparação entre o rendimento efetivamente obtido e o rendimento esperado em condições normais ou sob determinado cenário climático. Diversas famílias de modelos foram desenvolvidas ao longo das últimas décadas para estimar a produtividade de culturas, cada qual com pressupostos, requisitos de dados e aplicações distintas.</p>
+<p>Esta seção apresenta as principais categorias de modelos clássicos utilizados na previsão de produtividade agrícola, com ênfase em sua aplicabilidade no contexto do Proagro e do monitoramento do crédito rural.</p>
+<nav class="contents local" id="sumario">
+<ul class="simple">
+<li><p><a class="reference internal" href="#panorama-geral-das-abordagens-de-modelagem" id="id14">Panorama geral das abordagens de modelagem</a></p></li>
+<li><p><a class="reference internal" href="#modelos-empiricos-e-estatisticos" id="id15">Modelos empíricos e estatísticos</a></p>
+<ul>
+<li><p><a class="reference internal" href="#regressao-linear-e-multipla" id="id16">Regressão linear e múltipla</a></p></li>
+<li><p><a class="reference internal" href="#modelos-de-series-temporais" id="id17">Modelos de séries temporais</a></p></li>
+<li><p><a class="reference internal" href="#modelos-baseados-em-indices-de-vegetacao-ndvi" id="id18">Modelos baseados em índices de vegetação (NDVI)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modelos-agroclimaticos" id="id19">Modelos agroclimáticos</a></p>
+<ul>
+<li><p><a class="reference internal" href="#modelos-de-graus-dia-soma-termica" id="id20">Modelos de graus-dia (soma térmica)</a></p></li>
+<li><p><a class="reference internal" href="#balanco-hidrico-climatologico-thornthwaite-mather" id="id21">Balanço hídrico climatológico (Thornthwaite-Mather)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modelos-de-simulacao-de-crescimento-mecanisticos" id="id22">Modelos de simulação de crescimento (mecanísticos)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dssat-decision-support-system-for-agrotechnology-transfer" id="id23">DSSAT (decision support system for agrotechnology transfer)</a></p></li>
+<li><p><a class="reference internal" href="#apsim-agricultural-production-systems-simulator" id="id24">APSIM (agricultural production systems simulator)</a></p></li>
+<li><p><a class="reference internal" href="#aquacrop-fao" id="id25">AquaCrop (FAO)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modelos-baseados-em-aprendizado-de-maquina" id="id26">Modelos baseados em aprendizado de máquina</a></p>
+<ul>
+<li><p><a class="reference internal" href="#principais-algoritmos-utilizados" id="id27">Principais algoritmos utilizados</a></p></li>
+<li><p><a class="reference internal" href="#vantagens-e-limitacoes" id="id28">Vantagens e limitações</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quadro-comparativo-das-abordagens" id="id29">Quadro comparativo das abordagens</a></p></li>
+<li><p><a class="reference internal" href="#consideracoes-para-aplicacao-no-contexto-do-proagro" id="id30">Considerações para aplicação no contexto do Proagro</a></p></li>
+</ul>
+</nav>
+<section id="panorama-geral-das-abordagens-de-modelagem">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink">Panorama geral das abordagens de modelagem</a><a class="headerlink" href="#panorama-geral-das-abordagens-de-modelagem" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os modelos de previsão de produtividade agrícola podem ser organizados em quatro grandes famílias, conforme sua fundamentação teórica e estrutura:</p>
+<p>A primeira família compreende os <strong>modelos empíricos e estatísticos</strong>, que estabelecem relações diretas entre variáveis observadas (climáticas, espectrais, fenológicas) e a produtividade, sem necessariamente modelar os processos fisiológicos subjacentes. São modelos orientados por dados, calibrados a partir de séries históricas.</p>
+<p>A segunda família abrange os <strong>modelos agroclimáticos ou agrometeorológicos</strong>, que fundamentam a estimativa de produtividade em relações conhecidas entre condições climáticas e fisiologia da planta, como o acúmulo de temperatura (graus-dia) ou o balanço hídrico do solo.</p>
+<p>A terceira família engloba os <strong>modelos mecanísticos ou de simulação de crescimento</strong>, que representam explicitamente os processos biofísicos da planta — fotossíntese, respiração, partição de fotoassimilados, desenvolvimento fenológico — em resposta às condições ambientais e de manejo.</p>
+<p>A quarta família inclui os <strong>modelos baseados em aprendizado de máquina</strong>, que utilizam algoritmos computacionais para identificar padrões complexos em grandes volumes de dados, sem especificação prévia da forma funcional das relações.</p>
+<p>Cada abordagem apresenta vantagens e limitações que determinam sua adequação a diferentes contextos de aplicação. No âmbito do Proagro, a escolha do modelo depende da disponibilidade de dados, da escala de análise pretendida e do grau de interpretabilidade requerido para fundamentar decisões técnicas.</p>
+</section>
+<section id="modelos-empiricos-e-estatisticos">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink">Modelos empíricos e estatísticos</a><a class="headerlink" href="#modelos-empiricos-e-estatisticos" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os modelos empíricos constituem a abordagem mais direta para previsão de produtividade, estabelecendo relações matemáticas entre variáveis preditoras e o rendimento observado com base em dados históricos.</p>
+<section id="regressao-linear-e-multipla">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Regressão linear e múltipla</a><a class="headerlink" href="#regressao-linear-e-multipla" title="Link permanente para este cabeçalho"></a></h3>
+<p>A regressão linear estabelece uma relação proporcional entre uma ou mais variáveis independentes e a produtividade. Em sua forma múltipla, o modelo assume a estrutura:</p>
+<p>Y = β₀ + β₁X₁ + β₂X₂ + … + βₙXₙ + ε</p>
+<p>onde Y representa o rendimento, X₁, X₂, …, Xₙ são variáveis preditoras (precipitação acumulada, temperatura média, índices de vegetação, entre outras), β₀, β₁, …, βₙ são coeficientes estimados a partir dos dados, e ε representa o erro não explicado pelo modelo.</p>
+<p>A principal vantagem dessa abordagem reside em sua transparência: os coeficientes têm interpretação direta e permitem quantificar a contribuição de cada variável para a estimativa de produtividade. Estudos aplicados demonstram que modelos de regressão múltipla combinando variáveis climáticas (precipitação, temperatura, radiação) e índices de vegetação podem alcançar erros percentuais médios absolutos (MAPE) da ordem de 6% a 10% em condições bem calibradas <span id="id1">[<a class="reference internal" href="../../referencias.html#id261" title="A. Stepanov and others. Predicting soybean yield at the regional scale using remote sensing and climatic data. Remote Sensing, 12(12):1936, 2020. doi:10.3390/rs12121936.">90</a>]</span>.</p>
+<p>As limitações incluem a pressuposição de linearidade nas relações — que frequentemente não se verifica na prática — e a dificuldade de capturar interações complexas entre variáveis. Para contornar parcialmente essas limitações, podem ser incluídos termos quadráticos (por exemplo, precipitação²) ou de interação (temperatura × precipitação), embora isso aumente a complexidade do modelo e o risco de sobreajuste.</p>
+</section>
+<section id="modelos-de-series-temporais">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">Modelos de séries temporais</a><a class="headerlink" href="#modelos-de-series-temporais" title="Link permanente para este cabeçalho"></a></h3>
+<p>Abordagens como ARIMA (Autoregressive Integrated Moving Average) e Holt-Winters exploram padrões temporais nas séries históricas de produtividade para projetar valores futuros. Esses modelos pressupõem que o comportamento passado da série contém informação relevante para prever o comportamento futuro.</p>
+<p>A aplicação no contexto agrícola é limitada pelo fato de que a produtividade depende fortemente de condições climáticas específicas de cada safra, que não seguem necessariamente padrões temporais regulares. Modelos de séries temporais são mais adequados para capturar tendências de longo prazo (como ganhos tecnológicos) do que para prever flutuações interanuais associadas à variabilidade climática.</p>
+</section>
+<section id="modelos-baseados-em-indices-de-vegetacao-ndvi">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Modelos baseados em índices de vegetação (NDVI)</a><a class="headerlink" href="#modelos-baseados-em-indices-de-vegetacao-ndvi" title="Link permanente para este cabeçalho"></a></h3>
+<p>O Índice de Vegetação por Diferença Normalizada (NDVI) constitui uma das variáveis espectrais mais utilizadas para monitoramento de culturas e estimativa de produtividade. O NDVI quantifica o vigor da vegetação a partir da reflectância nas bandas do vermelho e infravermelho próximo, sendo calculado como:</p>
+<p>NDVI = (NIR - RED) / (NIR + RED)</p>
+<p>onde NIR representa a reflectância no infravermelho próximo e RED a reflectância no vermelho visível. Valores mais elevados de NDVI indicam maior densidade de biomassa verde e maior atividade fotossintética.</p>
+<p>A trajetória temporal do NDVI durante o ciclo de cultivo reflete o desenvolvimento do dossel vegetal e, consequentemente, o potencial de rendimento da cultura. Estudos demonstram que métricas derivadas do NDVI — como o valor máximo atingido durante o ciclo, a média em determinado período crítico, ou a integral sob a curva temporal — apresentam correlações significativas com a produtividade final <span id="id2">[<a class="reference internal" href="../../referencias.html#id263" title="J. Farias and others. Normalized difference vegetation index (NDVI) for estimating shoot biomass and P/K uptake in soybean. Frontiers in Sustainable Food Systems, 2023. doi:10.3389/fsufs.2022.959681.">92</a>, <a class="reference internal" href="../../referencias.html#id262" title="S. A. Shammi and Q. Meng. Modeling crop yield using NDVI-derived VGM metrics across different climatic regions in the USA. International Journal of Biometeorology, 2023. doi:10.1007/s00484-023-02478-4.">91</a>]</span>.</p>
+<p>Para a cultura da soja, pesquisas indicam que o NDVI máximo (VGMmax) constitui um dos preditores mais significativos entre as métricas de crescimento vegetativo, em diferentes regiões climáticas <span id="id3">[<a class="reference internal" href="../../referencias.html#id262" title="S. A. Shammi and Q. Meng. Modeling crop yield using NDVI-derived VGM metrics across different climatic regions in the USA. International Journal of Biometeorology, 2023. doi:10.1007/s00484-023-02478-4.">91</a>]</span>. Stepanov et al. <span id="id4">[<a class="reference internal" href="../../referencias.html#id261" title="A. Stepanov and others. Predicting soybean yield at the regional scale using remote sensing and climatic data. Remote Sensing, 12(12):1936, 2020. doi:10.3390/rs12121936.">90</a>]</span> obtiveram erro percentual médio absoluto de aproximadamente 6,2% na previsão de rendimento de soja utilizando NDVI máximo combinado com duração da estação e outras variáveis.</p>
+<p>Algumas considerações importantes para o uso de modelos baseados em NDVI:</p>
+<p>O <strong>momento da medição</strong> influencia significativamente a qualidade da previsão. Capturar o NDVI no auge do desenvolvimento do dossel ou em fases críticas como pré-enchimento de grãos tende a melhorar a correlação com o rendimento final.</p>
+<p>O <strong>efeito de saturação</strong> constitui uma limitação conhecida: em cultivos densos com cobertura total do solo, o NDVI pode atingir valores próximos ao limite superior (tipicamente em torno de 0,9) e perder sensibilidade a variações adicionais de biomassa. Farias et al. <span id="id5">[<a class="reference internal" href="../../referencias.html#id263" title="J. Farias and others. Normalized difference vegetation index (NDVI) for estimating shoot biomass and P/K uptake in soybean. Frontiers in Sustainable Food Systems, 2023. doi:10.3389/fsufs.2022.959681.">92</a>]</span> observaram que estágios iniciais apresentam melhor correlação entre NDVI e biomassa, embora essa relação não se traduza necessariamente em melhor previsão do rendimento final.</p>
+<p>A <strong>calibração local</strong> é essencial, pois a relação entre NDVI e rendimento varia conforme solo, clima, manejo e cultivar. Xu &amp; Katchova <span id="id6">[<a class="reference internal" href="../../referencias.html#id264" title="C. Xu and A. L. Katchova. Predicting soybean yield with NDVI using a flexible fourier transform model. Journal of Agricultural and Applied Economics, 51(3):402–416, 2019. doi:10.1017/aae.2019.5.">93</a>]</span> demonstraram que essa relação é não-linear e apresenta variação espacial significativa.</p>
+<p>A <strong>inclusão de covariáveis</strong> climáticas ou edáficas tende a melhorar o desempenho dos modelos, uma vez que o NDVI isoladamente não captura todos os fatores que afetam o rendimento, como estresse hídrico tardio, deficiências nutricionais ou danos por pragas e doenças.</p>
+</section>
+</section>
+<section id="modelos-agroclimaticos">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Modelos agroclimáticos</a><a class="headerlink" href="#modelos-agroclimaticos" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os modelos agroclimáticos fundamentam a estimativa de produtividade em relações estabelecidas entre condições meteorológicas e processos fisiológicos das plantas. Diferentemente dos modelos puramente empíricos, incorporam conhecimento agronômico sobre como as plantas respondem ao ambiente.</p>
+<section id="modelos-de-graus-dia-soma-termica">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Modelos de graus-dia (soma térmica)</a><a class="headerlink" href="#modelos-de-graus-dia-soma-termica" title="Link permanente para este cabeçalho"></a></h3>
+<p>O conceito de graus-dia baseia-se na observação de que o desenvolvimento das plantas é controlado principalmente pela temperatura, e que esse desenvolvimento pode ser quantificado pelo acúmulo de temperatura acima de um limiar mínimo (temperatura-base) abaixo do qual o crescimento cessa.</p>
+<p>A fórmula básica para cálculo de graus-dia é:</p>
+<p>GD = Σ (Tmédia - Tbase)</p>
+<p>onde GD representa os graus-dia acumulados, Tmédia é a temperatura média diária e Tbase é a temperatura-base específica da cultura (tipicamente em torno de 10°C para soja e milho).</p>
+<p>Cada fase fenológica da cultura requer um determinado acúmulo de graus-dia para ser completada. Assim, conhecendo-se a temperatura-base e os requerimentos térmicos de cada fase, é possível prever as datas de ocorrência de eventos fenológicos como emergência, floração, enchimento de grãos e maturação fisiológica.</p>
+<p>Embora os modelos de graus-dia sejam primariamente fenológicos — isto é, focados em prever o desenvolvimento temporal da cultura — eles contribuem indiretamente para a estimativa de produtividade ao permitir associar condições climáticas adversas a fases específicas do ciclo. Essa associação é fundamental para a modelagem de perdas, uma vez que a sensibilidade da cultura aos estresses varia conforme a fase fenológica.</p>
+<p>As vantagens dos modelos de graus-dia incluem sua simplicidade conceitual, baixa exigência de dados (apenas temperatura diária) e ampla validação científica. As limitações residem no fato de que consideram apenas a temperatura, ignorando outros fatores como disponibilidade hídrica, radiação solar e condições de solo que também afetam o desenvolvimento e a produtividade.</p>
+</section>
+<section id="balanco-hidrico-climatologico-thornthwaite-mather">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Balanço hídrico climatológico (Thornthwaite-Mather)</a><a class="headerlink" href="#balanco-hidrico-climatologico-thornthwaite-mather" title="Link permanente para este cabeçalho"></a></h3>
+<p>O modelo de balanço hídrico de Thornthwaite-Mather <span id="id7">[<a class="reference internal" href="../../referencias.html#id259" title="C. W. Thornthwaite and J. R. Mather. The water balance. Technical Report 1, Drexel Institute of Technology, Laboratory of Climatology, 1955.">88</a>]</span> constitui uma das ferramentas mais difundidas em climatologia agrícola para avaliar a disponibilidade de água no solo ao longo do tempo. O modelo contabiliza as entradas de água (precipitação) e as saídas (evapotranspiração) para estimar o armazenamento de água no solo e identificar períodos de déficit ou excedente hídrico.</p>
+<p>O procedimento envolve as seguintes etapas:</p>
+<p>Primeiro, calcula-se a <strong>evapotranspiração potencial (ETP)</strong> — a quantidade de água que seria evaporada e transpirada se houvesse disponibilidade hídrica ilimitada — utilizando a fórmula de Thornthwaite, que depende da temperatura média mensal e da latitude.</p>
+<p>Em seguida, compara-se a precipitação com a ETP. Quando a precipitação excede a ETP, o excesso de água pode ser armazenado no solo até atingir a capacidade de campo. Quando a precipitação é inferior à ETP, a diferença é suprida pela água armazenada no solo, até que este se esgote.</p>
+<p>O balanço hídrico permite identificar períodos de <strong>déficit hídrico</strong> (quando a demanda evaporativa não pode ser atendida nem pela precipitação nem pelo armazenamento do solo), <strong>excedente hídrico</strong> (quando a precipitação excede a ETP e o solo já está na capacidade de campo) e <strong>reposição de água</strong> (quando o solo está sendo recarregado após um período de déficit).</p>
+<p>No contexto do Proagro, o balanço hídrico é particularmente relevante por permitir quantificar a intensidade e a duração dos períodos de estresse hídrico durante o ciclo de cultivo. O modelo de penalização de produtividade adotado pelo INMET no sistema SISDAGRO utiliza o balanço hídrico sequencial como base para estimar a redução de rendimento associada ao déficit hídrico, aplicando o modelo conceitual de Doorenbos e Kassam <span id="id8">[<a class="reference internal" href="../../referencias.html#id237" title="J. Doorenbos and A. H. Kassam. Yield response to water. FAO Irrigation and Drainage Paper 33. FAO, Rome, 1979. URL: https://www.fao.org/4/i2800e/i2800e.pdf.">3</a>]</span>.</p>
+<p>Segundo esse modelo, a queda relativa de rendimento é proporcional ao déficit relativo de evapotranspiração:</p>
+<p>(1 - Ya/Ym) = Ky × (1 - ETr/ETc)</p>
+<p>onde Ya é o rendimento real, Ym é o rendimento máximo, ETr é a evapotranspiração real, ETc é a evapotranspiração da cultura em condições ótimas, e Ky é um coeficiente de sensibilidade ao déficit hídrico que varia conforme a fase fenológica.</p>
+<p>As vantagens do balanço hídrico incluem sua fundamentação física sólida, a relativa simplicidade de implementação e a capacidade de fornecer estimativas espacialmente distribuídas quando aplicado com dados em grade. As limitações incluem a dependência de estimativas precisas da capacidade de armazenamento do solo (que varia espacialmente) e a simplificação de que o comportamento do solo e da planta podem ser representados por um modelo de reservatório único.</p>
+</section>
+</section>
+<section id="modelos-de-simulacao-de-crescimento-mecanisticos">
+<h2><a class="toc-backref" href="#id22" role="doc-backlink">Modelos de simulação de crescimento (mecanísticos)</a><a class="headerlink" href="#modelos-de-simulacao-de-crescimento-mecanisticos" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os modelos mecanísticos, também denominados modelos de simulação de crescimento ou modelos processuais, representam explicitamente os processos biofísicos que governam o crescimento e desenvolvimento das plantas. Essa categoria inclui alguns dos sistemas mais sofisticados disponíveis para previsão de produtividade agrícola.</p>
+<section id="dssat-decision-support-system-for-agrotechnology-transfer">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">DSSAT (decision support system for agrotechnology transfer)</a><a class="headerlink" href="#dssat-decision-support-system-for-agrotechnology-transfer" title="Link permanente para este cabeçalho"></a></h3>
+<p>O DSSAT <span id="id9">[<a class="reference internal" href="../../referencias.html#id266" title="DSSAT Foundation. DSSAT – decision support system for agrotechnology transfer. https://dssat.net/, 2024. Acesso em 2026.">94</a>]</span> constitui um dos sistemas de simulação de culturas mais amplamente utilizados no mundo, com mais de 40 culturas modeladas e décadas de desenvolvimento e validação científica. Desenvolvido inicialmente pela Universidade da Flórida em colaboração com instituições internacionais, o DSSAT integra modelos de crescimento de culturas, balanço hídrico e de nitrogênio do solo, e módulos de manejo.</p>
+<p>Para leguminosas como a soja, o DSSAT utiliza o modelo CROPGRO, que simula:</p>
+<ul class="simple">
+<li><p><strong>Desenvolvimento fenológico</strong>: progressão através das fases do ciclo (emergência, floração, enchimento de grãos, maturação) em função de temperatura, fotoperíodo e características genéticas da cultivar.</p></li>
+<li><p><strong>Crescimento de biomassa</strong>: acúmulo de matéria seca em função da fotossíntese (determinada por radiação solar interceptada e eficiência de conversão) e respiração.</p></li>
+<li><p><strong>Balanço hídrico</strong>: dinâmica da água no perfil do solo, incluindo infiltração, drenagem, evaporação do solo e transpiração da planta.</p></li>
+<li><p><strong>Balanço de nitrogênio</strong>: mineralização, absorção pela planta, lixiviação e transformações microbianas no solo.</p></li>
+<li><p><strong>Partição de fotoassimilados</strong>: distribuição da matéria seca entre raízes, caules, folhas e estruturas reprodutivas (vagens, grãos).</p></li>
+</ul>
+<p>O DSSAT requer dados de entrada detalhados: clima diário (precipitação, temperaturas máxima e mínima, radiação solar), características do solo (textura, profundidade, capacidade de retenção de água, teores de matéria orgânica e nutrientes), parâmetros genéticos da cultivar (coeficientes que definem resposta ao fotoperíodo, duração das fases fenológicas, eficiência fotossintética) e informações de manejo (data de plantio, população de plantas, adubação, irrigação).</p>
+<p>As principais aplicações do DSSAT incluem: previsão de produtividade sob diferentes cenários climáticos, otimização de práticas de manejo (datas de plantio, doses de adubação, estratégias de irrigação), análise de impacto de mudanças climáticas, e suporte a políticas agrícolas.</p>
+<p>As vantagens do DSSAT residem em sua fundamentação mecanística — que permite explorar cenários “e se” e compreender os mecanismos subjacentes às respostas observadas — e em sua extensa base de validação científica. As limitações incluem a elevada exigência de dados de entrada, a necessidade de calibração local dos parâmetros genéticos, e a complexidade de uso que requer treinamento específico.</p>
+</section>
+<section id="apsim-agricultural-production-systems-simulator">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">APSIM (agricultural production systems simulator)</a><a class="headerlink" href="#apsim-agricultural-production-systems-simulator" title="Link permanente para este cabeçalho"></a></h3>
+<p>O APSIM <span id="id10">[<a class="reference internal" href="../../referencias.html#id267" title="APSIM Initiative. APSIM – agricultural production systems simulator. https://www.apsim.info/, 2024. Acesso em 2026.">95</a>]</span>, desenvolvido pela Universidade de Queensland (Austrália), é um sistema modular de simulação que permite representar o funcionamento integrado de sistemas de produção agrícola, incluindo solo, clima, culturas e manejo.</p>
+<p>A arquitetura modular do APSIM permite combinar diferentes componentes conforme a necessidade da aplicação:</p>
+<ul class="simple">
+<li><p><strong>Módulos de cultura</strong>: simulam o crescimento de culturas específicas (APSIM-Soybean, APSIM-Maize, APSIM-Wheat, entre outros).</p></li>
+<li><p><strong>Módulos de solo</strong>: representam a dinâmica da água (SoilWat), do nitrogênio (SoilN) e da matéria orgânica (SoilOM) no perfil do solo.</p></li>
+<li><p><strong>Módulos de manejo</strong>: implementam regras de decisão que disparam operações agrícolas (plantio, adubação, irrigação, colheita) em função de condições ambientais ou datas do calendário.</p></li>
+<li><p><strong>Módulo integrador</strong>: coordena a comunicação entre os módulos e avança a simulação no tempo.</p></li>
+</ul>
+<p>O APSIM é particularmente adequado para análises de sistemas de produção em longo prazo, incluindo rotação de culturas, integração lavoura-pecuária, e impactos cumulativos de práticas de manejo sobre a fertilidade do solo. Sua flexibilidade permite que pesquisadores desenvolvam e incorporem novos módulos para representar processos específicos de interesse.</p>
+<p>As vantagens do APSIM incluem sua arquitetura flexível, a capacidade de representar sistemas complexos de produção, e a comunidade ativa de usuários e desenvolvedores. As limitações são similares às do DSSAT: elevada exigência de dados, necessidade de calibração, e curva de aprendizado acentuada.</p>
+</section>
+<section id="aquacrop-fao">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">AquaCrop (FAO)</a><a class="headerlink" href="#aquacrop-fao" title="Link permanente para este cabeçalho"></a></h3>
+<p>O AquaCrop <span id="id11">[<a class="reference internal" href="../../referencias.html#id268" title="FAO. AquaCrop – the crop water productivity model. https://www.fao.org/aquacrop/en/, 2024. Acesso em 2026.">96</a>]</span>, desenvolvido pela Divisão de Terras e Águas da FAO (Organização das Nações Unidas para Alimentação e Agricultura), representa uma abordagem intermediária entre os modelos empíricos e os modelos mecanísticos completos. Seu foco principal é a relação entre água e produtividade, sendo especialmente adequado para análises em contextos de escassez hídrica ou planejamento de irrigação.</p>
+<p>O princípio central do AquaCrop é a separação entre evaporação do solo e transpiração da planta, e a relação direta entre biomassa produzida e água transpirada:</p>
+<p>Biomassa = WP × Σ Transpiração</p>
+<p>onde WP (Water Productivity) representa a produtividade da água, ou seja, a quantidade de biomassa produzida por unidade de água transpirada. O rendimento de grãos é então calculado como o produto da biomassa pelo índice de colheita (fração da biomassa total que corresponde aos grãos).</p>
+<p>O AquaCrop incorpora módulos para representar:</p>
+<ul class="simple">
+<li><p><strong>Desenvolvimento do dossel</strong>: expansão da cobertura vegetal em função da temperatura e disponibilidade hídrica.</p></li>
+<li><p><strong>Transpiração e evaporação</strong>: partição da evapotranspiração entre planta e solo.</p></li>
+<li><p><strong>Estresse hídrico</strong>: redução do crescimento e da produtividade em função do déficit de água no solo.</p></li>
+<li><p><strong>Estresse por salinidade</strong>: para aplicações em áreas com problemas de salinização.</p></li>
+</ul>
+<p>As vantagens do AquaCrop incluem sua relativa simplicidade (requer menos parâmetros que DSSAT ou APSIM), interface gráfica amigável, foco específico na produtividade da água (relevante para cenários de mudanças climáticas e gestão de recursos hídricos), e disponibilização gratuita pela FAO com documentação extensiva e cursos de capacitação.</p>
+<p>As limitações incluem a representação simplificada de processos como dinâmica de nutrientes e interações com pragas e doenças, e o fato de que o modelo foi desenvolvido principalmente para culturas herbáceas, sendo menos adequado para culturas perenes ou sistemas florestais.</p>
+</section>
+</section>
+<section id="modelos-baseados-em-aprendizado-de-maquina">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">Modelos baseados em aprendizado de máquina</a><a class="headerlink" href="#modelos-baseados-em-aprendizado-de-maquina" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os modelos de aprendizado de máquina (machine learning) representam uma abordagem fundamentalmente diferente das anteriores: em vez de especificar a priori a forma funcional das relações entre variáveis preditoras e produtividade, os algoritmos “aprendem” essas relações diretamente a partir dos dados de treinamento.</p>
+<section id="principais-algoritmos-utilizados">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">Principais algoritmos utilizados</a><a class="headerlink" href="#principais-algoritmos-utilizados" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Random Forest (Floresta Aleatória)</strong> combina múltiplas árvores de decisão, cada uma treinada em subconjuntos aleatórios dos dados, e agrega suas previsões para produzir uma estimativa final. O algoritmo é robusto a outliers, lida naturalmente com variáveis de diferentes tipos (contínuas, categóricas), e fornece métricas de importância das variáveis que auxiliam na interpretação dos resultados.</p>
+<p><strong>Gradient Boosting</strong> e suas variantes (XGBoost, LightGBM) constroem sequencialmente um conjunto de modelos fracos (tipicamente árvores de decisão rasas), onde cada modelo subsequente foca em corrigir os erros dos anteriores. Esses algoritmos frequentemente alcançam desempenho preditivo superior ao de métodos tradicionais, embora a interpretação dos resultados seja menos direta.</p>
+<p><strong>Redes Neurais</strong> podem capturar padrões muito complexos nos dados através de múltiplas camadas de processamento não-linear. Redes convolucionais (CNNs) são particularmente adequadas para processar imagens de satélite, enquanto redes recorrentes (RNNs, LSTMs) são utilizadas para modelar séries temporais.</p>
+<p>Estudos recentes demonstram o potencial dessas abordagens para previsão de produtividade agrícola. Alabi et al. <span id="id12">[<a class="reference internal" href="../../referencias.html#id265" title="T. R. Alabi and others. Estimation of soybean grain yield from multispectral high-resolution UAV data with machine learning models in West Africa. Remote Sensing Applications: Society and Environment, 27:100782, 2022. doi:10.1016/j.rsase.2022.100782.">97</a>]</span> aplicaram modelos de aprendizado de máquina com dados de veículos aéreos não tripulados (UAVs) e índices de vegetação para estimativa de rendimento de soja em escala de campo, obtendo resultados promissores. Pesquisas conduzidas no Mato Grosso do Sul (Brasil) utilizando machine learning com variáveis meteorológicas demonstraram que fatores como armazenamento de água no solo, radiação e umidade relativa desempenham papel significativo na previsão de rendimento de soja.</p>
+</section>
+<section id="vantagens-e-limitacoes">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">Vantagens e limitações</a><a class="headerlink" href="#vantagens-e-limitacoes" title="Link permanente para este cabeçalho"></a></h3>
+<p>As principais vantagens dos modelos de aprendizado de máquina incluem:</p>
+<ul class="simple">
+<li><p><strong>Alta capacidade preditiva</strong>: frequentemente superam modelos tradicionais em termos de acurácia, especialmente quando há grandes volumes de dados disponíveis.</p></li>
+<li><p><strong>Captura de relações complexas</strong>: identificam automaticamente não-linearidades e interações entre variáveis que seriam difíceis de especificar manualmente.</p></li>
+<li><p><strong>Flexibilidade</strong>: podem incorporar variáveis de tipos muito diversos (climáticas, espectrais, edáficas, de manejo) sem necessidade de especificação prévia de como elas interagem.</p></li>
+<li><p><strong>Escalabilidade</strong>: uma vez treinados, podem ser aplicados rapidamente a grandes conjuntos de dados.</p></li>
+</ul>
+<p>As principais limitações incluem:</p>
+<ul class="simple">
+<li><p><strong>Baixa interpretabilidade</strong>: o funcionamento interno de modelos complexos como redes neurais profundas é difícil de explicar, o que pode ser problemático em contextos onde as decisões precisam ser justificadas tecnicamente.</p></li>
+<li><p><strong>Dependência de grandes volumes de dados</strong>: o desempenho dos algoritmos melhora com o volume de dados de treinamento, sendo limitado em situações com poucas observações históricas.</p></li>
+<li><p><strong>Risco de sobreajuste</strong>: modelos muito flexíveis podem ajustar-se excessivamente aos dados de treinamento, perdendo capacidade de generalização para novos dados.</p></li>
+<li><p><strong>Sensibilidade à qualidade dos dados</strong>: erros, inconsistências ou vieses nos dados de treinamento propagam-se para as previsões do modelo.</p></li>
+</ul>
+<p>No contexto do Proagro, onde frequentemente é necessário justificar decisões técnicas de forma transparente, a baixa interpretabilidade dos modelos de aprendizado de máquina pode ser uma limitação significativa. Uma estratégia possível é utilizar esses modelos para triagem inicial em larga escala, identificando casos que merecem análise mais detalhada, enquanto modelos mais interpretáveis são aplicados para fundamentar decisões específicas.</p>
+</section>
+</section>
+<section id="quadro-comparativo-das-abordagens">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">Quadro comparativo das abordagens</a><a class="headerlink" href="#quadro-comparativo-das-abordagens" title="Link permanente para este cabeçalho"></a></h2>
+<p>A tabela a seguir sintetiza as principais características das diferentes famílias de modelos discutidas nesta seção, facilitando a comparação e a escolha da abordagem mais adequada para cada contexto de aplicação.</p>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-number">Tabela 11 - </span><span class="caption-text">Comparação entre famílias de modelos de previsão de produtividade</span><a class="headerlink" href="#id13" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Família de Modelos</p></th>
+<th class="head"><p>Dados Necessários</p></th>
+<th class="head"><p>Complexidade</p></th>
+<th class="head"><p>Interpretabilidade</p></th>
+<th class="head"><p>Precisão Típica</p></th>
+<th class="head"><p>Aplicações Principais</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Empíricos/Estatísticos</p></td>
+<td><p>Séries históricas de produtividade e variáveis preditoras</p></td>
+<td><p>Baixa a média</p></td>
+<td><p>Alta</p></td>
+<td><p>Média (MAPE 6-15%)</p></td>
+<td><p>Previsão regional, triagem de anomalias</p></td>
+</tr>
+<tr class="row-odd"><td><p>Agroclimáticos (Graus-dia, Balanço Hídrico)</p></td>
+<td><p>Temperatura, precipitação, parâmetros de solo</p></td>
+<td><p>Baixa a média</p></td>
+<td><p>Alta</p></td>
+<td><p>Média</p></td>
+<td><p>Zoneamento, identificação de estresse hídrico/térmico</p></td>
+</tr>
+<tr class="row-even"><td><p>Mecanísticos (DSSAT, APSIM, AquaCrop)</p></td>
+<td><p>Clima diário, solo detalhado, cultivar, manejo</p></td>
+<td><p>Alta</p></td>
+<td><p>Alta</p></td>
+<td><p>Alta (com calibração)</p></td>
+<td><p>Simulação de cenários, otimização de manejo, pesquisa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aprendizado de Máquina</p></td>
+<td><p>Grandes volumes de dados heterogêneos</p></td>
+<td><p>Alta</p></td>
+<td><p>Baixa</p></td>
+<td><p>Alta</p></td>
+<td><p>Previsão em larga escala, detecção de padrões</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="consideracoes-para-aplicacao-no-contexto-do-proagro">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink">Considerações para aplicação no contexto do Proagro</a><a class="headerlink" href="#consideracoes-para-aplicacao-no-contexto-do-proagro" title="Link permanente para este cabeçalho"></a></h2>
+<p>A escolha do modelo mais adequado para apoio às decisões do Proagro depende de diversos fatores, incluindo a disponibilidade de dados, a escala de análise, os recursos computacionais disponíveis e o grau de interpretabilidade requerido.</p>
+<p>Para <strong>análises em escala regional ou municipal</strong>, modelos empíricos baseados em índices climáticos (SPI, SPEI) ou índices de vegetação (NDVI) oferecem um bom balanço entre simplicidade, disponibilidade de dados e capacidade preditiva. Esses modelos podem ser calibrados com dados históricos de produtividade municipal do IBGE e aplicados para estimar perdas esperadas em comunicações de perdas agregadas por região.</p>
+<p>Para <strong>análises em escala de gleba individual</strong>, a menor disponibilidade de dados históricos de produtividade torna mais desafiadora a calibração de modelos empíricos. Nesse contexto, abordagens que combinem informações de balanço hídrico (para caracterizar o estresse climático) com métricas derivadas de imagens de satélite (para capturar a condição efetiva da vegetação) podem ser mais adequadas.</p>
+<p>Para <strong>simulação de cenários e análise de sensibilidade</strong>, modelos mecanísticos como DSSAT ou AquaCrop permitem explorar como diferentes combinações de condições climáticas, tipos de solo e práticas de manejo afetariam a produtividade. Essa capacidade é útil para estabelecer expectativas de rendimento sob diferentes hipóteses.</p>
+<p>Para <strong>triagem em larga escala</strong>, identificando casos que merecem análise mais detalhada, modelos de aprendizado de máquina podem processar grandes volumes de comunicações de perdas e sinalizar aquelas cujas características se desviam significativamente dos padrões históricos.</p>
+<p>Independentemente do modelo escolhido, algumas boas práticas são universalmente aplicáveis: documentar claramente as premissas e parâmetros utilizados, comunicar as incertezas associadas às estimativas, validar os resultados com dados independentes quando possível, e reconhecer que nenhum modelo substitui a avaliação técnica qualificada e a verificação de campo.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="introducao.html" class="btn btn-neutral float-left" title="Introdução à modelagem de perdas agrícolas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="aprendizado-de-maquina.html" class="btn btn-neutral float-right" title="Aprendizado de máquina para previsão de rendimentos agrícolas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1008c2e10>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1438 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Técnicas de interpolação espacial aplicadas ao risco agrícola &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/metodos-interpolacao.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Densidade e autocorrelação espacial" href="autocorrelacao-espacial.html" />
+    <link rel="prev" title="Quantificando autocorrelação espacial: O índice I de Moran" href="imoran.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Técnicas de interpolação espacial aplicadas ao risco agrícola</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#o-desafio-da-estimativa-espacial-de-variaveis-climaticas">O desafio da estimativa espacial de variáveis climáticas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#as-tres-principais-tecnicas-de-interpolacao">As três principais técnicas de interpolação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparacao-entre-os-tres-metodos">Comparação entre os três métodos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#incertezas-na-interpolacao-espacial">Incertezas na interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-gerais-da-interpolacao">Limitações gerais da interpolação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sintese-e-recomendacoes-praticas">Síntese e recomendações práticas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integracao-com-outros-modulos-e-analises">Integração com outros módulos e análises</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusao-interpolacao-como-ferramenta-de-apoio-nao-substituto">Conclusão: interpolação como ferramenta de apoio, não substituto</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+      <li class="breadcrumb-item active">Técnicas de interpolação espacial aplicadas ao risco agrícola</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="imoran.html" class="btn btn-neutral float-left" title="Quantificando autocorrelação espacial: O índice I de Moran" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="autocorrelacao-espacial.html" class="btn btn-neutral float-right" title="Densidade e autocorrelação espacial" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tecnicas-de-interpolacao-espacial-aplicadas-ao-risco-agricola">
+<h1>Técnicas de interpolação espacial aplicadas ao risco agrícola<a class="headerlink" href="#tecnicas-de-interpolacao-espacial-aplicadas-ao-risco-agricola" title="Link permanente para este cabeçalho"></a></h1>
+<section id="o-desafio-da-estimativa-espacial-de-variaveis-climaticas">
+<h2>O desafio da estimativa espacial de variáveis climáticas<a class="headerlink" href="#o-desafio-da-estimativa-espacial-de-variaveis-climaticas" title="Link permanente para este cabeçalho"></a></h2>
+<section id="quando-um-dado-pontual-precisa-virar-superficie-continua">
+<h3>Quando um dado pontual precisa virar superfície contínua<a class="headerlink" href="#quando-um-dado-pontual-precisa-virar-superficie-continua" title="Link permanente para este cabeçalho"></a></h3>
+<p>Imagine a seguinte situação comum no Proagro: Um produtor comunica perda por seca em uma gleba localizada no município de Luis Eduardo Magalhães (BA). Você, como analista, precisa verificar se houve efetivamente déficit hídrico naquela localização específica durante o período crítico da cultura.</p>
+<p>Você consulta os dados das estações meteorológicas do INMET na região e descobre que:</p>
+<ul class="simple">
+<li><p>A estação mais próxima está a 47 km ao nordeste da gleba</p></li>
+<li><p>A segunda mais próxima está a 68 km ao sul</p></li>
+<li><p>A terceira está a 82 km a oeste</p></li>
+<li><p>Nenhuma estação está exatamente na gleba em questão</p></li>
+</ul>
+<p><strong>A pergunta fundamental emerge:</strong> Como inferir quanto choveu <em>naquela gleba específica</em> se não há medição direta no local?</p>
+<p>Este é o problema clássico que as <strong>técnicas de interpolação espacial</strong> resolvem — ou, mais precisamente, tentam resolver com diferentes graus de sucesso e incerteza.</p>
+</section>
+<section id="o-que-e-interpolacao-espacial">
+<h3>O que É interpolação espacial<a class="headerlink" href="#o-que-e-interpolacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Interpolação espacial</strong> é o processo matemático-estatístico de estimar valores de uma variável em localizações onde não há medição direta, utilizando os valores conhecidos em pontos vizinhos onde há medição.</p>
+<p>É, essencialmente, um exercício de “preencher os espaços em branco” entre observações, seguindo premissas sobre como a variável se comporta no espaço.</p>
+</section>
+<section id="a-metafora-do-terreno">
+<h3>A metáfora do terreno<a class="headerlink" href="#a-metafora-do-terreno" title="Link permanente para este cabeçalho"></a></h3>
+<p>Pense nas medições de estações como pontos de altitude conhecida em um terreno. Você tem a altura em alguns poucos pontos (os cumes onde fizeram medições), mas precisa estimar a altura em todos os outros locais para construir um modelo 3D completo do terreno.</p>
+<p>A interpolação traça superfícies suaves entre esses pontos conhecidos, seguindo diferentes regras sobre como “conectar os pontos”. Alguns métodos criam superfícies mais onduladas, outros mais planas; alguns passam exatamente pelos pontos originais, outros permitem desvios; alguns consideram tendências direcionais, outros assumem isotropia (sem direções preferenciais).</p>
+</section>
+<section id="o-principio-fundamental-autocorrelacao-espacial">
+<h3>O princípio fundamental: autocorrelação espacial<a class="headerlink" href="#o-principio-fundamental-autocorrelacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<p>Todas as técnicas de interpolação baseiam-se, implícita ou explicitamente, na <strong>primeira lei da geografia</strong>: coisas próximas são mais parecidas que coisas distantes <span id="id1">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
+<p>Portanto:</p>
+<ul class="simple">
+<li><p>Pontos de medição <strong>mais próximos</strong> da localização de interesse têm <strong>maior influência</strong> na estimativa</p></li>
+<li><p>Pontos <strong>mais distantes</strong> têm <strong>menor influência</strong> (ou nenhuma, dependendo do método)</p></li>
+<li><p>A forma como essa influência decresce com a distância varia entre métodos</p></li>
+</ul>
+<p>No contexto climático do Proagro, isso significa: se quero estimar precipitação em uma gleba, darei mais peso à estação a 20 km que à estação a 100 km — mas <em>quanto</em> mais peso? Isso depende do método escolhido.</p>
+</section>
+<section id="por-que-precisamos-de-interpolacao-no-proagro">
+<h3>Por que precisamos de interpolação no Proagro<a class="headerlink" href="#por-que-precisamos-de-interpolacao-no-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Realidade operacional:</strong></p>
+<ul class="simple">
+<li><p>Glebas do Sicor têm coordenadas geográficas específicas</p></li>
+<li><p>Estações meteorológicas são esparsas e irregularmente distribuídas</p></li>
+<li><p>Produtos em grade (MERGE, CHIRPS) têm resolução limitada (tipicamente 5-10 km)</p></li>
+<li><p>COPs alegam fenômenos climáticos em locais específicos</p></li>
+</ul>
+<p><strong>Necessidade analítica:</strong></p>
+<p>✓ Verificar coerência entre perda declarada e condições climáticas <em>na gleba específica</em>
+✓ Criar mapas contínuos de risco climático para toda a região de análise
+✓ Comparar condições de glebas com COPs vs. glebas sem COPs
+✓ Ranquear COPs por desvio entre clima estimado e perda declarada</p>
+<p><strong>Sem interpolação</strong>, estamos limitados a:</p>
+<p>❌ Atribuir valor da estação mais próxima (método Thiessen/Voronoi — muito grosseiro)
+❌ Usar apenas municípios com estação (perdemos 90% dos municípios)
+❌ Confiar apenas em produtos em grade (sem validação local)</p>
+<p><strong>Com interpolação</strong>, podemos:</p>
+<p>✅ Estimar variáveis climáticas para <strong>cada gleba do Sicor</strong>
+✅ Criar <strong>superfícies contínuas</strong> de precipitação, temperatura, índices de seca
+✅ Quantificar <strong>incerteza espacial</strong> das estimativas
+✅ Identificar glebas onde estimativas são confiáveis vs. duvidosas</p>
+</section>
+</section>
+<section id="as-tres-principais-tecnicas-de-interpolacao">
+<h2>As três principais técnicas de interpolação<a class="headerlink" href="#as-tres-principais-tecnicas-de-interpolacao" title="Link permanente para este cabeçalho"></a></h2>
+<section id="inverse-distance-weighting-idw-ponderacao-pela-distancia-inversa">
+<h3>Inverse distance weighting (IDW) — ponderação pela distância inversa<a class="headerlink" href="#inverse-distance-weighting-idw-ponderacao-pela-distancia-inversa" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="o-conceito-intuitivo">
+<h3>O conceito intuitivo<a class="headerlink" href="#o-conceito-intuitivo" title="Link permanente para este cabeçalho"></a></h3>
+<p>IDW é o método mais simples e intuitivo de interpolação <span id="id2">[<a class="reference internal" href="../../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. A lógica é direta:</p>
+<blockquote>
+<div><p><em>“O valor em uma localização não medida é a média ponderada dos valores nos pontos medidos ao redor, onde o peso de cada ponto é inversamente proporcional à sua distância.”</em></p>
+</div></blockquote>
+<p>Quanto mais perto um ponto de medição está, mais influência ele tem; quanto mais longe, menos influência.</p>
+</section>
+<section id="como-funciona">
+<h3>Como funciona<a class="headerlink" href="#como-funciona" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para estimar o valor <span class="math notranslate nohighlight">\(\hat{z}\)</span> na localização <span class="math notranslate nohighlight">\((x_0, y_0)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{z}(x_0, y_0) = \frac{\sum_{i=1}^{n} w_i \cdot z_i}{\sum_{i=1}^{n} w_i}\]</div>
+<p>Onde os pesos são:</p>
+<div class="math notranslate nohighlight">
+\[w_i = \frac{1}{d_i^p}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(d_i\)</span> = distância euclidiana entre o ponto a estimar e a estação <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> = parâmetro de potência (tipicamente p=2, mas pode ser 1, 3, etc.)</p></li>
+<li><p><span class="math notranslate nohighlight">\(z_i\)</span> = valor observado na estação <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = número de estações usadas (todas, ou apenas as K mais próximas)</p></li>
+</ul>
+<p><strong>Interpretação do parâmetro p:</strong></p>
+<ul class="simple">
+<li><p><strong>p = 1</strong>: Decaimento linear com distância (menos ênfase em pontos muito próximos)</p></li>
+<li><p><strong>p = 2</strong> (padrão): Decaimento quadrático (pontos próximos ganham peso rapidamente)</p></li>
+<li><p><strong>p &gt; 2</strong>: Decaimento ainda mais acentuado (efeito “bull’s eye” — valor muito dominado pelo ponto mais próximo)</p></li>
+</ul>
+</section>
+<section id="exemplo-conceitual-no-proagro">
+<h3>Exemplo conceitual no Proagro<a class="headerlink" href="#exemplo-conceitual-no-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<dl>
+<dt><strong>Situação:</strong></dt><dd><p>Gleba G precisa de estimativa de precipitação acumulada em janeiro.</p>
+<p>Estações disponíveis:</p>
+<ul class="simple">
+<li><p>Estação A: 25 km, registrou 180 mm</p></li>
+<li><p>Estação B: 40 km, registrou 210 mm</p></li>
+<li><p>Estação C: 75 km, registrou 145 mm</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Cálculo IDW (p=2):</strong></p>
+<p>Pesos:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_A = 1/25^2 = 1/625 = 0.0016\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_B = 1/40^2 = 1/1600 = 0.000625\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(w_C = 1/75^2 = 1/5625 = 0.000178\)</span></p></li>
+</ul>
+<p>Soma dos pesos: <span class="math notranslate nohighlight">\(w_{total} = 0.002403\)</span></p>
+<p>Estimativa:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\hat{z} = \frac{(0.0016 \times 180) + (0.000625 \times 210) + (0.000178 \times 145)}{0.002403}\\\hat{z} \approx 187 \text{ mm}\end{aligned}\end{align} \]</div>
+<p><strong>Interpretação:</strong></p>
+<p>A gleba G teria recebido aproximadamente 187 mm em janeiro — valor <strong>intermediário</strong>, mais próximo da Estação A (a mais próxima geograficamente) mas também influenciado por B e C.</p>
+<p>Se a COP alega perda por seca severa, mas estimativa é ~187 mm e média histórica regional é ~150 mm, há <strong>inconsistência</strong> que justifica aprofundamento.</p>
+</section>
+<section id="vantagens-do-idw">
+<h3>Vantagens do IDW<a class="headerlink" href="#vantagens-do-idw" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>✅ <strong>Simplicidade conceitual e computacional</strong></dt><dd><ul class="simple">
+<li><p>Fácil de entender e explicar para não-especialistas</p></li>
+<li><p>Rápido de calcular (importante para análises em larga escala)</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Não requer pressupostos estatísticos</strong></dt><dd><ul class="simple">
+<li><p>Não assume normalidade ou estacionariedade</p></li>
+<li><p>Funciona com qualquer distribuição de dados</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Passa exatamente pelos pontos observados</strong></dt><dd><ul class="simple">
+<li><p>Nas localizações das estações, interpolação = valor observado (não há “suavização” dos dados originais)</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Flexível com parâmetro de potência</strong></dt><dd><ul class="simple">
+<li><p>Ajustar p permite controlar influência relativa de pontos próximos vs. distantes</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="limitacoes-do-idw">
+<h3>Limitações do IDW<a class="headerlink" href="#limitacoes-do-idw" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>❌ <strong>Não quantifica incerteza</strong></dt><dd><ul class="simple">
+<li><p>Produz estimativa pontual, mas não intervalo de confiança ou variância</p></li>
+<li><p>Não sabemos o quão confiável é o valor estimado</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Efeito “bull’s eye”</strong></dt><dd><ul class="simple">
+<li><p>Cria padrões circulares artificiais ao redor de cada estação (especialmente com p alto)</p></li>
+<li><p>Superfície pode ter aparência de “mosaico” de círculos concêntricos</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Ignora estrutura espacial da variável</strong></dt><dd><ul class="simple">
+<li><p>Não considera se variável tem tendência direcional (ex: gradiente altitudinal)</p></li>
+<li><p>Assume isotropia (variação igual em todas as direções)</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Sensível a aglomeração de pontos</strong></dt><dd><ul class="simple">
+<li><p>Se várias estações próximas entre si estão de um lado da área, estimativa é enviesada naquela direção</p></li>
+<li><p>Não compensa distribuição irregular</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Não considera correlação espacial explicitamente</strong></dt><dd><ul class="simple">
+<li><p>Usa apenas distância geométrica, não modela autocorrelação estatisticamente</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="quando-usar-idw-no-proagro">
+<h3>Quando usar IDW no Proagro<a class="headerlink" href="#quando-usar-idw-no-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Situações apropriadas:</strong></p>
+<ul class="simple">
+<li><p>Análise exploratória inicial rápida</p></li>
+<li><p>Grande quantidade de glebas (milhares) onde velocidade computacional importa</p></li>
+<li><p>Apresentação a público não-técnico (método é intuitivo)</p></li>
+<li><p>Variáveis com distribuição espacial relativamente uniforme</p></li>
+</ul>
+<p><strong>Situações de cautela:</strong></p>
+<ul class="simple">
+<li><p>Regiões montanhosas (relevo influencia precipitação de forma não-linear com distância)</p></li>
+<li><p>Pouquíssimas estações (&lt; 5) — interpolação é muito incerta</p></li>
+<li><p>Fenômenos muito localizados (granizo, chuvas convectivas extremas)</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Buscar na base de dados:</strong></dt><dd><ul class="simple">
+<li><p>Coordenadas de glebas com COPs</p></li>
+<li><p>Coordenadas e valores de todas estações INMET na região</p></li>
+<li><p>Raio de busca: 50-100 km (testar sensibilidade)</p></li>
+<li><p>Parâmetro: iniciar com p=2, testar p=1 e p=3</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="spline-superficies-suaves-e-minimizacao-de-curvatura">
+<h3>Spline — superfícies suaves e minimização de curvatura<a class="headerlink" href="#spline-superficies-suaves-e-minimizacao-de-curvatura" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id3">
+<h3>O conceito intuitivo<a class="headerlink" href="#id3" title="Link permanente para este cabeçalho"></a></h3>
+<p>Imagine que você tem pregos (as estações) fixados em alturas diferentes (os valores observados) e precisa passar uma superfície elástica que toque todos os pregos. A superfície buscará ser o mais “lisa” possível — minimizando dobras e ondulações — ao mesmo tempo que passa exatamente por cada prego.</p>
+<p>Essa é a essência do <strong>spline</strong>: criar superfícies de transição suave entre pontos observados, minimizando matematicamente a “curvatura” total da superfície.</p>
+</section>
+<section id="id4">
+<h3>Como funciona<a class="headerlink" href="#id4" title="Link permanente para este cabeçalho"></a></h3>
+<p>Splines são funções matemáticas por partes (piecewise) que:</p>
+<ol class="arabic simple">
+<li><p>Passam exatamente por todos os pontos de dados (interpolam, não suavizam)</p></li>
+<li><p>São suaves nas transições entre segmentos (derivadas contínuas)</p></li>
+<li><p>Minimizam uma medida de curvatura total</p></li>
+</ol>
+<p><strong>Tipos principais:</strong></p>
+<dl class="simple">
+<dt><strong>Regularized Spline:</strong></dt><dd><ul class="simple">
+<li><p>Minimiza combinação de erro de ajuste e curvatura</p></li>
+<li><p>Parâmetro de tensão (tension) controla trade-off: mais tensão = superfície mais plana</p></li>
+<li><p>Pode não passar exatamente pelos pontos se tensão for alta</p></li>
+</ul>
+</dd>
+<dt><strong>Thin-Plate Spline (TPS):</strong></dt><dd><ul class="simple">
+<li><p>Analogia: placa fina metálica que se curva minimamente para passar pelos pontos</p></li>
+<li><p>Minimiza integral da derivada segunda (curvatura)</p></li>
+<li><p>Interpolação exata nos pontos</p></li>
+<li><p>Computacionalmente mais intenso que IDW</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="a-matematica-simplificada">
+<h3>A matemática (simplificada)<a class="headerlink" href="#a-matematica-simplificada" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para um spline em 2D, busca-se função <span class="math notranslate nohighlight">\(f(x,y)\)</span> que minimize:</p>
+<div class="math notranslate nohighlight">
+\[E = \sum_{i=1}^{n} [z_i - f(x_i, y_i)]^2 + \lambda \iint \left[ \left(\frac{\partial^2 f}{\partial x^2}\right)^2 + 2\left(\frac{\partial^2 f}{\partial x \partial y}\right)^2 + \left(\frac{\partial^2 f}{\partial y^2}\right)^2 \right] dx dy\]</div>
+<p>Onde:</p>
+<ul class="simple">
+<li><p>Primeiro termo: Soma dos erros quadrados (fidelidade aos dados)</p></li>
+<li><p>Segundo termo: Integral da curvatura (lisura da superfície)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span>: Parâmetro de suavização (tensão)</p></li>
+</ul>
+<p><strong>Não é necessário entender a fórmula em detalhe</strong> — o conceito-chave é: spline balanceia passar pelos pontos vs. criar superfície suave.</p>
+</section>
+<section id="id5">
+<h3>Exemplo conceitual no Proagro<a class="headerlink" href="#id5" title="Link permanente para este cabeçalho"></a></h3>
+<dl>
+<dt><strong>Situação:</strong></dt><dd><p>Estimar precipitação em uma microrregião com topografia variada.</p>
+<p>5 estações com valores de janeiro:</p>
+<ul class="simple">
+<li><p>Estação 1 (planície, baixa altitude): 220 mm</p></li>
+<li><p>Estação 2 (meia-encosta): 195 mm</p></li>
+<li><p>Estação 3 (topo de chapada): 150 mm</p></li>
+<li><p>Estação 4 (vale protegido): 240 mm</p></li>
+<li><p>Estação 5 (planície aberta): 210 mm</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Comportamento do Spline:</strong></p>
+<p>O spline criará transições suaves entre os valores, produzindo superfície que:</p>
+<ul class="simple">
+<li><p>Passa exatamente por cada valor observado</p></li>
+<li><p>Entre estações, curva-se suavemente (sem “saltos” ou descontinuidades)</p></li>
+<li><p>Tende a criar gradientes mais naturais (ex: transição gradual do vale para o topo da chapada)</p></li>
+<li><p>Pode produzir valores ligeiramente fora do range observado em áreas de extrapolação (bordas)</p></li>
+</ul>
+<p><strong>Interpretação para uma gleba:</strong></p>
+<p>Gleba localizada entre Estação 2 (195 mm) e Estação 3 (150 mm), mais próxima da 2:</p>
+<ul class="simple">
+<li><p>IDW daria peso maior à Estação 2 → estimativa ~180 mm</p></li>
+<li><p>Spline considerará curvatura suave da superfície → estimativa pode ser ~175 mm (se houver tendência de decréscimo suave)</p></li>
+</ul>
+<p>A diferença é sutil, mas spline tende a produzir mapas visualmente mais “naturais” (menos efeito bull’s eye).</p>
+</section>
+<section id="vantagens-do-spline">
+<h3>Vantagens do spline<a class="headerlink" href="#vantagens-do-spline" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>✅ <strong>Superfícies visualmente suaves e naturais</strong></dt><dd><ul class="simple">
+<li><p>Elimina efeito “bull’s eye” do IDW</p></li>
+<li><p>Transições gradientes parecem mais realistas</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Bom para variáveis contínuas suaves</strong></dt><dd><ul class="simple">
+<li><p>Temperatura, pressão atmosférica, altitude</p></li>
+<li><p>Precipitação mensal (acumulada, menos volátil que diária)</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Pode incorporar tendências</strong></dt><dd><ul class="simple">
+<li><p>Alguns tipos de spline permitem ajustar tendências de larga escala antes da interpolação</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Passa pelos pontos observados</strong> (na maioria das variantes)</dt><dd><ul class="simple">
+<li><p>Honra as medições originais</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="limitacoes-do-spline">
+<h3>Limitações do spline<a class="headerlink" href="#limitacoes-do-spline" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>❌ <strong>Não quantifica incerteza</strong> (como IDW)</dt><dd><ul class="simple">
+<li><p>Produz estimativa sem medida de confiança</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Pode produzir overshooting</strong></dt><dd><ul class="simple">
+<li><p>Em áreas de mudança abrupta, spline pode criar “lombadas” ou “vales” inexistentes para manter suavidade</p></li>
+<li><p>Valores interpolados podem exceder range observado (especialmente nas bordas)</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Pressupõe suavidade que pode não existir</strong></dt><dd><ul class="simple">
+<li><p>Para variáveis com descontinuidades reais (falhas geológicas, bordas de frentes climáticas), spline força suavidade artificial</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Computacionalmente mais intenso</strong></dt><dd><ul class="simple">
+<li><p>Para grandes datasets (milhares de pontos), pode ser lento</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Escolha de parâmetros afeta resultado</strong></dt><dd><ul class="simple">
+<li><p>Tensão/suavização precisa ser ajustada; valores muito altos geram superfície quase plana, muito baixos geram ondulações excessivas</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="quando-usar-spline-no-proagro">
+<h3>Quando usar spline no Proagro<a class="headerlink" href="#quando-usar-spline-no-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Situações apropriadas:</strong></p>
+<ul class="simple">
+<li><p>Interpolação de precipitação mensal ou sazonal (mais suave que diária)</p></li>
+<li><p>Temperatura (variável naturalmente suave espacialmente)</p></li>
+<li><p>Índices climáticos derivados (ex: SPI, SPEI)</p></li>
+<li><p>Análises de escala regional (mapas para apresentação)</p></li>
+</ul>
+<p><strong>Situações de cautela:</strong></p>
+<ul class="simple">
+<li><p>Eventos extremos pontuais (granizo, tornados)</p></li>
+<li><p>Bordas da área de estudo (extrapolação pode ser problemática)</p></li>
+<li><p>Topografia muito complexa com transições abruptas</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Buscar na base de dados:</strong></dt><dd><ul class="simple">
+<li><p>Mesmos dados que IDW (estações + glebas)</p></li>
+<li><p>Testar parâmetro de tensão: baixo (0.1), médio (0.5), alto (0.9)</p></li>
+<li><p>Verificar se há overshooting nas bordas (valores interpolados muito acima/abaixo do observado)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="krigagem-kriging-o-metodo-geoestatistico-robusto">
+<h3>Krigagem (kriging) — O método geoestatístico robusto<a class="headerlink" href="#krigagem-kriging-o-metodo-geoestatistico-robusto" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id6">
+<h3>O conceito intuitivo<a class="headerlink" href="#id6" title="Link permanente para este cabeçalho"></a></h3>
+<p>Krigagem é o método mais sofisticado de interpolação, baseado em <strong>geoestatística</strong> — o ramo da estatística que modela explicitamente a estrutura espacial de variáveis <span id="id7">[<a class="reference internal" href="../../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>.</p>
+<p>A diferença fundamental em relação a IDW e Spline:</p>
+<blockquote>
+<div><p><strong>Krigagem não apenas estima valores, mas também quantifica a incerteza (variância) de cada estimativa.</strong></p>
+</div></blockquote>
+<p>Além disso, krigagem não assume simplesmente que “pontos próximos são parecidos” — ela <strong>mede empiricamente</strong> como a similaridade decai com a distância, usando os próprios dados, e usa essa informação para otimizar os pesos da interpolação.</p>
+</section>
+<section id="a-logica-geoestatistica">
+<h3>A lógica geoestatística<a class="headerlink" href="#a-logica-geoestatistica" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Passo 1 — Análise exploratória:</strong></dt><dd><p>Calcular <strong>semivariograma experimental</strong> — gráfico que mostra como a variância entre pares de pontos aumenta com a distância.</p>
+</dd>
+<dt><strong>Passo 2 — Modelagem:</strong></dt><dd><p>Ajustar <strong>modelo teórico de semivariograma</strong> (esférico, exponencial, gaussiano) aos dados experimentais.</p>
+</dd>
+<dt><strong>Passo 3 — Interpolação:</strong></dt><dd><p>Usar o modelo para calcular <strong>pesos ótimos</strong> (no sentido de minimizar erro quadrático médio de estimativa) para cada ponto de predição.</p>
+</dd>
+<dt><strong>Passo 4 — Quantificação de incerteza:</strong></dt><dd><p>Calcular <strong>variância de krigagem</strong> para cada localização estimada, indicando confiabilidade da estimativa.</p>
+</dd>
+</dl>
+</section>
+<section id="o-semivariograma-coracao-da-krigagem">
+<h3>O semivariograma: coração da krigagem<a class="headerlink" href="#o-semivariograma-coracao-da-krigagem" title="Link permanente para este cabeçalho"></a></h3>
+<p>O <strong>semivariograma</strong> <span class="math notranslate nohighlight">\(\gamma(h)\)</span> mede dissimilaridade entre valores separados por distância <span class="math notranslate nohighlight">\(h\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\gamma(h) = \frac{1}{2N(h)} \sum_{i=1}^{N(h)} [z(x_i) - z(x_i + h)]^2\]</div>
+<p>Onde <span class="math notranslate nohighlight">\(N(h)\)</span> é o número de pares de pontos separados por distância aproximadamente <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<p><strong>Interpretação:</strong></p>
+<ul class="simple">
+<li><p>Distância pequena (h → 0): <span class="math notranslate nohighlight">\(\gamma(h)\)</span> pequeno (pontos próximos são similares)</p></li>
+<li><p>Distância aumenta: <span class="math notranslate nohighlight">\(\gamma(h)\)</span> aumenta (dissimilaridade cresce)</p></li>
+<li><p>A certa distância (range): <span class="math notranslate nohighlight">\(\gamma(h)\)</span> estabiliza (além dessa distância, pontos são independentes)</p></li>
+</ul>
+<p><strong>Componentes do modelo:</strong></p>
+<ul class="simple">
+<li><p><strong>Nugget</strong> (efeito pepita): Variância na origem (erro de medição + variabilidade microescala)</p></li>
+<li><p><strong>Sill</strong> (patamar): Variância total (valor que semivariograma atinge no platô)</p></li>
+<li><p><strong>Range</strong> (alcance): Distância além da qual pontos são espacialmente independentes</p></li>
+</ul>
+<dl>
+<dt><strong>Buscar nos dados:</strong></dt><dd><p>Para uma região do Proagro, plotar semivariograma de precipitação mensal das estações INMET. Observar se há estrutura espacial clara (semivariograma crescente) ou ruído (pontos aleatórios).</p>
+<dl class="simple">
+<dt><strong>Exemplo de interpretação:</strong></dt><dd><ul class="simple">
+<li><p>Se range ≈ 80 km: estações além de 80 km não contribuem para interpolação</p></li>
+<li><p>Se nugget alto: muita variabilidade local não explicada pela distância (erro de medição, chuvas convectivas)</p></li>
+<li><p>Se sill baixo: variável é relativamente uniforme espacialmente</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="como-a-krigagem-funciona-simplificado">
+<h3>Como a krigagem funciona (simplificado)<a class="headerlink" href="#como-a-krigagem-funciona-simplificado" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para estimar <span class="math notranslate nohighlight">\(\hat{z}(x_0)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{z}(x_0) = \sum_{i=1}^{n} \lambda_i \cdot z(x_i)\]</div>
+<p>Similar a IDW, mas os pesos <span class="math notranslate nohighlight">\(\lambda_i\)</span> são calculados <strong>otimamente</strong> usando o modelo de semivariograma, satisfazendo:</p>
+<ol class="arabic simple">
+<li><p><strong>Não-viés:</strong> <span class="math notranslate nohighlight">\(\sum \lambda_i = 1\)</span> (estimador não viesado)</p></li>
+<li><p><strong>Variância mínima:</strong> Pesos são escolhidos para minimizar variância do erro de estimativa</p></li>
+</ol>
+<p><strong>Sistema de equações de krigagem</strong> resolve para os <span class="math notranslate nohighlight">\(\lambda_i\)</span> ótimos.</p>
+</section>
+<section id="tipos-de-krigagem">
+<h3>Tipos de krigagem<a class="headerlink" href="#tipos-de-krigagem" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Krigagem Ordinária (Ordinary Kriging — OK):</strong></dt><dd><ul class="simple">
+<li><p>Mais comum e versátil</p></li>
+<li><p>Assume média local desconhecida mas constante</p></li>
+<li><p>Apropriada para maioria das aplicações no Proagro</p></li>
+</ul>
+</dd>
+<dt><strong>Krigagem Universal (Universal Kriging — UK):</strong></dt><dd><ul class="simple">
+<li><p>Permite incorporar tendências conhecidas (ex: gradiente altitudinal)</p></li>
+<li><p>Útil quando há relação clara com covariável (altitude, distância do oceano)</p></li>
+</ul>
+</dd>
+<dt><strong>Co-Krigagem:</strong></dt><dd><ul class="simple">
+<li><p>Usa variável secundária correlacionada (ex: usar altitude para ajudar a interpolar precipitação)</p></li>
+<li><p>Requer dados da variável secundária em todos os pontos</p></li>
+</ul>
+</dd>
+<dt><strong>Krigagem Indicadora:</strong></dt><dd><ul class="simple">
+<li><p>Para dados binários ou categóricos (ex: ocorrência vs. não-ocorrência de geada)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Exemplo conceitual no Proagro<a class="headerlink" href="#id8" title="Link permanente para este cabeçalho"></a></h3>
+<dl>
+<dt><strong>Situação:</strong></dt><dd><p>Estimar precipitação em região com semivariograma bem definido.</p>
+<p>Modelo ajustado indica:
+- Range = 70 km
+- Sill = 450 mm²
+- Nugget = 50 mm²</p>
+</dd>
+<dt><strong>Interpolação em gleba G:</strong></dt><dd><ul class="simple">
+<li><p>4 estações dentro de 70 km (dentro do range)</p></li>
+<li><p>3 estações além de 70 km</p></li>
+</ul>
+</dd>
+<dt><strong>Krigagem automaticamente:</strong></dt><dd><ul class="simple">
+<li><p>Dá peso maior às 4 estações dentro do range</p></li>
+<li><p>Praticamente ignora as 3 estações além de 70 km (baixíssima correlação espacial)</p></li>
+<li><p>Calcula pesos ótimos considerando não só distância a G, mas também <strong>posições relativas das estações entre si</strong> (se duas estações estão próximas uma da outra, não devem ser contadas como “independentes”)</p></li>
+</ul>
+</dd>
+<dt><strong>Resultado:</strong></dt><dd><ul class="simple">
+<li><p>Estimativa: 192 mm</p></li>
+<li><p><strong>Variância de krigagem:</strong> 85 mm²</p></li>
+<li><p><strong>Desvio-padrão:</strong> √85 ≈ 9 mm</p></li>
+<li><p><strong>Intervalo de confiança (95%):</strong> 192 ± 18 mm → [174, 210 mm]</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Interpretação:</strong></p>
+<p>Com ~95% de confiança, precipitação naquela gleba esteve entre 174-210 mm. Se COP alega seca severa, mas limite inferior do intervalo (174 mm) ainda é próximo da média histórica, há inconsistência.</p>
+<p>Se outra gleba estiver a 120 km da estação mais próxima (fora do range):</p>
+<ul class="simple">
+<li><p>Estimativa krigagem: 180 mm (baseada em tendência regional, não em correlação espacial forte)</p></li>
+<li><p><strong>Variância de krigagem:</strong> 380 mm² (muito maior!)</p></li>
+<li><p><strong>Desvio-padrão:</strong> √380 ≈ 19 mm</p></li>
+<li><p><strong>Intervalo:</strong> 180 ± 38 mm → [142, 218 mm]</p></li>
+</ul>
+<p><strong>Interpretação:</strong></p>
+<p>Incerteza é muito maior (intervalo amplo). Estimativa é menos confiável. Pode-se decidir <strong>não usar krigagem</strong> para essa gleba (incerteza excessiva) e recorrer a outras fontes (MERGE, imagens de satélite).</p>
+</section>
+<section id="vantagens-da-krigagem">
+<h3>Vantagens da krigagem<a class="headerlink" href="#vantagens-da-krigagem" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>✅ <strong>Quantifica incerteza</strong></dt><dd><ul class="simple">
+<li><p>Fornece variância/desvio-padrão para cada estimativa</p></li>
+<li><p>Permite mapas de incerteza e tomada de decisão baseada em risco</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Otimiza pesos estatisticamente</strong></dt><dd><ul class="simple">
+<li><p>Pesos não são arbitrários (como em IDW) — são Best Linear Unbiased Estimator (BLUE)</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Honra estrutura espacial dos dados</strong></dt><dd><ul class="simple">
+<li><p>Modela explicitamente autocorrelação espacial via semivariograma</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Lida bem com distribuição irregular de pontos</strong></dt><dd><ul class="simple">
+<li><p>Ajusta pesos para evitar viés de aglomeração</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Flexível para diferentes estruturas espaciais</strong></dt><dd><ul class="simple">
+<li><p>Modelos de semivariograma capturam comportamentos diversos (isotrópico, anisotrópico, aninhado)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="limitacoes-da-krigagem">
+<h3>Limitações da krigagem<a class="headerlink" href="#limitacoes-da-krigagem" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>❌ <strong>Complexidade conceitual e computacional</strong></dt><dd><ul class="simple">
+<li><p>Requer conhecimento de geoestatística</p></li>
+<li><p>Difícil explicar para público não-técnico</p></li>
+<li><p>Computacionalmente intenso para grandes datasets</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Requer amostra suficiente</strong></dt><dd><ul class="simple">
+<li><p>Mínimo ~30 pontos para ajustar semivariograma com confiança</p></li>
+<li><p>Com &lt; 15 pontos, semivariograma é muito instável</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Pressupõe estacionariedade</strong></dt><dd><ul class="simple">
+<li><p>Assume que média e variância são constantes na área (ou que tendências podem ser removidas)</p></li>
+<li><p>Violação pode levar a modelos inadequados</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Suavização excessiva</strong> (efeito de regressão à média)</dt><dd><ul class="simple">
+<li><p>Estimativas krigagem tendem a ser menos extremas que valores reais</p></li>
+<li><p>Picos e vales são suavizados</p></li>
+</ul>
+</dd>
+<dt>❌ <strong>Depende de escolhas subjetivas</strong></dt><dd><ul class="simple">
+<li><p>Modelo de semivariograma (esférico vs. exponencial vs. gaussiano)</p></li>
+<li><p>Número de bins, tamanho de lag</p></li>
+<li><p>Anisotropia (considerar ou não)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="quando-usar-krigagem-no-proagro">
+<h3>Quando usar krigagem no Proagro<a class="headerlink" href="#quando-usar-krigagem-no-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Situações apropriadas:</strong></p>
+<ul class="simple">
+<li><p>Análises formais onde <strong>quantificação de incerteza é crítica</strong></p></li>
+<li><p>Tomada de decisão que exige <strong>intervalo de confiança</strong> (ex: determinar limite de tolerância)</p></li>
+<li><p>Boa densidade de estações (≥ 20-30) com distribuição razoável</p></li>
+<li><p>Variáveis com autocorrelação espacial clara (precipitação mensal, temperatura)</p></li>
+</ul>
+<p><strong>Situações de cautela:</strong></p>
+<ul class="simple">
+<li><p>Poucas estações (&lt; 15) — semivariograma não confiável</p></li>
+<li><p>Fenômenos sem estrutura espacial (granizo, tornados) — semivariograma será flat</p></li>
+<li><p>Análises exploratórias rápidas (custo-benefício não compensa complexidade)</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Buscar na base de dados:</strong></dt><dd><ul class="simple">
+<li><p>Dados de todas estações INMET para período relevante</p></li>
+<li><p>Plotar semivariograma experimental → se houver estrutura clara, prosseguir</p></li>
+<li><p>Ajustar modelo (esférico é bom ponto de partida)</p></li>
+<li><p>Gerar mapas de estimativa <strong>E</strong> de variância de krigagem</p></li>
+<li><p>Destacar glebas onde variância &gt; threshold aceitável (ex: &gt; 100 mm² para precipitação)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="comparacao-entre-os-tres-metodos">
+<h2>Comparação entre os três métodos<a class="headerlink" href="#comparacao-entre-os-tres-metodos" title="Link permanente para este cabeçalho"></a></h2>
+<section id="tabela-resumo-comparativa">
+<h3>Tabela resumo comparativa<a class="headerlink" href="#tabela-resumo-comparativa" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Característica</p></th>
+<th class="head"><p>IDW</p></th>
+<th class="head"><p>Spline</p></th>
+<th class="head"><p>Krigagem</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Complexidade conceitual</p></td>
+<td><p>Baixa</p></td>
+<td><p>Média</p></td>
+<td><p>Alta</p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p>Complexidade computacional| Baixa</p></td>
+<td><p>Média-Alta</p></td>
+<td><p>Alta</p></td>
+</tr>
+<tr class="row-even"><td><p>Quantifica incerteza?</p></td>
+<td><p>Não</p></td>
+<td><p>Não</p></td>
+<td><p><strong>Sim</strong></p></td>
+</tr>
+<tr class="row-odd"><td colspan="2"><p>Passa por pontos originais?| Sim</p></td>
+<td><p>Sim (maioria)</p></td>
+<td><p>Não (suaviza)</p></td>
+</tr>
+<tr class="row-even"><td><p>Aparência dos mapas</p></td>
+<td><p>Bull’s eye</p></td>
+<td><p>Suave</p></td>
+<td><p>Muito suave</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pressupostos</p></td>
+<td><p>Mínimos</p></td>
+<td><p>Suavidade</p></td>
+<td><p>Estacionariedade</p></td>
+</tr>
+<tr class="row-even"><td><p>Melhor para</p></td>
+<td><p>Análise rápida</p></td>
+<td><p>Mapas apresentação</p></td>
+<td><p>Análise formal</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mínimo de pontos</p></td>
+<td><p>3-5</p></td>
+<td><p>10-15</p></td>
+<td><p>20-30</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpreta estrutura?</p></td>
+<td><p>Não</p></td>
+<td><p>Parcial</p></td>
+<td><p><strong>Sim (semiv.)</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exemplo-comparativo-mesma-regiao-tres-metodos">
+<h3>Exemplo comparativo: mesma região, três métodos<a class="headerlink" href="#exemplo-comparativo-mesma-regiao-tres-metodos" title="Link permanente para este cabeçalho"></a></h3>
+<dl>
+<dt><strong>Cenário:</strong></dt><dd><p>Microrregião com 25 estações INMET, precipitação de janeiro.</p>
+<p>Valores observados: 80-250 mm, média 165 mm.</p>
+</dd>
+<dt><strong>Buscar na base:</strong></dt><dd><p>Coordenadas das 25 estações, valores de precipitação acumulada em janeiro/2023.
+Coordenadas de 1500 glebas com operações de soja na região.</p>
+</dd>
+</dl>
+<p><strong>Aplicação dos Métodos:</strong></p>
+<dl class="simple">
+<dt><strong>IDW (p=2, raio 80 km):</strong></dt><dd><ul class="simple">
+<li><p>Tempo computacional: ~10 segundos para 1500 glebas</p></li>
+<li><p>Mapa: Padrão de círculos concêntricos visível ao redor de estações com valores extremos</p></li>
+<li><p>Estimativas: Range 85-245 mm</p></li>
+<li><p><strong>Sem</strong> medida de incerteza</p></li>
+</ul>
+</dd>
+<dt><strong>Spline (tensão=0.3):</strong></dt><dd><ul class="simple">
+<li><p>Tempo: ~45 segundos</p></li>
+<li><p>Mapa: Superfície visivelmente suave, transições graduais</p></li>
+<li><p>Estimativas: Range 90-240 mm (ligeiro overshooting nas bordas)</p></li>
+<li><p><strong>Sem</strong> medida de incerteza</p></li>
+</ul>
+</dd>
+<dt><strong>Krigagem Ordinária:</strong></dt><dd><ul class="simple">
+<li><p>Tempo: ~3 minutos (incluindo modelagem de semivariograma)</p></li>
+<li><p>Semivariograma ajustado: modelo esférico, range 65 km</p></li>
+<li><p>Mapa de estimativa: Superfície muito suave, range 95-235 mm</p></li>
+<li><p><strong>Mapa de desvio-padrão:</strong> 8-22 mm (baixa incerteza perto de estações, alta nas bordas e em vazios)</p></li>
+</ul>
+</dd>
+<dt><strong>Comparação para gleba específica:</strong></dt><dd><p>Gleba G1 (coordenadas conhecidas):</p>
+<ul class="simple">
+<li><p><strong>Observado na estação mais próxima (28 km):</strong> 185 mm</p></li>
+<li><p><strong>IDW:</strong> 178 mm</p></li>
+<li><p><strong>Spline:</strong> 181 mm</p></li>
+<li><p><strong>Krigagem:</strong> 179 ± 11 mm (intervalo: 168-190 mm)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Interpretação:</strong></p>
+<p>Os três métodos produziram estimativas similares (~178-181 mm), com boa concordância. <strong>Krigagem adiciona</strong> que podemos estar 95% confiantes que valor real está entre 168-190 mm.</p>
+<p>Para gleba G2 (distante, 95 km da estação mais próxima):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>IDW:</strong> 165 mm (média regional, baixo peso de estações distantes)</p></li>
+<li><p><strong>Spline:</strong> 162 mm</p></li>
+<li><p><strong>Krigagem:</strong> 168 ± 19 mm (intervalo: 149-187 mm)</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Interpretação:</strong></p>
+<p>Estimativas ainda concordam razoavelmente, mas <strong>krigagem revela alta incerteza</strong> (±19 mm). Isso <strong>alerta</strong> que para essa gleba, estimativa climática é menos confiável e deve ser triangulada com outras fontes.</p>
+</section>
+</section>
+<section id="incertezas-na-interpolacao-espacial">
+<h2>Incertezas na interpolação espacial<a class="headerlink" href="#incertezas-na-interpolacao-espacial" title="Link permanente para este cabeçalho"></a></h2>
+<section id="fatores-que-aumentam-ou-reduzem-a-incerteza">
+<h3>Fatores que aumentam ou reduzem a incerteza<a class="headerlink" href="#fatores-que-aumentam-ou-reduzem-a-incerteza" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="densidade-e-proximidade-de-pontos-de-medicao">
+<h3>Densidade e proximidade de pontos de medição<a class="headerlink" href="#densidade-e-proximidade-de-pontos-de-medicao" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Regra fundamental:</strong></p>
+<blockquote>
+<div><p>Quanto <strong>mais pontos de medição próximos</strong> da localização de interesse, <strong>menor a incerteza</strong> da interpolação.</p>
+</div></blockquote>
+<p><strong>Quantificação:</strong></p>
+<ul class="simple">
+<li><p><strong>&lt; 10 km da estação mais próxima:</strong> Incerteza baixa (confiança alta)</p></li>
+<li><p><strong>10-30 km:</strong> Incerteza moderada (aceitável para maioria das aplicações)</p></li>
+<li><p><strong>30-50 km:</strong> Incerteza alta (usar com cautela, triangular com outras fontes)</p></li>
+<li><p><strong>&gt; 50 km:</strong> Incerteza muito alta (considerar não usar interpolação)</p></li>
+</ul>
+<p><strong>No Proagro:</strong></p>
+<p>Ao gerar mapa de precipitação interpolada para análise de COPs:</p>
+<ol class="arabic simple">
+<li><p>Calcular <strong>distância de cada gleba até estação mais próxima</strong></p></li>
+<li><p>Classificar glebas:</p>
+<ul class="simple">
+<li><p>Verde: &lt; 20 km → estimativa confiável</p></li>
+<li><p>Amarelo: 20-40 km → estimativa aceitável, atenção redobrada</p></li>
+<li><p>Vermelho: &gt; 40 km → estimativa incerta, não usar isoladamente</p></li>
+</ul>
+</li>
+<li><p>Para glebas vermelhas: <strong>priorizar</strong> uso de produtos em grade (MERGE), índices de vegetação (NDVI), relatos locais</p></li>
+</ol>
+</section>
+<section id="qualidade-da-distribuicao-espacial">
+<h3>Qualidade da distribuição espacial<a class="headerlink" href="#qualidade-da-distribuicao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<p>Não basta ter muitas estações — é preciso que estejam <strong>bem distribuídas</strong>.</p>
+<p><strong>Cenários:</strong></p>
+<dl class="simple">
+<dt><strong>Distribuição uniforme (ideal):</strong></dt><dd><p>Estações espaçadas regularmente, cobrindo toda a região → incerteza uniforme, baixa em toda área.</p>
+</dd>
+<dt><strong>Aglomeração:</strong></dt><dd><p>10 estações concentradas em uma sub-região, 2 estações esparsas no restante → alta incerteza na área com baixa cobertura, apesar de ter 12 estações no total.</p>
+</dd>
+<dt><strong>Lacuna geográfica:</strong></dt><dd><p>Estações ao norte e ao sul, mas vazio de 150 km no centro → alta incerteza no centro, mesmo com boa cobertura nas bordas.</p>
+</dd>
+</dl>
+<p><strong>Verificação na base:</strong></p>
+<p>Plotar mapa da região com posições das estações. <strong>Visualmente</strong>, identificar vazios ou aglomerações.</p>
+<p><strong>Buscar:</strong> Calcular densidade de estações por célula de grade (ex: quantas estações em cada quadrado de 50×50 km). Células com 0 ou 1 estação → áreas de alta incerteza.</p>
+</section>
+<section id="qualidade-e-confiabilidade-dos-dados-observados">
+<h3>Qualidade e confiabilidade dos dados observados<a class="headerlink" href="#qualidade-e-confiabilidade-dos-dados-observados" title="Link permanente para este cabeçalho"></a></h3>
+<p>Interpolação <strong>herda problemas dos dados de entrada</strong>. Se dados observados têm erros, interpolação propaga esses erros espacialmente.</p>
+<p><strong>Problemas comuns:</strong></p>
+<dl class="simple">
+<dt><strong>Falhas de medição:</strong></dt><dd><p>Estação teve sensor com defeito em janeiro → valor registrado é incorreto → interpola valor errado para glebas próximas.</p>
+</dd>
+<dt><strong>Calibração inadequada:</strong></dt><dd><p>Pluviômetro descalibrado subestima chuvas em 20% → interpola subestimativa em entorno.</p>
+</dd>
+<dt><strong>Erro de localização:</strong></dt><dd><p>Coordenadas da estação estão erradas no banco de dados (comum em estações antigas) → atribui valor ao local errado → distorce interpolação.</p>
+</dd>
+<dt><strong>Dados não auditados (estações privadas):</strong></dt><dd><p>Estações de produtores/cooperativas sem controle de qualidade padrão INMET → confiabilidade duvidosa.</p>
+</dd>
+</dl>
+<p><strong>Controle de qualidade essencial:</strong></p>
+<p>Antes de interpolar:</p>
+<ol class="arabic simple">
+<li><p>☐ Verificar séries temporais (outliers, saltos, valores fisicamente impossíveis)</p></li>
+<li><p>☐ Comparar estações próximas (se uma diverge muito das vizinhas, investigar)</p></li>
+<li><p>☐ Validar coordenadas (plotar no mapa, verificar se localização faz sentido)</p></li>
+<li><p>☐ Preferir estações oficiais (INMET, ANA) a privadas quando disponível</p></li>
+</ol>
+</section>
+<section id="complexidade-do-relevo-e-heterogeneidade-geografica">
+<h3>Complexidade do relevo e heterogeneidade geográfica<a class="headerlink" href="#complexidade-do-relevo-e-heterogeneidade-geografica" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Problema:</strong></p>
+<p>Interpolação assume transição suave. Mas em regiões de <strong>topografia complexa</strong>, variáveis climáticas podem mudar abruptamente em distâncias curtas.</p>
+<p><strong>Exemplos:</strong></p>
+<dl class="simple">
+<dt><strong>Efeito orográfico:</strong></dt><dd><p>Face barlavento de montanha recebe 300 mm/mês; face sotavento (20 km de distância) recebe 100 mm/mês. Interpolação simples pode estimar 200 mm em áreas intermediárias, mas realidade é <strong>descontinuidade</strong>, não gradiente.</p>
+</dd>
+<dt><strong>Inversão térmica em vales:</strong></dt><dd><p>Topo da encosta: temperatura mínima -1°C; fundo do vale (5 km abaixo): -8°C (geadas severas). Interpolação por distância não captura inversão.</p>
+</dd>
+<dt><strong>Transições bioma:</strong></dt><dd><p>Borda entre Cerrado e Caatinga: mudança abrupta de precipitação em poucos km. Interpolação suaviza artificialmente.</p>
+</dd>
+</dl>
+<p><strong>Estratégias de mitigação:</strong></p>
+<dl class="simple">
+<dt><strong>Usar co-variáveis:</strong></dt><dd><p>Krigagem universal com altitude como co-variável → modela explicitamente relação precipitação-altitude.</p>
+</dd>
+<dt><strong>Estratificar:</strong></dt><dd><p>Interpolar separadamente para regiões de planície vs. montanha.</p>
+</dd>
+<dt><strong>Reconhecer limites:</strong></dt><dd><p>Em áreas de relevo muito complexo, <strong>admitir</strong> que interpolação tem limitações e reportar explicitamente: “Estimativas em regiões montanhosas têm incerteza elevada devido a heterogeneidade topográfica.”</p>
+</dd>
+</dl>
+</section>
+<section id="natureza-do-fenomeno-meteorologico">
+<h3>Natureza do fenômeno meteorológico<a class="headerlink" href="#natureza-do-fenomeno-meteorologico" title="Link permanente para este cabeçalho"></a></h3>
+<p>Nem todos os fenômenos se comportam da mesma forma no espaço.</p>
+<p><strong>Variáveis “suaves” (interpolam bem):</strong></p>
+<ul class="simple">
+<li><p>Temperatura média mensal</p></li>
+<li><p>Pressão atmosférica</p></li>
+<li><p>Precipitação acumulada mensal/sazonal</p></li>
+<li><p>Umidade relativa</p></li>
+</ul>
+<p><strong>Variáveis “ruidosas” (interpolam mal):</strong></p>
+<ul class="simple">
+<li><p>Precipitação diária (chuvas convectivas muito localizadas)</p></li>
+<li><p>Granizo (células extremamente pequenas)</p></li>
+<li><p>Intensidade de vento em vendavais (turbulência local)</p></li>
+<li><p>Radiação solar instantânea (depende de nebulosidade pontual)</p></li>
+</ul>
+<p><strong>Implicação para o Proagro:</strong></p>
+<dl class="simple">
+<dt>✅ <strong>Interpolar com confiança:</strong></dt><dd><ul class="simple">
+<li><p>Déficit hídrico acumulado no ciclo da cultura (ex: soma de 4 meses)</p></li>
+<li><p>Temperatura média do período crítico</p></li>
+<li><p>Índices climáticos mensais (SPI, SPEI)</p></li>
+</ul>
+</dd>
+<dt>⚠️ <strong>Interpolar com cautela ou não interpolar:</strong></dt><dd><ul class="simple">
+<li><p>Chuva específica de 1 dia que causou alagamento</p></li>
+<li><p>Intensidade de vento em vendaval pontual</p></li>
+<li><p>Granizo (usar radar quando disponível, não interpolação de estações)</p></li>
+</ul>
+</dd>
+<dt><strong>Buscar na base:</strong></dt><dd><p>Variabilidade espacial histórica da variável. Se precipitação diária tem correlação espacial baixa (I de Moran &lt; 0,3), interpolar agregado (semanal/mensal) em vez de diário.</p>
+</dd>
+</dl>
+</section>
+<section id="quantificando-e-reportando-incerteza">
+<h3>Quantificando e reportando incerteza<a class="headerlink" href="#quantificando-e-reportando-incerteza" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="mapa-de-incerteza-ferramenta-essencial">
+<h3>Mapa de incerteza: ferramenta essencial<a class="headerlink" href="#mapa-de-incerteza-ferramenta-essencial" title="Link permanente para este cabeçalho"></a></h3>
+<p>Sempre que interpolar, gerar <strong>dois mapas</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Mapa de valores interpolados</strong> (precipitação estimada, temperatura, etc.)</p></li>
+<li><p><strong>Mapa de incerteza</strong> (distância até estação mais próxima, ou variância de krigagem)</p></li>
+</ol>
+<p><strong>Exemplo de interpretação integrada:</strong></p>
+<p>Gleba G1: Precipitação estimada = 180 mm, distância estação = 15 km → <strong>confiável</strong></p>
+<p>Gleba G2: Precipitação estimada = 185 mm, distância estação = 65 km → <strong>incerta</strong></p>
+<p>Mesmo que valores sejam similares, <strong>confiança é diferente</strong>. Para G2, triangular com MERGE, NDVI.</p>
+</section>
+<section id="uso-de-intervalos-de-confianca-krigagem">
+<h3>Uso de intervalos de confiança (krigagem)<a class="headerlink" href="#uso-de-intervalos-de-confianca-krigagem" title="Link permanente para este cabeçalho"></a></h3>
+<p>Com krigagem, reportar sempre:</p>
+<ul class="simple">
+<li><p>Valor estimado ± margem de erro</p></li>
+<li><p>Intervalo de confiança (95%)</p></li>
+</ul>
+<p><strong>Exemplo em relatório:</strong></p>
+<blockquote>
+<div><p>“Estimativa de precipitação para gleba G: 187 mm (IC 95%: 172-202 mm). Como limite inferior (172 mm) é superior à franquia de déficit para a cultura (150 mm), há inconsistência entre perda alegada por seca e condições climáticas estimadas.”</p>
+</div></blockquote>
+</section>
+<section id="triangulacao-com-multiplas-fontes">
+<h3>Triangulação com múltiplas fontes<a class="headerlink" href="#triangulacao-com-multiplas-fontes" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Princípio de convergência de evidências:</strong></p>
+<p>Não confiar apenas em interpolação. Buscar concordância entre:</p>
+<ol class="arabic simple">
+<li><p><strong>Interpolação de estações</strong> (IDW/Spline/Krigagem)</p></li>
+<li><p><strong>Produtos em grade</strong> (MERGE, CHIRPS, ERA5)</p></li>
+<li><p><strong>Índices de vegetação</strong> (NDVI, EVI — integram efeito real do clima na planta)</p></li>
+<li><p><strong>Relatos locais</strong> (sindicatos, cooperativas, imprensa)</p></li>
+</ol>
+<p><strong>Matriz de decisão:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fonte</p></th>
+<th class="head"><p>Interpolação</p></th>
+<th class="head"><p>MERGE</p></th>
+<th class="head"><p>NDVI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Seca severa?</p></td>
+<td><p>Não (185 mm)</p></td>
+<td><p>Moderada (155 mm)</p></td>
+<td><p>Vigor reduzido</p></td>
+</tr>
+<tr class="row-odd"><td><p>Confiabilidade</p></td>
+<td><p>Média (dist. 45km)</p></td>
+<td><p>Alta (pixel 5km)</p></td>
+<td><p>Alta</p></td>
+</tr>
+<tr class="row-even"><td><p>Convergência</p></td>
+<td><p>❌ Diverge do MERGE</p></td>
+<td><p>✅ Concorda com NDVI</p></td>
+<td><p>✅ Indica stress</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretação:</strong></p>
+<p>Interpolação sugere precipitação normal, mas MERGE e NDVI indicam seca. Como interpolação tem incerteza moderada e diverge de outras fontes, <strong>dar peso maior</strong> a MERGE/NDVI. Provável que houve déficit localizado não capturado por estações distantes.</p>
+</section>
+<section id="determinando-incerteza-aceitavel-para-decisao">
+<h3>Determinando incerteza aceitável para decisão<a class="headerlink" href="#determinando-incerteza-aceitavel-para-decisao" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Não há threshold universal</strong> — depende da decisão:</p>
+<dl class="simple">
+<dt><strong>Análise exploratória regional:</strong></dt><dd><ul class="simple">
+<li><p>Objetivo: Identificar tendências gerais, hotspots</p></li>
+<li><p>Incerteza aceitável: Alta (±30 mm para precipitação mensal)</p></li>
+<li><p>Justificativa: Decisão é agregada, padrões gerais importam mais que valores exatos</p></li>
+</ul>
+</dd>
+<dt><strong>Ranqueamento de COPs para priorização:</strong></dt><dd><ul class="simple">
+<li><p>Objetivo: Ordenar COPs por “divergência clima-perda”</p></li>
+<li><p>Incerteza aceitável: Moderada (±20 mm)</p></li>
+<li><p>Justificativa: Ordem relativa importa; top 10% provavelmente serão os mesmos com ±20 mm</p></li>
+</ul>
+</dd>
+<dt><strong>Contestação individual de COP:</strong></dt><dd><ul class="simple">
+<li><p>Objetivo: Determinar se perdas declaradas são justificadas climaticamente</p></li>
+<li><p>Incerteza aceitável: Baixa (±10 mm, &lt; 10 km de estação)</p></li>
+<li><p>Justificativa: Decisão binária de alto impacto (aprovar/negar indenização)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Framework de decisão:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SE (distância até estação &gt; 40 km) E (decisão é contestação individual)
+   ENTÃO não usar interpolação isoladamente
+         buscar evidências adicionais (MERGE, NDVI, inspeção campo)
+
+SE (distância &lt; 20 km) E (múltiplas estações concordam)
+   ENTÃO interpolação é suficientemente confiável
+         prosseguir com análise
+
+SE (distância 20-40 km)
+   ENTÃO usar interpolação + produto em grade
+         se convergem, confiança moderada
+         se divergem, investigar mais
+</pre></div>
+</div>
+</section>
+<section id="reportando-limitacoes-com-transparencia">
+<h3>Reportando limitações com transparência<a class="headerlink" href="#reportando-limitacoes-com-transparencia" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Boas práticas em relatórios técnicos:</strong></p>
+<p>✅ “Estimativas baseadas em interpolação IDW de 18 estações INMET. Incerteza aumenta com distância; glebas a &gt; 50 km de estações têm estimativas de baixa confiança.”</p>
+<p>✅ “Krigagem ordinária foi aplicada (modelo esférico, range 68 km). Mapa de variância de krigagem indica que 23% das glebas analisadas têm desvio-padrão &gt; 15 mm, considerado threshold de alta incerteza.”</p>
+<p>✅ “Em áreas de relevo complexo (serras da região sul), interpolação pode não capturar efeitos orográficos localizados. Recomenda-se triangular com MERGE/CHIRPS nessas regiões.”</p>
+<p>❌ “Calculamos precipitação exata em cada gleba usando krigagem.” (Falsa precisão!)</p>
+<p>❌ “Choveu 187,3 mm na gleba X.” (Estimativa não deve ter precisão de décimos de mm)</p>
+<p>❌ Não mencionar limitações ou incerteza (ocultação de informação crítica)</p>
+</section>
+</section>
+<section id="limitacoes-gerais-da-interpolacao">
+<h2>Limitações gerais da interpolação<a class="headerlink" href="#limitacoes-gerais-da-interpolacao" title="Link permanente para este cabeçalho"></a></h2>
+<section id="extrapolacao-e-perigosa">
+<h3>Extrapolação é perigosa<a class="headerlink" href="#extrapolacao-e-perigosa" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Problema:</strong></p>
+<p>Interpolação funciona <strong>entre</strong> pontos observados (interpolação = “entre”). Quando estimamos <strong>além</strong> da área coberta por estações (extrapolação = “além”), não há dados para guiar a estimativa — método extrapola tendências que podem não continuar.</p>
+<p><strong>Exemplo:</strong></p>
+<p>Estações cobrem apenas metade norte de uma região. Sul tem zero estações. Interpolar ao sul = extrapolação cega, altamente incerta.</p>
+<p><strong>Mitigação:</strong></p>
+<ul class="simple">
+<li><p>Usar apenas área com cobertura razoável de estações (buffer de 50-80 km das estações mais periféricas)</p></li>
+<li><p>Nas bordas, reportar explicitamente: “Estimativas nas áreas destacadas em cinza envolvem extrapolação e têm incerteza elevada.”</p></li>
+</ul>
+</section>
+<section id="escolha-do-metodo-afeta-resultado">
+<h3>Escolha do método afeta resultado<a class="headerlink" href="#escolha-do-metodo-afeta-resultado" title="Link permanente para este cabeçalho"></a></h3>
+<p>Não há método “correto” universal. IDW, Spline e Krigagem podem produzir <strong>estimativas substancialmente diferentes</strong> para a mesma localização.</p>
+<p><strong>Exemplo hipotético:</strong></p>
+<p>Gleba X:</p>
+<ul class="simple">
+<li><p>IDW (p=2): 175 mm</p></li>
+<li><p>Spline (tensão 0.4): 182 mm</p></li>
+<li><p>Krigagem: 178 mm</p></li>
+</ul>
+<p>Diferença de 7 mm entre IDW e Spline. Dependendo do threshold de decisão, isso pode mudar conclusão.</p>
+<p><strong>Abordagem conservadora:</strong></p>
+<p>Aplicar múltiplos métodos. Se convergem (diferença &lt; 10%), usar qualquer um. Se divergem, reportar range: “Estimativas variam entre 175-182 mm dependendo do método; há incerteza metodológica.”</p>
+</section>
+<section id="interpolacao-nao-cria-informacao-nova">
+<h3>Interpolação não cria informação nova<a class="headerlink" href="#interpolacao-nao-cria-informacao-nova" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Verdade fundamental:</strong></p>
+<p>Interpolação <strong>redistribui espacialmente</strong> informação existente nas estações. Não adiciona informação — apenas “espalha” o que sabemos.</p>
+<p>Se há evento extremo localizado entre estações (ex: tromba d’água em área sem estação próxima), interpolação <strong>não detectará</strong> esse evento.</p>
+<p><strong>Implicação:</strong></p>
+<p>Interpolação pode gerar <strong>falsos negativos</strong> (não detectar eventos reais) se evento ocorreu em “zona cega” (longe de estações).</p>
+<p>Portanto, ausência de sinal climático forte na interpolação <strong>não prova</strong> que não houve fenômeno — especialmente para eventos muito localizados.</p>
+</section>
+<section id="interpolacao-de-variaveis-derivadas-vs-interpolacao-direta">
+<h3>Interpolação de variáveis derivadas vs. interpolação direta<a class="headerlink" href="#interpolacao-de-variaveis-derivadas-vs-interpolacao-direta" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Duas abordagens possíveis:</strong></p>
+<dl class="simple">
+<dt><strong>Abordagem 1 — Interpolar primeiro, derivar depois:</strong></dt><dd><ul class="simple">
+<li><p>Interpolar precipitação e temperatura</p></li>
+<li><p>Calcular déficit hídrico a partir dos valores interpolados</p></li>
+</ul>
+</dd>
+<dt><strong>Abordagem 2 — Derivar primeiro, interpolar depois:</strong></dt><dd><ul class="simple">
+<li><p>Calcular déficit hídrico em cada estação</p></li>
+<li><p>Interpolar déficit hídrico diretamente</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Resultados podem diferir!</strong></p>
+<p>Geralmente, <strong>abordagem 2</strong> (derivar primeiro) é mais robusta para índices não-lineares, pois preserva relações físicas na escala da estação.</p>
+</section>
+<section id="dados-de-estacoes-privadas-cautela-necessaria">
+<h3>Dados de estações privadas: cautela necessária<a class="headerlink" href="#dados-de-estacoes-privadas-cautela-necessaria" title="Link permanente para este cabeçalho"></a></h3>
+<p>Proliferação recente de estações automáticas privadas (produtores, cooperativas, empresas) pode <strong>melhorar cobertura</strong>, mas traz desafios:</p>
+<p>❌ Sem auditoria oficial (INMET/ANA)
+❌ Calibração duvidosa
+❌ Manutenção irregular
+❌ Dados podem não ser públicos
+❌ Possível conflito de interesse (produtor pode manipular dados locais)</p>
+<p><strong>Uso no Proagro:</strong></p>
+<ul class="simple">
+<li><p>Aceitar dados privados <strong>apenas</strong> se validados com estações oficiais próximas</p></li>
+<li><p>Nunca usar isoladamente em contestações de COPs</p></li>
+<li><p>Úteis para <strong>aumentar densidade</strong> em análises regionais exploratórias</p></li>
+</ul>
+</section>
+</section>
+<section id="sintese-e-recomendacoes-praticas">
+<h2>Síntese e recomendações práticas<a class="headerlink" href="#sintese-e-recomendacoes-praticas" title="Link permanente para este cabeçalho"></a></h2>
+<section id="fluxograma-de-decisao-qual-metodo-usar">
+<h3>Fluxograma de decisão: qual método usar?<a class="headerlink" href="#fluxograma-de-decisao-qual-metodo-usar" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────┐
+│ Preciso interpolar variável         │
+│ meteorológica para análise Proagro  │
+└────────────┬────────────────────────┘
+             │
+             ├─ Quantas estações disponíveis?
+             │
+             ├─ &lt; 10 estações
+             │  └─→ ⚠️ Interpolação muito incerta
+             │       Considerar usar apenas produto em grade (MERGE)
+             │       Se interpolar: IDW apenas para exploratório
+             │
+             ├─ 10-20 estações
+             │  └─→ IDW ou Spline
+             │       Krigagem possível mas semivariograma instável
+             │
+             └─ &gt; 20 estações
+                └─→ Todos os métodos viáveis
+                    │
+                    ├─ Análise exploratória rápida? → IDW
+                    │
+                    ├─ Precisa quantificar incerteza? → Krigagem
+                    │
+                    ├─ Mapas para apresentação? → Spline
+                    │
+                    └─ Análise formal/decisão crítica? → Krigagem
+</pre></div>
+</div>
+</section>
+<section id="checklist-pre-interpolacao">
+<h3>Checklist pré-interpolação<a class="headerlink" href="#checklist-pre-interpolacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>Antes de interpolar:</p>
+<dl class="simple">
+<dt>☐ <strong>Dados de estações coletados e organizados</strong></dt><dd><ul class="simple">
+<li><p>Coordenadas verificadas (projeção consistente)</p></li>
+<li><p>Valores para variável de interesse no período relevante</p></li>
+<li><p>Identificação de falhas e outliers</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Controle de qualidade realizado</strong></dt><dd><ul class="simple">
+<li><p>Séries temporais plotadas (verificar saltos, valores impossíveis)</p></li>
+<li><p>Comparação entre estações vizinhas (consistência)</p></li>
+<li><p>Estações problemáticas removidas ou corrigidas</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Área de estudo definida</strong></dt><dd><ul class="simple">
+<li><p>Limites da região de análise</p></li>
+<li><p>Verificado se há cobertura razoável de estações (não extrapolar demais)</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Objetivos da interpolação claros</strong></dt><dd><ul class="simple">
+<li><p>Exploratório vs. formal?</p></li>
+<li><p>Incerteza precisa ser quantificada?</p></li>
+<li><p>Decisão depende criticamente do resultado?</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Método escolhido apropriadamente</strong></dt><dd><ul class="simple">
+<li><p>Baseado em número de estações, complexidade, necessidade de incerteza</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Parâmetros definidos</strong></dt><dd><ul class="simple">
+<li><p>IDW: potência (p), raio de busca</p></li>
+<li><p>Spline: tensão</p></li>
+<li><p>Krigagem: modelo de semivariograma, anisotropia</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="checklist-pos-interpolacao">
+<h3>Checklist pós-interpolação<a class="headerlink" href="#checklist-pos-interpolacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>Após interpolar:</p>
+<dl class="simple">
+<dt>☐ <strong>Validação cruzada realizada</strong></dt><dd><ul class="simple">
+<li><p>Remover cada estação, interpolar, comparar estimado vs. observado</p></li>
+<li><p>Calcular RMSE (raiz do erro quadrático médio) ou MAE (erro absoluto médio)</p></li>
+<li><p>Se erro muito alto (ex: RMSE &gt; 30% da média), revisar método/parâmetros</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Mapas gerados</strong></dt><dd><ul class="simple">
+<li><p>Mapa de valores interpolados</p></li>
+<li><p>Mapa de incerteza (distância até estação ou variância krigagem)</p></li>
+<li><p>Localizações das estações plotadas sobre o mapa</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Inspeção visual</strong></dt><dd><ul class="simple">
+<li><p>Padrões fazem sentido fisicamente?</p></li>
+<li><p>Há artefatos óbvios (bull’s eye, overshooting)?</p></li>
+<li><p>Áreas de alta incerteza identificadas?</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Comparação com produtos em grade</strong></dt><dd><ul class="simple">
+<li><p>Baixar MERGE ou CHIRPS para mesma região/período</p></li>
+<li><p>Calcular correlação entre interpolação e produto em grade</p></li>
+<li><p>Se divergência grande, investigar (um dos dois pode estar errado)</p></li>
+</ul>
+</dd>
+<dt>☐ <strong>Documentação completa</strong></dt><dd><ul class="simple">
+<li><p>Método usado, parâmetros, número de estações</p></li>
+<li><p>Estatísticas de validação (RMSE, R²)</p></li>
+<li><p>Limitações explícitas (áreas de alta incerteza, extrapolação)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="reportando-resultados-de-interpolacao">
+<h3>Reportando resultados de interpolação<a class="headerlink" href="#reportando-resultados-de-interpolacao" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Exemplo de texto adequado para relatório técnico:</strong></p>
+<blockquote>
+<div><p><strong>Metodologia de Interpolação Espacial de Precipitação</strong></p>
+<p>Para estimar precipitação acumulada em janeiro/2023 nas glebas do Sicor, foi aplicada interpolação espacial usando dados de 23 estações meteorológicas do INMET localizadas na região de estudo e entorno (raio de 120 km).</p>
+<p><em>Método:</em> Krigagem ordinária com modelo de semivariograma esférico ajustado aos dados experimentais. Parâmetros do modelo: nugget = 35 mm², sill = 380 mm², range = 72 km. O modelo ajustado apresentou R² = 0,82 na validação cruzada.</p>
+<p><em>Validação:</em> Validação cruzada leave-one-out resultou em RMSE = 18,7 mm (11,3% da média observada de 165 mm) e R² = 0,76. Resíduos não apresentaram tendência espacial sistemática.</p>
+<p><em>Incerteza:</em> A variância de krigagem foi calculada para cada gleba. Das 1.247 glebas analisadas, 1.089 (87,3%) apresentam desvio-padrão &lt; 15 mm (classificado como incerteza baixa a moderada). As 158 glebas restantes (12,7%), localizadas em áreas com cobertura esparsa de estações (&gt; 50 km da estação mais próxima), têm desvio-padrão &gt; 15 mm (alta incerteza).</p>
+<p><em>Limitações:</em>
+- Em áreas de relevo complexo (serras ao sul da região), a interpolação pode não capturar efeitos orográficos localizados, levando a subestimativa de precipitação em faces de barlavento e superestimativa em sotavento.
+- Eventos convectivos extremos muito localizados (&lt; 10 km²) podem não ser detectados se ocorreram entre estações.
+- Para as 158 glebas de alta incerteza, recomenda-se triangular estimativas krigagem com produtos em grade (MERGE) e análise de índices de vegetação (NDVI).</p>
+<p><em>Mapas:</em> Ver Anexo A (mapa de precipitação interpolada) e Anexo B (mapa de desvio-padrão krigagem).</p>
+</div></blockquote>
+</section>
+</section>
+<section id="integracao-com-outros-modulos-e-analises">
+<h2>Integração com outros módulos e análises<a class="headerlink" href="#integracao-com-outros-modulos-e-analises" title="Link permanente para este cabeçalho"></a></h2>
+<section id="interpolacao-no-contexto-do-workflow-completo-do-proagro">
+<h3>Interpolação no contexto do workflow completo do Proagro<a class="headerlink" href="#interpolacao-no-contexto-do-workflow-completo-do-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p>Interpolação não é análise isolada — alimenta outras etapas:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌──────────────────────────────────────┐
+│ 1. Coleta de dados de estações      │
+│    (INMET, ANA)                      │
+└──────────────┬───────────────────────┘
+               │
+               v
+┌──────────────────────────────────────┐
+│ 2. Controle de qualidade             │
+│    (outliers, falhas, consistência)  │
+└──────────────┬───────────────────────┘
+               │
+               v
+┌──────────────────────────────────────┐
+│ 3. INTERPOLAÇÃO ESPACIAL         │◄── VOCÊ ESTÁ AQUI
+│    (IDW / Spline / Krigagem)         │
+│    + Mapas de incerteza              │
+└──────────────┬───────────────────────┘
+               │
+               v
+┌──────────────────────────────────────┐
+│ 4. Extração de valores para glebas  │
+│    (cada gleba do Sicor recebe       │
+│     valor interpolado + incerteza)   │
+└──────────────┬───────────────────────┘
+               │
+               v
+┌──────────────────────────────────────┐
+│ 5. Comparação clima vs. COPs         │
+│    - Glebas com COP: clima estimado  │
+│      vs. fenômeno alegado            │
+│    - Ranking de divergências         │
+└──────────────┬───────────────────────┘
+               │
+               v
+┌──────────────────────────────────────┐
+│ 6. Análise espacial (I de Moran,    │
+│    LISA) de divergências             │
+│    - Há clusters de inconsistências? │
+└──────────────┬───────────────────────┘
+               │
+               v
+┌──────────────────────────────────────┐
+│ 7. Priorização e investigação        │
+│    - COPs com maior divergência +    │
+│      baixa incerteza = alta prioridade│
+└──────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="uso-combinado-interpolacao-produtos-em-grade-ndvi">
+<h3>Uso combinado: interpolação + produtos em grade + NDVI<a class="headerlink" href="#uso-combinado-interpolacao-produtos-em-grade-ndvi" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Estratégia de convergência de evidências:</strong></p>
+<p>Para cada gleba com COP:</p>
+<ol class="arabic simple">
+<li><p><strong>Estimar clima por interpolação</strong> (krigagem de estações INMET)</p></li>
+<li><p><strong>Extrair valor de produto em grade</strong> (MERGE ou CHIRPS)</p></li>
+<li><p><strong>Calcular índice de vegetação</strong> (NDVI médio no período)</p></li>
+</ol>
+<p><strong>Matriz de decisão:</strong></p>
+</section>
+<section id="analise-de-casos-individuais">
+<h3>Análise de casos individuais<a class="headerlink" href="#analise-de-casos-individuais" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Gleba</p></th>
+<th class="head"><p>Krigagem (mm)</p></th>
+<th class="head"><p>MERGE (mm)</p></th>
+<th class="head"><p>NDVI</p></th>
+<th class="head"><p>Conclusão</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>G1 (COP seca)</p></td>
+<td><p>178 ± 12</p></td>
+<td><p>185</p></td>
+<td><p>0.68 (normal)</p></td>
+<td><p>❌ Inconsistente</p></td>
+</tr>
+<tr class="row-odd"><td><p>G2 (COP seca)</p></td>
+<td><p>142 ± 18</p></td>
+<td><p>138</p></td>
+<td><p>0.42 (baixo)</p></td>
+<td><p>✅ Consistente</p></td>
+</tr>
+<tr class="row-even"><td><p>G3 (COP seca)</p></td>
+<td><p>165 ± 25 (alta inc.)</p></td>
+<td><p>152</p></td>
+<td><p>0.51 (médio)</p></td>
+<td><p>⚠️ Inconclusivo</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretação:</strong></p>
+<ul class="simple">
+<li><p><strong>G1:</strong> Krigagem e MERGE convergem (~180 mm, acima da média), NDVI normal → <strong>perda alegada não é suportada por clima</strong></p></li>
+<li><p><strong>G2:</strong> Todas as fontes convergem (déficit hídrico + stress vegetativo) → <strong>perda consistente com seca</strong></p></li>
+<li><p><strong>G3:</strong> Alta incerteza krigagem, mas MERGE confirma déficit e NDVI mostra stress moderado → <strong>dar peso maior a MERGE/NDVI</strong>, provável que houve seca localizada</p></li>
+</ul>
+</section>
+<section id="comparacao-com-zoneamento-agroclimatico-zarc">
+<h3>Comparação com zoneamento agroclimático (zarc)<a class="headerlink" href="#comparacao-com-zoneamento-agroclimatico-zarc" title="Link permanente para este cabeçalho"></a></h3>
+<p>Interpolação pode ser usada para verificar conformidade com Zarc:</p>
+<ul class="simple">
+<li><p>Interpolar precipitação, temperatura durante ciclo da cultura</p></li>
+<li><p>Comparar com limiares do Zarc (ex: milho requer &gt; 400 mm no ciclo)</p></li>
+<li><p>Identificar glebas que, apesar de dentro da janela Zarc, tiveram clima abaixo do recomendado (explicação para perda legítima)</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusao-interpolacao-como-ferramenta-de-apoio-nao-substituto">
+<h2>Conclusão: interpolação como ferramenta de apoio, não substituto<a class="headerlink" href="#conclusao-interpolacao-como-ferramenta-de-apoio-nao-substituto" title="Link permanente para este cabeçalho"></a></h2>
+<section id="mensagens-chave">
+<h3>Mensagens-Chave<a class="headerlink" href="#mensagens-chave" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>1. Interpolação é estimativa, não medição</strong></dt><dd><p>Sempre carrega incerteza. Transparência sobre limitações é essencial.</p>
+</dd>
+<dt><strong>2. Nenhum método é universalmente superior</strong></dt><dd><p>IDW, Spline e Krigagem têm vantagens e limitações específicas. Escolher baseado em contexto.</p>
+</dd>
+<dt><strong>3. Quantificar incerteza é crítico</strong></dt><dd><p>Krigagem é única a fornecer medida estatística de incerteza. Para decisões de alto impacto, preferir krigagem.</p>
+</dd>
+<dt><strong>4. Triangulação é mandatória</strong></dt><dd><p>Nunca confiar apenas em interpolação. Cruzar com MERGE, NDVI, relatos locais.</p>
+</dd>
+<dt><strong>5. Documentação completa protege credibilidade</strong></dt><dd><p>Reportar método, parâmetros, validação, limitações. Esconder incerteza mina confiança nos resultados.</p>
+</dd>
+</dl>
+</section>
+<section id="quando-interpolacao-e-ferramenta-adequada">
+<h3>Quando interpolação É ferramenta adequada<a class="headerlink" href="#quando-interpolacao-e-ferramenta-adequada" title="Link permanente para este cabeçalho"></a></h3>
+<p>✅ Análise regional de tendências climáticas
+✅ Criação de mapas contextuais de risco
+✅ Ranqueamento de COPs para priorização de investigações
+✅ Complemento a produtos em grade em regiões com boa cobertura de estações</p>
+</section>
+<section id="quando-interpolacao-deve-ser-usada-com-extrema-cautela-ou-nao-usada">
+<h3>Quando interpolação deve ser usada com extrema cautela ou não usada<a class="headerlink" href="#quando-interpolacao-deve-ser-usada-com-extrema-cautela-ou-nao-usada" title="Link permanente para este cabeçalho"></a></h3>
+<p>❌ Decisão individual de alto impacto baseada apenas em interpolação
+❌ Áreas com &lt; 10 estações ou cobertura muito esparsa
+❌ Fenômenos extremamente localizados (granizo, tornados)
+❌ Regiões de topografia muito complexa sem co-variáveis (altitude)
+❌ Dados de entrada de qualidade duvidosa não validados</p>
+</section>
+<section id="a-perspectiva-final">
+<h3>A perspectiva final<a class="headerlink" href="#a-perspectiva-final" title="Link permanente para este cabeçalho"></a></h3>
+<p>Interpolação espacial, quando usada responsavelmente — com compreensão de seus fundamentos, limitações e incertezas — é ferramenta <strong>valiosa e legítima</strong> para análise de risco climático no Proagro.</p>
+<p>Permite <strong>espacializar conhecimento</strong>, transformar medições pontuais em superfícies contínuas que podem ser cruzadas com glebas do Sicor, identificando padrões e inconsistências que análises puramente tabulares não detectariam.</p>
+<p>Mas é <strong>ferramenta de apoio à decisão humana qualificada</strong>, não substituto. Deve sempre ser complementada por:</p>
+<ul class="simple">
+<li><p>Expertise técnica de meteorologistas e agrônomos</p></li>
+<li><p>Conhecimento local do território</p></li>
+<li><p>Análise documental e de campo</p></li>
+<li><p>Triangulação com múltiplas fontes de dados</p></li>
+</ul>
+<p>Usada corretamente, interpolação <strong>amplia o olhar analítico</strong>. Usada inadequadamente — tratando estimativas como fatos, ignorando incertezas, não triangulando — pode levar a <strong>conclusões equivocadas e decisões injustas</strong>.</p>
+<p><strong>A escolha é do analista: usar a ferramenta com rigor e humildade, ou deixá-la de lado quando limites forem ultrapassados.</strong></p>
+<p>—</p>
+<p><strong>Próximo passo:</strong> Integrar estimativas climáticas interpoladas com análise espacial (I de Moran, LISA) para identificar clusters de inconsistências entre clima e perdas declaradas — nosso caminho para análise espacial integrada e acionável no Proagro.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="imoran.html" class="btn btn-neutral float-left" title="Quantificando autocorrelação espacial: O índice I de Moran" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="autocorrelacao-espacial.html" class="btn btn-neutral float-right" title="Densidade e autocorrelação espacial" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c10086a790>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

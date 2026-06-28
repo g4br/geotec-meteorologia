@@ -1,0 +1,2159 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantificando autocorrelação espacial: O índice I de Moran &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/imoran.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Técnicas de interpolação espacial aplicadas ao risco agrícola" href="metodos-interpolacao.html" />
+    <link rel="prev" title="Visualização preliminar: mapas de calor e densidade kernel" href="heatmap-kernel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quantificando autocorrelação espacial: O índice I de Moran</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#da-intuicao-visual-a-certeza-estatistica">Da intuição visual à certeza estatística</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fundamentos-teoricos-do-indice-i-de-moran">Fundamentos teóricos do índice I de Moran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mecanica-do-calculo-compreendendo-a-formula">Mecânica do cálculo: compreendendo a fórmula</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#testes-de-significancia-estatistica">Testes de significância estatística</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacao-do-indice-i-de-moran-no-contexto-do-proagro">Interpretação do índice I de Moran no contexto do Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-diagrama-de-dispersao-de-moran">O diagrama de dispersão de Moran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-e-armadilhas-do-indice-i-de-moran">Limitações e armadilhas do índice I de Moran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boas-praticas-e-checklist-de-verificacao">Boas práticas e checklist de verificação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#casos-especiais-e-consideracoes-avancadas">Casos especiais e considerações avançadas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sintese-e-integracao-com-outros-modulos-do-geotec">Síntese e integração com outros módulos do geotec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recursos-adicionais-e-implementacao-pratica">Recursos adicionais e implementação prática</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#glossario-de-termos-tecnicos">Glossário de termos técnicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusao-o-i-de-moran-como-pilar-da-analise-espacial">Conclusão: O I de Moran como pilar da análise espacial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+      <li class="breadcrumb-item active">Quantificando autocorrelação espacial: O índice I de Moran</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="heatmap-kernel.html" class="btn btn-neutral float-left" title="Visualização preliminar: mapas de calor e densidade kernel" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="metodos-interpolacao.html" class="btn btn-neutral float-right" title="Técnicas de interpolação espacial aplicadas ao risco agrícola" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quantificando-autocorrelacao-espacial-o-indice-i-de-moran">
+<h1>Quantificando autocorrelação espacial: O índice I de Moran<a class="headerlink" href="#quantificando-autocorrelacao-espacial-o-indice-i-de-moran" title="Link permanente para este cabeçalho"></a></h1>
+<section id="da-intuicao-visual-a-certeza-estatistica">
+<h2>Da intuição visual à certeza estatística<a class="headerlink" href="#da-intuicao-visual-a-certeza-estatistica" title="Link permanente para este cabeçalho"></a></h2>
+<p>Nos mapas de densidade Kernel, desenvolvemos a capacidade de <strong>ver</strong> padrões espaciais — hotspots que brilham em vermelho, coldspots que esmaeceram em azul, concentrações e vazios que emergem da distribuição de pontos. Essa visualização é poderosa e indispensável, mas carrega uma limitação fundamental: <strong>o olho humano não quantifica incerteza</strong>.</p>
+<p>Quando olhamos dois mapas lado a lado — um mostrando hotspots de COPs e outro mostrando condições climáticas — e percebemos que parecem coincidir, nossa mente naturalmente pergunta: <em>“Será que essa coincidência é real ou estou vendo padrões onde há apenas aleatoriedade?”</em> É uma pergunta legítima e essencial. Afinal, o cérebro humano é notoriamente propenso a identificar padrões mesmo em dados aleatórios — um fenômeno conhecido como <strong>pareidolia estatística</strong>.</p>
+<section id="o-problema-da-aleatoriedade-espacial">
+<h3>O problema da aleatoriedade espacial<a class="headerlink" href="#o-problema-da-aleatoriedade-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<p>Imagine que você jogue 100 moedas no chão de uma sala. Mesmo que cada moeda tenha caído de forma completamente aleatória, independente das demais, é provável que você consiga identificar pequenos “aglomerados” onde 3 ou 4 moedas ficaram próximas. Esses aglomerados são apenas flutuações aleatórias esperadas, não evidência de alguma força atrativa entre as moedas.</p>
+<p>Da mesma forma, quando observamos concentrações de COPs em um mapa, precisamos responder objetivamente: <strong>essa concentração é maior do que seria esperada ao acaso, ou está dentro da margem de variação aleatória?</strong></p>
+</section>
+<section id="a-solucao-estatistica">
+<h3>A solução estatística<a class="headerlink" href="#a-solucao-estatistica" title="Link permanente para este cabeçalho"></a></h3>
+<p>É aqui que entra a <strong>estatística espacial formal</strong> — e sua ferramenta mais fundamental e amplamente utilizada: o <strong>Índice I de Moran</strong>. Essa medida nos permite transcender a impressão visual e obter uma resposta numérica, acompanhada de significância estatística, para a pergunta central da análise espacial:</p>
+<blockquote>
+<div><p><em>Existe dependência espacial nos dados? Valores próximos no espaço são mais similares do que seria esperado se a distribuição fosse aleatória?</em></p>
+</div></blockquote>
+</section>
+</section>
+<section id="fundamentos-teoricos-do-indice-i-de-moran">
+<h2>Fundamentos teóricos do índice I de Moran<a class="headerlink" href="#fundamentos-teoricos-do-indice-i-de-moran" title="Link permanente para este cabeçalho"></a></h2>
+<section id="definicao-e-conceito-central">
+<h3>Definição e conceito central<a class="headerlink" href="#definicao-e-conceito-central" title="Link permanente para este cabeçalho"></a></h3>
+<p>O <strong>Índice I de Moran</strong> (batizado em homenagem ao estatístico australiano Patrick A.P. Moran, que o propôs em 1950) é uma medida estatística que quantifica o <strong>grau de autocorrelação espacial</strong> em um conjunto de dados georreferenciados.</p>
+</section>
+<section id="contexto-historico">
+<h3>Contexto histórico<a class="headerlink" href="#contexto-historico" title="Link permanente para este cabeçalho"></a></h3>
+<p>Patrick Alfred Pierce Moran (1917-1988) desenvolveu este índice como parte de pesquisas em genética de populações e epidemiologia. O artigo seminal <em>“Notes on Continuous Stochastic Phenomena”</em>, publicado na <em>Biometrika</em> <span id="id1">[<a class="reference internal" href="../../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, introduziu formalmente o conceito de autocorrelação espacial quantitativa, revolucionando a análise de dados geográficos.</p>
+<p>Antes do trabalho de Moran, análises espaciais eram predominantemente descritivas e qualitativas. A introdução de uma medida quantitativa com propriedades estatísticas bem definidas permitiu testes de hipótese rigorosos e abriu caminho para toda a família de estatísticas espaciais que usamos hoje.</p>
+</section>
+<section id="o-conceito-de-autocorrelacao-espacial">
+<h3>O conceito de autocorrelação espacial<a class="headerlink" href="#o-conceito-de-autocorrelacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos">
+<h3>Autocorrelação: quando os dados conversam com seus vizinhos<a class="headerlink" href="#autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos" title="Link permanente para este cabeçalho"></a></h3>
+<p>Em estatística clássica (não-espacial), assume-se que observações são <strong>independentes</strong> umas das outras — o valor medido em um local não deveria influenciar ou estar correlacionado com o valor em outro local. Essa é a premissa fundamental de muitos testes estatísticos tradicionais (t-test, ANOVA, regressão linear ordinária).</p>
+<p>Mas dados espaciais frequentemente <strong>violam essa premissa</strong>. Como discutimos anteriormente, a primeira lei da geografia <span id="id2">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span> nos diz que coisas próximas tendem a ser mais parecidas que coisas distantes.</p>
+<p>No contexto agrícola e do Proagro:</p>
+<ul class="simple">
+<li><p>A taxa de COPs por seca no município A não é independente da taxa no município B se ambos compartilham fronteira e foram afetados pela mesma massa de ar seca</p></li>
+<li><p>A produtividade de uma gleba não é independente da produtividade da gleba vizinha se ambas têm o mesmo tipo de solo e relevo</p></li>
+<li><p>A ocorrência de geada em uma propriedade não é independente da ocorrência em propriedades próximas se todas estão no mesmo fundo de vale</p></li>
+</ul>
+<p>Essa <strong>dependência espacial</strong> — quando valores de uma variável em uma localização estão correlacionados com valores da mesma variável em localizações vizinhas — é exatamente o que o I de Moran detecta e quantifica.</p>
+</section>
+<section id="tipos-de-autocorrelacao-espacial">
+<h3>Tipos de autocorrelação espacial<a class="headerlink" href="#tipos-de-autocorrelacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<dl>
+<dt><strong>Autocorrelação Positiva</strong></dt><dd><p>Valores altos tendem a estar próximos de valores altos; valores baixos próximos de valores baixos. Há <strong>clustering</strong> — agrupamento espacial de valores similares.</p>
+<p><em>Exemplos no Proagro:</em></p>
+<ul class="simple">
+<li><p>Municípios com alta taxa de COPs por seca formando “mancha” contínua</p></li>
+<li><p>Glebas com alta produtividade agrupadas em área de solo fértil</p></li>
+<li><p>Regiões com práticas agrícolas similares mostrando desempenho semelhante</p></li>
+</ul>
+</dd>
+<dt><strong>Autocorrelação Nula (Independência Espacial)</strong></dt><dd><p>Não há relação sistemática entre valores de localizações próximas. A distribuição espacial é <strong>aleatória</strong>.</p>
+<p><em>Exemplos no Proagro:</em></p>
+<ul class="simple">
+<li><p>COPs por granizo distribuídas aleatoriamente (fenômeno muito localizado)</p></li>
+<li><p>Características idiossincráticas de manejo em cada propriedade</p></li>
+<li><p>Fatores não-espaciais dominando (decisões individuais de produtores)</p></li>
+</ul>
+</dd>
+<dt><strong>Autocorrelação Negativa</strong></dt><dd><p>Valores altos tendem a estar próximos de valores baixos e vice-versa. Padrão tipo <strong>“tabuleiro de xadrez”</strong>.</p>
+<p><em>Exemplos no Proagro (raros):</em></p>
+<ul class="simple">
+<li><p>Competição por recursos escassos (área irrigada cercada por áreas não irrigadas)</p></li>
+<li><p>Efeitos de borda ou transição abrupta entre zonas</p></li>
+<li><p>Artefatos administrativos (critérios diferentes em municípios contíguos)</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="a-escala-do-indice-i-de-moran">
+<h3>A escala do índice I de Moran<a class="headerlink" href="#a-escala-do-indice-i-de-moran" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="valores-possiveis-e-interpretacao">
+<h3>Valores possíveis e interpretação<a class="headerlink" href="#valores-possiveis-e-interpretacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>O Índice I de Moran varia aproximadamente entre <strong>-1</strong> e <strong>+1</strong>, embora tecnicamente possa ultrapassar levemente esses limites em configurações específicas de pesos espaciais. A interpretação é análoga à correlação de Pearson tradicional, mas aplicada à dimensão espacial.</p>
+<dl class="simple">
+<dt><strong>I ≈ +1.0 (Autocorrelação Positiva Muito Forte)</strong></dt><dd><ul class="simple">
+<li><p>Quase perfeita segregação espacial de valores</p></li>
+<li><p>Clusters altamente definidos</p></li>
+<li><p>No Proagro: Fenômeno climático regional muito bem delimitado, afetando área contígua de forma homogênea</p></li>
+</ul>
+</dd>
+<dt><strong>I entre +0.7 e +0.9 (Autocorrelação Positiva Forte)</strong></dt><dd><ul class="simple">
+<li><p>Clustering robusto e claramente identificável</p></li>
+<li><p>Padrão esperado para eventos climáticos regionais</p></li>
+<li><p>No Proagro: Seca, chuva excessiva ou ondas de calor afetando múltiplos municípios contíguos</p></li>
+</ul>
+</dd>
+<dt><strong>I entre +0.4 e +0.7 (Autocorrelação Positiva Moderada)</strong></dt><dd><ul class="simple">
+<li><p>Tendência de agrupamento, mas com alguma variabilidade local</p></li>
+<li><p>Pode indicar fenômeno regional com gradientes ou múltiplos focos</p></li>
+<li><p>No Proagro: Eventos climáticos com núcleos de maior intensidade e periferias menos afetadas</p></li>
+</ul>
+</dd>
+<dt><strong>I entre +0.1 e +0.4 (Autocorrelação Positiva Fraca)</strong></dt><dd><ul class="simple">
+<li><p>Leve tendência de agrupamento</p></li>
+<li><p>Pode ser significativo estatisticamente mas com pouca estrutura espacial clara</p></li>
+<li><p>No Proagro: Fenômenos com componente regional fraco ou muita variabilidade local</p></li>
+</ul>
+</dd>
+<dt><strong>I entre -0.1 e +0.1 (Independência Espacial)</strong></dt><dd><ul class="simple">
+<li><p>Ausência de padrão espacial sistemático</p></li>
+<li><p>Distribuição aleatória ou quase aleatória</p></li>
+<li><p>No Proagro: Fenômenos muito localizados, fatores idiossincráticos dominantes</p></li>
+</ul>
+</dd>
+<dt><strong>I entre -0.1 e -0.4 (Autocorrelação Negativa Fraca)</strong></dt><dd><ul class="simple">
+<li><p>Leve tendência de alternância</p></li>
+<li><p>Raro em fenômenos naturais, mais comum em processos sociais/competitivos</p></li>
+<li><p>No Proagro: Possível em situações de competição por recursos ou bordas de transição</p></li>
+</ul>
+</dd>
+<dt><strong>I entre -0.4 e -0.7 (Autocorrelação Negativa Moderada)</strong></dt><dd><ul class="simple">
+<li><p>Padrão alternado mais definido</p></li>
+<li><p>Muito raro em dados agroclimáticos</p></li>
+<li><p>No Proagro: Possível artefato de agregação espacial inadequada</p></li>
+</ul>
+</dd>
+<dt><strong>I &lt; -0.7 (Autocorrelação Negativa Forte)</strong></dt><dd><ul class="simple">
+<li><p>Padrão “xadrez” muito pronunciado</p></li>
+<li><p>Extremamente raro em fenômenos naturais</p></li>
+<li><p>No Proagro: Quase sempre indica problema metodológico ou artefato</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="significancia-estatistica-o-papel-crucial-do-valor-p">
+<h3>Significância estatística: O papel crucial do valor-p<a class="headerlink" href="#significancia-estatistica-o-papel-crucial-do-valor-p" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="por-que-o-valor-do-indice-nao-basta">
+<h3>Por que o valor do índice não basta<a class="headerlink" href="#por-que-o-valor-do-indice-nao-basta" title="Link permanente para este cabeçalho"></a></h3>
+<p>Um valor de I = 0,35 pode parecer indicar autocorrelação positiva moderada, mas há uma pergunta essencial: <strong>esse valor poderia ter ocorrido por acaso, apenas devido a flutuações aleatórias na amostra?</strong></p>
+<p>Considere duas situações:</p>
+<p><strong>Situação A:</strong> I = 0,35 com 200 municípios, padrão claro de clusters → valor-p &lt; 0,001
+<strong>Situação B:</strong> I = 0,35 com 15 municípios, padrão menos definido → valor-p = 0,18</p>
+<p>Embora I seja idêntico, apenas na Situação A podemos confiantemente afirmar que há autocorrelação espacial real.</p>
+</section>
+<section id="interpretacao-do-valor-p">
+<h3>Interpretação do valor-p<a class="headerlink" href="#interpretacao-do-valor-p" title="Link permanente para este cabeçalho"></a></h3>
+<p>O valor-p responde: <em>“Se os dados fossem espacialmente aleatórios (hipótese nula), qual a probabilidade de observarmos um valor de I tão extremo ou mais extremo que o calculado?”</em></p>
+<dl class="simple">
+<dt><strong>p &lt; 0,001 (Significância Muito Alta)</strong></dt><dd><ul class="simple">
+<li><p>Evidência fortíssima de autocorrelação</p></li>
+<li><p>Probabilidade &lt; 0,1% de observar I tão extremo por acaso</p></li>
+<li><p>Extremamente improvável que o padrão seja aleatório</p></li>
+<li><p><strong>Conclusão:</strong> Padrão espacial robusto e confiável</p></li>
+</ul>
+</dd>
+<dt><strong>p &lt; 0,01 (Significância Alta)</strong></dt><dd><ul class="simple">
+<li><p>Evidência forte de autocorrelação</p></li>
+<li><p>Probabilidade &lt; 1% de observar I tão extremo por acaso</p></li>
+<li><p>Altamente improvável que seja coincidência</p></li>
+<li><p><strong>Conclusão:</strong> Padrão espacial consistente</p></li>
+</ul>
+</dd>
+<dt><strong>p &lt; 0,05 (Significância Convencional)</strong></dt><dd><ul class="simple">
+<li><p>Evidência aceitável pelo padrão científico</p></li>
+<li><p>Probabilidade &lt; 5% de observar I tão extremo por acaso</p></li>
+<li><p>Convenção estatística amplamente adotada</p></li>
+<li><p><strong>Conclusão:</strong> Padrão espacial significativo</p></li>
+</ul>
+</dd>
+<dt><strong>p entre 0,05 e 0,10 (Evidência Marginal)</strong></dt><dd><ul class="simple">
+<li><p>Resultado sugestivo mas não conclusivo</p></li>
+<li><p>“Tendência” de autocorrelação</p></li>
+<li><p>Requer cautela na interpretação</p></li>
+<li><p><strong>Conclusão:</strong> Evidência fraca, considerar outros fatores</p></li>
+</ul>
+</dd>
+<dt><strong>p &gt; 0,10 (Não Significativo)</strong></dt><dd><ul class="simple">
+<li><p>Sem evidência suficiente para rejeitar aleatoriedade</p></li>
+<li><p>O padrão observado pode ser fruto do acaso</p></li>
+<li><p><strong>Conclusão:</strong> Não há autocorrelação espacial detectável</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="regra-fundamental-da-interpretacao">
+<h3>Regra fundamental da interpretação<a class="headerlink" href="#regra-fundamental-da-interpretacao" title="Link permanente para este cabeçalho"></a></h3>
+<div class="admonition important">
+<p class="admonition-title">Importante</p>
+<p><strong>Mesmo que I seja diferente de zero, se p &gt; 0,05, NÃO podemos afirmar que há autocorrelação espacial real</strong> — o padrão observado pode ser apenas ruído amostral ou flutuação aleatória.</p>
+</div>
+</section>
+<section id="exemplos-praticos-de-interpretacao-conjunta">
+<h3>Exemplos práticos de interpretação conjunta<a class="headerlink" href="#exemplos-praticos-de-interpretacao-conjunta" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Exemplo 1: Autocorrelação Robusta</strong></dt><dd><ul class="simple">
+<li><p>I = 0,68, p &lt; 0,001</p></li>
+<li><p><strong>Interpretação:</strong> Há forte autocorrelação positiva estatisticamente significativa. Valores similares se agrupam espacialmente de forma robusta e confiável.</p></li>
+</ul>
+</dd>
+<dt><strong>Exemplo 2: Valor Alto Mas Não Significativo</strong></dt><dd><ul class="simple">
+<li><p>I = 0,52, p = 0,14</p></li>
+<li><p><strong>Interpretação:</strong> Embora I sugira autocorrelação moderada, p &gt; 0,05 indica que não podemos descartar que seja flutuação aleatória. Padrão não é estatisticamente confiável.</p></li>
+</ul>
+</dd>
+<dt><strong>Exemplo 3: Valor Baixo Mas Significativo (Amostra Grande)</strong></dt><dd><ul class="simple">
+<li><p>I = 0,18, p = 0,003</p></li>
+<li><p><strong>Interpretação:</strong> Autocorrelação fraca PORÉM estatisticamente significativa. Com amostra grande, mesmo padrões sutis podem ser detectados com confiança.</p></li>
+</ul>
+</dd>
+<dt><strong>Exemplo 4: Independência Confirmada</strong></dt><dd><ul class="simple">
+<li><p>I = 0,08, p = 0,42</p></li>
+<li><p><strong>Interpretação:</strong> Não há autocorrelação espacial. Distribuição é consistente com aleatoriedade espacial.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="mecanica-do-calculo-compreendendo-a-formula">
+<h2>Mecânica do cálculo: compreendendo a fórmula<a class="headerlink" href="#mecanica-do-calculo-compreendendo-a-formula" title="Link permanente para este cabeçalho"></a></h2>
+<section id="a-formula-matematica-completa">
+<h3>A fórmula matemática completa<a class="headerlink" href="#a-formula-matematica-completa" title="Link permanente para este cabeçalho"></a></h3>
+<p>A fórmula do Índice I de Moran é:</p>
+<div class="math notranslate nohighlight">
+\[I = \frac{n}{\sum_{i}\sum_{j}w_{ij}} \cdot \frac{\sum_{i}\sum_{j}w_{ij}(x_i - \bar{x})(x_j - \bar{x})}{\sum_{i}(x_i - \bar{x})^2}\]</div>
+<p>Onde:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = número de unidades espaciais (municípios, glebas, etc.)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = valor da variável na localização <span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bar{x}\)</span> = média da variável em todas as localizações</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_{ij}\)</span> = peso espacial entre localizações <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_{i}\sum_{j}\)</span> = soma dupla sobre todos os pares de localizações</p></li>
+</ul>
+</section>
+<section id="desmembrando-a-formula-passo-a-passo">
+<h3>Desmembrando a fórmula passo a passo<a class="headerlink" href="#desmembrando-a-formula-passo-a-passo" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="passo-1-padronizacao-dos-dados-desvios-da-media">
+<h3>Passo 1: padronização dos dados (desvios da média)<a class="headerlink" href="#passo-1-padronizacao-dos-dados-desvios-da-media" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para cada localização <span class="math notranslate nohighlight">\(i\)</span>, calculamos <strong>quanto seu valor se desvia da média geral</strong>:</p>
+<div class="math notranslate nohighlight">
+\[(x_i - \bar{x})\]</div>
+<p><strong>Interpretação:</strong></p>
+<ul class="simple">
+<li><p>Se <span class="math notranslate nohighlight">\(x_i &gt; \bar{x}\)</span> (valor acima da média) → <span class="math notranslate nohighlight">\((x_i - \bar{x})\)</span> é <strong>positivo</strong></p></li>
+<li><p>Se <span class="math notranslate nohighlight">\(x_i &lt; \bar{x}\)</span> (valor abaixo da média) → <span class="math notranslate nohighlight">\((x_i - \bar{x})\)</span> é <strong>negativo</strong></p></li>
+<li><p>Se <span class="math notranslate nohighlight">\(x_i = \bar{x}\)</span> (valor na média) → <span class="math notranslate nohighlight">\((x_i - \bar{x}) = 0\)</span></p></li>
+</ul>
+<p><strong>Exemplo numérico:</strong></p>
+<p>Considere taxa de COPs em 5 municípios:</p>
+<p><strong>Por que padronizar?</strong></p>
+<p>A padronização permite trabalhar com “excessos” e “déficits” relativos, independentemente da escala original dos dados. Um município com taxa de 20% quando a média é 15% tem o mesmo “excesso relativo” que um município com 80% quando a média é 75%.</p>
+</section>
+<section id="passo-2-definir-vizinhanca-a-matriz-de-pesos-espaciais">
+<h3>Passo 2: definir vizinhança (A matriz de pesos espaciais)<a class="headerlink" href="#passo-2-definir-vizinhanca-a-matriz-de-pesos-espaciais" title="Link permanente para este cabeçalho"></a></h3>
+<p>Esta é a etapa <strong>mais crítica e conceitual</strong>: precisamos especificar, para cada par de localizações <span class="math notranslate nohighlight">\((i, j)\)</span>, <strong>quanto elas são “vizinhas”</strong>. Isso é codificado na <strong>matriz de pesos espaciais</strong> <span class="math notranslate nohighlight">\(W\)</span>.</p>
+<p><strong>A matriz W</strong></p>
+<p>A matriz <span class="math notranslate nohighlight">\(W\)</span> é uma matriz <span class="math notranslate nohighlight">\(n \times n\)</span> onde:</p>
+<ul class="simple">
+<li><p>Elemento <span class="math notranslate nohighlight">\(w_{ij}\)</span> = peso da relação espacial entre localização <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span></p></li>
+<li><p>Diagonal principal <span class="math notranslate nohighlight">\(w_{ii} = 0\)</span> (uma localização não é vizinha de si mesma)</p></li>
+<li><p>Matriz é tipicamente esparsa (maioria dos elementos = 0)</p></li>
+</ul>
+<p><strong>Exemplo visual para 5 municípios:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     A    B    C    D    E
+A    0    1    0    1    0
+B    1    0    1    0    0
+C    0    1    0    1    1
+D    1    0    1    0    0
+E    0    0    1    0    0
+</pre></div>
+</div>
+<p>Interpretação: A é vizinho de B e D; B é vizinho de A e C; etc.</p>
+<p><strong>Critérios de definição de vizinhança</strong></p>
+<p><strong>Contiguidade (Adjacência)</strong></p>
+<blockquote>
+<div><p>Municípios que compartilham fronteira são vizinhos.</p>
+<p><span class="math notranslate nohighlight">\(w_{ij} = \begin{cases} 1 &amp; \text{se } i \text{ e } j \text{ compartilham fronteira} \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
+<p><strong>Variantes:</strong></p>
+<ul class="simple">
+<li><p><strong>Rainha (Queen):</strong> Qualquer contato conta, inclusive por um único vértice</p></li>
+<li><p><strong>Torre (Rook):</strong> Apenas fronteiras com extensão linear (municípios que se tocam por ponto não são vizinhos)</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Vantagens:</strong></dt><dd><ul class="simple">
+<li><p>Intuitivo e facilmente compreensível</p></li>
+<li><p>Não requer parâmetro de distância</p></li>
+<li><p>Apropriado para análises municipais/estaduais</p></li>
+</ul>
+</dd>
+<dt><strong>Desvantagens:</strong></dt><dd><ul class="simple">
+<li><p>Número de vizinhos varia (municípios grandes/centrais têm mais vizinhos)</p></li>
+<li><p>Não funciona para unidades não contíguas (ilhas, glebas isoladas)</p></li>
+<li><p>Não captura influência além da adjacência imediata</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Distância Fixa (Distance Band)</strong></p>
+<blockquote>
+<div><p>Municípios cujos centroides estão a menos de <span class="math notranslate nohighlight">\(d\)</span> km são vizinhos.</p>
+<p><span class="math notranslate nohighlight">\(w_{ij} = \begin{cases} 1 &amp; \text{se distância}(i,j) &lt; d \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
+<p><strong>Escolha de d:</strong></p>
+<ul class="simple">
+<li><p>Muito pequeno (&lt; 20 km): Muitas unidades sem vizinhos</p></li>
+<li><p>Adequado (30-50 km): Captura influência regional sem excessiva conectividade</p></li>
+<li><p>Muito grande (&gt; 100 km): Quase todas unidades conectadas, perde especificidade espacial</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Vantagens:</strong></dt><dd><ul class="simple">
+<li><p>Funciona para qualquer configuração espacial</p></li>
+<li><p>Captura influência além da adjacência</p></li>
+<li><p>Reflete melhor fenômenos com alcance espacial definido</p></li>
+</ul>
+</dd>
+<dt><strong>Desvantagens:</strong></dt><dd><ul class="simple">
+<li><p>Requer escolha de parâmetro d (subjetivo)</p></li>
+<li><p>Número de vizinhos ainda varia</p></li>
+<li><p>Pode criar unidades “isoladas” se d muito pequeno</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>K Vizinhos Mais Próximos (K-Nearest Neighbors)</strong></p>
+<blockquote>
+<div><p>Para cada localização <span class="math notranslate nohighlight">\(i\)</span>, identificamos os <span class="math notranslate nohighlight">\(k\)</span> vizinhos mais próximos (por distância euclidiana de centroides).</p>
+<p><span class="math notranslate nohighlight">\(w_{ij} = \begin{cases} 1 &amp; \text{se } j \text{ está entre os } k \text{ mais próximos de } i \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
+<p><strong>Escolha de k:</strong></p>
+<ul class="simple">
+<li><p>Muito pequeno (k=2-3): Conectividade mínima, pode fragmentar análise</p></li>
+<li><p>Adequado (k=5-8): Balanceamento entre local e regional</p></li>
+<li><p>Muito grande (k&gt;15): Excessiva conectividade, dilui especificidade espacial</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Vantagens:</strong></dt><dd><ul class="simple">
+<li><p>Todas unidades têm mesmo número de vizinhos (equidade)</p></li>
+<li><p>Funciona bem em regiões com densidade variável</p></li>
+<li><p>Evita unidades isoladas</p></li>
+</ul>
+</dd>
+<dt><strong>Desvantagens:</strong></dt><dd><ul class="simple">
+<li><p>Matriz W não necessariamente simétrica (i pode ser vizinho de j, mas não vice-versa)</p></li>
+<li><p>Requer escolha de k</p></li>
+<li><p>Distâncias podem ser muito heterogêneas (k vizinhos de município pequeno vs. grande)</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Distância Inversa (Inverse Distance Weighting)</strong></p>
+<blockquote>
+<div><p>Vizinhos mais próximos têm peso maior; influência decresce com distância.</p>
+<p><span class="math notranslate nohighlight">\(w_{ij} = \begin{cases} \frac{1}{d_{ij}^\alpha} &amp; \text{se } d_{ij} &lt; d_{\text{max}} \\ 0 &amp; \text{caso contrário} \end{cases}\)</span></p>
+<p>Onde <span class="math notranslate nohighlight">\(\alpha\)</span> controla taxa de decaimento (tipicamente <span class="math notranslate nohighlight">\(\alpha = 1\)</span> ou <span class="math notranslate nohighlight">\(2\)</span>).</p>
+<dl class="simple">
+<dt><strong>Vantagens:</strong></dt><dd><ul class="simple">
+<li><p>Mais realista fisicamente (gradiente contínuo de influência)</p></li>
+<li><p>Captura nuances de proximidade</p></li>
+<li><p>Todos vizinhos contribuem proporcionalmente</p></li>
+</ul>
+</dd>
+<dt><strong>Desvantagens:</strong></dt><dd><ul class="simple">
+<li><p>Computacionalmente mais custoso</p></li>
+<li><p>Interpretação menos intuitiva</p></li>
+<li><p>Requer escolha de <span class="math notranslate nohighlight">\(\alpha\)</span> e <span class="math notranslate nohighlight">\(d_{\text{max}}\)</span></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>Normalização da matriz W</strong></p>
+<p>Frequentemente, normaliza-se a matriz W por linha (row-standardization):</p>
+<div class="math notranslate nohighlight">
+\[w^*_{ij} = \frac{w_{ij}}{\sum_j w_{ij}}\]</div>
+<p>Cada linha soma 1. Isso faz com que o “spatial lag” seja uma <strong>média ponderada</strong> dos vizinhos, não uma simples soma.</p>
+<p><strong>Vantagens da normalização:</strong>
+- Unidades com muitos vizinhos não dominam o cálculo
+- Facilita interpretação (média dos vizinhos vs. soma dos vizinhos)
+- Estabiliza estatísticas em amostras de tamanho variável</p>
+<p><strong>Desvantagem:</strong>
+- Pode obscurecer diferenças em número de vizinhos (informação às vezes relevante)</p>
+<p><strong>Recomendações para o contexto do Proagro</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p><strong>Análise em Escala Municipal:</strong></p>
+<ul class="simple">
+<li><p>Primeira escolha: <strong>Contiguidade Queen</strong></p></li>
+<li><p>Alternativa: <strong>Distância 50 km</strong> (captura influência além de adjacência)</p></li>
+</ul>
+<p><strong>Análise em Escala de Glebas:</strong></p>
+<ul class="simple">
+<li><p>Primeira escolha: <strong>Distância 20-30 km</strong> (escala de fenômenos microclimáticos)</p></li>
+<li><p>Alternativa: <strong>K=5-8 vizinhos mais próximos</strong></p></li>
+</ul>
+<p><strong>Sempre: Realizar análise de sensibilidade</strong> com 2-3 critérios diferentes</p>
+</div>
+</section>
+<section id="passo-3-calcular-produtos-cruzados-ponderados">
+<h3>Passo 3: calcular produtos cruzados ponderados<a class="headerlink" href="#passo-3-calcular-produtos-cruzados-ponderados" title="Link permanente para este cabeçalho"></a></h3>
+<p>Agora vem o <strong>coração do I de Moran</strong>. Para cada par de vizinhos <span class="math notranslate nohighlight">\((i, j)\)</span> onde <span class="math notranslate nohighlight">\(w_{ij} &gt; 0\)</span>, calculamos:</p>
+<div class="math notranslate nohighlight">
+\[w_{ij} \cdot (x_i - \bar{x}) \cdot (x_j - \bar{x})\]</div>
+<p><strong>Interpretação do produto:</strong></p>
+<ul class="simple">
+<li><p>Se ambos <span class="math notranslate nohighlight">\(i\)</span> e <span class="math notranslate nohighlight">\(j\)</span> têm valores <strong>acima da média</strong>: <span class="math notranslate nohighlight">\((x_i - \bar{x}) &gt; 0\)</span> e <span class="math notranslate nohighlight">\((x_j - \bar{x}) &gt; 0\)</span> → produto <strong>positivo</strong></p></li>
+<li><p>Se ambos têm valores <strong>abaixo da média</strong>: <span class="math notranslate nohighlight">\((x_i - \bar{x}) &lt; 0\)</span> e <span class="math notranslate nohighlight">\((x_j - \bar{x}) &lt; 0\)</span> → produto <strong>positivo</strong></p></li>
+<li><p>Se um está acima e outro abaixo: sinais opostos → produto <strong>negativo</strong></p></li>
+</ul>
+<p><strong>Somamos todos esses produtos:</strong></p>
+<div class="math notranslate nohighlight">
+\[\sum_{i}\sum_{j}w_{ij}(x_i - \bar{x})(x_j - \bar{x})\]</div>
+<p><strong>Resultado da soma:</strong></p>
+<ul class="simple">
+<li><p>Se maioria dos pares de vizinhos tem <strong>valores no mesmo lado da média</strong> → soma <strong>grande e positiva</strong> → evidência de autocorrelação positiva</p></li>
+<li><p>Se pares de vizinhos têm frequentemente <strong>valores em lados opostos</strong> → soma <strong>negativa</strong> → autocorrelação negativa</p></li>
+<li><p>Se não há padrão → termos positivos e negativos se cancelam → soma <strong>próxima de zero</strong></p></li>
+</ul>
+<p><strong>Exemplo numérico detalhado</strong></p>
+<p>Considere 4 municípios com taxa de COPs e matriz de contiguidade:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Município</p></th>
+<th class="head"><p>Taxa (%)</p></th>
+<th class="head"><p>Desvio da média</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>20</p></td>
+<td><p>+5</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>18</p></td>
+<td><p>+3</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>10</p></td>
+<td><p>-5</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>12</p></td>
+<td><p>-3</p></td>
+</tr>
+</tbody>
+</table>
+<p>Média = 15%</p>
+<p><strong>Matriz de vizinhança (contiguidade):</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     A    B    C    D
+A    0    1    0    1
+B    1    0    1    0
+C    0    1    0    1
+D    1    0    1    0
+</pre></div>
+</div>
+<p><strong>Pares de vizinhos:</strong></p>
+<ul class="simple">
+<li><p>A-B: <span class="math notranslate nohighlight">\(w_{AB}=1, (5)(3) = 15\)</span> (ambos altos)</p></li>
+<li><p>A-D: <span class="math notranslate nohighlight">\(w_{AD}=1, (5)(-3) = -15\)</span> (alto-baixo)</p></li>
+<li><p>B-C: <span class="math notranslate nohighlight">\(w_{BC}=1, (3)(-5) = -15\)</span> (alto-baixo)</p></li>
+<li><p>C-D: <span class="math notranslate nohighlight">\(w_{CD}=1, (-5)(-3) = 15\)</span> (ambos baixos)</p></li>
+</ul>
+<p><strong>Soma dos produtos:</strong> <span class="math notranslate nohighlight">\(15 + (-15) + (-15) + 15 = 0\)</span></p>
+<p>Neste exemplo, há <strong>dois pares similares</strong> (A-B ambos altos, C-D ambos baixos) e <strong>dois pares dissimilares</strong> (A-D, B-C). Eles se cancelam, resultando em I próximo de zero (independência espacial).</p>
+</section>
+<section id="passo-4-normalizar">
+<h3>Passo 4: normalizar<a class="headerlink" href="#passo-4-normalizar" title="Link permanente para este cabeçalho"></a></h3>
+<p>Por fim, dividimos pela variância total e ajustamos por número de observações:</p>
+<div class="math notranslate nohighlight">
+\[I = \frac{n}{\sum_{i}\sum_{j}w_{ij}} \cdot \frac{\text{Soma dos produtos cruzados}}{\text{Variância total}}\]</div>
+<p><strong>Componentes da normalização:</strong></p>
+<ul class="simple">
+<li><p><strong>Numerador</strong> <span class="math notranslate nohighlight">\(n / \sum_{i}\sum_{j}w_{ij}\)</span>: Ajusta pelo tamanho da amostra e soma dos pesos</p></li>
+<li><p><strong>Denominador</strong> <span class="math notranslate nohighlight">\(\sum_{i}(x_i - \bar{x})^2\)</span>: Variância total dos dados (padroniza pela dispersão)</p></li>
+</ul>
+<p><strong>Resultado:</strong> Um número na escala aproximada de -1 a +1, comparável entre diferentes datasets.</p>
+</section>
+<section id="interpretacao-final-i-de-moran-como-correlacao-espacial">
+<h3>Interpretação final: I de Moran como correlação espacial<a class="headerlink" href="#interpretacao-final-i-de-moran-como-correlacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+<p>Pense no I de Moran como análogo à <strong>correlação de Pearson</strong>, mas em vez de correlacionar duas variáveis diferentes (<span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>), estamos correlacionando:</p>
+<ul class="simple">
+<li><p>Valor da variável em cada localização (<span class="math notranslate nohighlight">\(x_i\)</span>)</p></li>
+<li><p><strong>com</strong> média ponderada dos valores nas localizações vizinhas (spatial lag: <span class="math notranslate nohighlight">\(\sum_j w_{ij}x_j\)</span>)</p></li>
+</ul>
+<p>Se valores altos tendem a ter vizinhos com valores altos (e baixos com baixos), essa “correlação espacial” é positiva e alta. É exatamente isso que o I de Moran mede — de forma matematicamente rigorosa e com teste de significância.</p>
+</section>
+</section>
+<section id="testes-de-significancia-estatistica">
+<h2>Testes de significância estatística<a class="headerlink" href="#testes-de-significancia-estatistica" title="Link permanente para este cabeçalho"></a></h2>
+<section id="por-que-precisamos-de-testes-de-significancia">
+<h3>Por que precisamos de testes de significância<a class="headerlink" href="#por-que-precisamos-de-testes-de-significancia" title="Link permanente para este cabeçalho"></a></h3>
+<p>Calcular o valor de I é apenas o primeiro passo. Precisamos determinar se esse valor é <strong>estatisticamente diferente de zero</strong> ou se poderia ter ocorrido por mero acaso em uma distribuição espacialmente aleatória.</p>
+</section>
+<section id="hipoteses-do-teste">
+<h3>Hipóteses do teste<a class="headerlink" href="#hipoteses-do-teste" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Hipótese Nula (H₀):</strong></dt><dd><p>Os dados são espacialmente aleatórios. Não há autocorrelação espacial. A distribuição dos valores pelas localizações é independente da estrutura espacial.</p>
+</dd>
+<dt><strong>Hipótese Alternativa (H₁):</strong></dt><dd><p>Há autocorrelação espacial. A distribuição dos valores é dependente da proximidade espacial.</p>
+</dd>
+</dl>
+<p>O teste calcula: “Qual a probabilidade de observar I tão extremo quanto o calculado (ou mais) se H₀ fosse verdadeira?”</p>
+</section>
+<section id="abordagem-analitica-aproximacao-pela-normal">
+<h3>Abordagem analítica (aproximação pela normal)<a class="headerlink" href="#abordagem-analitica-aproximacao-pela-normal" title="Link permanente para este cabeçalho"></a></h3>
+<p>Sob certas condições, a distribuição do I de Moran sob aleatoriedade pode ser aproximada por uma distribuição normal.</p>
+</section>
+<section id="esperanca-e-variancia-teoricas">
+<h3>Esperança e variância teóricas<a class="headerlink" href="#esperanca-e-variancia-teoricas" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Esperança de I sob H₀ (randomização):</strong></p>
+<div class="math notranslate nohighlight">
+\[E[I] = \frac{-1}{n-1}\]</div>
+<p>Para amostras grandes, <span class="math notranslate nohighlight">\(E[I] \approx 0\)</span>.</p>
+<p><strong>Variância de I sob H₀:</strong></p>
+<p>A fórmula exata é complexa e depende da estrutura da matriz <span class="math notranslate nohighlight">\(W\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[Var[I] = \frac{nS_4 - S_3S_5}{(n-1)(n-2)(n-3)(\sum_i\sum_j w_{ij})^2} - [E[I]]^2\]</div>
+<p>Onde <span class="math notranslate nohighlight">\(S_3, S_4, S_5\)</span> são termos que envolvem somas de produtos dos pesos espaciais.</p>
+</section>
+<section id="z-score-e-valor-p">
+<h3>Z-Score e valor-p<a class="headerlink" href="#z-score-e-valor-p" title="Link permanente para este cabeçalho"></a></h3>
+<p>Calculamos o z-score:</p>
+<div class="math notranslate nohighlight">
+\[z = \frac{I - E[I]}{\sqrt{Var[I]}}\]</div>
+<p>E usamos a distribuição normal padrão para obter o valor-p:</p>
+<ul class="simple">
+<li><p>Se <span class="math notranslate nohighlight">\(|z| &gt; 1.96\)</span> → <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span> (significativo ao nível de 5%)</p></li>
+<li><p>Se <span class="math notranslate nohighlight">\(|z| &gt; 2.58\)</span> → <span class="math notranslate nohighlight">\(p &lt; 0.01\)</span> (significativo ao nível de 1%)</p></li>
+<li><p>Se <span class="math notranslate nohighlight">\(|z| &gt; 3.29\)</span> → <span class="math notranslate nohighlight">\(p &lt; 0.001\)</span> (significativo ao nível de 0,1%)</p></li>
+</ul>
+</section>
+<section id="limitacoes-da-abordagem-analitica">
+<h3>Limitações da abordagem analítica<a class="headerlink" href="#limitacoes-da-abordagem-analitica" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Pressupostos:</strong>
+- Distribuição dos dados segue normalidade ou amostra é grande o suficiente para aplicar Teorema Central do Limite
+- Estrutura da matriz W não é patológica</p>
+<p><strong>Problemas:</strong>
+- Pode ser imprecisa com <strong>amostras pequenas</strong> (n &lt; 30)
+- Sensível a <strong>outliers extremos</strong>
+- Não funciona bem com <strong>pesos espaciais irregulares</strong></p>
+</section>
+<section id="abordagem-por-simulacao-teste-de-permutacao-monte-carlo">
+<h3>Abordagem por simulação (teste de permutação Monte Carlo)<a class="headerlink" href="#abordagem-por-simulacao-teste-de-permutacao-monte-carlo" title="Link permanente para este cabeçalho"></a></h3>
+<p>Método mais robusto e amplamente recomendado pela literatura especializada.</p>
+</section>
+<section id="procedimento-detalhado">
+<h3>Procedimento detalhado<a class="headerlink" href="#procedimento-detalhado" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Passo 1:</strong> Calcular <span class="math notranslate nohighlight">\(I_{\text{obs}}\)</span> com os dados reais</p>
+<dl class="simple">
+<dt><strong>Passo 2:</strong> Permutar aleatoriamente os valores da variável entre as localizações</dt><dd><ul class="simple">
+<li><p>Manter a estrutura espacial (matriz W) <strong>fixa</strong></p></li>
+<li><p>Embaralhar apenas os valores <span class="math notranslate nohighlight">\(x_i\)</span></p></li>
+<li><p>Isso quebra qualquer autocorrelação real, criando dataset aleatório</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Passo 3:</strong> Calcular <span class="math notranslate nohighlight">\(I_{\text{perm}}\)</span> com os dados permutados</p>
+<dl class="simple">
+<dt><strong>Passo 4:</strong> Repetir passos 2-3 muitas vezes (B permutações)</dt><dd><ul class="simple">
+<li><p>Recomendado: B = 999 ou 9.999 permutações</p></li>
+<li><p>Gera distribuição empírica de I sob H₀</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Passo 5:</strong> Calcular valor-p empírico</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[p = \frac{\text{número de } I_{\text{perm}} \geq I_{\text{obs}} \text{ (ou } \leq \text{ se negativo)}}{B + 1}\]</div>
+<p>Se <span class="math notranslate nohighlight">\(I_{\text{obs}} = 0.68\)</span> e apenas 3 das 999 permutações produziram <span class="math notranslate nohighlight">\(I \geq 0.68\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[p = \frac{3 + 1}{999 + 1} = 0.004\]</div>
+<p>(Adiciona-se 1 para incluir o valor observado)</p>
+</div></blockquote>
+</section>
+<section id="vantagens-do-teste-de-permutacao">
+<h3>Vantagens do teste de permutação<a class="headerlink" href="#vantagens-do-teste-de-permutacao" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt>✅ <strong>Não depende de pressupostos distributivos</strong></dt><dd><ul class="simple">
+<li><p>Funciona com qualquer distribuição de dados</p></li>
+<li><p>Robusto a outliers</p></li>
+<li><p>Válido para amostras pequenas</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Funciona com qualquer configuração espacial</strong></dt><dd><ul class="simple">
+<li><p>Matriz W irregular não é problema</p></li>
+<li><p>Diferentes critérios de vizinhança são tratados igualmente bem</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>Intuitivo e interpretável</strong></dt><dd><ul class="simple">
+<li><p>Valor-p tem interpretação direta: proporção de permutações aleatórias que geraram I tão extremo</p></li>
+</ul>
+</dd>
+<dt>✅ <strong>É o padrão-ouro em estatística espacial moderna</strong></dt><dd><ul class="simple">
+<li><p>Recomendado por Anselin, Bivand, e outros autoridades</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="numero-de-permutacoes-necessario">
+<h3>Número de permutações necessário<a class="headerlink" href="#numero-de-permutacoes-necessario" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><strong>B = 99</strong>: Resolução de 0,01 no valor-p (adequado para análises exploratórias rápidas)</p></li>
+<li><p><strong>B = 999</strong>: Resolução de 0,001 (recomendado para análises formais)</p></li>
+<li><p><strong>B = 9.999</strong>: Resolução de 0,0001 (ideal para publicações científicas)</p></li>
+</ul>
+<p>Trade-off: Mais permutações = maior precisão, mas maior custo computacional.</p>
+<p>Para análises do Proagro, <strong>B = 999 é geralmente adequado e computacionalmente viável</strong>.</p>
+</section>
+<section id="exemplo-numerico-completo-de-teste-de-permutacao">
+<h3>Exemplo numérico completo de teste de permutação<a class="headerlink" href="#exemplo-numerico-completo-de-teste-de-permutacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>Suponha análise de COPs por seca em 87 municípios:</p>
+<dl class="simple">
+<dt><strong>Dados observados:</strong></dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I_{\text{obs}} = 0.68\)</span></p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Procedimento de permutação (B = 999):</strong></p>
+<ol class="arabic">
+<li><p>Calcula-se <span class="math notranslate nohighlight">\(I_{\text{obs}}\)</span> com dados reais</p></li>
+<li><p>Faz-se 999 permutações aleatórias:</p>
+<ul class="simple">
+<li><p>Permutação 1: <span class="math notranslate nohighlight">\(I_1 = 0.03\)</span></p></li>
+<li><p>Permutação 2: <span class="math notranslate nohighlight">\(I_2 = -0.12\)</span></p></li>
+<li><p>Permutação 3: <span class="math notranslate nohighlight">\(I_3 = 0.18\)</span></p></li>
+<li><p>… (996 permutações adicionais)</p></li>
+<li><p>Permutação 999: <span class="math notranslate nohighlight">\(I_{999} = 0.05\)</span></p></li>
+</ul>
+</li>
+<li><p>Ordena-se os 999 valores de <span class="math notranslate nohighlight">\(I_{\text{perm}}\)</span></p></li>
+<li><p>Verifica-se quantos são <span class="math notranslate nohighlight">\(\geq 0.68\)</span>:</p>
+<ul class="simple">
+<li><p>Resultado: <strong>0 permutações</strong> geraram <span class="math notranslate nohighlight">\(I \geq 0.68\)</span></p></li>
+</ul>
+</li>
+<li><p>Calcula-se valor-p:</p>
+<div class="math notranslate nohighlight">
+\[p = \frac{0 + 1}{999 + 1} = 0.001\]</div>
+<p>(Mesmo que nenhuma permutação tenha atingido 0.68, adiciona-se 1 para evitar p = 0 exato)</p>
+</li>
+</ol>
+<dl class="simple">
+<dt><strong>Interpretação:</strong></dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I = 0.68, p = 0.001\)</span></p></li>
+<li><p>Probabilidade &lt; 0,1% de observar autocorrelação tão forte por acaso</p></li>
+<li><p>Evidência fortíssima de clustering espacial real</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="visualizando-o-teste-histograma-de-permutacao">
+<h3>Visualizando o teste: histograma de permutação<a class="headerlink" href="#visualizando-o-teste-histograma-de-permutacao" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Frequência
+    │
+100 │          ██
+    │         ████
+ 80 │        ██████
+    │       ████████
+ 60 │      ██████████
+    │     ████████████
+ 40 │    ██████████████
+    │   ████████████████
+ 20 │  ██████████████████
+    │ ████████████████████
+  0 └──────────────────────────→ I de Moran
+    -0.3  -0.1  0.1  0.3  0.5  0.7↑
+                               I_obs = 0.68
+</pre></div>
+</div>
+<p>Distribuição nula centrada próxima de zero; valor observado muito além da cauda direita.</p>
+</section>
+</section>
+<section id="interpretacao-do-indice-i-de-moran-no-contexto-do-proagro">
+<h2>Interpretação do índice I de Moran no contexto do Proagro<a class="headerlink" href="#interpretacao-do-indice-i-de-moran-no-contexto-do-proagro" title="Link permanente para este cabeçalho"></a></h2>
+<section id="padroes-esperados-vs-anomalos">
+<h3>Padrões esperados vs. anômalos<a class="headerlink" href="#padroes-esperados-vs-anomalos" title="Link permanente para este cabeçalho"></a></h3>
+<p>A interpretação do I de Moran no Proagro deve sempre considerar o <strong>contexto do fenômeno alegado</strong> e comparar com padrões fisicamente plausíveis.</p>
+</section>
+<section id="autocorrelacao-alta-e-significativa-quando-e-esperada">
+<h3>Autocorrelação alta e significativa: quando É esperada<a class="headerlink" href="#autocorrelacao-alta-e-significativa-quando-e-esperada" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Fenômenos climáticos regionais:</strong></p>
+<ul class="simple">
+<li><p><strong>Seca prolongada</strong>: I tipicamente entre 0,60-0,85</p></li>
+<li><p><strong>Chuvas excessivas (sistemas frontais)</strong>: I tipicamente entre 0,55-0,80</p></li>
+<li><p><strong>Ondas de frio/geada</strong>: I tipicamente entre 0,45-0,70</p></li>
+<li><p><strong>Veranicos (estiagens curtas)</strong>: I tipicamente entre 0,40-0,65</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Interpretação quando observado:</strong></dt><dd><p>✅ <strong>Coerência fenomenológica</strong> — Padrão de COPs é consistente com eventos climáticos que afetam áreas contíguas. Isso <strong>valida</strong> que perdas decorrem efetivamente de fenômeno natural regional.</p>
+</dd>
+<dt><strong>Próximo passo analítico:</strong></dt><dd><p>Prosseguir para LISA para identificar onde especificamente estão os clusters.</p>
+</dd>
+</dl>
+</section>
+<section id="autocorrelacao-baixa-ou-ausente-quando-e-esperada">
+<h3>Autocorrelação baixa ou ausente: quando É esperada<a class="headerlink" href="#autocorrelacao-baixa-ou-ausente-quando-e-esperada" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Fenômenos muito localizados:</strong></p>
+<ul class="simple">
+<li><p><strong>Granizo</strong>: I tipicamente entre 0,05-0,25 (ou não significativo)</p></li>
+<li><p><strong>Vendavais pontuais</strong>: I tipicamente entre 0,10-0,30</p></li>
+<li><p><strong>Raios (incêndio)</strong>: I próximo de zero</p></li>
+<li><p><strong>Pragas/doenças específicas</strong>: I variável, frequentemente baixo</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Interpretação quando observado:</strong></dt><dd><p>✅ <strong>Coerência fenomenológica</strong> — Ausência de autocorrelação forte é esperada para eventos extremamente localizados. Não indica problema.</p>
+</dd>
+<dt><strong>Implicação metodológica:</strong></dt><dd><p>Análises LISA terão poder limitado. Considerar técnicas de padrão pontual (Ripley’s K) ou análise caso a caso.</p>
+</dd>
+</dl>
+</section>
+<section id="divergencias-que-sinalizam-anomalias">
+<h3>Divergências que sinalizam anomalias<a class="headerlink" href="#divergencias-que-sinalizam-anomalias" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Cenário 1: Autocorrelação alta em COPs, baixa/ausente no clima</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I_{\text{COPs}} = 0.65, p &lt; 0.001\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{\text{clima}} = 0.18, p = 0.22\)</span></p></li>
+</ul>
+<p>⚠️ <strong>Alerta:</strong> COPs mostram forte clustering, mas fenômeno climático alegado não. Possíveis explicações:</p>
+<ol class="arabic simple">
+<li><p><strong>Dados climáticos inadequados</strong> (poucas estações, não representativas)</p></li>
+<li><p><strong>Viés geográfico não climático</strong> (atuação de perito, IF, cooperativa)</p></li>
+<li><p><strong>Fator confundidor</strong> (tipo de solo, manejo) incorretamente atribuído a clima</p></li>
+<li><p><strong>Possível irregularidade sistemática</strong></p></li>
+</ol>
+<p><strong>Ação:</strong> Investigação prioritária. Triangular com outras fontes de dados.</p>
+<p><strong>Cenário 2: Autocorrelação em COPs diverge por ator</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I_{\text{COPs perito A}} = 0.58, p &lt; 0.01\)</span> (forte clustering)</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_{\text{COPs perito B}} = 0.12, p = 0.35\)</span> (disperso)</p></li>
+<li><p>Atuando na mesma região, mesmo período, mesmo fenômeno alegado</p></li>
+</ul>
+<p>⚠️ <strong>Alerta:</strong> Padrão espacial de COPs difere significativamente entre peritos na mesma região/fenômeno. Possíveis explicações:</p>
+<ol class="arabic simple">
+<li><p><strong>Área de atuação geograficamente enviesada</strong> (Perito A concentra-se em sub-região específica)</p></li>
+<li><p><strong>Critérios de avaliação diferentes</strong></p></li>
+<li><p><strong>Possível viés sistemático ou conluio localizado</strong></p></li>
+</ol>
+<p><strong>Ação:</strong> Revisar amostra de COPs de ambos peritos, verificar distribuição territorial, cruzar com outras variáveis.</p>
+</section>
+<section id="exemplos-detalhados-de-interpretacao">
+<h3>Exemplos detalhados de interpretação<a class="headerlink" href="#exemplos-detalhados-de-interpretacao" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="exemplo-1-cops-por-seca-padrao-esperado-de-fenomeno-regional">
+<h3>Exemplo 1: COPs por seca — padrão esperado de fenômeno regional<a class="headerlink" href="#exemplo-1-cops-por-seca-padrao-esperado-de-fenomeno-regional" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Contexto:</strong></dt><dd><p>Safra 2021/22, cultura soja, MATOPIBA. 412 COPs por seca em 87 municípios.</p>
+</dd>
+</dl>
+<p><strong>Procedimento:</strong></p>
+<ol class="arabic simple">
+<li><p>Cálculo da taxa: (COPs seca) / (operações totais) × 100 por município</p></li>
+<li><p>Vizinhança: Contiguidade queen</p></li>
+<li><p>Teste: Permutação Monte Carlo (B=999)</p></li>
+</ol>
+<dl class="simple">
+<dt><strong>Resultados:</strong></dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I = 0.68, p &lt; 0.001\)</span></p></li>
+<li><p>E[I] = -0.012 (esperança sob aleatoriedade)</p></li>
+<li><p>Z-score = 5.8</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Interpretação Detalhada:</strong></p>
+<dl class="simple">
+<dt><strong>Valor do índice (0.68):</strong></dt><dd><p>Forte autocorrelação positiva. Municípios com alta taxa de COPs tendem fortemente a estar próximos de outros municípios com alta taxa. Valores similares se agrupam espacialmente.</p>
+</dd>
+<dt><strong>Significância (p &lt; 0.001):</strong></dt><dd><p>Probabilidade &lt; 0,1% de observar I tão alto por acaso. Evidência fortíssima de que o padrão NÃO é aleatório — há estrutura espacial real.</p>
+</dd>
+<dt><strong>Contexto fenomenológico:</strong></dt><dd><p>Este resultado é <strong>coerente e esperado</strong> para perdas decorrentes de seca. Secas são fenômenos atmosféricos de escala mesoclimática (centenas de km) que afetam áreas contíguas. Sistemas de alta pressão bloqueantes, déficits de chuva, permanecem estacionários ou migram lentamente, impactando municípios vizinhos de forma similar.</p>
+</dd>
+<dt><strong>Significado para supervisão:</strong></dt><dd><p>✅ Padrão de COPs <strong>valida</strong> que perdas seguem lógica de evento climático real regional. Não há inconsistência flagrante na distribuição espacial.</p>
+</dd>
+<dt><strong>Próximo passo:</strong></dt><dd><p>Prosseguir para análise LISA para identificar <strong>onde especificamente</strong> estão os clusters HH (hotspots de sinistralidade) e LL (coldspots), e se coincidem com dados climáticos.</p>
+</dd>
+</dl>
+</section>
+<section id="exemplo-2-cops-por-granizo-fenomeno-localizado-baixa-autocorrelacao">
+<h3>Exemplo 2: COPs por granizo — fenômeno localizado, baixa autocorrelação<a class="headerlink" href="#exemplo-2-cops-por-granizo-fenomeno-localizado-baixa-autocorrelacao" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Contexto:</strong></dt><dd><p>Mesma safra/região, 73 COPs por granizo em 34 municípios.</p>
+</dd>
+<dt><strong>Procedimento:</strong></dt><dd><p>Mesma metodologia.</p>
+</dd>
+<dt><strong>Resultados:</strong></dt><dd><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(I = 0.12, p = 0.18\)</span></p></li>
+<li><p>E[I] = -0.012</p></li>
+<li><p>Z-score = 1.3</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Interpretação Detalhada:</strong></p>
+<dl class="simple">
+<dt><strong>Valor do índice (0.12):</strong></dt><dd><p>Autocorrelação espacial muito fraca, próxima de zero. Municípios com COPs por granizo não tendem particularmente a estar próximos de outros com COPs por granizo.</p>
+</dd>
+<dt><strong>Significância (p = 0.18):</strong></dt><dd><p>p &gt; 0,05 — <strong>não podemos rejeitar hipótese de aleatoriedade espacial</strong>. O valor I = 0,12 poderia facilmente ocorrer por acaso. Estatisticamente, não há evidência de autocorrelação.</p>
+</dd>
+<dt><strong>Contexto fenomenológico:</strong></dt><dd><p>Este resultado também é <strong>esperado e coerente</strong> com a natureza física do granizo. Granizo forma-se em células convectivas isoladas de poucos km² de extensão. Uma tempestade pode devastar uma propriedade enquanto vizinha a 5-10 km permanece ilesa. COPs tendem a aparecer de forma mais “pontilhada” no mapa, sem formar manchas contínuas.</p>
+</dd>
+<dt><strong>Implicação metodológica:</strong></dt><dd><p>Para fenômenos com baixa autocorrelação global, análises LISA têm poder estatístico reduzido. Técnicas alternativas podem ser mais apropriadas:</p>
+<ul class="simple">
+<li><p>Análise de padrão pontual (Ripley’s K-function)</p></li>
+<li><p>Densidade Kernel com raio muito pequeno (&lt; 10 km)</p></li>
+<li><p>Análise caso a caso considerando trajetórias de tempestades</p></li>
+</ul>
+</dd>
+<dt><strong>Significado para supervisão:</strong></dt><dd><p>✅ Distribuição espacial dispersa é <strong>normal</strong> para granizo. Ausência de clustering não indica problema.</p>
+</dd>
+</dl>
+</section>
+<section id="exemplo-3-cops-com-padrao-suspeito-divergencia-entre-perdas-e-clima">
+<h3>Exemplo 3: COPs com padrão suspeito — divergência entre perdas e clima<a class="headerlink" href="#exemplo-3-cops-com-padrao-suspeito-divergencia-entre-perdas-e-clima" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Contexto:</strong></dt><dd><p>Sul de Goiás, safra 2022/23, milho. Investigação de suspeita sobre perito específico (89 das 267 COPs regionais).</p>
+</dd>
+</dl>
+<p><strong>Análise Dupla:</strong></p>
+<p><strong>Análise A — Padrão espacial das COPs do perito X</strong></p>
+<p><em>Variável:</em> Presença de COP atendida por perito X (binária: 1=sim, 0=não) por município</p>
+<p><em>Resultado:</em> <span class="math notranslate nohighlight">\(I_A = 0.45, p = 0.009\)</span></p>
+<p><strong>Análise B — Padrão espacial do fenômeno climático (seca)</strong></p>
+<p><em>Variável:</em> Déficit hídrico no período crítico, calculado de estações INMET</p>
+<p><em>Resultado:</em> <span class="math notranslate nohighlight">\(I_B = 0.15, p = 0.25\)</span></p>
+<p><strong>Interpretação Detalhada:</strong></p>
+<dl class="simple">
+<dt><strong>Análise A:</strong></dt><dd><p>COPs do perito X exibem autocorrelação positiva moderada e significativa (I = 0,45, p &lt; 0,01). Municípios onde ele atuou se agrupam geograficamente. <strong>Por si só, isso não é necessariamente problemático</strong> — peritos têm áreas de atuação geográficas.</p>
+</dd>
+<dt><strong>Análise B:</strong></dt><dd><p>Déficit hídrico <strong>não</strong> apresenta autocorrelação significativa (I = 0,15, p = 0,25). A distribuição do fenômeno climático foi relativamente uniforme ou aleatória na região — não houve “manchas” claras de seca severa vs. moderada.</p>
+</dd>
+<dt><strong>A divergência crítica:</strong></dt><dd><p>As COPs mostram forte estrutura espacial (I = 0,45), mas o fenômeno climático alegado <strong>não</strong> mostra estrutura correspondente (I = 0,15). Isso sugere que a <strong>concentração espacial das COPs não é explicada pela distribuição espacial do fenômeno climático</strong>.</p>
+</dd>
+</dl>
+<p><strong>Hipóteses a investigar:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Viés geográfico na atuação:</strong>
+Perito pode estar concentrando atuação em municípios específicos por razões não climáticas:</p>
+<ul class="simple">
+<li><p>Relações comerciais com cooperativas/IFs locais</p></li>
+<li><p>Facilidade de acesso (proximidade residencial)</p></li>
+<li><p>Rede de contatos de produtores</p></li>
+<li><p>Possível conluio com grupo de produtores</p></li>
+</ul>
+</li>
+<li><p><strong>Dados climáticos inadequados:</strong>
+Talvez estações meteorológicas não capturem heterogeneidade real (improvável se várias estações usadas)</p></li>
+<li><p><strong>Fator local não-climático:</strong>
+Algo específico daqueles municípios (solo, manejo) causa perdas não relacionadas primariamente a seca, mas perito atribui incorretamente a déficit hídrico</p></li>
+<li><p><strong>Irregularidade sistemática:</strong>
+Padrão artificial de COPs sem fundamento climático real</p></li>
+</ol>
+<dl class="simple">
+<dt><strong>Investigação subsequente revelou:</strong></dt><dd><ul class="simple">
+<li><p>Perito tinha vínculos comerciais com cooperativa que opera nos 4 municípios onde COPs se concentraram</p></li>
+<li><p>Análise documental encontrou 23 COPs com <strong>fotografias idênticas</strong> em laudos (copy-paste)</p></li>
+<li><p>Cruzamento com dados de sensoriamento remoto (NDVI) mostrou que várias glebas mantiveram vigor vegetativo normal no período alegado de perda</p></li>
+</ul>
+</dd>
+<dt><strong>Conclusão:</strong></dt><dd><p>Análise espacial <strong>sinalizou anomalia que direcionou investigação aprofundada</strong>, confirmando irregularidades.</p>
+</dd>
+<dt><strong>Lição metodológica:</strong></dt><dd><p>Comparar I de Moran de COPs com I de Moran do fenômeno climático subjacente é <strong>técnica de triagem poderosa</strong>. Divergências significativas justificam investigação prioritária.</p>
+</dd>
+</dl>
+</section>
+<section id="exemplo-4-autocorrelacao-moderada-em-ambos-coerencia-parcial">
+<h3>Exemplo 4: autocorrelação moderada em ambos — coerência parcial<a class="headerlink" href="#exemplo-4-autocorrelacao-moderada-em-ambos-coerencia-parcial" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Contexto:</strong></dt><dd><p>Mato Grosso, safra 2023/24, algodão, 234 COPs por chuva excessiva.</p>
+</dd>
+</dl>
+<p><strong>Análise Dupla:</strong></p>
+<p><em>COPs:</em> <span class="math notranslate nohighlight">\(I = 0,52, p = 0,002\)</span></p>
+<p><em>Precipitação acumulada (estações INMET):</em> <span class="math notranslate nohighlight">\(I = 0,41, p = 0,018\)</span></p>
+<p><strong>Interpretação:</strong></p>
+<p>Ambos mostram autocorrelação positiva significativa, mas <strong>diferentes magnitudes</strong>. COPs têm autocorrelação um pouco mais forte que a precipitação observada.</p>
+<p><strong>Possíveis explicações (não mutuamente excludentes):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Amplificação por características locais:</strong>
+Municípios com COPs concentradas podem ter solos argilosos/mal drenados que amplificam efeito de chuva. Municípios vizinhos tendem a ter solos similares → clustering de COPs mais forte que clustering de chuva.</p></li>
+<li><p><strong>Defasagem temporal:</strong>
+Chuvas acumuladas podem ter variabilidade espacial moderada, mas <strong>encharcamento</strong> (causa real de perda) tem persistência maior, criando autocorrelação mais forte.</p></li>
+<li><p><strong>Viés amostral leve:</strong>
+Pode haver leve tendência de produtores em certos municípios reportarem mais prontamente ou receberem assistência técnica mais ativa.</p></li>
+</ol>
+<dl class="simple">
+<dt><strong>Ação:</strong></dt><dd><p>Considerar coerência <strong>suficiente</strong> (ambos significativos, na mesma direção), mas <strong>verificar amostra de municípios com maior divergência</strong> entre I de COPs e I de chuva para entender fatores locais.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="o-diagrama-de-dispersao-de-moran">
+<h2>O diagrama de dispersão de Moran<a class="headerlink" href="#o-diagrama-de-dispersao-de-moran" title="Link permanente para este cabeçalho"></a></h2>
+<section id="conceito-e-construcao">
+<h3>Conceito e construção<a class="headerlink" href="#conceito-e-construcao" title="Link permanente para este cabeçalho"></a></h3>
+<p>O <strong>diagrama de dispersão de Moran</strong> (Moran scatterplot) é uma representação gráfica que permite visualizar <strong>como cada localização individual contribui para a autocorrelação global</strong>.</p>
+</section>
+<section id="eixos-do-diagrama">
+<h3>Eixos do diagrama<a class="headerlink" href="#eixos-do-diagrama" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Eixo X — Valor Padronizado Local (z-score):</strong></p>
+<p>Para cada município <span class="math notranslate nohighlight">\(i\)</span>, plotamos:</p>
+<div class="math notranslate nohighlight">
+\[z_i = \frac{x_i - \bar{x}}{\sigma_x}\]</div>
+<p>Onde <span class="math notranslate nohighlight">\(\sigma_x\)</span> é o desvio-padrão da variável.</p>
+<ul class="simple">
+<li><p>Municípios acima da média: <span class="math notranslate nohighlight">\(z_i &gt; 0\)</span> (à direita do eixo vertical)</p></li>
+<li><p>Municípios abaixo da média: <span class="math notranslate nohighlight">\(z_i &lt; 0\)</span> (à esquerda do eixo vertical)</p></li>
+</ul>
+<p><strong>Eixo Y — “Spatial Lag” (Média dos Vizinhos Padronizada):</strong></p>
+<p>Para cada município <span class="math notranslate nohighlight">\(i\)</span>, calculamos a média ponderada dos valores padronizados de seus vizinhos:</p>
+<div class="math notranslate nohighlight">
+\[\text{Lag}(z_i) = \sum_j w^*_{ij} z_j\]</div>
+<p>Onde <span class="math notranslate nohighlight">\(w^*_{ij}\)</span> são os pesos normalizados por linha.</p>
+<ul class="simple">
+<li><p>Se vizinhos têm valores altos (acima da média): Lag &gt; 0 (acima do eixo horizontal)</p></li>
+<li><p>Se vizinhos têm valores baixos: Lag &lt; 0 (abaixo do eixo horizontal)</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Plotagem:</strong></dt><dd><p>Cada município é um ponto no gráfico (z_i, Lag(z_i)).</p>
+</dd>
+</dl>
+</section>
+<section id="inclinacao-da-linha-de-regressao">
+<h3>Inclinação da linha de regressão<a class="headerlink" href="#inclinacao-da-linha-de-regressao" title="Link permanente para este cabeçalho"></a></h3>
+<p>A <strong>inclinação da linha de regressão OLS</strong> entre os pontos corresponde <strong>diretamente ao I de Moran</strong>:</p>
+<div class="math notranslate nohighlight">
+\[I \approx \text{slope} = \frac{\text{Cov}(z_i, \text{Lag}(z_i))}{\text{Var}(z_i)}\]</div>
+<p>Quanto mais íngreme a linha (positiva), maior a autocorrelação positiva.</p>
+</section>
+<section id="os-quatro-quadrantes-e-suas-interpretacoes">
+<h3>Os quatro quadrantes e suas interpretações<a class="headerlink" href="#os-quatro-quadrantes-e-suas-interpretacoes" title="Link permanente para este cabeçalho"></a></h3>
+<p>O diagrama é dividido em quatro quadrantes que caracterizam diferentes tipos de associação espacial local:</p>
+</section>
+<section id="quadrante-i-superior-direito-high-high-hh">
+<h3>Quadrante I (superior direito) — high-high (HH)<a class="headerlink" href="#quadrante-i-superior-direito-high-high-hh" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Características:</strong>
+- Município tem valor alto (<span class="math notranslate nohighlight">\(z_i &gt; 0\)</span>, eixo X positivo)
+- Seus vizinhos também têm valores altos (Lag &gt; 0, eixo Y positivo)</p>
+<dl class="simple">
+<dt><strong>Interpretação:</strong></dt><dd><p><strong>Clusters de valores altos</strong> — hotspots. Município “quente” cercado por outros “quentes”.</p>
+</dd>
+<dt><strong>No Proagro:</strong></dt><dd><p>Municípios com alta taxa de sinistralidade cercados por outros com alta taxa. Indica região problemática com perdas generalizadas.</p>
+</dd>
+<dt><strong>Exemplo:</strong></dt><dd><p>Município X: taxa de COPs = 35% (z = +2,1), média dos vizinhos = 32% (Lag = +1,8) → HH</p>
+</dd>
+</dl>
+</section>
+<section id="quadrante-iii-inferior-esquerdo-low-low-ll">
+<h3>Quadrante III (inferior esquerdo) — low-low (LL)<a class="headerlink" href="#quadrante-iii-inferior-esquerdo-low-low-ll" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Características:</strong>
+- Município tem valor baixo (<span class="math notranslate nohighlight">\(z_i &lt; 0\)</span>, eixo X negativo)
+- Seus vizinhos também têm valores baixos (Lag &lt; 0, eixo Y negativo)</p>
+<dl class="simple">
+<dt><strong>Interpretação:</strong></dt><dd><p><strong>Clusters de valores baixos</strong> — coldspots. Município “frio” cercado por outros “frios”.</p>
+</dd>
+<dt><strong>No Proagro:</strong></dt><dd><p>Municípios com baixa taxa de sinistralidade cercados por outros com baixa taxa. Região com baixo risco ou boa resiliência.</p>
+</dd>
+<dt><strong>Exemplo:</strong></dt><dd><p>Município Y: taxa de COPs = 8% (z = -1,5), média dos vizinhos = 10% (Lag = -1,2) → LL</p>
+</dd>
+</dl>
+</section>
+<section id="quadrante-ii-superior-esquerdo-low-high-lh">
+<h3>Quadrante II (superior esquerdo) — low-high (LH)<a class="headerlink" href="#quadrante-ii-superior-esquerdo-low-high-lh" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Características:</strong>
+- Município tem valor baixo (<span class="math notranslate nohighlight">\(z_i &lt; 0\)</span>), <strong>mas</strong> vizinhos têm valores altos (Lag &gt; 0)</p>
+<dl class="simple">
+<dt><strong>Interpretação:</strong></dt><dd><p><strong>Outlier espacial</strong> — “ilha de tranquilidade em mar revolto”. Município com comportamento anômalo em relação ao entorno.</p>
+</dd>
+<dt><strong>No Proagro:</strong></dt><dd><p>Município com baixa sinistralidade <strong>cercado</strong> por municípios com alta sinistralidade. Possíveis explicações:</p>
+<ul class="simple">
+<li><p>Características locais protetoras (irrigação, solo superior, variedades resistentes)</p></li>
+<li><p>Subnotificação local (produtores não comunicam perdas)</p></li>
+<li><p>Área geográfica pequena poupada por evento (microclima favorável)</p></li>
+<li><p><strong>Possível erro de dados</strong> (verificar qualidade)</p></li>
+</ul>
+</dd>
+<dt><strong>Exemplo:</strong></dt><dd><p>Município Z: taxa = 12% (z = -0,8), mas todos 5 vizinhos têm taxa &gt; 30% (Lag = +1,9) → LH outlier</p>
+</dd>
+</dl>
+</section>
+<section id="quadrante-iv-inferior-direito-high-low-hl">
+<h3>Quadrante IV (inferior direito) — high-low (HL)<a class="headerlink" href="#quadrante-iv-inferior-direito-high-low-hl" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Características:</strong>
+- Município tem valor alto (<span class="math notranslate nohighlight">\(z_i &gt; 0\)</span>), <strong>mas</strong> vizinhos têm valores baixos (Lag &lt; 0)</p>
+<dl class="simple">
+<dt><strong>Interpretação:</strong></dt><dd><p><strong>Outlier espacial</strong> — “pico isolado”. Município com comportamento anômalo em relação ao entorno.</p>
+</dd>
+<dt><strong>No Proagro:</strong></dt><dd><p>Município com alta sinistralidade <strong>cercado</strong> por municípios com baixa sinistralidade. Possíveis explicações:</p>
+<ul class="simple">
+<li><p>Fenômeno extremamente localizado (tornado, tromba d’água, granizo severo em área restrita)</p></li>
+<li><p>Características locais de vulnerabilidade (vale sujeito a geadas, área mal drenada)</p></li>
+<li><p><strong>Sobrenotificação ou irregularidade concentrada</strong> (concentração artificial de COPs)</p></li>
+<li><p>Atuação concentrada de IF/perito/cooperativa</p></li>
+</ul>
+</dd>
+<dt><strong>Exemplo:</strong></dt><dd><p>Município W: taxa = 42% (z = +2,5), mas 4 dos 5 vizinhos têm taxa &lt; 15% (Lag = -1,1) → HL outlier</p>
+</dd>
+</dl>
+<p><strong>⚠️ Outliers HL merecem atenção especial em supervisão</strong> — comportamento discrepante do entorno exige explicação.</p>
+</section>
+<section id="interpretacao-da-linha-de-regressao">
+<h3>Interpretação da linha de regressão<a class="headerlink" href="#interpretacao-da-linha-de-regressao" title="Link permanente para este cabeçalho"></a></h3>
+<p>A linha de regressão no diagrama de Moran sintetiza o padrão global:</p>
+</section>
+<section id="inclinacao-positiva-acentuada-i-alto">
+<h3><strong>Inclinação positiva acentuada (I alto)</strong><a class="headerlink" href="#inclinacao-positiva-acentuada-i-alto" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Lag(z)
+   │
++3 │           ••
+   │         •••••
++2 │       ••••••••
+   │     •••••••••••
++1 │   ••••••••••••••
+   │  •••••••••••••••
+ 0 ├───────•──────────→ z
+   │      •••••••••
+-1 │    •••••••••
+   │  ••••••••
+-2 │••••••
+   │
+-3 │
+</pre></div>
+</div>
+<p>Maioria dos pontos em quadrantes HH e LL. Valores similares se agrupam fortemente.</p>
+</section>
+<section id="inclinacao-proxima-de-zero-i-proximo-de-0">
+<h3><strong>Inclinação próxima de zero (I próximo de 0)</strong><a class="headerlink" href="#inclinacao-proxima-de-zero-i-proximo-de-0" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Lag(z)
+   │
++3 │  • •  •    •
+   │ •  •• • •  •
++2 │• ••  •  • •
+   │ • •  •• •  •
++1 │•  • •  ••  •
+   │ •  ••  • • •
+ 0 ├─────────────────→ z
+   │•  • • •  •  •
+-1 │ •  ••  •  • •
+   │•  •  •• • •
+-2 │ •  • •  ••
+   │•   •  •  •
+-3 │
+</pre></div>
+</div>
+<p>Pontos dispersos sem padrão claro. Nuvem aproximadamente circular.</p>
+</section>
+<section id="inclinacao-negativa-i-negativo-raro">
+<h3><strong>Inclinação negativa (I negativo, raro)</strong><a class="headerlink" href="#inclinacao-negativa-i-negativo-raro" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Lag(z)
+   │
++3 │••••
+   │ ••••••
++2 │  ••••••••
+   │    •••••••••
++1 │     ••••••••••
+   │       ••••••••••
+ 0 ├───────────•───────→ z
+   │        •••••••••
+-1 │          ••••••••
+   │            ••••••
+-2 │              ••••
+   │                ••
+-3 │
+</pre></div>
+</div>
+<p>Maioria em quadrantes LH e HL. Padrão alternado.</p>
+</section>
+<section id="utilidade-pratica-do-diagrama-para-o-proagro">
+<h3>Utilidade prática do diagrama para o Proagro<a class="headerlink" href="#utilidade-pratica-do-diagrama-para-o-proagro" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="identificacao-visual-rapida-de-outliers">
+<h3>Identificação visual rápida de outliers<a class="headerlink" href="#identificacao-visual-rapida-de-outliers" title="Link permanente para este cabeçalho"></a></h3>
+<p>Municípios muito afastados da linha de regressão ou em quadrantes LH/HL são <strong>candidatos prioritários</strong> para investigação detalhada.</p>
+<p><strong>Workflow:</strong></p>
+<ol class="arabic simple">
+<li><p>Gerar diagrama de Moran</p></li>
+<li><p>Identificar pontos extremos em LH ou HL</p></li>
+<li><p>Extrair lista de municípios correspondentes</p></li>
+<li><p>Priorizar para análise documental, visitas de campo</p></li>
+</ol>
+<dl class="simple">
+<dt><strong>Exemplo:</strong></dt><dd><p>Diagrama revela 3 municípios em HL com z &gt; 2,5. Todos têm mesmo perito responsável. Investigação aprofundada justificada.</p>
+</dd>
+</dl>
+</section>
+<section id="diagnostico-de-influencia-de-observacoes-extremas">
+<h3>Diagnóstico de influência de observações extremas<a class="headerlink" href="#diagnostico-de-influencia-de-observacoes-extremas" title="Link permanente para este cabeçalho"></a></h3>
+<p>Se I é alto mas dominado por 1-2 pontos muito extremos, pode ser artefato.</p>
+<p><strong>Teste de robustez:</strong></p>
+<ol class="arabic simple">
+<li><p>Identificar outlier extremo no diagrama</p></li>
+<li><p>Remover temporariamente da análise</p></li>
+<li><p>Recalcular I de Moran</p></li>
+<li><p>Verificar se I continua significativo</p></li>
+</ol>
+<p>Se I cai drasticamente (ex: de 0,65 para 0,25), o padrão era dominado por poucos outliers — interpretar com cautela.</p>
+</section>
+<section id="comparacao-visual-entre-diferentes-variaveis">
+<h3>Comparação visual entre diferentes variáveis<a class="headerlink" href="#comparacao-visual-entre-diferentes-variaveis" title="Link permanente para este cabeçalho"></a></h3>
+<p>Colocar diagramas lado a lado:</p>
+<ul class="simple">
+<li><p>Diagrama A: I de Moran de COPs</p></li>
+<li><p>Diagrama B: I de Moran de déficit hídrico</p></li>
+</ul>
+<p><strong>Se padrões são similares</strong> (inclinações parecidas, pontos nos mesmos quadrantes) → coerência espacial entre perdas e clima.</p>
+<p><strong>Se divergem</strong> (I alto em A, baixo em B; ou municípios em HH em A mas LL em B) → inconsistência que requer explicação.</p>
+</section>
+<section id="comunicacao-com-nao-especialistas">
+<h3>Comunicação com não-especialistas<a class="headerlink" href="#comunicacao-com-nao-especialistas" title="Link permanente para este cabeçalho"></a></h3>
+<p>Diagrama de Moran é mais intuitivo que fórmulas. Gestores compreendem:</p>
+<ul class="simple">
+<li><p>“Pontos neste canto (HH) são municípios problemáticos agrupados”</p></li>
+<li><p>“Este ponto sozinho aqui (HL outlier) é anomalia que investigamos”</p></li>
+<li><p>“Linha inclinada para cima mostra que vizinhos tendem a ser parecidos”</p></li>
+</ul>
+<p>Facilita apresentação de resultados de análise espacial para audiências não-técnicas.</p>
+</section>
+<section id="exemplo-completo-de-diagrama-de-moran">
+<h3>Exemplo completo de diagrama de Moran<a class="headerlink" href="#exemplo-completo-de-diagrama-de-moran" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>Contexto:</strong></dt><dd><p>Taxa de COPs por seca, MATOPIBA 2021/22, 87 municípios</p>
+</dd>
+</dl>
+<p><strong>Construção:</strong></p>
+<ol class="arabic simple">
+<li><p>Calcular taxa por município e padronizar (z-score)</p></li>
+<li><p>Calcular spatial lag para cada município (média dos vizinhos)</p></li>
+<li><p>Plotar cada município como ponto (z, Lag)</p></li>
+<li><p>Ajustar linha de regressão OLS</p></li>
+</ol>
+<p><strong>Resultados Observados:</strong></p>
+<ul class="simple">
+<li><p>Inclinação = 0,68 (= I de Moran)</p></li>
+<li><p>R² = 0,46 (46% da variação no spatial lag explicada pelo valor local)</p></li>
+<li><p>63 municípios em HH ou LL (autocorrelação positiva local)</p></li>
+<li><p>4 municípios em HL (outliers de alta sinistralidade)</p></li>
+<li><p>2 municípios em LH (outliers de baixa sinistralidade)</p></li>
+<li><p>18 municípios não significativos (próximos do centro)</p></li>
+</ul>
+<p><strong>Interpretação:</strong></p>
+<p>Forte autocorrelação positiva confirmada visualmente. Maioria dos municípios segue padrão esperado (valores similares agrupados). Os 4 HL outliers foram investigados — todos tinham mesmo perito e apresentavam laudos com problemas documentais.</p>
+</section>
+</section>
+<section id="limitacoes-e-armadilhas-do-indice-i-de-moran">
+<h2>Limitações e armadilhas do índice I de Moran<a class="headerlink" href="#limitacoes-e-armadilhas-do-indice-i-de-moran" title="Link permanente para este cabeçalho"></a></h2>
+<p>Embora poderoso, o I de Moran tem limitações importantes que devem ser reconhecidas para uso responsável.</p>
+<section id="limitacao-1-sensibilidade-a-definicao-de-vizinhanca">
+<h3>Limitação 1: sensibilidade à definição de vizinhança<a class="headerlink" href="#limitacao-1-sensibilidade-a-definicao-de-vizinhanca" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="o-problema">
+<h3>O problema<a class="headerlink" href="#o-problema" title="Link permanente para este cabeçalho"></a></h3>
+<p>Diferentes critérios de vizinhança podem produzir valores <strong>substancialmente diferentes</strong> de I de Moran para os mesmos dados.</p>
+</section>
+<section id="exemplo-comparativo">
+<h3>Exemplo comparativo<a class="headerlink" href="#exemplo-comparativo" title="Link permanente para este cabeçalho"></a></h3>
+<p>Taxa de COPs em 50 municípios, três definições testadas:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Critério de Vizinhança</p></th>
+<th class="head"><p>I de Moran</p></th>
+<th class="head"><p>Valor-p</p></th>
+<th class="head"><p>Classificação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Contiguidade queen</p></td>
+<td><p>0,52</p></td>
+<td><p>0,01</p></td>
+<td><p>Significativo</p></td>
+</tr>
+<tr class="row-odd"><td><p>Distância &lt; 30 km</p></td>
+<td><p>0,38</p></td>
+<td><p>0,04</p></td>
+<td><p>Significativo</p></td>
+</tr>
+<tr class="row-even"><td><p>5 vizinhos mais próximos</p></td>
+<td><p>0,61</p></td>
+<td><p>0,003</p></td>
+<td><p>Muito signif.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observação:</strong> Conclusão geral (autocorrelação positiva significativa) se mantém, mas <strong>magnitude varia</strong>.</p>
+</section>
+<section id="por-que-ocorre">
+<h3>Por que ocorre<a class="headerlink" href="#por-que-ocorre" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p>Contiguidade captura apenas adjacência imediata</p></li>
+<li><p>Distância fixa captura influência de alcance espacial definido</p></li>
+<li><p>K-vizinhos garante conectividade uniforme mas distâncias variáveis</p></li>
+</ul>
+<p>Cada critério enfatiza aspecto diferente da estrutura espacial.</p>
+</section>
+<section id="boa-pratica-analise-de-sensibilidade">
+<h3>Boa prática: análise de sensibilidade<a class="headerlink" href="#boa-pratica-analise-de-sensibilidade" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Sempre calcular I com 2-3 definições diferentes:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pseudocódigo</span>
+<span class="n">I_queen</span> <span class="o">=</span> <span class="n">moran</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;queen&quot;</span><span class="p">)</span>
+<span class="n">I_dist30</span> <span class="o">=</span> <span class="n">moran</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;distance&quot;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">I_k5</span> <span class="o">=</span> <span class="n">moran</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="s2">&quot;knn&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">compare</span><span class="p">(</span><span class="n">I_queen</span><span class="p">,</span> <span class="n">I_dist30</span><span class="p">,</span> <span class="n">I_k5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Interpretação:</strong></p>
+<ul class="simple">
+<li><p>Se <strong>todas</strong> mostram I significativo e similar → <strong>resultado robusto</strong></p></li>
+<li><p>Se uma mostra significativo mas outras não → <strong>interpretar com cautela</strong>, reportar sensibilidade</p></li>
+<li><p>Se direções divergem (uma positiva, outra negativa) → <strong>problema sério</strong>, revisar dados e metodologia</p></li>
+</ul>
+</section>
+<section id="recomendacao-para-relatorios">
+<h3>Recomendação para relatórios<a class="headerlink" href="#recomendacao-para-relatorios" title="Link permanente para este cabeçalho"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>“Análise de sensibilidade com três critérios de vizinhança (contiguidade queen, distância 30 km, 5 vizinhos mais próximos) confirmou autocorrelação positiva significativa em todos os casos (I entre 0,52-0,61, p &lt; 0,05 em todos), indicando robustez do padrão.”</p>
+</div>
+</section>
+<section id="limitacao-2-medida-global-pode-mascarar-heterogeneidade-local">
+<h3>Limitação 2: medida global pode mascarar heterogeneidade local<a class="headerlink" href="#limitacao-2-medida-global-pode-mascarar-heterogeneidade-local" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id3">
+<h3>O problema<a class="headerlink" href="#id3" title="Link permanente para este cabeçalho"></a></h3>
+<p>I de Moran é uma <strong>medida resumo global</strong> — um único número para toda a área de estudo. Pode haver forte autocorrelação positiva em uma sub-região e autocorrelação negativa ou ausente em outra, mas I global é uma <strong>média</strong> dessas diferenças.</p>
+</section>
+<section id="exemplo-ilustrativo">
+<h3>Exemplo ilustrativo<a class="headerlink" href="#exemplo-ilustrativo" title="Link permanente para este cabeçalho"></a></h3>
+<p>Região dividida em Norte e Sul:</p>
+<ul class="simple">
+<li><p><strong>Norte:</strong> 40 municípios, forte clustering de COPs (I local ≈ 0,75)</p></li>
+<li><p><strong>Sul:</strong> 40 municípios, distribuição aleatória (I local ≈ 0,05)</p></li>
+</ul>
+<p><strong>I global calculado:</strong> 0,38 (moderado)</p>
+<p>Esse valor <strong>não reflete</strong> que Norte tem padrão muito forte e Sul não tem padrão.</p>
+</section>
+<section id="solucao-analise-lisa">
+<h3>Solução: análise LISA<a class="headerlink" href="#solucao-analise-lisa" title="Link permanente para este cabeçalho"></a></h3>
+<p>Sempre prosseguir para <strong>Local Indicators of Spatial Association (LISA)</strong> quando I global for significativo, para identificar:</p>
+<ul class="simple">
+<li><p><strong>Onde</strong> especificamente estão os clusters</p></li>
+<li><p>Quais localizações contribuem mais para autocorrelação global</p></li>
+<li><p>Se há heterogeneidade espacial no padrão</p></li>
+</ul>
+</section>
+<section id="alternativa-analise-estratificada">
+<h3>Alternativa: análise estratificada<a class="headerlink" href="#alternativa-analise-estratificada" title="Link permanente para este cabeçalho"></a></h3>
+<p>Se há razão teórica para esperar heterogeneidade (ex: diferentes regiões climáticas), calcular I separadamente:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">I_norte</span> <span class="o">=</span> <span class="n">moran</span><span class="p">(</span><span class="n">data_norte</span><span class="p">,</span> <span class="n">weights_norte</span><span class="p">)</span>
+<span class="n">I_sul</span> <span class="o">=</span> <span class="n">moran</span><span class="p">(</span><span class="n">data_sul</span><span class="p">,</span> <span class="n">weights_sul</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">I_norte</span> <span class="n">differs</span> <span class="n">substantially</span> <span class="kn">from</span><span class="w"> </span><span class="nn">I_sul</span><span class="p">:</span>
+    <span class="n">report_heterogeneity</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="limitacao-3-nao-detecta-todos-os-tipos-de-padrao-espacial">
+<h3>Limitação 3: não detecta todos os tipos de padrão espacial<a class="headerlink" href="#limitacao-3-nao-detecta-todos-os-tipos-de-padrao-espacial" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="padroes-nao-capturados">
+<h3>Padrões não capturados<a class="headerlink" href="#padroes-nao-capturados" title="Link permanente para este cabeçalho"></a></h3>
+<p>I de Moran mede autocorrelação <strong>linear de primeira ordem</strong> (relação entre cada local e vizinhos imediatos). Não captura:</p>
+<dl class="simple">
+<dt><strong>Padrões cíclicos ou ondulados:</strong></dt><dd><ul class="simple">
+<li><p>Alternância regular em distâncias fixas (ex: ondas de pressão atmosférica)</p></li>
+<li><p>Requer análise de correlograma espacial</p></li>
+</ul>
+</dd>
+<dt><strong>Estruturas hierárquicas:</strong></dt><dd><ul class="simple">
+<li><p>Clusters dentro de clusters (fractalidade)</p></li>
+<li><p>Requer análise multi-escala ou wavelets espaciais</p></li>
+</ul>
+</dd>
+<dt><strong>Anisotropia (direções preferenciais):</strong></dt><dd><ul class="simple">
+<li><p>Gradiente norte-sul mas não leste-oeste</p></li>
+<li><p>Requer análise direcional ou variograma anisotrópico</p></li>
+</ul>
+</dd>
+<dt><strong>Padrões lineares:</strong></dt><dd><ul class="simple">
+<li><p>Concentração ao longo de corredor (rio, rodovia)</p></li>
+<li><p>Municípios no corredor não são mutuamente vizinhos por contiguidade</p></li>
+<li><p>Requer análise de padrão linear ou densidade Kernel</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="exemplo-pratico">
+<h3>Exemplo prático<a class="headerlink" href="#exemplo-pratico" title="Link permanente para este cabeçalho"></a></h3>
+<p>COPs se concentram ao longo do vale do Rio São Francisco (corredor de 800 km). Municípios no vale não são todos contíguos entre si. I de Moran contiguidade pode ser moderado (0,35), <strong>não refletindo</strong> a forte estrutura linear presente.</p>
+<p><strong>Solução:</strong> Complementar com mapa de densidade Kernel, análise de tendência espacial, ou redefinir vizinhança por distância (capturando municípios ao longo do vale mesmo sem contiguidade).</p>
+</section>
+<section id="recomendacao">
+<h3>Recomendação<a class="headerlink" href="#recomendacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>Use I de Moran como <strong>ponto de partida</strong>, não como análise completa. Complemente com:</p>
+<ul class="simple">
+<li><p>Inspeção visual de mapas</p></li>
+<li><p>Análise LISA</p></li>
+<li><p>Outras estatísticas espaciais quando apropriado (correlograma, semivariograma)</p></li>
+</ul>
+</section>
+<section id="limitacao-4-nao-implica-causalidade">
+<h3>Limitação 4: não implica causalidade<a class="headerlink" href="#limitacao-4-nao-implica-causalidade" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="o-problema-fundamental">
+<h3>O problema fundamental<a class="headerlink" href="#o-problema-fundamental" title="Link permanente para este cabeçalho"></a></h3>
+<p>I de Moran alto indica que <strong>valores similares se agrupam espacialmente</strong>, mas <strong>não explica por quê</strong>. Autocorrelação pode resultar de:</p>
+<dl class="simple">
+<dt><strong>Processos espaciais genuínos:</strong></dt><dd><ul class="simple">
+<li><p>Difusão / contágio (fenômeno se propaga entre vizinhos)</p></li>
+<li><p>Efeitos de spillover (transbordamento)</p></li>
+</ul>
+</dd>
+<dt><strong>Resposta comum a variável subjacente:</strong></dt><dd><ul class="simple">
+<li><p>Municípios vizinhos têm mesmo tipo de solo → produtividade similar</p></li>
+<li><p>Não é causalidade espacial direta, mas confundidor comum</p></li>
+</ul>
+</dd>
+<dt><strong>Artefato de agregação:</strong></dt><dd><ul class="simple">
+<li><p>Unidades espaciais agregam características (municípios grandes agregam múltiplas condições)</p></li>
+<li><p>Pode criar autocorrelação artificial</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="no-contexto-do-proagro">
+<h3>No contexto do Proagro<a class="headerlink" href="#no-contexto-do-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p>I alto para COPs pode decorrer de:</p>
+<ol class="arabic simple">
+<li><p><strong>Fenômeno climático regional</strong> (explicação causal válida espacial)</p></li>
+<li><p><strong>OU</strong> municípios vizinhos têm características comuns (solo, cultura, práticas) não capturadas — resposta comum a confundidor</p></li>
+<li><p><strong>OU</strong> municípios são atendidos por mesma IF/perito/cooperativa — fator institucional espacialmente estruturado</p></li>
+<li><p><strong>OU</strong> combinação de múltiplos fatores</p></li>
+</ol>
+<p><strong>I de Moran não diferencia entre essas explicações.</strong></p>
+</section>
+<section id="boa-pratica">
+<h3>Boa prática<a class="headerlink" href="#boa-pratica" title="Link permanente para este cabeçalho"></a></h3>
+<p>Usar I de Moran como <strong>ferramenta descritiva e de triagem</strong>, NÃO como prova de causalidade.</p>
+<p><strong>Workflow recomendado:</strong></p>
+<ol class="arabic simple">
+<li><p>I de Moran indica autocorrelação → <strong>“há padrão espacial”</strong></p></li>
+<li><p>Formular hipóteses causais → <strong>“quais processos poderiam explicar?”</strong></p></li>
+<li><p>Testar hipóteses com dados adicionais:</p>
+<ul class="simple">
+<li><p>Calcular I para potenciais confundidores (clima, solo, cultura)</p></li>
+<li><p>Comparar I de COPs com I de fenômeno alegado</p></li>
+<li><p>Análise multivariada espacial (modelos de regressão espacial)</p></li>
+</ul>
+</li>
+<li><p>Triangular com outras fontes:</p>
+<ul class="simple">
+<li><p>Análise documental</p></li>
+<li><p>Sensoriamento remoto</p></li>
+<li><p>Inspeções de campo</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="armadilha-1-multiplos-testes-sem-correcao">
+<h3>Armadilha 1: múltiplos testes sem correção<a class="headerlink" href="#armadilha-1-multiplos-testes-sem-correcao" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id4">
+<h3>O problema<a class="headerlink" href="#id4" title="Link permanente para este cabeçalho"></a></h3>
+<p>Se calcularmos I de Moran para 20 variáveis diferentes e usarmos α = 0,05, esperamos encontrar <strong>1 resultado “significativo” por puro acaso</strong> (5% × 20 = 1 falso positivo esperado).</p>
+</section>
+<section id="no-proagro">
+<h3>No Proagro<a class="headerlink" href="#no-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p>Testar autocorrelação para:
+- Cada tipo de fenômeno (10 tipos)
+- Cada cultura (15 culturas)
+- Cada safra (5 safras)
+- Cada IF (50 IFs)
+- Cada perito (200 peritos)</p>
+<p><strong>Total:</strong> 280 testes → esperamos ~14 “significativos” por acaso ao nível 0,05.</p>
+<p><strong>Risco:</strong> Inflar taxa de falsos positivos, “descobrir” padrões inexistentes.</p>
+</section>
+<section id="solucoes">
+<h3>Soluções<a class="headerlink" href="#solucoes" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Correção de Bonferroni (conservadora):</strong></p>
+<p>Dividir α pelo número de testes:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{\text{ajustado}} = \frac{0,05}{m}\]</div>
+<p>Para m = 20 testes: α_ajustado = 0,0025.</p>
+<p>Só rejeitar H₀ se p &lt; 0,0025.</p>
+<p><strong>Desvantagem:</strong> Muito conservador, pode perder padrões reais (alta taxa de falsos negativos).</p>
+<p><strong>False Discovery Rate (FDR) — Benjamini-Hochberg:</strong></p>
+<p>Método menos conservador que controla proporção esperada de falsos positivos entre todos os positivos.</p>
+<p><strong>Procedimento:</strong></p>
+<ol class="arabic simple">
+<li><p>Ordenar m testes por valor-p crescente: p₁ ≤ p₂ ≤ … ≤ pₘ</p></li>
+<li><p>Encontrar maior i tal que pᵢ ≤ (i/m) × 0,05</p></li>
+<li><p>Rejeitar H₀ para testes 1, 2, …, i</p></li>
+</ol>
+<p><strong>Hipóteses *A Priori* (Melhor Abordagem):</strong></p>
+<p>Formular hipóteses <strong>antes</strong> de ver dados, testar apenas essas. Evita “data dredging” (pescar significâncias).</p>
+<p>Exemplo:</p>
+<ul class="simple">
+<li><p>Hipótese: COPs por seca têm autocorrelação positiva (1 teste)</p></li>
+<li><p>Hipótese: COPs por granizo não têm autocorrelação (1 teste)</p></li>
+</ul>
+<p>Total: 2 testes planejados → menos preocupação com múltiplos testes.</p>
+</section>
+<section id="armadilha-2-ignorar-pressuposto-de-estacionariedade">
+<h3>Armadilha 2: ignorar pressuposto de estacionariedade<a class="headerlink" href="#armadilha-2-ignorar-pressuposto-de-estacionariedade" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id5">
+<h3>O problema<a class="headerlink" href="#id5" title="Link permanente para este cabeçalho"></a></h3>
+<p>I de Moran assume que processo espacial é <strong>estacionário</strong> — propriedades estatísticas (média, variância, autocorrelação) não variam sistematicamente no espaço.</p>
+<p><strong>Violação:</strong> Se há <strong>tendência espacial</strong> (ex: gradient norte-sul, valores aumentam sistematicamente para o sul), I de Moran pode detectar essa tendência como “autocorrelação”, mas não é clustering — é deriva.</p>
+</section>
+<section id="exemplo">
+<h3>Exemplo<a class="headerlink" href="#exemplo" title="Link permanente para este cabeçalho"></a></h3>
+<p>Município mais ao norte: taxa COPs = 10%
+Município mais ao sul: taxa COPs = 40%
+Gradiente linear perfeito entre eles.</p>
+<p>I de Moran será alto (valores próximos são similares ao longo do gradiente), mas não há clusters discretos — há <strong>tendência</strong>.</p>
+</section>
+<section id="diagnostico">
+<h3>Diagnóstico<a class="headerlink" href="#diagnostico" title="Link permanente para este cabeçalho"></a></h3>
+<p>Antes de calcular I de Moran, verificar se há tendência:</p>
+<ol class="arabic simple">
+<li><p>Plotar variável vs. coordenadas (latitude, longitude)</p></li>
+<li><p>Se correlação linear forte → há tendência</p></li>
+<li><p>Considerar <strong>detrending</strong> (remover tendência) antes de calcular I</p></li>
+</ol>
+</section>
+<section id="alternativa">
+<h3>Alternativa<a class="headerlink" href="#alternativa" title="Link permanente para este cabeçalho"></a></h3>
+<p>Usar estatísticas que distinguem tendência de clustering:</p>
+<ul class="simple">
+<li><p><strong>Geary’s C</strong>: Mais sensível a autocorrelação local que a tendências globais</p></li>
+<li><p><strong>Análise de resíduos</strong>: Ajustar modelo de tendência (regressão em coordenadas), calcular I nos resíduos</p></li>
+</ul>
+</section>
+<section id="armadilha-3-usar-i-de-moran-com-dados-de-contagem-bruta">
+<h3>Armadilha 3: usar I de Moran com dados de contagem bruta<a class="headerlink" href="#armadilha-3-usar-i-de-moran-com-dados-de-contagem-bruta" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id6">
+<h3>O problema<a class="headerlink" href="#id6" title="Link permanente para este cabeçalho"></a></h3>
+<p>Calcular I de Moran de <strong>contagens absolutas</strong> (nº de COPs por município) sem ajustar por população de referência (nº de operações).</p>
+<p><strong>Viés:</strong> Municípios grandes/produtivos naturalmente têm mais COPs. Autocorrelação pode refletir apenas <strong>proximidade de municípios grandes</strong>, não risco per capita.</p>
+</section>
+<section id="solucao">
+<h3>Solução<a class="headerlink" href="#solucao" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Sempre usar taxas ou proporções:</strong></p>
+<ul class="simple">
+<li><p>Taxa de COPs = (COPs / operações) × 100</p></li>
+<li><p>Taxa de sinistralidade = (valor indenizado / valor total financiado)</p></li>
+<li><p>Perda por hectare = (valor indenizado / área total)</p></li>
+</ul>
+<p>Ou, se usando contagens, incluir <strong>offset</strong> em modelos (ajustar por população base).</p>
+</section>
+<section id="exemplo-correto">
+<h3>Exemplo correto<a class="headerlink" href="#exemplo-correto" title="Link permanente para este cabeçalho"></a></h3>
+<p>❌ <strong>Errado:</strong> I de Moran de nº de COPs
+✅ <strong>Correto:</strong> I de Moran de taxa de COPs (%)</p>
+<p>Isso separa <strong>intensidade de risco</strong> de <strong>intensidade de atividade agrícola</strong>.</p>
+</section>
+</section>
+<section id="boas-praticas-e-checklist-de-verificacao">
+<h2>Boas práticas e checklist de verificação<a class="headerlink" href="#boas-praticas-e-checklist-de-verificacao" title="Link permanente para este cabeçalho"></a></h2>
+<section id="checklist-para-analise-rigorosa-com-i-de-moran">
+<h3>Checklist para análise rigorosa com I de Moran<a class="headerlink" href="#checklist-para-analise-rigorosa-com-i-de-moran" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="antes-de-calcular">
+<h3>Antes de calcular<a class="headerlink" href="#antes-de-calcular" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>☐ Dados estão em formato espacial adequado (shapefile, geopackage, geodataframe)
+☐ Sistema de coordenadas está definido e consistente
+☐ Variável de interesse está calculada como TAXA ou PROPORÇÃO (não contagem bruta)
+☐ Verificado outliers extremos (considerar transformação se necessário)
+☐ Verificado se há tendência espacial (plotar vs. coordenadas)
+☐ Definida matriz de vizinhança apropriada ao fenômeno estudado
+</pre></div>
+</div>
+</section>
+<section id="durante-o-calculo">
+<h3>Durante o cálculo<a class="headerlink" href="#durante-o-calculo" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>☐ Matriz de pesos W foi construída corretamente
+☐ Verificado que todas unidades têm pelo menos 1 vizinho
+☐ Decidido se usar normalização por linha (row-standardized)
+☐ Calculado I de Moran com biblioteca validada (PySAL, spdep)
+☐ Usado teste de permutação Monte Carlo (999+ permutações)
+☐ Registrado valor de I, esperança E[I], variância, p-value, z-score
+</pre></div>
+</div>
+</section>
+<section id="analise-de-sensibilidade">
+<h3>Análise de sensibilidade<a class="headerlink" href="#analise-de-sensibilidade" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>☐ Recalculado I com 2-3 definições diferentes de vizinhança
+☐ Verificado se conclusão principal (significativo/não significativo) se mantém
+☐ Se resultados divergem: reportado e interpretado com cautela
+☐ Testado robustez removendo outliers extremos (se presentes)
+</pre></div>
+</div>
+</section>
+<section id="interpretacao">
+<h3>Interpretação<a class="headerlink" href="#interpretacao" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>☐ Valor de I interpretado em conjunto com valor-p (não isoladamente)
+☐ Magnitude de I contextualizada (fraco/moderado/forte)
+☐ Comparado I de COPs com I de fenômeno climático subjacente
+☐ Considerado contexto fenomenológico (padrão esperado vs. observado)
+☐ Identificados outliers espaciais no diagrama de Moran
+☐ Não feitas afirmações causais baseadas apenas em I
+</pre></div>
+</div>
+</section>
+<section id="documentacao-e-reporte">
+<h3>Documentação e reporte<a class="headerlink" href="#documentacao-e-reporte" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>☐ Documentado critério de vizinhança usado (ex: &quot;contiguidade queen&quot;)
+☐ Reportado número de observações, média, desvio-padrão da variável
+☐ Apresentado I, E[I], p-value, nº de permutações
+☐ Incluído diagrama de Moran (se relevante)
+☐ Mencionadas limitações (ex: sensibilidade a definição de vizinhança)
+☐ Indicado próximo passo analítico (LISA se I significativo)
+</pre></div>
+</div>
+</section>
+<section id="exemplo-de-reporte-completo-e-adequado">
+<h3>Exemplo de reporte completo e adequado<a class="headerlink" href="#exemplo-de-reporte-completo-e-adequado" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="modelo-de-texto-para-relatorio-tecnico">
+<h3>Modelo de texto para relatório técnico<a class="headerlink" href="#modelo-de-texto-para-relatorio-tecnico" title="Link permanente para este cabeçalho"></a></h3>
+<blockquote>
+<div><p><strong>Análise de Autocorrelação Espacial — Taxa de COPs por Seca</strong></p>
+<p><em>Dados:</em> Safra 2021/22, cultura soja, região MATOPIBA. N = 87 municípios. Taxa calculada como (nº COPs por seca / nº operações de soja) × 100. Taxa média = 18,3% (DP = 9,2%, min = 4,1%, max = 42,7%).</p>
+<p><em>Método:</em> Índice I de Moran global calculado com matriz de pesos espaciais baseada em contiguidade queen (municípios que compartilham qualquer fronteira). Matriz normalizada por linha. Teste de significância: permutação Monte Carlo com 999 permutações aleatórias.</p>
+<p><em>Resultados:</em>
+- I de Moran observado: 0,68
+- Esperança sob H₀: E[I] = -0,012
+- Z-score: 5,8
+- Valor-p: &lt; 0,001</p>
+<p><em>Interpretação:</em> O índice I = 0,68 indica forte autocorrelação espacial positiva. Municípios com alta taxa de COPs por seca tendem fortemente a estar geograficamente próximos de outros municípios com alta taxa (e similarmente para baixas taxas). A significância estatística muito alta (p &lt; 0,001) descarta que esse padrão seja fruto de aleatoriedade espacial — menos de 0,1% de probabilidade de observar I tão alto por acaso.</p>
+<p>Este resultado é <strong>coerente</strong> com fenômenos de seca, que são eventos climáticos regionais afetando áreas contíguas de centenas de km². A autocorrelação significativa <strong>valida</strong> que o padrão de COPs segue lógica espacial de fenômeno natural.</p>
+<p><em>Análise de sensibilidade:</em> I de Moran foi recalculado com dois critérios alternativos de vizinhança: (a) distância &lt;50 km: I = 0,62, p &lt; 0,001; (b) 5 vizinhos mais próximos: I = 0,71, p &lt; 0,001. Em todos os casos, autocorrelação positiva forte e significativa foi confirmada, indicando robustez do padrão.</p>
+<p><em>Próximo passo:</em> Análise LISA será realizada para identificar especificamente quais municípios formam clusters de alta sinistralidade (hotspots HH) e quais são outliers espaciais, permitindo priorização geográfica de investigações.</p>
+<p><em>Limitações:</em> Esta análise detecta associação espacial mas não estabelece causalidade. Autocorrelação pode decorrer de fenômeno climático regional (hipótese principal) ou de características não climáticas comuns a municípios vizinhos (tipo de solo, práticas agrícolas). Comparação com I de Moran de dados climáticos diretos (déficit hídrico) é necessária para confirmar coerência.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="casos-especiais-e-consideracoes-avancadas">
+<h2>Casos especiais e considerações avançadas<a class="headerlink" href="#casos-especiais-e-consideracoes-avancadas" title="Link permanente para este cabeçalho"></a></h2>
+<section id="dados-com-zeros-inflacionados">
+<h3>Dados com zeros inflacionados<a class="headerlink" href="#dados-com-zeros-inflacionados" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="situacao">
+<h3>Situação<a class="headerlink" href="#situacao" title="Link permanente para este cabeçalho"></a></h3>
+<p>Muitos municípios têm <strong>zero COPs</strong> (não houve sinistros). Distribuição da taxa tem pico em zero e cauda à direita.</p>
+</section>
+<section id="problema">
+<h3>Problema<a class="headerlink" href="#problema" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p>I de Moran assume distribuição aproximadamente contínua</p></li>
+<li><p>Excesso de zeros pode distorcer estatística</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Soluções<a class="headerlink" href="#id7" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Opção 1: Transformação da variável</strong></p>
+<p>Usar raiz quadrada ou log(taxa + constante) para reduzir assimetria:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">taxa_transformada</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">taxa</span><span class="p">)</span>
+<span class="c1"># ou</span>
+<span class="n">taxa_transformada</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">taxa</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Opção 2: Modelo de duas partes</strong></p>
+<p>Analisar separadamente:
+1. Presença/ausência de COPs (binário) → I de Moran de variável binária
+2. Dado que houve COP, qual a magnitude (contínua) → I de Moran apenas em municípios com COP &gt; 0</p>
+<p><strong>Opção 3: Modelo específico</strong></p>
+<p>Usar modelos estatísticos espaciais projetados para zeros inflacionados (zero-inflated spatial models). Fora do escopo de I de Moran simples, mas mencionar em limitações.</p>
+</section>
+<section id="unidades-espaciais-com-areas-muito-heterogeneas">
+<h3>Unidades espaciais com áreas muito heterogêneas<a class="headerlink" href="#unidades-espaciais-com-areas-muito-heterogeneas" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id8">
+<h3>Situação<a class="headerlink" href="#id8" title="Link permanente para este cabeçalho"></a></h3>
+<p>Municípios variam enormemente em área (de 100 km² a 50.000 km²).</p>
+</section>
+<section id="id9">
+<h3>Problema<a class="headerlink" href="#id9" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p>Municípios grandes têm naturalmente mais operações e COPs</p></li>
+<li><p>Contiguidade dá peso igual a todos vizinhos, mas vizinho pequeno vs. grande têm impacto diferente</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Soluções<a class="headerlink" href="#id10" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Opção 1: Usar taxas per capita ou per área</strong></p>
+<p>Já mencionado, mas reforçar: sempre normalizar por tamanho relevante.</p>
+<p><strong>Opção 2: Pesos espaciais ponderados por área</strong></p>
+<p>Modificar <span class="math notranslate nohighlight">\(w_{ij}\)</span> para considerar área:</p>
+<div class="math notranslate nohighlight">
+\[w_{ij} = \frac{A_j}{\sum_k A_k} \quad \text{se } i \text{ e } j \text{ contíguos}\]</div>
+<p>Vizinhos maiores contribuem mais para spatial lag.</p>
+<p><strong>Opção 3: Usar centroides ponderados por população</strong></p>
+<p>Em vez de centroides geométricos, usar centroides ponderados por população ou área cultivada (se disponível).</p>
+</section>
+<section id="lidar-com-ilhas-ou-unidades-isoladas">
+<h3>Lidar com ilhas ou unidades isoladas<a class="headerlink" href="#lidar-com-ilhas-ou-unidades-isoladas" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id11">
+<h3>Situação<a class="headerlink" href="#id11" title="Link permanente para este cabeçalho"></a></h3>
+<p>Alguns municípios não têm vizinhos (ilhas, ou muito distantes de todos os demais).</p>
+</section>
+<section id="id12">
+<h3>Problema<a class="headerlink" href="#id12" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p>Com contiguidade: município isolado tem 0 vizinhos → não entra no cálculo de I (ou causa erro)</p></li>
+<li><p>Pode enviesar resultado</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>Soluções<a class="headerlink" href="#id13" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Opção 1: Usar critério de distância ou K-vizinhos</strong></p>
+<p>Garante que todos tenham pelo menos 1 vizinho:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">KNN</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Mínimo 3 vizinhos para todos</span>
+</pre></div>
+</div>
+<p><strong>Opção 2: Excluir unidades isoladas</strong></p>
+<p>Documentar explicitamente: “Município X foi excluído da análise por ausência de vizinhos contíguos.”</p>
+<p><strong>Opção 3: Conectar manualmente</strong></p>
+<p>Se faz sentido geograficamente, definir vizinho mais próximo mesmo que não contíguo.</p>
+</section>
+<section id="autocorrelacao-temporal-vs-espacial">
+<h3>Autocorrelação temporal vs. espacial<a class="headerlink" href="#autocorrelacao-temporal-vs-espacial" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="id14">
+<h3>Situação<a class="headerlink" href="#id14" title="Link permanente para este cabeçalho"></a></h3>
+<p>Analisando múltiplas safras (dados espaço-temporais).</p>
+</section>
+<section id="consideracao">
+<h3>Consideração<a class="headerlink" href="#consideracao" title="Link permanente para este cabeçalho"></a></h3>
+<p>I de Moran é calculado para <strong>um único ponto no tempo</strong> (uma safra). Não captura autocorrelação temporal (persistência de padrões entre safras).</p>
+</section>
+<section id="analise-complementar">
+<h3>Análise complementar<a class="headerlink" href="#analise-complementar" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>Para cada safra separadamente:</strong></p>
+<p>Calcular Iₜ para t = safra 1, 2, 3, …</p>
+<p>Verificar se I se mantém significativo ao longo do tempo (persistência de autocorrelação espacial).</p>
+<p><strong>Análise espaço-temporal integrada:</strong></p>
+<p>Modelos mais avançados (fora do escopo de I de Moran simples):
+- Moran’s I espaço-temporal
+- Modelos de painel espacial
+- Análise de trajetórias espaço-temporais</p>
+</section>
+</section>
+<section id="sintese-e-integracao-com-outros-modulos-do-geotec">
+<h2>Síntese e integração com outros módulos do geotec<a class="headerlink" href="#sintese-e-integracao-com-outros-modulos-do-geotec" title="Link permanente para este cabeçalho"></a></h2>
+<section id="recapitulacao-dos-conceitos-centrais">
+<h3>Recapitulação dos conceitos centrais<a class="headerlink" href="#recapitulacao-dos-conceitos-centrais" title="Link permanente para este cabeçalho"></a></h3>
+<p>Neste capítulo extenso, cobrimos em profundidade o Índice I de Moran e sua aplicação ao Proagro:</p>
+<dl class="simple">
+<dt><strong>Conceito Core:</strong></dt><dd><p>I de Moran quantifica autocorrelação espacial — se valores vizinhos são mais similares que o esperado ao acaso.</p>
+</dd>
+<dt><strong>Escala:</strong></dt><dd><p>-1 (negativa) a +1 (positiva), com 0 = independência.</p>
+</dd>
+<dt><strong>Significância:</strong></dt><dd><p>Sempre acompanhado de valor-p (teste de permutação recomendado).</p>
+</dd>
+<dt><strong>Interpretação:</strong></dt><dd><p>Valores altos significativos indicam clustering; comparar I de COPs com I de fenômeno climático revela coerência ou divergência.</p>
+</dd>
+<dt><strong>Limitações:</strong></dt><dd><p>Sensível a definição de vizinhança, medida global (requer LISA para detalhes locais), não implica causalidade.</p>
+</dd>
+<dt><strong>Boas práticas:</strong></dt><dd><p>Análise de sensibilidade, sempre usar taxas, documentar método, não fazer afirmações causais.</p>
+</dd>
+</dl>
+</section>
+<section id="posicao-do-i-de-moran-no-workflow-analitico-do-proagro">
+<h3>Posição do I de Moran no workflow analítico do Proagro<a class="headerlink" href="#posicao-do-i-de-moran-no-workflow-analitico-do-proagro" title="Link permanente para este cabeçalho"></a></h3>
+<p>O I de Moran não é uma análise isolada — faz parte de um workflow integrado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────┐
+│  1. EXPLORAÇÃO VISUAL               │
+│  Mapas de densidade Kernel          │
+│  Identificação preliminar de        │
+│  concentrações                      │
+└──────────────┬──────────────────────┘
+               │
+               v
+┌─────────────────────────────────────┐
+│  2. AUTOCORRELAÇÃO GLOBAL           │
+│  Índice I de Moran                  │ ◄── VOCÊ ESTÁ AQUI
+│  Teste de significância             │
+│  Análise de sensibilidade           │
+└──────────────┬──────────────────────┘
+               │
+               ├─ Se I significativo ──→
+               │                        │
+               v                        v
+┌────────────────────────┐   ┌────────────────────────┐
+│  3. ANÁLISE LOCAL       │   │  4. COMPARAÇÃO         │
+│  LISA (seção seguinte)  │   │  I_COPs vs. I_clima    │
+│  Identificar clusters   │   │  Avaliar coerência     │
+│  específicos (HH, LL)   │   │  espacial              │
+│  e outliers (HL, LH)    │   └────────────────────────┘
+└────────────┬────────────┘
+             │
+             v
+┌─────────────────────────────────────┐
+│  5. INVESTIGAÇÃO DIRIGIDA           │
+│  Priorizar municípios/COPs          │
+│  identificados como anômalos        │
+│  Análise documental, inspeção       │
+└─────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="integracao-com-outras-dimensoes-do-geotec">
+<h3>Integração com outras dimensões do geotec<a class="headerlink" href="#integracao-com-outras-dimensoes-do-geotec" title="Link permanente para este cabeçalho"></a></h3>
+<p>O I de Moran aplicado a COPs é uma peça de um sistema de análise multidimensional:</p>
+<dl class="simple">
+<dt><strong>Dimensão Climática (este módulo):</strong></dt><dd><p>I de Moran de COPs vs. I de fenômenos meteorológicos</p>
+</dd>
+<dt><strong>Dimensão Fundiária:</strong></dt><dd><p>I de Moran de irregularidades fundiárias — há clustering de problemas fundiários? Coincide com clustering de COPs?</p>
+</dd>
+<dt><strong>Dimensão Socioambiental:</strong></dt><dd><p>I de Moran de embargos/impedimentos — municípios com alta taxa de impedimentos também têm alta taxa de COPs?</p>
+</dd>
+<dt><strong>Dimensão Fenológica:</strong></dt><dd><p>I de Moran de não conformidade com Zarc — há autocorrelação espacial de plantios fora de janela? Relaciona-se com autocorrelação de COPs?</p>
+</dd>
+</dl>
+<p><strong>Análise Integrada:</strong></p>
+<p>Calcular I de Moran para múltiplas dimensões e criar matriz de correlação espacial:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dimensão</p></th>
+<th class="head"><p>I de Moran</p></th>
+<th class="head"><p>p-value</p></th>
+<th class="head"><p>Coincide
+com COPs?</p></th>
+<th class="head"><p>Alerta</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>COPs</p></td>
+<td><p>0,68</p></td>
+<td><p>&lt; 0,001</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>Déficit hídrico</p></td>
+<td><p>0,62</p></td>
+<td><p>&lt; 0,001</p></td>
+<td><p>Sim</p></td>
+<td><p>Não</p></td>
+</tr>
+<tr class="row-even"><td><p>Irregularidade fund.</p></td>
+<td><p>0,51</p></td>
+<td><p>0,003</p></td>
+<td><p>Parcial</p></td>
+<td><p>Médio</p></td>
+</tr>
+<tr class="row-odd"><td><p>Embargos ambientais</p></td>
+<td><p>0,44</p></td>
+<td><p>0,018</p></td>
+<td><p>Não</p></td>
+<td><p>Alto</p></td>
+</tr>
+<tr class="row-even"><td><p>Plantio fora Zarc</p></td>
+<td><p>0,38</p></td>
+<td><p>0,031</p></td>
+<td><p>Não</p></td>
+<td><p>Médio</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretação integrada:</strong></p>
+<p>COPs têm forte autocorrelação coincidente com déficit hídrico — coerência climática. Mas também há autocorrelação moderada de irregularidades fundiárias e embargos que <strong>não</strong> coincidem espacialmente com COPs — indica que problemas de COPs e problemas socioambientais ocorrem em regiões diferentes (boa notícia: não há sobreposição sistemática de múltiplos problemas).</p>
+</section>
+<section id="quando-usar-e-quando-nao-usar-i-de-moran">
+<h3>Quando usar e quando NÃO usar I de Moran<a class="headerlink" href="#quando-usar-e-quando-nao-usar-i-de-moran" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="use-i-de-moran-quando">
+<h3>✅ use I de Moran quando:<a class="headerlink" href="#use-i-de-moran-quando" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p>Quer <strong>quantificar objetivamente</strong> se há clustering espacial</p></li>
+<li><p>Precisa <strong>testar significância estatística</strong> de padrões visuais</p></li>
+<li><p>Quer <strong>comparar</strong> autocorrelação entre diferentes variáveis/períodos</p></li>
+<li><p>Tem dados com <strong>n ≥ 30 unidades espaciais</strong> (para poder estatístico adequado)</p></li>
+<li><p>Unidades espaciais são <strong>razoavelmente homogêneas</strong> em tamanho/relevância</p></li>
+</ul>
+</section>
+<section id="nao-use-i-de-moran-ou-use-com-cautela-extrema-quando">
+<h3>❌ NÃO use I de Moran (ou use com cautela extrema) quando:<a class="headerlink" href="#nao-use-i-de-moran-ou-use-com-cautela-extrema-quando" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><strong>Amostra muito pequena</strong> (n &lt; 20) — teste tem baixo poder</p></li>
+<li><p><strong>Dados muito assimétricos ou com outliers extremos</strong> sem transformação</p></li>
+<li><p><strong>Objetivo é detectar padrão linear ou direcional</strong> (usar análise de tendência)</p></li>
+<li><p><strong>Fenômeno é altamente localizado</strong> (granizo, raios) e espera-se I ≈ 0</p></li>
+<li><p><strong>Apenas quer visualizar</strong> (mapa de densidade é suficiente, I não adiciona)</p></li>
+</ul>
+</section>
+</section>
+<section id="recursos-adicionais-e-implementacao-pratica">
+<h2>Recursos adicionais e implementação prática<a class="headerlink" href="#recursos-adicionais-e-implementacao-pratica" title="Link permanente para este cabeçalho"></a></h2>
+<section id="implementacao-em-python-pysal">
+<h3>Implementação em Python (pysal)<a class="headerlink" href="#implementacao-em-python-pysal" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="codigo-exemplo-completo">
+<h3>Código exemplo completo<a class="headerlink" href="#codigo-exemplo-completo" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">esda.moran</span><span class="w"> </span><span class="kn">import</span> <span class="n">Moran</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libpysal.weights</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queen</span><span class="p">,</span> <span class="n">KNN</span><span class="p">,</span> <span class="n">distance_band</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 1. Carregar dados espaciais</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;municipios_cops.shp&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Calcular taxa de COPs</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;taxa_cops&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;num_cops&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;num_operacoes&#39;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># 3. Definir matriz de pesos (contiguidade queen)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Queen</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>  <span class="c1"># Normalização por linha</span>
+
+<span class="c1"># 4. Calcular I de Moran</span>
+<span class="n">moran</span> <span class="o">=</span> <span class="n">Moran</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;taxa_cops&#39;</span><span class="p">],</span> <span class="n">w</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="c1"># 5. Resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;I de Moran: </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Esperança E[I]: </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">EI</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variância: </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">VI</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z-score: </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">z_norm</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (permutação): </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;P-value (normal): </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">p_norm</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 6. Diagrama de dispersão de Moran</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">splot.esda</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_moran</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plot_moran</span><span class="p">(</span><span class="n">moran</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Diagrama de Moran (I = </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;moran_scatterplot.png&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># 7. Análise de sensibilidade com diferentes vizinhanças</span>
+<span class="c1"># Distância 50 km</span>
+<span class="n">w_dist</span> <span class="o">=</span> <span class="n">distance_band</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">50000</span><span class="p">)</span>
+<span class="n">w_dist</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+<span class="n">moran_dist</span> <span class="o">=</span> <span class="n">Moran</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;taxa_cops&#39;</span><span class="p">],</span> <span class="n">w_dist</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="c1"># K = 5 vizinhos mais próximos</span>
+<span class="n">w_knn</span> <span class="o">=</span> <span class="n">KNN</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">w_knn</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span>
+<span class="n">moran_knn</span> <span class="o">=</span> <span class="n">Moran</span><span class="p">(</span><span class="n">gdf</span><span class="p">[</span><span class="s1">&#39;taxa_cops&#39;</span><span class="p">],</span> <span class="n">w_knn</span><span class="p">,</span> <span class="n">permutations</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Análise de Sensibilidade:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Queen: I = </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">moran</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dist 50km: I = </span><span class="si">{</span><span class="n">moran_dist</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">moran_dist</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KNN (k=5): I = </span><span class="si">{</span><span class="n">moran_knn</span><span class="o">.</span><span class="n">I</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">, p = </span><span class="si">{</span><span class="n">moran_knn</span><span class="o">.</span><span class="n">p_sim</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bibliotecas-recomendadas">
+<h3>Bibliotecas recomendadas<a class="headerlink" href="#bibliotecas-recomendadas" title="Link permanente para este cabeçalho"></a></h3>
+<dl class="simple">
+<dt><strong>PySAL (Python Spatial Analysis Library):</strong></dt><dd><ul class="simple">
+<li><p>Mais completa para estatística espacial</p></li>
+<li><p>Inclui Moran, LISA, outros testes</p></li>
+<li><p>Documentação: <a class="reference external" href="https://pysal.org/">https://pysal.org/</a></p></li>
+</ul>
+</dd>
+<dt><strong>GeoPandas:</strong></dt><dd><ul class="simple">
+<li><p>Manipulação de dados geoespaciais</p></li>
+<li><p>Integração com Shapely, Matplotlib</p></li>
+</ul>
+</dd>
+<dt><strong>Splot:</strong></dt><dd><ul class="simple">
+<li><p>Visualização de análises espaciais (diagramas de Moran, mapas LISA)</p></li>
+</ul>
+</dd>
+<dt><strong>Scipy.stats:</strong></dt><dd><ul class="simple">
+<li><p>Testes estatísticos complementares</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="implementacao-em-r-spdep">
+<h3>Implementação em R (spdep)<a class="headerlink" href="#implementacao-em-r-spdep" title="Link permanente para este cabeçalho"></a></h3>
+</section>
+<section id="codigo-exemplo">
+<h3>Código exemplo<a class="headerlink" href="#codigo-exemplo" title="Link permanente para este cabeçalho"></a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">spdep</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+
+<span class="c1"># Carregar dados</span>
+<span class="n">gdf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">st_read</span><span class="p">(</span><span class="s">&quot;municipios_cops.shp&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calcular taxa</span>
+<span class="n">gdf</span><span class="o">$</span><span class="n">taxa_cops</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">num_cops</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">gdf</span><span class="o">$</span><span class="n">num_operacoes</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span>
+
+<span class="c1"># Matriz de vizinhança (contiguidade)</span>
+<span class="n">nb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">poly2nb</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="w"> </span><span class="n">queen</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">lw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">nb2listw</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="o">=</span><span class="s">&quot;W&quot;</span><span class="p">)</span><span class="w">  </span><span class="c1"># Normalização por linha</span>
+
+<span class="c1"># Teste de Moran</span>
+<span class="n">moran_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.test</span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">taxa_cops</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="p">,</span><span class="w"> </span><span class="n">randomisation</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">moran_test</span><span class="p">)</span>
+
+<span class="c1"># Teste de permutação</span>
+<span class="n">moran_mc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">moran.mc</span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">taxa_cops</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="p">,</span><span class="w"> </span><span class="n">nsim</span><span class="o">=</span><span class="m">999</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">moran_mc</span><span class="p">)</span>
+
+<span class="c1"># Diagrama de Moran</span>
+<span class="nf">moran.plot</span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">taxa_cops</span><span class="p">,</span><span class="w"> </span><span class="n">lw</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="softwares-gis-qgis-geoda">
+<h3>Softwares GIS (QGIS / geoda)<a class="headerlink" href="#softwares-gis-qgis-geoda" title="Link permanente para este cabeçalho"></a></h3>
+<p><strong>QGIS:</strong></p>
+<p>Plugin “Spatial Statistics” permite cálculo de I de Moran via interface gráfica.</p>
+<p><strong>GeoDa:</strong></p>
+<p>Software livre especializado em análise espacial exploratória. Interface intuitiva para usuários não programadores.</p>
+<ul class="simple">
+<li><p>Download: <a class="reference external" href="https://geodacenter.github.io/">https://geodacenter.github.io/</a></p></li>
+<li><p>Tutoriais excelentes disponíveis</p></li>
+</ul>
+</section>
+</section>
+<section id="glossario-de-termos-tecnicos">
+<h2>Glossário de termos técnicos<a class="headerlink" href="#glossario-de-termos-tecnicos" title="Link permanente para este cabeçalho"></a></h2>
+<dl class="simple">
+<dt><strong>Autocorrelação Espacial</strong></dt><dd><p>Grau de dependência entre valores de uma variável em diferentes localizações no espaço. Valores vizinhos tendem a ser mais similares (autocorrelação positiva) ou mais diferentes (negativa) que valores distantes.</p>
+</dd>
+<dt><strong>Cluster Espacial</strong></dt><dd><p>Agrupamento de unidades espaciais com valores similares (altos ou baixos). No Proagro: região onde múltiplos municípios têm alta (ou baixa) taxa de COPs.</p>
+</dd>
+<dt><strong>Coldspot</strong></dt><dd><p>Cluster de valores baixos (Low-Low em análise LISA). Região com baixa taxa de sinistralidade cercada por outras de baixa taxa.</p>
+</dd>
+<dt><strong>Contiguidade</strong></dt><dd><p>Critério de vizinhança baseado em compartilhamento de fronteira. Unidades que se tocam são vizinhas.</p>
+</dd>
+<dt><strong>Diagrama de Moran (Moran Scatterplot)</strong></dt><dd><p>Gráfico de dispersão que plota valor padronizado de cada unidade (eixo X) vs. média dos vizinhos (eixo Y). Inclinação corresponde ao I de Moran.</p>
+</dd>
+<dt><strong>Esperança (E[I])</strong></dt><dd><p>Valor esperado do I de Moran sob hipótese nula de aleatoriedade espacial. Aproximadamente -1/(n-1) para amostras grandes.</p>
+</dd>
+<dt><strong>Estacionariedade Espacial</strong></dt><dd><p>Propriedade de um processo espacial onde média, variância e autocorrelação não variam sistematicamente no espaço. Não há tendência espacial.</p>
+</dd>
+<dt><strong>Heterogeneidade Espacial</strong></dt><dd><p>Variação sistemática de propriedades estatísticas no espaço. Regiões diferentes têm processos ou parâmetros diferentes.</p>
+</dd>
+<dt><strong>Hotspot</strong></dt><dd><p>Cluster de valores altos (High-High em análise LISA). Região com alta taxa de sinistralidade cercada por outras de alta taxa.</p>
+</dd>
+<dt><strong>Índice I de Moran</strong></dt><dd><p>Estatística que mede autocorrelação espacial global. Varia de -1 (negativa) a +1 (positiva), com 0 indicando independência.</p>
+</dd>
+<dt><strong>Independência Espacial</strong></dt><dd><p>Ausência de autocorrelação. Valores em diferentes localizações não estão correlacionados. Distribuição espacial aleatória.</p>
+</dd>
+<dt><strong>K-Vizinhos Mais Próximos (KNN)</strong></dt><dd><p>Critério de vizinhança onde os K vizinhos mais próximos por distância são considerados vizinhos, independente de contiguidade.</p>
+</dd>
+<dt><strong>Matriz de Pesos Espaciais (W)</strong></dt><dd><p>Matriz n×n que codifica relações de vizinhança. Elemento w_ij = peso da relação entre unidades i e j.</p>
+</dd>
+<dt><strong>Normalização por Linha (Row-Standardization)</strong></dt><dd><p>Transformação da matriz W onde cada linha soma 1. Faz com que spatial lag seja média ponderada dos vizinhos.</p>
+</dd>
+<dt><strong>Outlier Espacial</strong></dt><dd><p>Unidade com valor discrepante de seus vizinhos. High-Low (alto cercado por baixos) ou Low-High (baixo cercado por altos).</p>
+</dd>
+<dt><strong>Permutação Monte Carlo</strong></dt><dd><p>Método de teste de significância baseado em embaralhar valores aleatoriamente múltiplas vezes, comparando estatística observada com distribuição nula gerada.</p>
+</dd>
+<dt><strong>Spatial Lag</strong></dt><dd><p>Média ponderada (pelos pesos espaciais) dos valores dos vizinhos de uma unidade. Representa influência espacial agregada do entorno.</p>
+</dd>
+<dt><strong>Teste de Permutação</strong></dt><dd><p>Abordagem não-paramétrica para calcular valor-p, gerando distribuição nula empiricamente via permutações aleatórias.</p>
+</dd>
+<dt><strong>Valor-p (p-value)</strong></dt><dd><p>Probabilidade de observar estatística tão extrema ou mais extrema que a calculada, assumindo hipótese nula verdadeira. p &lt; 0,05 indica significância.</p>
+</dd>
+<dt><strong>Z-score</strong></dt><dd><p>Número de desvios-padrão que o I observado está distante da expectativa sob aleatoriedade. <a href="#id15"><span class="problematic" id="id16">|z|</span></a> &gt; 1,96 → p &lt; 0,05.</p>
+</dd>
+</dl>
+</section>
+<section id="conclusao-o-i-de-moran-como-pilar-da-analise-espacial">
+<h2>Conclusão: O I de Moran como pilar da análise espacial<a class="headerlink" href="#conclusao-o-i-de-moran-como-pilar-da-analise-espacial" title="Link permanente para este cabeçalho"></a></h2>
+<section id="recapitulacao-final">
+<h3>Recapitulação final<a class="headerlink" href="#recapitulacao-final" title="Link permanente para este cabeçalho"></a></h3>
+<p>Neste capítulo exaustivo, exploramos em profundidade o <strong>Índice I de Moran</strong> — a ferramenta mais fundamental e amplamente utilizada para quantificar autocorrelação espacial. Cobrimos:</p>
+<p>✓ <strong>Fundamentos conceituais</strong> — Por que autocorrelação espacial importa, primeira lei da geografia, tipos de dependência espacial</p>
+<p>✓ <strong>Mecânica matemática</strong> — Compreensão intuitiva e formal da fórmula, passo a passo da construção do índice</p>
+<p>✓ <strong>Definição de vizinhança</strong> — Critérios alternativos (contiguidade, distância, K-vizinhos), vantagens/desvantagens, escolha apropriada</p>
+<p>✓ <strong>Testes de significância</strong> — Abordagens analíticas e por permutação, interpretação de valor-p, número de permutações necessário</p>
+<p>✓ <strong>Interpretação contextualizada</strong> — O que I significa no Proagro, padrões esperados vs. anômalos, comparação COPs vs. clima</p>
+<p>✓ <strong>Diagrama de Moran</strong> — Construção, quatro quadrantes, identificação de outliers, uso prático</p>
+<p>✓ <strong>Limitações e armadilhas</strong> — Sensibilidade a vizinhança, medida global vs. local, múltiplos testes, não causalidade</p>
+<p>✓ <strong>Boas práticas</strong> — Checklist completo, análise de sensibilidade, documentação adequada, reporte profissional</p>
+<p>✓ <strong>Casos especiais</strong> — Zeros inflacionados, áreas heterogêneas, unidades isoladas, dados espaço-temporais</p>
+<p>✓ <strong>Implementação prática</strong> — Código em Python (PySAL) e R (spdep), softwares GIS</p>
+</section>
+<section id="o-i-de-moran-e-apenas-o-comeco">
+<h3>O I de Moran É apenas o começo<a class="headerlink" href="#o-i-de-moran-e-apenas-o-comeco" title="Link permanente para este cabeçalho"></a></h3>
+<p>Por mais poderoso que seja, o I de Moran é uma <strong>medida resumo global</strong> — um único número que sintetiza autocorrelação em toda a área de estudo. Isso é extremamente útil para responder:</p>
+<blockquote>
+<div><p><em>“Há padrão espacial estruturado nos dados?”</em></p>
+</div></blockquote>
+<p>Mas deixa sem resposta uma pergunta igualmente crucial:</p>
+<blockquote>
+<div><p><em>“ONDE exatamente estão os clusters? Quais municípios específicos formam hotspots? Quais são outliers espaciais?”</em></p>
+</div></blockquote>
+<p>Para responder essas perguntas — e para transformar análise espacial em <strong>ferramenta operacional de supervisão do Proagro</strong> — precisamos avançar para <strong>análise espacial local</strong>.</p>
+</section>
+<section id="proximo-passo-lisa-local-indicators-of-spatial-association">
+<h3>Próximo passo: LISA (local indicators of spatial association)<a class="headerlink" href="#proximo-passo-lisa-local-indicators-of-spatial-association" title="Link permanente para este cabeçalho"></a></h3>
+<p>Na próxima seção, decompomos o I de Moran global em <strong>contribuições locais</strong> de cada município, gerando:</p>
+<ul class="simple">
+<li><p><strong>Mapas de clusters</strong> estatisticamente significativos (HH, LL, HL, LH)</p></li>
+<li><p><strong>Identificação precisa</strong> de hotspots e coldspots</p></li>
+<li><p><strong>Priorização geográfica</strong> de casos para investigação</p></li>
+<li><p><strong>Comparação espacial detalhada</strong> entre risco climático e perdas declaradas</p></li>
+</ul>
+<p>LISA é onde a análise espacial <strong>se torna acionável</strong> para supervisão — permitindo não apenas saber <em>que</em> há padrão espacial, mas exatamente <em>onde</em> direcionar recursos limitados de fiscalização e auditoria.</p>
+</section>
+<section id="mensagem-final">
+<h3>Mensagem final<a class="headerlink" href="#mensagem-final" title="Link permanente para este cabeçalho"></a></h3>
+<p>O Índice I de Moran, desenvolvido há mais de 70 anos por Patrick Moran, permanece até hoje a <strong>espinha dorsal da estatística espacial</strong>. Sua simplicidade conceitual (correlação entre valores e média dos vizinhos), rigor matemático e poder de síntese tornaram-no ferramenta indispensável em inúmeras disciplinas.</p>
+<p>No contexto do Proagro, o I de Moran nos permite ir <strong>além da impressão visual</strong> e obter <strong>certeza estatística</strong> sobre padrões de perdas agrícolas. Permite <strong>validar</strong> quando COPs seguem lógica espacial de fenômenos climáticos reais, e <strong>sinalizar anomalias</strong> quando não seguem.</p>
+<p>Mas, como vimos extensivamente, é ferramenta que <strong>exige uso responsável</strong> — compreensão de limitações, análise de sensibilidade, triangulação com outras fontes, reconhecimento de que detecta associação mas não prova causalidade.</p>
+<p>Usado corretamente — com rigor metodológico e consciência de seus limites — o I de Moran é aliado poderoso na missão de tornar o Proagro mais eficiente, justo e resiliente.</p>
+<p><strong>Você está agora equipado com compreensão completa e profunda desta ferramenta fundamental. Vamos aplicá-la.</strong></p>
+<p>—</p>
+<p><strong>Preparado para a próxima etapa? Análise LISA (Local Indicators of Spatial Association) aguarda.</strong></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="heatmap-kernel.html" class="btn btn-neutral float-left" title="Visualização preliminar: mapas de calor e densidade kernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="metodos-interpolacao.html" class="btn btn-neutral float-right" title="Técnicas de interpolação espacial aplicadas ao risco agrícola" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c101091d10>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Previsão de rendimento com redes neurais — caso da soja &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/modelagem/previsao-rendimento-rna.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Análise de recorrência" href="recorrencia.html" />
+    <link rel="prev" title="Aprendizado de máquina para previsão de rendimentos agrícolas" href="aprendizado-de-maquina.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Previsão de rendimento com redes neurais — caso da soja</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-prever-rendimento">Por que prever rendimento?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-rnas-funcionam-bem-para-graos">Por que RNAs funcionam bem para grãos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variavel-alvo-e-covariaveis-tipicas">Variável-alvo e covariáveis típicas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelo-hibrido-com-3-ramos-paralelos">Modelo hibrido com 3 ramos paralelos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#treinamento-implementacao-keras">Treinamento — implementação Keras</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resultados-tipicos">Resultados típicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pesos-e-interpretabilidade-shap">Pesos e interpretabilidade (SHAP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes">Limitações</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proximos-passos">Próximos passos</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Modelagem de perdas e aplicações em decisão</a></li>
+      <li class="breadcrumb-item active">Previsão de rendimento com redes neurais — caso da soja</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="aprendizado-de-maquina.html" class="btn btn-neutral float-left" title="Aprendizado de máquina para previsão de rendimentos agrícolas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="recorrencia.html" class="btn btn-neutral float-right" title="Análise de recorrência" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="previsao-de-rendimento-com-redes-neurais-caso-da-soja">
+<h1>Previsão de rendimento com redes neurais — caso da soja<a class="headerlink" href="#previsao-de-rendimento-com-redes-neurais-caso-da-soja" title="Link permanente para este cabeçalho"></a></h1>
+<p>Esta página apresenta, em síntese, a metodologia exposta no
+Módulo 4.2 do curso: <strong>uma rede neural artificial (RNA)
+multimodal</strong> para previsão de rendimento médio municipal de <strong>soja</strong>
+no Brasil, combinando dados de <strong>sensoriamento remoto</strong>, <strong>clima</strong> e
+<strong>fenologia</strong>. O conteúdo é baseado na dissertação de mestrado do
+instrutor (PPGSR/UFRGS), apresentada como referência prática do
+estado da arte.</p>
+<nav class="contents local" id="nesta-pagina">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta página</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#por-que-prever-rendimento" id="id2">Por que prever rendimento?</a></p></li>
+<li><p><a class="reference internal" href="#por-que-rnas-funcionam-bem-para-graos" id="id3">Por que RNAs funcionam bem para grãos</a></p></li>
+<li><p><a class="reference internal" href="#variavel-alvo-e-covariaveis-tipicas" id="id4">Variável-alvo e covariáveis típicas</a></p></li>
+<li><p><a class="reference internal" href="#modelo-hibrido-com-3-ramos-paralelos" id="id5">Modelo hibrido com 3 ramos paralelos</a></p>
+<ul>
+<li><p><a class="reference internal" href="#fluxo-de-dados" id="id6">Fluxo de dados</a></p></li>
+<li><p><a class="reference internal" href="#arquitetura-da-rna" id="id7">Arquitetura da RNA</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#treinamento-implementacao-keras" id="id8">Treinamento — implementação Keras</a></p>
+<ul>
+<li><p><a class="reference internal" href="#algoritmo-de-treinamento" id="id9">Algoritmo de treinamento</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#resultados-tipicos" id="id10">Resultados típicos</a></p></li>
+<li><p><a class="reference internal" href="#pesos-e-interpretabilidade-shap" id="id11">Pesos e interpretabilidade (SHAP)</a></p></li>
+<li><p><a class="reference internal" href="#limitacoes" id="id12">Limitações</a></p></li>
+<li><p><a class="reference internal" href="#proximos-passos" id="id13">Próximos passos</a></p></li>
+</ul>
+</nav>
+<section id="por-que-prever-rendimento">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Por que prever rendimento?</a><a class="headerlink" href="#por-que-prever-rendimento" title="Link permanente para este cabeçalho"></a></h2>
+<p>Quatro aplicações operacionais imediatas:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Domínio</p></th>
+<th class="head"><p>Uso da previsão de rendimento</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Crédito rural</p></td>
+<td><p>Calibrar expectativas de colheita, dimensionar
+financiamento, avaliar plausibilidade de sinistros
+(Proagro).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Política agrícola</p></td>
+<td><p>Antecipar safras abaixo da média para acionar mecanismos
+de suporte.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mercado</p></td>
+<td><p>Gestão de estoques e precificação de contratos futuros.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Seguro</p></td>
+<td><p>Estabelecer produtividades esperadas (PE) e avaliar
+desvios em comunicações de perda (COPs).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Formalmente:</p>
+<div class="math notranslate nohighlight">
+\[\hat y = f(X_1, X_2, \ldots, X_n)\]</div>
+<p>onde <span class="math notranslate nohighlight">\(\hat y\)</span> é o rendimento previsto e <span class="math notranslate nohighlight">\(X_1 \ldots X_n\)</span>
+são covariáveis agrometeorológicas, fenológicas, pedológicas e de
+manejo.</p>
+</section>
+<section id="por-que-rnas-funcionam-bem-para-graos">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Por que RNAs funcionam bem para grãos</a><a class="headerlink" href="#por-que-rnas-funcionam-bem-para-graos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><strong>Aproximação universal</strong> <span id="id1">[<a class="reference internal" href="../../referencias.html#id280" title="George Cybenko. Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals and Systems, 2(4):303–314, 1989. doi:10.1007/BF02551274.">124</a>]</span> — uma RNA aprende a
+forma funcional sem que o analista precise especificá-la.</p></li>
+<li><p><strong>Não-linearidades</strong> — 35 °C no florescimento da soja causa dano
+desproporcional, não apenas “um pouco mais” de perda que 30 °C.</p></li>
+<li><p><strong>Interações temporais</strong> — déficit hídrico combinado com alta
+temperatura no enchimento produz perdas <strong>sinérgicas</strong>, não a
+soma dos efeitos isolados.</p></li>
+<li><p><strong>Integração de fontes</strong> — tabulares (clima por fase, fenologia,
+solo) somam-se a séries (NDVI mensal) sem reorganização manual.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>No contexto Proagro/Sicor — com dados tabulares em médias mensais
+ou decendiais — o <strong>MLP</strong> (perceptron multicamadas) é o ponto de
+partida natural antes de CNNs ou LSTMs.</p>
+</div>
+</section>
+<section id="variavel-alvo-e-covariaveis-tipicas">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Variável-alvo e covariáveis típicas</a><a class="headerlink" href="#variavel-alvo-e-covariaveis-tipicas" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><strong>Alvo</strong>: rendimento médio municipal (kg/ha) — soja, município ×
+safra.</p></li>
+<li><p><strong>Climáticas</strong> (por fase ou mês): precipitação acumulada,
+temperaturas máx/mín/média, radiação solar, ETo, balanço hídrico
+(P − ETo).</p></li>
+<li><p><strong>Fenologia · solo · tempo</strong>: ciclo vegetativo/reprodutivo
+(WCPMS, ZARC), data de semeadura, AWC, % argila, altitude,
+latitude, ENSO (Niño 3.4 SST), tendência tecnológica (ano-safra).</p></li>
+</ul>
+</section>
+<section id="modelo-hibrido-com-3-ramos-paralelos">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Modelo hibrido com 3 ramos paralelos</a><a class="headerlink" href="#modelo-hibrido-com-3-ramos-paralelos" title="Link permanente para este cabeçalho"></a></h2>
+<p>A dissertação parte do princípio que <strong>o tempo biológico da planta
+define as janelas de agregação climática</strong> — não o calendário civil
+fixo (“precipitação de janeiro” não é uma janela agronomicamente
+significativa).</p>
+<section id="fluxo-de-dados">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Fluxo de dados</a><a class="headerlink" href="#fluxo-de-dados" title="Link permanente para este cabeçalho"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Sensoriamento remoto + construção de séries temporais
+municipais</strong> (NDVI/EVI) — MODIS/HLS;</p></li>
+<li><p><strong>Extração automática de métricas fenológicas</strong> por município/
+safra (início, pico, fim, taxa de senescência, integrada);</p></li>
+<li><p><strong>Integração climática orientada pela fenologia</strong> — janelas
+climáticas ancoradas no ciclo real, não no calendário;</p></li>
+<li><p><strong>Construção do dataset ampliado e modelagem preditiva</strong>.</p></li>
+</ol>
+</section>
+<section id="arquitetura-da-rna">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Arquitetura da RNA</a><a class="headerlink" href="#arquitetura-da-rna" title="Link permanente para este cabeçalho"></a></h3>
+<p>Três ramos paralelos (divisão do trabalho):</p>
+<ul class="simple">
+<li><p><strong>Ramo 1</strong> — vê tudo junto (interações gerais);</p></li>
+<li><p><strong>Ramo 2</strong> — foca só no <strong>clima</strong> (27 variáveis meteorológicas);</p></li>
+<li><p><strong>Ramo 3</strong> — foca só na <strong>fenologia</strong> (10 métricas de NDVI).</p></li>
+</ul>
+<p>Saída em duas partes:</p>
+<ul class="simple">
+<li><p><strong>Previsão base</strong> (rendimento médio esperado);</p></li>
+<li><p><strong>Correção regional</strong> (calibração local).</p></li>
+</ul>
+<p>Detalhes operacionais:</p>
+<ul class="simple">
+<li><p>Treinamento com <strong>penalidade assimétrica</strong> forçando subestimação
+(preferível para finalidade de Proagro — pagamento indevido tem
+custo maior que pagamento parcial).</p></li>
+<li><p><strong>Calibração pós-treino</strong> corrige inconsistências locais sem
+retreinar a rede.</p></li>
+</ul>
+</section>
+</section>
+<section id="treinamento-implementacao-keras">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Treinamento — implementação Keras</a><a class="headerlink" href="#treinamento-implementacao-keras" title="Link permanente para este cabeçalho"></a></h2>
+<p>A arquitetura básica para o ponto de partida MLP no Keras:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras</span><span class="w"> </span><span class="kn">import</span> <span class="n">layers</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_features</span><span class="p">,)),</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hidden1&#39;</span><span class="p">),</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;hidden2&#39;</span><span class="p">),</span>
+    <span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;output&#39;</span><span class="p">),</span>    <span class="c1"># regressão → sem softmax</span>
+<span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span>
+               <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mae&#39;</span><span class="p">,</span> <span class="s1">&#39;mape&#39;</span><span class="p">])</span>
+
+<span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Parâmetros do <code class="docutils literal notranslate"><span class="pre">.fit()</span></code></p>
+<ul class="simple">
+<li><p><strong>``epochs=100``</strong> — 100 ciclos completos sobre todo o dataset
+de treino. Mais épocas → mais treinamento; risco de
+<em>overfitting</em>.</p></li>
+<li><p><strong>``batch_size=32``</strong> — 32 amostras por atualização dos pesos.
+Comum: 16/32/64/128 (potências de 2). Menor batch → mais
+atualizações (ruidosas, mas converge rápido); maior batch →
+atualizações estáveis (mais memória).</p></li>
+<li><p><strong>``validation_split=0.2``</strong> — separa 20% dos dados de treino
+para monitorar o erro de validação a cada época.</p></li>
+</ul>
+</div>
+<section id="algoritmo-de-treinamento">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Algoritmo de treinamento</a><a class="headerlink" href="#algoritmo-de-treinamento" title="Link permanente para este cabeçalho"></a></h3>
+<ol class="arabic simple">
+<li><p>A rede faz uma previsão com os pesos atuais;</p></li>
+<li><p>Calcula-se o erro entre previsão e observado (MSE, RMSE);</p></li>
+<li><p><strong>Backpropagation</strong> calcula o gradiente do erro em relação a
+cada peso;</p></li>
+<li><p>Os pesos são atualizados na direção oposta ao gradiente —
+passo controlado pela taxa de aprendizado;</p></li>
+<li><p>Repete-se por várias épocas sobre o conjunto de treinamento.</p></li>
+</ol>
+<p>Configurações típicas para grãos: <strong>2 a 4 camadas ocultas, dezenas
+a centenas de neurônios cada</strong>.</p>
+</section>
+</section>
+<section id="resultados-tipicos">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">Resultados típicos</a><a class="headerlink" href="#resultados-tipicos" title="Link permanente para este cabeçalho"></a></h2>
+<p>Resultado obtido na dissertação (e replicado em literatura
+recente, Monteiro et al. 2023/24):</p>
+<ul class="simple">
+<li><p><strong>rRMSE ≈ 6%</strong> em escala nacional;</p></li>
+<li><p><strong>rRMSE ≈ 16%</strong> em escala municipal para soja.</p></li>
+</ul>
+<p>A perda de acurácia ao descer de escala (país → município) reflete
+a <strong>variância intermediária</strong> discutida em <a class="reference internal" href="introducao.html"><span class="doc">Introdução à modelagem de perdas agrícolas</span></a> —
+sinal climático claro, mas com ruído local crescente.</p>
+</section>
+<section id="pesos-e-interpretabilidade-shap">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Pesos e interpretabilidade (SHAP)</a><a class="headerlink" href="#pesos-e-interpretabilidade-shap" title="Link permanente para este cabeçalho"></a></h2>
+<p>Apesar do <em>trade-off</em> “ganho em flexibilidade, custo em
+interpretabilidade”, técnicas de <strong>explainability</strong> permitem
+inspecionar a importância relativa de cada variável:</p>
+<ul class="simple">
+<li><p><strong>Variáveis fenológicas</strong> — peso típico das métricas de NDVI
+(início, pico, integrada);</p></li>
+<li><p><strong>Variáveis climáticas</strong> — peso típico de balanço hídrico e
+temperatura por fase fenológica;</p></li>
+<li><p><strong>Variáveis compostas</strong> (interações) — capturadas pelo ramo 1
+(visão integrada).</p></li>
+</ul>
+<p>A análise SHAP mostra quais variáveis dominam a previsão para cada
+caso individual — útil para auditoria operacional (“por que a rede
+previu produtividade baixa para este município?”).</p>
+</section>
+<section id="limitacoes">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Limitações</a><a class="headerlink" href="#limitacoes" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><strong>Generalização para extremos</strong> — RNAs aprendem padrões da
+amostra de treino. Eventos sem análogo histórico (anomalia
+climática inédita) tendem a ser subestimados.</p></li>
+<li><p><strong>Dados de treino</strong> — qualidade e cobertura municipal limitam o
+desempenho; municípios pequenos com poucas safras na base têm
+predição menos confiável.</p></li>
+<li><p><strong>Custo de manutenção</strong> — recalibração periódica conforme a
+base de COPs e os dados de SR/clima crescem.</p></li>
+</ul>
+</section>
+<section id="proximos-passos">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Próximos passos</a><a class="headerlink" href="#proximos-passos" title="Link permanente para este cabeçalho"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="introducao.html"><span class="doc">Introdução à modelagem de perdas agrícolas</span></a> — fundamentos conceituais da modelagem de
+perdas.</p></li>
+<li><p><a class="reference internal" href="modelos-classicos.html"><span class="doc">Modelos clássicos para previsão de produtividade agrícola</span></a> — alternativas estatísticas e
+agroclimáticas (regressão, GDD, balanço hídrico).</p></li>
+<li><p><a class="reference internal" href="aprendizado-de-maquina.html"><span class="doc">Aprendizado de máquina para previsão de rendimentos agrícolas</span></a> — visão geral de ML para
+agricultura (Random Forest, XGBoost, CNN, LSTM).</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="aprendizado-de-maquina.html" class="btn btn-neutral float-left" title="Aprendizado de máquina para previsão de rendimentos agrícolas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="recorrencia.html" class="btn btn-neutral float-right" title="Análise de recorrência" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1031a5b90>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

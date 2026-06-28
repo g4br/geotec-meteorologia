@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Síntese final do curso &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sintese/index.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="Referências bibliográficas" href="../referencias.html" />
+    <link rel="prev" title="Análise de recorrência" href="../modelagem/recorrencia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Síntese final do curso</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#modulo-1-fundamentos-do-risco-agricola">Módulo 1 — fundamentos do risco agrícola</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-equacao-do-risco">A equação do risco</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#instrumentos-brasileiros-de-protecao">Instrumentos brasileiros de proteção</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-monitorar-clima-e-gestao-de-risco-fiscal">Por que monitorar clima é gestão de risco fiscal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#elementos-climaticos-planta">Elementos climáticos × planta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#distribuicao-agregada-de-cops-sicor-2014-2024">Distribuição agregada de COPs (Sicor 2014-2024)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enos-como-lente-climatica">ENOS como lente climática</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#para-se-aprofundar">Para se aprofundar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modulo-2-analise-espacial">Módulo 2 — análise espacial</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lei-de-tobler-como-lente">Lei de Tobler como lente</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trilha-do-metodo">Trilha do método</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#maup-e-falacia-ecologica">MAUP e falácia ecológica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Para se aprofundar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modulo-3-sinistros-e-recorrencia">Módulo 3 — sinistros e recorrência</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pipeline-didatico-de-plausibilidade">Pipeline didático de plausibilidade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Para se aprofundar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#modulo-4-modelagem">Módulo 4 — modelagem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quatro-familias-de-modelos">Quatro famílias de modelos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#risco-de-base">Risco de base</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Para se aprofundar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pipeline-integrado-leitura-final">Pipeline integrado — leitura final</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#a-mensagem-final">A mensagem final</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li class="breadcrumb-item active">Síntese final do curso</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="../modelagem/recorrencia.html" class="btn btn-neutral float-left" title="Análise de recorrência" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências bibliográficas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sintese-final-do-curso">
+<h1>Síntese final do curso<a class="headerlink" href="#sintese-final-do-curso" title="Link permanente para este cabeçalho"></a></h1>
+<p>Esta página consolida os principais pontos dos quatro módulos
+(Fundamentos, Análise Espacial, Sinistros, Modelagem) em uma única
+narrativa transversal. Reproduz a estrutura da aula de síntese
+apresentada no encerramento do curso <em>Fenômenos Meteorológicos
+Adversos na Agricultura — Geotec</em> (Síntese Final, 97 slides).</p>
+<p>A mensagem que costura o curso:</p>
+<blockquote>
+<div><p><em>Nenhum indicador substitui o julgamento técnico. Mas qualifica
+o julgamento.</em></p>
+</div></blockquote>
+<nav class="contents local" id="nesta-pagina">
+<p class="topic-title"><a class="reference internal" href="#top">Nesta página</a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#modulo-1-fundamentos-do-risco-agricola" id="id4">Módulo 1 — fundamentos do risco agrícola</a></p>
+<ul>
+<li><p><a class="reference internal" href="#a-equacao-do-risco" id="id5">A equação do risco</a></p></li>
+<li><p><a class="reference internal" href="#instrumentos-brasileiros-de-protecao" id="id6">Instrumentos brasileiros de proteção</a></p></li>
+<li><p><a class="reference internal" href="#por-que-monitorar-clima-e-gestao-de-risco-fiscal" id="id7">Por que monitorar clima é gestão de risco fiscal</a></p></li>
+<li><p><a class="reference internal" href="#elementos-climaticos-planta" id="id8">Elementos climáticos × planta</a></p></li>
+<li><p><a class="reference internal" href="#distribuicao-agregada-de-cops-sicor-2014-2024" id="id9">Distribuição agregada de COPs (Sicor 2014-2024)</a></p></li>
+<li><p><a class="reference internal" href="#enos-como-lente-climatica" id="id10">ENOS como lente climática</a></p></li>
+<li><p><a class="reference internal" href="#para-se-aprofundar" id="id11">Para se aprofundar</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modulo-2-analise-espacial" id="id12">Módulo 2 — análise espacial</a></p>
+<ul>
+<li><p><a class="reference internal" href="#lei-de-tobler-como-lente" id="id13">Lei de Tobler como lente</a></p></li>
+<li><p><a class="reference internal" href="#trilha-do-metodo" id="id14">Trilha do método</a></p></li>
+<li><p><a class="reference internal" href="#maup-e-falacia-ecologica" id="id15">MAUP e falácia ecológica</a></p></li>
+<li><p><a class="reference internal" href="#id1" id="id16">Para se aprofundar</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modulo-3-sinistros-e-recorrencia" id="id17">Módulo 3 — sinistros e recorrência</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pipeline-didatico-de-plausibilidade" id="id18">Pipeline didático de plausibilidade</a></p></li>
+<li><p><a class="reference internal" href="#pipeline-auditorial-bloco-a-vs-bloco-b" id="id19">Pipeline auditorial — bloco A vs bloco B</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id20">Para se aprofundar</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modulo-4-modelagem" id="id21">Módulo 4 — modelagem</a></p>
+<ul>
+<li><p><a class="reference internal" href="#quatro-familias-de-modelos" id="id22">Quatro famílias de modelos</a></p></li>
+<li><p><a class="reference internal" href="#risco-de-base" id="id23">Risco de base</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id24">Para se aprofundar</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#pipeline-integrado-leitura-final" id="id25">Pipeline integrado — leitura final</a></p></li>
+<li><p><a class="reference internal" href="#a-mensagem-final" id="id26">A mensagem final</a></p></li>
+</ul>
+</nav>
+<section id="modulo-1-fundamentos-do-risco-agricola">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Módulo 1 — fundamentos do risco agrícola</a><a class="headerlink" href="#modulo-1-fundamentos-do-risco-agricola" title="Link permanente para este cabeçalho"></a></h2>
+<section id="a-equacao-do-risco">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">A equação do risco</a><a class="headerlink" href="#a-equacao-do-risco" title="Link permanente para este cabeçalho"></a></h3>
+<div class="math notranslate nohighlight">
+\[\text{Risco agrícola} = \text{Perigo} \times \text{Exposição} \times \text{Vulnerabilidade}\]</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Fator</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Perigo</strong></p></td>
+<td><p>O evento meteorológico em si — seca, geada, granizo,
+vento, chuva excessiva.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Exposição</strong></p></td>
+<td><p>Lavoura plantada <strong>ali</strong>, naquele momento, com aquela
+cultura específica.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Vulnerabilidade</strong></p></td>
+<td><p>Fase fenológica em que o evento causa dano irreversível
+à planta.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Os três fatores são <strong>multiplicativos</strong>. Se algum é zero, não há
+perda. <strong>O momento importa tanto quanto a intensidade.</strong></p>
+</section>
+<section id="instrumentos-brasileiros-de-protecao">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Instrumentos brasileiros de proteção</a><a class="headerlink" href="#instrumentos-brasileiros-de-protecao" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15.0%" />
+<col style="width: 60.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Instrumento</p></th>
+<th class="head"><p>Função</p></th>
+<th class="head"><p>Timing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>ZARC</strong></p></td>
+<td><p>Reduzir exposição — janela de plantio com risco aceitável</p></td>
+<td><p>Preventivo</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Proagro</strong></p></td>
+<td><p>Quitar parte do financiamento quando perda comprovada &gt; 30%</p></td>
+<td><p>Reativo (público)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Seguro privado</strong></p></td>
+<td><p>Transferir risco de produção para a seguradora</p></td>
+<td><p>Reativo (privado)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PSR</strong></p></td>
+<td><p>Subsidiar 20-45% do prêmio do seguro privado</p></td>
+<td><p>Facilitador</p></td>
+</tr>
+</tbody>
+</table>
+<p>Os quatro se complementam. Ineficiência aparece quando são usados
+de forma desconectada — <strong>plantio fora do ZARC com COP no Proagro
+é o sinal clássico</strong> que aprendemos a identificar.</p>
+</section>
+<section id="por-que-monitorar-clima-e-gestao-de-risco-fiscal">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Por que monitorar clima é gestão de risco fiscal</a><a class="headerlink" href="#por-que-monitorar-clima-e-gestao-de-risco-fiscal" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p>≈ <strong>80% da variabilidade</strong> da produção agrícola é explicada por
+clima.</p></li>
+<li><p>O crédito rural está exposto à produção → está exposto
+diretamente ao clima.</p></li>
+<li><p><strong>Indenizações pagas pelo Proagro</strong>:</p></li>
+</ul>
+</section>
+<section id="elementos-climaticos-planta">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Elementos climáticos × planta</a><a class="headerlink" href="#elementos-climaticos-planta" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><strong>Temperaturas cardinais</strong> (basal, ótima, máxima) e
+<strong>graus-dia</strong> (GDD) — a planta conta calor acumulado, não dias
+do calendário.</p></li>
+<li><p><strong>Janelas de máxima vulnerabilidade</strong>:</p></li>
+<li><p><strong>Total mensal “bom” ≠ disponibilidade hídrica adequada</strong> —
+150 mm em 3 dias + 27 dias secos pode causar perda total
+(paradoxo do veranico).</p></li>
+</ul>
+</section>
+<section id="distribuicao-agregada-de-cops-sicor-2014-2024">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Distribuição agregada de COPs (Sicor 2014-2024)</a><a class="headerlink" href="#distribuicao-agregada-de-cops-sicor-2014-2024" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 20.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Evento</p></th>
+<th class="head"><p>% das COPs</p></th>
+<th class="head"><p>Comentário</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Seca</p></td>
+<td><p>≈ 58%</p></td>
+<td><p>Evento dominante, sozinho</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chuva excessiva</p></td>
+<td><p>≈ 22%</p></td>
+<td><p>Segundo mais frequente</p></td>
+</tr>
+<tr class="row-even"><td><p>Geada</p></td>
+<td><p>≈ 10%</p></td>
+<td><p>Concentrada em trigo no Sul</p></td>
+</tr>
+<tr class="row-odd"><td><p>Granizo + Vento + Variação térmica + outros</p></td>
+<td><p>≈ 10%</p></td>
+<td><p>Baixa frequência ≠ baixo impacto</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="enos-como-lente-climatica">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">ENOS como lente climática</a><a class="headerlink" href="#enos-como-lente-climatica" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><strong>El Niño</strong> → chuva excessiva no Sul + seca no Norte/Nordeste;</p></li>
+<li><p><strong>La Niña</strong> → seca no Sul + chuva excessiva no Norte/Nordeste;</p></li>
+<li><p><strong>Neutro</strong> → comportamento climatológico de referência.</p></li>
+</ul>
+<p>Conhecer a fase do ENOS no momento da COP <strong>enriquece</strong> a
+plausibilidade meteorológica.</p>
+</section>
+<section id="para-se-aprofundar">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Para se aprofundar</a><a class="headerlink" href="#para-se-aprofundar" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../fundamentos/risco/index.html"><span class="doc">O que é risco agrícola?</span></a></p></li>
+<li><p><a class="reference internal" href="../fundamentos/eventos/index.html"><span class="doc">Tipos de eventos adversos no campo</span></a></p></li>
+<li><p><a class="reference internal" href="../fundamentos/risco/enso.html"><span class="doc">El Niño–Oscilação Sul: clima, vegetação e agricultura</span></a></p></li>
+<li><p><a class="reference internal" href="../fundamentos/fontes-dados/index.html"><span class="doc">Fontes de informação meteorológica (informações granulares)</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="modulo-2-analise-espacial">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Módulo 2 — análise espacial</a><a class="headerlink" href="#modulo-2-analise-espacial" title="Link permanente para este cabeçalho"></a></h2>
+<section id="lei-de-tobler-como-lente">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Lei de Tobler como lente</a><a class="headerlink" href="#lei-de-tobler-como-lente" title="Link permanente para este cabeçalho"></a></h3>
+<blockquote>
+<div><p><em>“Tudo está relacionado com tudo, mas coisas próximas estão
+mais relacionadas que coisas distantes.”</em> — Waldo Tobler, 1970.</p>
+</div></blockquote>
+<p>Sem essa lei, o “onde” da COP é apenas atributo cadastral. <strong>Com</strong>
+ela, vira fonte de informação em si.</p>
+</section>
+<section id="trilha-do-metodo">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Trilha do método</a><a class="headerlink" href="#trilha-do-metodo" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 30.0%" />
+<col style="width: 48.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Técnica</p></th>
+<th class="head"><p>Pergunta</p></th>
+<th class="head"><p>Saída</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>KDE</strong></p></td>
+<td><p>Onde os pontos se concentram?</p></td>
+<td><p>Mapa de calor contínuo</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>I de Moran global</strong></p></td>
+<td><p>Há padrão espacial ou aleatoriedade?</p></td>
+<td><p>Número único + p-valor (Monte Carlo)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>LISA</strong></p></td>
+<td><p>Quais municípios formam cluster?</p></td>
+<td><p>Mapa HH / LL / HL / LH</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Gi*</strong></p></td>
+<td><p>Onde estão os hotspots robustos?</p></td>
+<td><p>Mapa hot/cold (90/95/99%)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>IDW / Spline / Krigagem</strong></p></td>
+<td><p>Como interpolar entre estações?</p></td>
+<td><p>Superfície contínua + variância</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="maup-e-falacia-ecologica">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">MAUP e falácia ecológica</a><a class="headerlink" href="#maup-e-falacia-ecologica" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><strong>MAUP</strong> — mudar a unidade espacial muda o resultado. Sempre
+rodar em 2+ escalas para validar robustez.</p></li>
+<li><p><strong>Falácia ecológica</strong> — padrão municipal não justifica
+inferência sobre o produtor individual.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink">Para se aprofundar</a><a class="headerlink" href="#id1" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../analise-espacial/index.html"><span class="doc">Análise espacial, estatística e técnicas de interpolação</span></a></p></li>
+<li><p><a class="reference internal" href="../analise-espacial/praticas/index.html"><span class="doc">Aulas práticas — análise espacial, estatística e interpolação</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="modulo-3-sinistros-e-recorrencia">
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">Módulo 3 — sinistros e recorrência</a><a class="headerlink" href="#modulo-3-sinistros-e-recorrencia" title="Link permanente para este cabeçalho"></a></h2>
+<section id="pipeline-didatico-de-plausibilidade">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">Pipeline didático de plausibilidade</a><a class="headerlink" href="#pipeline-didatico-de-plausibilidade" title="Link permanente para este cabeçalho"></a></h3>
+<p>Para cada COP individual:</p>
+<ol class="arabic simple">
+<li><p><strong>Recorte temático</strong> — produto + evento + período + dedup;</p></li>
+<li><p><strong>Vínculo espacial</strong> — 3 estações INMET mais próximas
+(Haversine);</p></li>
+<li><p><strong>Anomalia na janela do evento</strong> (MERGE/SAMeT − climatologia);</p></li>
+<li><p><strong>Anomalia decendial</strong> ao longo do ciclo;</p></li>
+<li><p><strong>Métricas agregadas</strong> (n_decêndios negativos, anomalia
+mínima, anomalia acumulada);</p></li>
+<li><p><strong>Flags binários</strong> de implausibilidade;</p></li>
+<li><p><strong>Diagnóstico individual</strong> MERGE × INMET por caso;</p></li>
+<li><p><strong>(Opcional) Score 0-100</strong> + classificação em 4 categorias
+(CONFIRMADO / APROVADO / REVISÃO / REPROVADO).</p></li>
+</ol>
+<p>Sinal da anomalia depende do evento:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Evento</p></th>
+<th class="head"><p>Compatível</p></th>
+<th class="head"><p>Suspeito</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Seca</p></td>
+<td><p>anom &lt; 0 (chuva)</p></td>
+<td><p>anom ≥ 0 (chuva)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chuva excessiva</p></td>
+<td><p>anom &gt; 0 (chuva)</p></td>
+<td><p>anom ≤ 0 (chuva)</p></td>
+</tr>
+<tr class="row-even"><td><p>Geada</p></td>
+<td><p>anom &lt; 0 (TMIN)</p></td>
+<td><p>anom ≥ 0 (TMIN)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pipeline-auditorial-bloco-a-vs-bloco-b">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">Pipeline auditorial — bloco A vs bloco B</a><a class="headerlink" href="#pipeline-auditorial-bloco-a-vs-bloco-b" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Bloco</p></th>
+<th class="head"><p>Foco</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A — Plausibilidade</strong></p></td>
+<td><p>Cada COP analisada individualmente contra dados
+meteorológicos objetivos (Aulas 1-3).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>B — Padrões agregados</strong></p></td>
+<td><p>Recorrência espacial, concentração de peritos/IFs,
+tríades produtor × perito × IF, raio de atuação, razão
+pago/crédito (Aulas 4-5).</p></td>
+</tr>
+</tbody>
+</table>
+<p>A inteligência operacional surge do <strong>cruzamento</strong> entre os dois
+blocos — COPs com flag A ativo <strong>em região com sinal B ativo</strong> são
+prioridade.</p>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Para se aprofundar</a><a class="headerlink" href="#id2" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../sinistros/index.html"><span class="doc">Análise de sinistros, outliers e tipologias de risco meteorológico</span></a></p></li>
+<li><p><a class="reference internal" href="../sinistros/aulas/index.html"><span class="doc">Aulas práticas — plausibilidade meteorológica e recorrência</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="modulo-4-modelagem">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">Módulo 4 — modelagem</a><a class="headerlink" href="#modulo-4-modelagem" title="Link permanente para este cabeçalho"></a></h2>
+<section id="quatro-familias-de-modelos">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">Quatro famílias de modelos</a><a class="headerlink" href="#quatro-familias-de-modelos" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 38.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Família</p></th>
+<th class="head"><p>Exemplos</p></th>
+<th class="head"><p>Quando usar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Empíricos/estatísticos</p></td>
+<td><p>Regressão linear, ARIMA, NDVI-based</p></td>
+<td><p>Linha de base; rápido; transparente</p></td>
+</tr>
+<tr class="row-odd"><td><p>Agroclimáticos</p></td>
+<td><p>SPI, SPEI, GDD, Thornthwaite-Mather</p></td>
+<td><p>Padronizados, comparáveis entre regiões</p></td>
+</tr>
+<tr class="row-even"><td><p>Mecanísticos</p></td>
+<td><p>DSSAT, APSIM, AquaCrop</p></td>
+<td><p>Quando há calibração local de cultivar</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aprendizado de máquina</p></td>
+<td><p>RF, XGBoost, CNN-LSTM, MLP</p></td>
+<td><p>Grande volume, não-linearidade</p></td>
+</tr>
+</tbody>
+</table>
+<p>Resultados típicos para soja no Brasil (ensemble ML):
+<strong>rRMSE ≈ 6% nacional, ≈ 16% municipal</strong> (Monteiro et al. 2023/24).</p>
+</section>
+<section id="risco-de-base">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">Risco de base</a><a class="headerlink" href="#risco-de-base" title="Link permanente para este cabeçalho"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 25.0%" />
+<col style="width: 55.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>Causa</p></th>
+<th class="head"><p>Consequência</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Espacial</strong></p></td>
+<td><p>Estação/pixel distante da gleba</p></td>
+<td><p>Gradientes locais não captados</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Temporal</strong></p></td>
+<td><p>Janela do índice ≠ fase crítica</p></td>
+<td><p>Sinal disperso no tempo</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Design</strong></p></td>
+<td><p>Proxy inadequado (ex.: SPI em problema térmico)</p></td>
+<td><p>Falso negativo / falso positivo</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">Para se aprofundar</a><a class="headerlink" href="#id3" title="Link permanente para este cabeçalho"></a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="../modelagem/index.html"><span class="doc">Modelagem de perdas e aplicações em decisão</span></a></p></li>
+<li><p><a class="reference internal" href="../modelagem/previsao-rendimento-rna.html"><span class="doc">Previsão de rendimento com redes neurais — caso da soja</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="pipeline-integrado-leitura-final">
+<h2><a class="toc-backref" href="#id25" role="doc-backlink">Pipeline integrado — leitura final</a><a class="headerlink" href="#pipeline-integrado-leitura-final" title="Link permanente para este cabeçalho"></a></h2>
+<p>Em um único quadro, o que o curso entrega:</p>
+<p>O resultado final é um <strong>arsenal analítico integrado</strong> que combina
+rigor espacial, validação climática e inteligência comportamental
+— transformando o Proagro de sistema reativo em sistema inteligente
+que aprende, valida, prioriza e previne.</p>
+</section>
+<section id="a-mensagem-final">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">A mensagem final</a><a class="headerlink" href="#a-mensagem-final" title="Link permanente para este cabeçalho"></a></h2>
+<blockquote class="epigraph">
+<div><p>Geramos hipóteses, não vereditos. Apontamos caminhos para
+investigação, não conclusões definitivas. Bem feito, este
+trabalho fortalece o Proagro ao proteger recursos públicos e,
+ao mesmo tempo, assegura que produtores legítimos com perdas
+genuínas sejam atendidos prontamente.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="../modelagem/recorrencia.html" class="btn btn-neutral float-left" title="Análise de recorrência" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências bibliográficas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x72c1008f3690>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
