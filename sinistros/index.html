@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -315,7 +317,7 @@ prioridade.</p>
 <p><strong>O que é anomalia de precipitação e como ela evidencia uma seca real?</strong></p>
 <p>A anomalia de precipitação é a diferença entre o volume de chuva observado em um período e a média climatológica dos mesmos dias em anos anteriores: anomalia = observado − climatologia. Uma anomalia negativa significa que choveu menos do que o esperado para aquela época e local. Para verificar a plausibilidade de uma COP por seca, calcula-se essa anomalia tanto na janela de tempo declarada quanto ao longo de todo o ciclo da cultura, em decêndios (períodos de dez dias). Uma COP é marcada como meteorologicamente implausível apenas quando nem a janela declarada nem nenhum decêndio do ciclo mostram déficit — uma regra deliberadamente conservadora para evitar falsos positivos.</p>
 <p><strong>O que é o produto MERGE e por que é mais útil do que usar só as estações do INMET?</strong></p>
-<p>O MERGE é um produto de precipitação em grade desenvolvido pelo CPTEC/INPE que funde estimativas de satélite (constelação IMERG-GPM da NASA) com dados de estações pluviométricas (INMET, ANA, CEMADEN), produzindo um campo contínuo de chuva sobre a América do Sul com resolução de aproximadamente 10 km e série desde 1998 <span id="id1">[<a class="reference internal" href="../referencias.html#id250" title="J. R. Rozante, D. S. Moreira, L. G. G. de Goncalves, and D. A. Vila. Combining TRMM and surface observations of precipitation: technique and validation over South America. Weather and Forecasting, 25(3):885–894, 2010. doi:10.1175/2010WAF2222325.1.">63</a>]</span>. Sua vantagem sobre as estações isoladas é a cobertura espacial completa: enquanto as estações são medidas pontuais com lacunas entre elas, o MERGE fornece estimativa para qualquer ponto do território, incluindo glebas distantes de qualquer estação. A contrapartida é que, por ser uma média de área, o MERGE pode não capturar eventos muito localizados como um veranico de gleba ou uma célula convectiva isolada.</p>
+<p>O MERGE é um produto de precipitação em grade desenvolvido pelo CPTEC/INPE que funde estimativas de satélite (constelação IMERG-GPM da NASA) com dados de estações pluviométricas (INMET, ANA, CEMADEN), produzindo um campo contínuo de chuva sobre a América do Sul com resolução de aproximadamente 10 km e série desde 1998 <span id="id1">[<a class="reference internal" href="../referencias.html#id250" title="J. R. Rozante, D. S. Moreira, L. G. G. de Goncalves, and D. A. Vila. Combining TRMM and surface observations of precipitation: technique and validation over South America. Weather and Forecasting, 25(3):885–894, 2010. doi:10.1175/2010WAF2222325.1.">64</a>]</span>. Sua vantagem sobre as estações isoladas é a cobertura espacial completa: enquanto as estações são medidas pontuais com lacunas entre elas, o MERGE fornece estimativa para qualquer ponto do território, incluindo glebas distantes de qualquer estação. A contrapartida é que, por ser uma média de área, o MERGE pode não capturar eventos muito localizados como um veranico de gleba ou uma célula convectiva isolada.</p>
 <p><strong>Como identificar padrões atípicos de recorrência de COPs?</strong></p>
 <p>A análise de recorrência identifica produtores, glebas ou regiões que acumulam comunicações de perda em múltiplas safras. Tecnicamente, agrupam-se as COPs pelo identificador do produtor ou pelas coordenadas da gleba e contam-se as safras distintas em que houve registro. O ponto crítico é que recorrência, por si só, não indica irregularidade: regiões com risco climático crônico (semiárido, áreas sujeitas a veranico ou geada frequente) naturalmente acumulam sinistros ao longo dos anos. O que eleva a suspeita é a convergência de múltiplos sinais: recorrência alta combinada com COPs meteorologicamente implausíveis, raio de atuação atípico de peritos ou concentração entre agentes.</p>
 <p><strong>O que é risco de base e por que o falso positivo é mais custoso do que parece?</strong></p>
@@ -340,7 +342,7 @@ prioridade.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac9822d910>
+<jinja2.runtime.BlockReference object at 0x7edfd6919950>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

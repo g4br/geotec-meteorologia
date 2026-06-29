@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -298,7 +300,7 @@
 </section>
 <section id="contexto-historico">
 <h3>Contexto histórico<a class="headerlink" href="#contexto-historico" title="Link permanente para este cabeçalho"></a></h3>
-<p>Patrick Alfred Pierce Moran (1917-1988) desenvolveu este índice como parte de pesquisas em genética de populações e epidemiologia. O artigo seminal <em>“Notes on Continuous Stochastic Phenomena”</em>, publicado na <em>Biometrika</em> <span id="id1">[<a class="reference internal" href="../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, introduziu formalmente o conceito de autocorrelação espacial quantitativa, revolucionando a análise de dados geográficos.</p>
+<p>Patrick Alfred Pierce Moran (1917-1988) desenvolveu este índice como parte de pesquisas em genética de populações e epidemiologia. O artigo seminal <em>“Notes on Continuous Stochastic Phenomena”</em>, publicado na <em>Biometrika</em> <span id="id1">[<a class="reference internal" href="../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">73</a>]</span>, introduziu formalmente o conceito de autocorrelação espacial quantitativa, revolucionando a análise de dados geográficos.</p>
 <p>Antes do trabalho de Moran, análises espaciais eram predominantemente descritivas e qualitativas. A introdução de uma medida quantitativa com propriedades estatísticas bem definidas permitiu testes de hipótese rigorosos e abriu caminho para toda a família de estatísticas espaciais que usamos hoje.</p>
 </section>
 <section id="o-conceito-de-autocorrelacao-espacial">
@@ -307,7 +309,7 @@
 <section id="autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos">
 <h3>Autocorrelação: quando os dados conversam com seus vizinhos<a class="headerlink" href="#autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos" title="Link permanente para este cabeçalho"></a></h3>
 <p>Em estatística clássica (não-espacial), assume-se que observações são <strong>independentes</strong> umas das outras — o valor medido em um local não deveria influenciar ou estar correlacionado com o valor em outro local. Essa é a premissa fundamental de muitos testes estatísticos tradicionais (t-test, ANOVA, regressão linear ordinária).</p>
-<p>Mas dados espaciais frequentemente <strong>violam essa premissa</strong>. Como discutimos anteriormente, a primeira lei da geografia <span id="id2">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span> nos diz que coisas próximas tendem a ser mais parecidas que coisas distantes.</p>
+<p>Mas dados espaciais frequentemente <strong>violam essa premissa</strong>. Como discutimos anteriormente, a primeira lei da geografia <span id="id2">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">72</a>]</span> nos diz que coisas próximas tendem a ser mais parecidas que coisas distantes.</p>
 <p>No contexto agrícola e do Proagro:</p>
 <ul class="simple">
 <li><p>A taxa de COPs por seca no município A não é independente da taxa no município B se ambos compartilham fronteira e foram afetados pela mesma massa de ar seca</p></li>
@@ -542,6 +544,42 @@ autocorrelação espacial xadrez agrupado”</p>
 </ul>
 <p><strong>Exemplo numérico:</strong></p>
 <p>Considere taxa de COPs em 5 municípios:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Município</p></th>
+<th class="head"><p>Taxa de COPs (%)</p></th>
+<th class="head"><p>Média</p></th>
+<th class="head"><p>Desvio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>A</p></td>
+<td><p>12</p></td>
+<td><p>15</p></td>
+<td><p>-3</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>20</p></td>
+<td><p>15</p></td>
+<td><p>+5</p></td>
+</tr>
+<tr class="row-even"><td><p>C</p></td>
+<td><p>18</p></td>
+<td><p>15</p></td>
+<td><p>+3</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>10</p></td>
+<td><p>15</p></td>
+<td><p>-5</p></td>
+</tr>
+<tr class="row-even"><td><p>E</p></td>
+<td><p>15</p></td>
+<td><p>15</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
 <p><strong>Por que padronizar?</strong></p>
 <p>A padronização permite trabalhar com “excessos” e “déficits” relativos, independentemente da escala original dos dados. Um município com taxa de 20% quando a média é 15% tem o mesmo “excesso relativo” que um município com 80% quando a média é 75%.</p>
 </section>
@@ -2293,7 +2331,7 @@ com COPs?</p></th>
 </dd>
 <dt><strong>Valor-p (p-value)</strong></dt><dd><p>Probabilidade de observar estatística tão extrema ou mais extrema que a calculada, assumindo hipótese nula verdadeira. p &lt; 0,05 indica significância.</p>
 </dd>
-<dt><strong>Z-score</strong></dt><dd><p>Número de desvios-padrão que o I observado está distante da expectativa sob aleatoriedade. <a href="#id15"><span class="problematic" id="id16">|z|</span></a> &gt; 1,96 → p &lt; 0,05.</p>
+<dt><strong>Z-score</strong></dt><dd><p>Número de desvios-padrão que o I observado está distante da expectativa sob aleatoriedade. <span class="math notranslate nohighlight">\(|z| &gt; 1{,}96\)</span> → p &lt; 0,05.</p>
 </dd>
 </dl>
 </section>
@@ -2364,7 +2402,7 @@ com COPs?</p></th>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac9735ca50>
+<jinja2.runtime.BlockReference object at 0x7edfd7fa5250>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

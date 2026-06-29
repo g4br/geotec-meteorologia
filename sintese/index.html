@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -247,21 +249,85 @@ de forma desconectada — <strong>plantio fora do ZARC com COP no Proagro
 </section>
 <section id="por-que-monitorar-clima-e-gestao-de-risco-fiscal">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Por que monitorar clima é gestão de risco fiscal</a><a class="headerlink" href="#por-que-monitorar-clima-e-gestao-de-risco-fiscal" title="Link permanente para este cabeçalho"></a></h3>
-<ul class="simple">
+<ul>
 <li><p>≈ <strong>80% da variabilidade</strong> da produção agrícola é explicada por
 clima.</p></li>
 <li><p>O crédito rural está exposto à produção → está exposto
 diretamente ao clima.</p></li>
-<li><p><strong>Indenizações pagas pelo Proagro</strong>:</p></li>
+<li><p><strong>Indenizações pagas pelo Proagro</strong>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 30.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Ano</p></th>
+<th class="head"><p>R$ bi</p></th>
+<th class="head"><p>Variação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2017</p></td>
+<td><p>1,0</p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p>2022</p></td>
+<td><p>3,5</p></td>
+<td><p>+250%</p></td>
+</tr>
+<tr class="row-even"><td><p>2023</p></td>
+<td><p>9,4</p></td>
+<td><p>+840% em 6 anos</p></td>
+</tr>
+<tr class="row-odd"><td><p>2024</p></td>
+<td><p>9,0</p></td>
+<td><p>patamar elevado</p></td>
+</tr>
+</tbody>
+</table>
+</li>
 </ul>
 </section>
 <section id="elementos-climaticos-planta">
 <h3><a class="toc-backref" href="#id8" role="doc-backlink">Elementos climáticos × planta</a><a class="headerlink" href="#elementos-climaticos-planta" title="Link permanente para este cabeçalho"></a></h3>
-<ul class="simple">
+<ul>
 <li><p><strong>Temperaturas cardinais</strong> (basal, ótima, máxima) e
 <strong>graus-dia</strong> (GDD) — a planta conta calor acumulado, não dias
 do calendário.</p></li>
-<li><p><strong>Janelas de máxima vulnerabilidade</strong>:</p></li>
+<li><p><strong>Janelas de máxima vulnerabilidade</strong>:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 38.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Cultura</p></th>
+<th class="head"><p>Janela</p></th>
+<th class="head"><p>Risco principal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Soja</p></td>
+<td><p>R1-R2 + R5-R6</p></td>
+<td><p>Déficit hídrico → &gt; 50% perda</p></td>
+</tr>
+<tr class="row-odd"><td><p>Milho</p></td>
+<td><p>VT-R1 (5-7 dias!)</p></td>
+<td><p>Pólen × estigma</p></td>
+</tr>
+<tr class="row-even"><td><p>Trigo (espigamento)</p></td>
+<td><p>Geada &lt; -2°C</p></td>
+<td><p>Esterilidade</p></td>
+</tr>
+<tr class="row-odd"><td><p>Trigo (maturação)</p></td>
+<td><p>Chuva</p></td>
+<td><p>Germinação na espiga, giberela</p></td>
+</tr>
+</tbody>
+</table>
+</li>
 <li><p><strong>Total mensal “bom” ≠ disponibilidade hídrica adequada</strong> —
 150 mm em 3 dias + 27 dias secos pode causar perda total
 (paradoxo do veranico).</p></li>
@@ -549,7 +615,17 @@ prioridade.</p>
 <section id="pipeline-integrado-leitura-final">
 <h2><a class="toc-backref" href="#id25" role="doc-backlink">Pipeline integrado — leitura final</a><a class="headerlink" href="#pipeline-integrado-leitura-final" title="Link permanente para este cabeçalho"></a></h2>
 <p>Em um único quadro, o que o curso entrega:</p>
-<p>O resultado final é um <strong>arsenal analítico integrado</strong> que combina
+<pre  class="mermaid">
+        flowchart LR
+    Sicor[Sicor — COP] --&gt; Plaus(Plausibilidade meteorológica&lt;br/&gt;MERGE / SAMeT / INMET)
+    Plaus --&gt; FlagsA{Flags A&lt;br/&gt;por COP}
+    Sicor --&gt; Padrões(Recorrência&lt;br/&gt;+ Concentração&lt;br/&gt;+ Raio de atuação)
+    Padrões --&gt; FlagsB{Indicadores B&lt;br/&gt;por agente/região}
+    FlagsA --&gt; Cruzamento[Cruzamento A × B]
+    FlagsB --&gt; Cruzamento
+    Cruzamento --&gt; Modelo(Modelagem de perdas&lt;br/&gt;regressão · agroclima · ML)
+    Modelo --&gt; Decisão[Inteligência acionável&lt;br/&gt;para auditoria]
+    </pre><p>O resultado final é um <strong>arsenal analítico integrado</strong> que combina
 rigor espacial, validação climática e inteligência comportamental
 — transformando o Proagro de sistema reativo em sistema inteligente
 que aprende, valida, prioriza e previne.</p>
@@ -581,7 +657,7 @@ genuínas sejam atendidos prontamente.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac9879da50>
+<jinja2.runtime.BlockReference object at 0x7edfd692bd10>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

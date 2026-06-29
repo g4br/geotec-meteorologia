@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../../_static/clipboard.min.js"></script>
       <script src="../../_static/copybutton.js"></script>
       <script src="../../_static/translations.js"></script>
+      <script src="../../_static/design-tabs.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
@@ -140,13 +142,6 @@
 <section id="arquitetura-conceitual-do-risco-agricola">
 <h2>Arquitetura conceitual do risco agrícola<a class="headerlink" href="#arquitetura-conceitual-do-risco-agricola" title="Link permanente para este cabeçalho"></a></h2>
 <p>Uma forma acessível de compreender o risco agrícola é decompô-lo em três componentes que se encontram — e interagem — no campo. Essa estrutura triádica encontra-se corroborada por literatura acadêmica recente e por práticas institucionalizadas no Brasil <span id="id3">[<a class="reference internal" href="../../referencias.html#id240" title="IPCC. Climate Change 2014: Impacts, Adaptation, and Vulnerability. Contribution of Working Group II to the Fifth Assessment Report. Cambridge University Press, Cambridge, 2014. URL: https://www.ipcc.ch/report/ar5/wg2/.">2</a>, <a class="reference internal" href="../../referencias.html#id164" title="Priscila Souza and Juliano Assunção. Gerenciamento de risco na agricultura brasileira: instrumentos, políticas públicas e perspectivas. Technical Report, Climate Policy Initiative (CPI), 2020. URL: https://www.climatepolicyinitiative.org/wp-content/uploads/2020/08/Relatorio-Gerenciamento-de-Risco-na-Agricultura-Brasileira.pdf.">10</a>]</span>:</p>
-<figure class="align-center" id="id20">
-<a class="reference internal image-reference" href="fundamentos/risco/triangulo_risco.png"><img alt="fundamentos/risco/triangulo_risco.png" src="fundamentos/risco/triangulo_risco.png" style="width: 70%;" />
-</a>
-<figcaption>
-<p><span class="caption-text">Os três componentes essenciais do risco agrícola brasileiro: perigo, exposição e vulnerabilidade.</span><a class="headerlink" href="#id20" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
 <section id="perigo-hazard">
 <h3>Perigo (<em>hazard</em>)<a class="headerlink" href="#perigo-hazard" title="Link permanente para este cabeçalho"></a></h3>
 <p>O <strong>perigo</strong> é definido como o agente capaz de causar dano. Inclui eventos naturais de origem climática e biológica:</p>
@@ -208,8 +203,8 @@ estiagem”</p>
 <li><p><strong>Fatores tecnológicos</strong>: nível de manejo, irrigação, práticas conservacionistas</p></li>
 </ul>
 <p>A <strong>capacidade de água disponível (CAD)</strong> no solo varia drasticamente entre tipos de solo e constitui fator determinante da vulnerabilidade:</p>
-<table class="styled-table docutils align-default" id="id21">
-<caption><span class="caption-text">Capacidade de água disponível e tempo de retenção por tipo de solo</span><a class="headerlink" href="#id21" title="Link Permanente para essa tabela"></a></caption>
+<table class="styled-table docutils align-default" id="id20">
+<caption><span class="caption-text">Capacidade de água disponível e tempo de retenção por tipo de solo</span><a class="headerlink" href="#id20" title="Link Permanente para essa tabela"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 25.0%" />
@@ -276,15 +271,8 @@ relativa</p></th>
 <h2>A dimensão temporal: janelas críticas e fases fenológicas<a class="headerlink" href="#a-dimensao-temporal-janelas-criticas-e-fases-fenologicas" title="Link permanente para este cabeçalho"></a></h2>
 <p>O <strong>momento</strong> em que um evento meteorológico ocorre é tão importante quanto sua intensidade. O mesmo episódio de déficit hídrico pode ser praticamente inofensivo durante a fase vegetativa inicial de uma cultura e devastador durante o florescimento ou o enchimento de grãos.</p>
 <p>A sensibilidade fenológica foi validada em múltiplas culturas. Para soja, as fases de floração e enchimento de grãos concentram 90-100% da vulnerabilidade a déficit hídrico, enquanto germinação-emergência apresenta apenas 40% de sensibilidade relativa <span id="id7">[<a class="reference internal" href="../../referencias.html#id237" title="J. Doorenbos and A. H. Kassam. Yield response to water. FAO Irrigation and Drainage Paper 33. FAO, Rome, 1979. URL: https://www.fao.org/4/i2800e/i2800e.pdf.">3</a>]</span>:</p>
-<figure class="align-center" id="id22">
-<a class="reference internal image-reference" href="fundamentos/risco/sensibilidade_fenologica_soja.png"><img alt="fundamentos/risco/sensibilidade_fenologica_soja.png" src="fundamentos/risco/sensibilidade_fenologica_soja.png" style="width: 80%;" />
-</a>
-<figcaption>
-<p><span class="caption-text">Sensibilidade da soja ao déficit hídrico por fase fenológica. Fonte: Adaptado de estudos de modelagem agrometeorológica.</span><a class="headerlink" href="#id22" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<table class="styled-table docutils align-default" id="id23">
-<caption><span class="caption-text">Tabela de Sensibilidade Relativa ao Déficit Hídrico da Soja — Revisão Bibliográfica</span><a class="headerlink" href="#id23" title="Link Permanente para essa tabela"></a></caption>
+<table class="styled-table docutils align-default" id="id21">
+<caption><span class="caption-text">Tabela de Sensibilidade Relativa ao Déficit Hídrico da Soja — Revisão Bibliográfica</span><a class="headerlink" href="#id21" title="Link Permanente para essa tabela"></a></caption>
 <colgroup>
 <col style="width: 30.0%" />
 <col style="width: 20.0%" />
@@ -367,8 +355,8 @@ dependência de água</p></td>
 <section id="dados-estruturais-do-proagro">
 <h3>Dados estruturais do Proagro<a class="headerlink" href="#dados-estruturais-do-proagro" title="Link permanente para este cabeçalho"></a></h3>
 <p>A diferença entre o adicional recolhido pelos beneficiários e as indenizações pagas demonstra a grande dependência do programa de recursos orçamentários do governo federal:</p>
-<table class="styled-table docutils align-default" id="id24">
-<caption><span class="caption-text">Balanço entre adicional recolhido e coberturas deferidas no Proagro</span><a class="headerlink" href="#id24" title="Link Permanente para essa tabela"></a></caption>
+<table class="styled-table docutils align-default" id="id22">
+<caption><span class="caption-text">Balanço entre adicional recolhido e coberturas deferidas no Proagro</span><a class="headerlink" href="#id22" title="Link Permanente para essa tabela"></a></caption>
 <colgroup>
 <col style="width: 40.0%" />
 <col style="width: 30.0%" />
@@ -458,13 +446,6 @@ Sul maio 2024 lavouras alagadas”</p>
 <li><p><strong>&gt;50%</strong>: Alto risco (não recomendado)</p></li>
 </ul>
 <p>Estudos de validação confirmam boa concordância entre as recomendações do ZARC e o estresse hídrico observado em campo, avaliada por métricas estatísticas de ajuste (índice de concordância d e RMSE) <span id="id14">[<a class="reference internal" href="../../referencias.html#id180" title="J. E. B. de A. Monteiro, S. V. Cuadra, L. G. Barioni, A. M. Nakai, R. J. S. Maciel, A. F. de Oliveira, and D. de C. Victoria. Estudo de caso de um zoneamento agrícola de risco da produtividade climática (zarcpro). Agrometeoros, 27(1):1–14, 2020. URL: https://doi.org/10.31062/agrom.v27i1.26573, doi:10.31062/agrom.v27i1.26573.">18</a>]</span>.</p>
-<figure class="align-center" id="id25">
-<a class="reference internal image-reference" href="fundamentos/risco/distribuicao_risco_zarc.png"><img alt="fundamentos/risco/distribuicao_risco_zarc.png" src="fundamentos/risco/distribuicao_risco_zarc.png" style="width: 80%;" />
-</a>
-<figcaption>
-<p><span class="caption-text">Distribuição do risco climático ZARC por ciclo de plantio (exemplo: soja em município do Centro-Oeste).</span><a class="headerlink" href="#id25" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
 <p><strong>Inovações em desenvolvimento:</strong></p>
 <ul class="simple">
 <li><p><strong>Zarc Níveis de Manejo (ZarcNM)</strong>: Classifica áreas de produção em níveis de manejo para diferenciação do nível técnico do produtor</p></li>
@@ -505,8 +486,8 @@ Sul maio 2024 lavouras alagadas”</p>
 </section>
 <section id="quadro-comparativo-de-instrumentos">
 <h3>Quadro comparativo de instrumentos<a class="headerlink" href="#quadro-comparativo-de-instrumentos" title="Link permanente para este cabeçalho"></a></h3>
-<table class="styled-table docutils align-default" id="id26">
-<caption><span class="caption-text">Comparativo dos instrumentos de gestão de risco agrícola no Brasil</span><a class="headerlink" href="#id26" title="Link Permanente para essa tabela"></a></caption>
+<table class="styled-table docutils align-default" id="id23">
+<caption><span class="caption-text">Comparativo dos instrumentos de gestão de risco agrícola no Brasil</span><a class="headerlink" href="#id23" title="Link Permanente para essa tabela"></a></caption>
 <colgroup>
 <col style="width: 18.0%" />
 <col style="width: 22.0%" />
@@ -552,13 +533,6 @@ Param.</p></td>
 </section>
 <section id="fluxo-integrado-de-gestao-de-risco">
 <h3>Fluxo integrado de gestão de risco<a class="headerlink" href="#fluxo-integrado-de-gestao-de-risco" title="Link permanente para este cabeçalho"></a></h3>
-<figure class="align-center" id="id27">
-<a class="reference internal image-reference" href="fundamentos/risco/fluxograma_gestao_risco.png"><img alt="fundamentos/risco/fluxograma_gestao_risco.png" src="fundamentos/risco/fluxograma_gestao_risco.png" style="width: 90%;" />
-</a>
-<figcaption>
-<p><span class="caption-text">Fluxograma do sistema de gestão de risco agrícola no Brasil (ZARC + Proagro/Seguro Rural).</span><a class="headerlink" href="#id27" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
 </section>
 </section>
 <section id="validacao-por-indicadores-sensoriamento-remoto">
@@ -639,7 +613,7 @@ superfície LST agricultura”</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7881312eac90>
+<jinja2.runtime.BlockReference object at 0x7edfd8652410>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

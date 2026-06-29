@@ -51,7 +51,7 @@ Mapa de densidade nacional por evento (hexbin):
    Densidade nacional de COPs — **Geada**.
 
 Deduplicação por (``ref_bacen``, ``nu_ordem``)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Para análises de recorrência por produtor/perito/IF precisamos de
 **uma linha por COP única**:

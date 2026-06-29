@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
@@ -151,46 +153,38 @@
 <p>Para enriquecer a análise com informações espaciais e do empreendimento, precisamos relacionar as COPs com as operações originais e suas glebas:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-number">Trecho de Código 11 - </span><span class="caption-text">COPs enriquecidas com localização e tipo de cultura</span><a class="headerlink" href="#id3" title="Link Permanente para esse código"></a></div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- COPs com localização geográfica e informações do empreendimento</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
-<span class="w">       </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento_alegado</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
-<span class="w">       </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
-<span class="w">       </span><span class="n">empreend</span><span class="p">.</span><span class="n">atividade</span><span class="p">,</span>
-<span class="w">       </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
-<span class="w">       </span><span class="n">op</span><span class="p">.</span><span class="n">cd_estado</span><span class="p">,</span>
-<span class="w">       </span><span class="n">gleba</span><span class="p">.</span><span class="n">geom</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="c1">-- COPs com localização geográfica e informações do empreendimento</span>
+<span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">          </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento_alegado</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">          </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">          </span><span class="n">empreend</span><span class="p">.</span><span class="n">atividade</span><span class="p">,</span>
+<span class="w">          </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">          </span><span class="n">op</span><span class="p">.</span><span class="n">cd_estado</span><span class="p">,</span>
+<span class="w">          </span><span class="n">gleba</span><span class="p">.</span><span class="n">geom</span>
+<span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gleba</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">atividade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;agrícola&#39;</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
-<dl>
-<dt>LEFT JOIN sicor_glebas AS gleba</dt><dd><blockquote>
-<div><blockquote>
-<div><p>ON op.ref_bacen = gleba.ref_bacen</p>
-</div></blockquote>
-<p>AND op.nu_ordem = gleba.nu_ordem</p>
-</div></blockquote>
-<dl class="simple">
-<dt>WHERE empreend.finalidade = ‘custeio’</dt><dd><p>AND empreend.atividade = ‘agrícola’
-AND empreend.modalidade = ‘lavoura’;</p>
-</dd>
-</dl>
-</dd>
-</dl>
 <p>Os códigos de evento do Proagro são essenciais para filtrar e categorizar as análises. A tabela <code class="docutils literal notranslate"><span class="pre">eventoproagro</span></code> contém os seguintes eventos principais:</p>
 <table class="docutils align-default">
 <thead>
@@ -241,9 +235,37 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p><strong>Exemplo clássico: Seca alegada em período de chuvas abundantes</strong></p>
 <p>Uma COP registrada em fevereiro alega perda total por seca prolongada afetando lavoura de milho. Análise dos dados meteorológicos revela que janeiro e fevereiro tiveram precipitação acumulada 180% acima da média histórica para aquele município, com chuvas distribuídas ao longo do período (não concentradas em poucos eventos). Todas as estações INMET em raio de 50 km convergem nessa informação. Produto MERGE confirma anomalia positiva de precipitação. Índices de vegetação (NDVI) da região mostram vigor acima da média. Não houve seca — houve o oposto. A alegação é fisicamente inconsistente com realidade climática documentada por múltiplas fontes independentes.</p>
 <p>A consulta abaixo identifica todas as COPs por seca em determinado período e município, preparando os dados para cruzamento com fontes meteorológicas:</p>
-<p>Para análise espacial mais refinada, podemos utilizar as geometrias das glebas para identificar a localização exata das COPs e calcular proximidade a estações meteorológicas:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 12 - </span><span class="caption-text">COPs por seca com localização espacial para triangulação</span><a class="headerlink" href="#id4" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 12 - </span><span class="caption-text">Identificação de COPs por seca para análise de consistência</span><a class="headerlink" href="#id4" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- COPs por seca agrupadas por município e mês para cruzamento com dados meteorológicos</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mes</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_cops_seca</span><span class="p">,</span>
+<span class="w">         </span><span class="k">MIN</span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">plantio_mais_cedo</span><span class="p">,</span>
+<span class="w">         </span><span class="k">MAX</span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">colheita_mais_tarde</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span><span class="w">  </span><span class="c1">-- Código 48 = Seca</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">),</span>
+<span class="w">         </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span>
+<span class="w">  </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="c1">-- Municípios com concentração de COPs por seca</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_cops_seca</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Para análise espacial mais refinada, podemos utilizar as geometrias das glebas para identificar a localização exata das COPs e calcular proximidade a estações meteorológicas:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 13 - </span><span class="caption-text">COPs por seca com localização espacial para triangulação</span><a class="headerlink" href="#id5" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- COPs por seca com centroide da gleba para análise espacial</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -279,6 +301,42 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p><strong>Exemplo clássico: Geada alegada sem queda de temperatura</strong></p>
 <p>COP em junho alega geada matou café em região serrana de Minas Gerais. Temperaturas mínimas registradas nas estações próximas durante todo o mês ficaram acima de 8°C — abaixo do threshold de geada severa para café (&lt; 2°C) e mesmo abaixo de geada leve (&lt; 5°C). Não houve inversão térmica documentada. Imagens de satélite não mostram área queimada típica de geada intensa. Produtores vizinhos não reportaram geada.</p>
 <p>A consulta abaixo seleciona COPs por geada em estados onde o fenômeno é climaticamente esperado, permitindo posterior cruzamento com dados de temperatura:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 14 - </span><span class="caption-text">COPs por geada com janela temporal para validação</span><a class="headerlink" href="#id6" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- COPs por geada com detalhamento temporal e espacial</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">         </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">op</span><span class="p">.</span><span class="n">cd_estado</span><span class="p">,</span>
+<span class="w">         </span><span class="n">ciclo</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Janela de 15 dias antes e depois da comunicação para buscar dados de temperatura</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;15 days&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">inicio_janela_analise</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;15 days&#39;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fim_janela_analise</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ciclocultivarproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ciclo</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ciclo</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">24</span><span class="w">  </span><span class="c1">-- Código 24 = Geada</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_estado</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;PR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SC&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;RS&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SP&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;MG&#39;</span><span class="p">)</span><span class="w">  </span><span class="c1">-- Estados com ocorrência de geada</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">9</span><span class="w">  </span><span class="c1">-- Período típico de geada</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 <p><strong>Interpretação esperada:</strong> Geadas verdadeiras deixam assinatura clara em estações — múltiplas reportam temperaturas baixas simultaneamente. COP alegando geada sem nenhuma estação em raio razoável registrando frio é altamente suspeita. Atenção: em vales profundos pode haver inversão térmica muito localizada não capturada por estações em planalto — cruzar com topografia.</p>
 </section>
 <section id="incompatibilidade-de-magnitude">
@@ -287,11 +345,58 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p><strong>Exemplo: Déficit hídrico leve, perda severa alegada</strong></p>
 <p>COP alega perda de 75% em soja por seca. Análise do SPI (Standardized Precipitation Index) para ciclo da cultura indica SPI = -0,8 (déficit leve, entre -0,5 e -1,0). Historicamente, naquela região e cultura, déficits nessa faixa estão associados a perdas médias de 20-30%, não 75%. Há déficit real — não se pode dizer que “não houve seca” — mas magnitude é incompatível com perda declarada.</p>
 <p>Para construir uma análise de consistência de magnitude, precisamos primeiro agregar dados históricos de COPs por região e evento, permitindo estabelecer padrões de referência:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 15 - </span><span class="caption-text">Agregação histórica de COPs por município, evento e cultura</span><a class="headerlink" href="#id7" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- Estatísticas históricas de COPs por município, evento e cultura</span>
+<span class="w">  </span><span class="c1">-- Base para construir padrões de referência de perdas</span>
+<span class="w">  </span><span class="k">WITH</span><span class="w"> </span><span class="n">cops_historico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">             </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">             </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_cops</span><span class="p">,</span>
+<span class="w">             </span><span class="c1">-- Calcular duração do ciclo em dias</span>
+<span class="w">             </span><span class="k">AVG</span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">duracao_media_ciclo</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">atividade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;agrícola&#39;</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2015</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">             </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">produto</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">ano</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">anos_com_cops</span><span class="p">,</span>
+<span class="w">         </span><span class="k">SUM</span><span class="p">(</span><span class="n">total_cops</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_historico</span><span class="p">,</span>
+<span class="w">         </span><span class="k">AVG</span><span class="p">(</span><span class="n">total_cops</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">media_anual_cops</span><span class="p">,</span>
+<span class="w">         </span><span class="n">STDDEV</span><span class="p">(</span><span class="n">total_cops</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">desvio_padrao_cops</span><span class="p">,</span>
+<span class="w">         </span><span class="k">AVG</span><span class="p">(</span><span class="n">duracao_media_ciclo</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">duracao_media_ciclo_dias</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">cops_historico</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cd_ibge_municipio</span><span class="p">,</span><span class="w"> </span><span class="n">nome_evento</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span>
+<span class="w">  </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">ano</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3</span><span class="w">  </span><span class="c1">-- Pelo menos 3 anos de histórico</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_historico</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 <p><strong>Exemplo: Chuva excessiva moderada, perda catastrófica alegada</strong></p>
 <p>COP alega perda total (100%) por chuva excessiva em milho. Dados mostram precipitação 30% acima da média no mês — excesso real, mas moderado. Glebas vizinhas com topografia similar tiveram perdas médias de 25%. Não houve enchente regional documentada. Alegação de perda total é desproporcionalmente alta para intensidade do evento.</p>
 <p>A consulta abaixo identifica COPs por chuva excessiva e as prepara para análise comparativa com vizinhança:</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 13 - </span><span class="caption-text">COPs por chuva excessiva com contexto espacial para comparação</span><a class="headerlink" href="#id5" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">COPs por chuva excessiva com contexto espacial para comparação</span><a class="headerlink" href="#id8" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- COPs por chuva excessiva com vizinhança espacial</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -331,64 +436,98 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p><strong>Exemplo: Déficit hídrico em estádio vegetativo de soja</strong></p>
 <p>COP alega perda de 60% em soja por seca ocorrida exclusivamente em novembro-dezembro, quando planta estava em estádio vegetativo inicial (V2-V4). Soja é relativamente tolerante a déficit neste estádio — perda esperada seria &lt; 15%. Estádio crítico (floração e enchimento de grãos, R1-R5) ocorreria em janeiro-fevereiro, período que teve precipitação normal. Timing do déficit não explica magnitude da perda.</p>
 <p>A análise fenológica requer cruzamento das datas de plantio/colheita informadas na COP com o ZARC para verificar coerência:</p>
-<p>Para uma análise mais robusta, podemos identificar COPs onde a janela de plantio declarada está fora do período recomendado pelo ZARC:</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 14 - </span><span class="caption-text">COPs com plantio potencialmente fora da janela ZARC</span><a class="headerlink" href="#id6" title="Link Permanente para esse código"></a></div>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Identificar COPs com plantio fora da janela ZARC recomendada</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
-<span class="w">       </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
-<span class="w">       </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
-<span class="w">       </span><span class="n">ciclo</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="p">,</span>
-<span class="w">       </span><span class="n">tiposolo</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tipo_solo</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
-<span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
-<span class="w">       </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_inicial_decendio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc_inicio_janela</span><span class="p">,</span>
-<span class="w">       </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_final_decendio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc_fim_janela</span><span class="p">,</span>
-<span class="w">       </span><span class="n">zarc</span><span class="p">.</span><span class="n">risco</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc_risco</span><span class="p">,</span>
-<span class="w">       </span><span class="c1">-- Verificar se plantio está dentro da janela ZARC</span>
-<span class="w">       </span><span class="k">CASE</span>
-<span class="w">           </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_inicial_decendio</span>
-<span class="w">                </span><span class="k">AND</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_final_decendio</span>
-<span class="w">                </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Dentro da janela&#39;</span>
-<span class="w">           </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;FORA da janela ZARC&#39;</span>
-<span class="w">       </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">situacao_janela</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ciclocultivarproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ciclo</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ciclo</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">tiposoloproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tiposolo</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_tipo_solo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tiposolo</span><span class="p">.</span><span class="n">cd_tipo_solo</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
-<span class="w">  </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
-<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">Análise fenológica de COPs com cruzamento ZARC</span><a class="headerlink" href="#id9" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- COPs com análise de janela fenológica versus ZARC</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">         </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">         </span><span class="n">ciclo</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ciclo_cultivar</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Calcular dias desde plantio até comunicação da perda</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dias_ate_comunicacao</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Estimar estádio fenológico baseado em dias típicos</span>
+<span class="w">         </span><span class="k">CASE</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">30</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Vegetativo inicial (V1-V4)&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">60</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Vegetativo avançado (V5-Vn)&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">60</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">90</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Floração/Enchimento (R1-R5)&#39;</span>
+<span class="w">             </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;Maturação (R6-R8)&#39;</span>
+<span class="w">         </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">estadio_estimado</span><span class="p">,</span>
+<span class="w">         </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ciclocultivarproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ciclo</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ciclo</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span><span class="w">  </span><span class="c1">-- Seca</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">dias_ate_comunicacao</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
-<dl>
-<dt>LEFT JOIN zarc_oficial AS zarc</dt><dd><blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>ON cop.cd_tipo_solo = zarc.cod_solo</p>
-</div></blockquote>
-<p>AND ciclo.descricao_ciclo = zarc.grupo
-AND complemento.cd_ibge_municipio = zarc.geocodigo
-AND empreend.produto = zarc.cultura</p>
-</div></blockquote>
-<dl class="simple">
-<dt>WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) &gt;= 2020</dt><dd><p>AND zarc.risco IS NOT NULL</p>
-</dd>
-</dl>
-</div></blockquote>
-<p>ORDER BY situacao_janela DESC, cop.dt_comunicacao;</p>
-</dd>
-</dl>
+<p>Para uma análise mais robusta, podemos identificar COPs onde a janela de plantio declarada está fora do período recomendado pelo ZARC:</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">COPs com plantio potencialmente fora da janela ZARC</span><a class="headerlink" href="#id10" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="c1">-- Identificar COPs com plantio fora da janela ZARC recomendada</span>
+<span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">          </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">          </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">          </span><span class="n">ciclo</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="p">,</span>
+<span class="w">          </span><span class="n">tiposolo</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tipo_solo</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">          </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_inicial_decendio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc_inicio_janela</span><span class="p">,</span>
+<span class="w">          </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_final_decendio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc_fim_janela</span><span class="p">,</span>
+<span class="w">          </span><span class="n">zarc</span><span class="p">.</span><span class="n">risco</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc_risco</span><span class="p">,</span>
+<span class="w">          </span><span class="c1">-- Verificar se plantio está dentro da janela ZARC</span>
+<span class="w">          </span><span class="k">CASE</span>
+<span class="w">              </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_inicial_decendio</span>
+<span class="w">                   </span><span class="k">AND</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_final_decendio</span>
+<span class="w">                   </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Dentro da janela&#39;</span>
+<span class="w">              </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;FORA da janela ZARC&#39;</span>
+<span class="w">          </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">situacao_janela</span>
+<span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ciclocultivarproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ciclo</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ciclo</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">tiposoloproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tiposolo</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_tipo_solo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tiposolo</span><span class="p">.</span><span class="n">cd_tipo_solo</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">     </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">empreend</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">zarc_oficial</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">zarc</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_tipo_solo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">cod_solo</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">ciclo</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">grupo</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">geocodigo</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">empreend</span><span class="p">.</span><span class="n">produto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">cultura</span>
+<span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="w">      </span><span class="k">AND</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">risco</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">situacao_janela</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 <p><strong>Interpretação esperada:</strong> Requer conhecimento agronômico de vulnerabilidades fenológicas por cultura. Milho, por exemplo, é extremamente sensível a déficit no pendoamento (VT-R1); déficit antes ou depois tem impacto menor. COPs alegando perda catastrófica por déficit fora do período crítico são suspeitas. Proporção esperada de outliers fenológicos: baixa se perícias são tecnicamente competentes; alta sugere perícias de baixa qualidade ou má-fé.</p>
 </section>
 <section id="inconsistencias-temporais">
@@ -396,6 +535,42 @@ AND empreend.produto = zarc.cultura</p>
 <p>Outliers onde timing do fenômeno alegado não corresponde a dados climáticos, ou onde duração alegada é inconsistente com registros.</p>
 <p><strong>Exemplo: Datas incompatíveis</strong></p>
 <p>COP registrada em 20 de março alega que seca severa causou perda total em fevereiro. Dados de estações mostram que fevereiro teve precipitação normal, mas <strong>janeiro</strong> teve déficit severo. Há déficit na região, mas em mês diferente do alegado — possivelmente erro de datas na COP, possivelmente perda atribuída ao período errado.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">Análise temporal de COPs para detecção de inconsistências de data</span><a class="headerlink" href="#id11" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- Identificar COPs com potenciais inconsistências temporais</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">         </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_colheita</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Calcular intervalos temporais</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dias_plantio_comunicacao</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">duracao_ciclo_declarada</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Identificar inconsistências óbvias</span>
+<span class="w">         </span><span class="k">CASE</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ERRO: Comunicação anterior ao plantio&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ERRO: Fim plantio anterior ao início&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_colheita</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ERRO: Colheita sobrepõe plantio&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">300</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ALERTA: Ciclo muito longo (&gt; 300 dias)&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ALERTA: Ciclo muito curto (&lt; 60 dias)&#39;</span>
+<span class="w">             </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;Temporalidade plausível&#39;</span>
+<span class="w">         </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">analise_temporal</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">analise_temporal</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 <p><strong>Interpretação esperada:</strong> Erros de data são comuns e geralmente benignos (descuido administrativo). Correção via triangulação com outras evidências. Mas se há padrão sistemático de datas deslocadas sempre favorecendo produtor (ex: alegar perda antes da janela Zarc terminar quando evento foi depois), merece atenção.</p>
 </section>
 </section>
@@ -452,12 +627,85 @@ INMET”</p>
 <section id="agregacao-de-cops-para-analise-estatistica">
 <h3>Agregação de COPs para análise estatística<a class="headerlink" href="#agregacao-de-cops-para-analise-estatistica" title="Link permanente para este cabeçalho"></a></h3>
 <p>Para identificar padrões e outliers em escala, precisamos agregar dados de COPs em diferentes granularidades espaciais e temporais:</p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">Agregação mensal de COPs por município e evento</span><a class="headerlink" href="#id12" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- Agregação mensal de COPs por município e tipo de evento</span>
+<span class="w">  </span><span class="c1">-- Base para cálculo de z-scores e identificação de anomalias</span>
+<span class="w">  </span><span class="k">WITH</span><span class="w"> </span><span class="n">cops_mensal</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">             </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">mes</span><span class="p">,</span>
+<span class="w">             </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_cops</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2015</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">),</span>
+<span class="w">             </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="n">estatisticas_historicas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="n">mes</span><span class="p">,</span>
+<span class="w">             </span><span class="k">AVG</span><span class="p">(</span><span class="n">total_cops</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">media_historica</span><span class="p">,</span>
+<span class="w">             </span><span class="n">STDDEV</span><span class="p">(</span><span class="n">total_cops</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">desvio_padrao</span><span class="p">,</span>
+<span class="w">             </span><span class="n">PERCENTILE_CONT</span><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="mi">90</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_cops</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percentil_90</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">cops_mensal</span>
+<span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cd_ibge_municipio</span><span class="p">,</span><span class="w"> </span><span class="n">nome_evento</span><span class="p">,</span><span class="w"> </span><span class="n">mes</span>
+<span class="w">      </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">5</span><span class="w">  </span><span class="c1">-- Mínimo 5 anos de dados</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cm</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cm</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cm</span><span class="p">.</span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cm</span><span class="p">.</span><span class="n">mes</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cm</span><span class="p">.</span><span class="n">total_cops</span><span class="p">,</span>
+<span class="w">         </span><span class="n">eh</span><span class="p">.</span><span class="n">media_historica</span><span class="p">,</span>
+<span class="w">         </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="p">,</span>
+<span class="w">         </span><span class="n">eh</span><span class="p">.</span><span class="n">percentil_90</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Calcular z-score</span>
+<span class="w">         </span><span class="k">CASE</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">             </span><span class="k">THEN</span><span class="w"> </span><span class="p">(</span><span class="n">cm</span><span class="p">.</span><span class="n">total_cops</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">media_historica</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span>
+<span class="w">             </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">         </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">z_score</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Classificar anomalia</span>
+<span class="w">         </span><span class="k">CASE</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">cm</span><span class="p">.</span><span class="n">total_cops</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">media_historica</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;OUTLIER ALTO (z &gt; 2)&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">cm</span><span class="p">.</span><span class="n">total_cops</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">media_historica</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ACIMA DO ESPERADO (z &gt; 1.5)&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="n">cm</span><span class="p">.</span><span class="n">total_cops</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">media_historica</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">desvio_padrao</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ABAIXO DO ESPERADO (z &lt; -1.5)&#39;</span>
+<span class="w">             </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;DENTRO DA NORMALIDADE&#39;</span>
+<span class="w">         </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">classificacao_anomalia</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">cops_mensal</span><span class="w"> </span><span class="n">cm</span>
+<span class="w">    </span><span class="k">JOIN</span><span class="w"> </span><span class="n">estatisticas_historicas</span><span class="w"> </span><span class="n">eh</span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="n">cm</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">cd_ibge_municipio</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">cm</span><span class="p">.</span><span class="n">nome_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">nome_evento</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">cm</span><span class="p">.</span><span class="n">mes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eh</span><span class="p">.</span><span class="n">mes</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">cm</span><span class="p">.</span><span class="n">ano</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="w">  </span><span class="c1">-- Ano de análise</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">z_score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="indices-climaticos-padronizados">
 <h3>Índices climáticos padronizados<a class="headerlink" href="#indices-climaticos-padronizados" title="Link permanente para este cabeçalho"></a></h3>
 <p>Usar séries brutas de precipitação e temperatura é ponto de partida, mas índices padronizados agregam informação de forma mais robusta e comparável entre regiões e períodos.</p>
 <p><strong>SPI — Standardized Precipitation Index (Índice Padronizado de Precipitação)</strong></p>
-<p>SPI é o índice mais amplamente utilizado para caracterizar déficit ou excesso hídrico <span id="id1">[<a class="reference internal" href="../referencias.html#id251" title="T. B. McKee, N. J. Doesken, and J. Kleist. The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology, 179–184. American Meteorological Society, 1993.">76</a>, <a class="reference internal" href="../referencias.html#id258" title="M. Svoboda, M. Hayes, and D. Wood. Standardized precipitation index user guide. Technical Report WMO-No. 1090, World Meteorological Organization, 2012. URL: https://library.wmo.int/records/item/39629.">77</a>]</span>. Transforma precipitação acumulada em valor padronizado que indica quantos desvios-padrão o período está acima ou abaixo da média histórica.</p>
+<p>SPI é o índice mais amplamente utilizado para caracterizar déficit ou excesso hídrico <span id="id1">[<a class="reference internal" href="../referencias.html#id251" title="T. B. McKee, N. J. Doesken, and J. Kleist. The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology, 179–184. American Meteorological Society, 1993.">82</a>, <a class="reference internal" href="../referencias.html#id258" title="M. Svoboda, M. Hayes, and D. Wood. Standardized precipitation index user guide. Technical Report WMO-No. 1090, World Meteorological Organization, 2012. URL: https://library.wmo.int/records/item/39629.">83</a>]</span>. Transforma precipitação acumulada em valor padronizado que indica quantos desvios-padrão o período está acima ou abaixo da média histórica.</p>
 <p><strong>Vantagens:</strong></p>
 <ul class="simple">
 <li><p>Comparável entre regiões com climatologias diferentes (SPI = -1,5 significa “déficit severo” tanto no semiárido quanto no Sul chuvoso)</p></li>
@@ -609,8 +857,8 @@ tabela anterior, útil para triangular a alegação de seca.</p>
 <p>Para processar sistematicamente centenas ou milhares de COPs:</p>
 <p><strong>Passo 1 — Preparação de Dados</strong></p>
 <p>A extração inicial de COPs para análise pode ser estruturada em uma CTE (Common Table Expression) que centraliza todos os dados necessários:</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 15 - </span><span class="caption-text">CTE base para extração de COPs para análise de consistência</span><a class="headerlink" href="#id7" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">CTE base para extração de COPs para análise de consistência</span><a class="headerlink" href="#id13" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- CTE estruturada para análise de lote de COPs</span>
 <span class="k">WITH</span><span class="w"> </span><span class="n">cops_base</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
@@ -666,9 +914,97 @@ tabela anterior, útil para triangular a alegação de seca.</p>
 </div>
 <p><strong>Passo 2 — Classificação de Consistência Temporal</strong></p>
 <p>Aplicar regras de validação temporal automatizadas:</p>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">Classificação automática de consistência temporal</span><a class="headerlink" href="#id14" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- Classificação de consistência temporal de COPs</span>
+<span class="w">  </span><span class="k">WITH</span><span class="w"> </span><span class="n">cops_analise</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="c1">-- [usar CTE cops_base do passo anterior]</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">             </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">             </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">             </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">             </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">         </span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">         </span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Regras de classificação</span>
+<span class="w">         </span><span class="k">CASE</span>
+<span class="w">             </span><span class="c1">-- Regra para SECA</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">nome_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Seca&#39;</span>
+<span class="w">                  </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ALERTA: Seca comunicada no período chuvoso&#39;</span>
+<span class="w">             </span><span class="c1">-- Regra para GEADA fora do período típico</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">nome_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Geada&#39;</span>
+<span class="w">                  </span><span class="k">AND</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">MONTH</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">9</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ALERTA: Geada fora do período típico&#39;</span>
+<span class="w">             </span><span class="c1">-- Regra temporal básica</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dt_inicio_plantio</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ERRO: Data comunicação anterior ao plantio&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="p">(</span><span class="n">dt_fim_plantio</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dt_inicio_plantio</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">                  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ERRO: Datas de plantio inconsistentes&#39;</span>
+<span class="w">             </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;Temporalidade OK&#39;</span>
+<span class="w">         </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">classificacao_temporal</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">cops_analise</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">classificacao_temporal</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 <p><strong>Passo 3 — Priorização</strong></p>
 <p>Ranquear COPs por score de inconsistência:</p>
 <p><strong>Score = (1 - convergência_fontes) × magnitude_anomalia × valor_COP</strong></p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">Cálculo de score de priorização para investigação</span><a class="headerlink" href="#id15" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">-- Score de priorização para investigação</span>
+<span class="w">  </span><span class="k">WITH</span><span class="w"> </span><span class="n">cops_scored</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">             </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">             </span><span class="n">evento</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">             </span><span class="n">op</span><span class="p">.</span><span class="n">vl_parc_credito</span><span class="p">,</span>
+<span class="w">             </span><span class="n">complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">             </span><span class="c1">-- Score simplificado baseado em valor e características</span>
+<span class="w">             </span><span class="p">(</span><span class="n">op</span><span class="p">.</span><span class="n">vl_parc_credito</span><span class="w"> </span><span class="o">/</span>
+<span class="w">              </span><span class="k">NULLIF</span><span class="p">((</span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">vl_parc_credito</span><span class="p">)</span>
+<span class="w">                        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span>
+<span class="w">                       </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">             </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fator_valor_relativo</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">evento</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">evento</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">        </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">complemento</span>
+<span class="w">          </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2023</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">         </span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">         </span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">vl_parc_credito</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">         </span><span class="n">fator_valor_relativo</span><span class="p">,</span>
+<span class="w">         </span><span class="c1">-- Score de priorização (quanto maior, mais prioritário)</span>
+<span class="w">         </span><span class="k">CASE</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">fator_valor_relativo</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;PRIORIDADE ALTA&#39;</span>
+<span class="w">             </span><span class="k">WHEN</span><span class="w"> </span><span class="n">fator_valor_relativo</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">5</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;PRIORIDADE MÉDIA&#39;</span>
+<span class="w">             </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;PRIORIDADE NORMAL&#39;</span>
+<span class="w">         </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nivel_priorizacao</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">cops_scored</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">fator_valor_relativo</span><span class="w"> </span><span class="k">DESC</span>
+<span class="w">   </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 </section>
 </section>
 <section id="limitacoes-e-cuidados-essenciais">
@@ -733,7 +1069,7 @@ tabela anterior, útil para triangular a alegação de seca.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac9639d310>
+<jinja2.runtime.BlockReference object at 0x7edfd6a51e90>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

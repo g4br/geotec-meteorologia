@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../../../_static/clipboard.min.js"></script>
       <script src="../../../_static/copybutton.js"></script>
       <script src="../../../_static/translations.js"></script>
+      <script src="../../../_static/design-tabs.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../../genindex.html" />
@@ -207,7 +209,91 @@ ZARC e a geometria da gleba. Conhecer essa origem é importante: a
 fonte explica os valores estranhos que precisaremos limpar adiante
 (longitudes positivas, latitudes no hemisfério norte) e as colunas que
 serão usadas em todas as próximas aulas.</p>
-<div class="admonition note">
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-fade-in">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-icon"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-code" viewBox="0 0 16 16" aria-hidden="true"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path></svg></span><span class="sd-summary-text">SQL completa do recorte <code class="docutils literal notranslate"><span class="pre">sicor-interest-data.csv</span></code></span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- =====================================================================</span>
+<span class="c1">-- CONSULTA INTEGRADA: COPs DEFERIDAS × ZARC × GLEBAS × RCP</span>
+<span class="c1">-- =====================================================================</span>
+<span class="c1">-- Objetivo: reunir as principais dimensões para avaliar a</span>
+<span class="c1">-- plausibilidade de COPs deferidas. Integra:</span>
+<span class="c1">--   1. A COP em si (evento, datas de plantio/colheita, solo, ciclo)</span>
+<span class="c1">--   2. O RCP (datas do evento informadas pelo perito)</span>
+<span class="c1">--   3. O ZARC (risco do decêndio município × cultura × grupo × solo)</span>
+<span class="c1">--   4. A geometria da gleba (em SIRGAS 2000)</span>
+<span class="c1">-- =====================================================================</span>
+
+<span class="k">SELECT</span>
+<span class="w">    </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">    </span><span class="n">statuscopproagro</span><span class="p">.</span><span class="n">descricao</span><span class="w">             </span><span class="k">AS</span><span class="w"> </span><span class="n">status_cop</span><span class="p">,</span>
+<span class="w">    </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">    </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">produto</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ciclocultivarproagro</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="p">,</span>
+
+<span class="w">    </span><span class="n">rcp</span><span class="p">.</span><span class="n">dt_inicio_evento</span><span class="p">,</span>
+<span class="w">    </span><span class="n">rcp</span><span class="p">.</span><span class="n">dt_fim_evento</span><span class="p">,</span>
+
+<span class="w">    </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_colheita</span><span class="p">,</span>
+<span class="w">    </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_colheita</span><span class="p">,</span>
+
+<span class="w">    </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="n">gleba</span><span class="p">.</span><span class="n">gt_geometria</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">),</span><span class="w"> </span><span class="mi">31983</span><span class="p">))</span>
+<span class="w">        </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="w">                              </span><span class="k">AS</span><span class="w"> </span><span class="n">area_gleba_ha</span><span class="p">,</span>
+<span class="w">    </span><span class="n">gleba</span><span class="p">.</span><span class="n">nu_indice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ST_X</span><span class="p">(</span><span class="n">ST_Centroid</span><span class="p">(</span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="n">gleba</span><span class="p">.</span><span class="n">gt_geometria</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">)))</span>
+<span class="w">        </span><span class="k">AS</span><span class="w"> </span><span class="n">longitude_centroide</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ST_Y</span><span class="p">(</span><span class="n">ST_Centroid</span><span class="p">(</span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="n">gleba</span><span class="p">.</span><span class="n">gt_geometria</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">)))</span>
+<span class="w">        </span><span class="k">AS</span><span class="w"> </span><span class="n">latitude_centroide</span><span class="p">,</span>
+
+<span class="w">    </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_inicial_decendio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_final_decendio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">zarc</span><span class="p">.</span><span class="n">risco</span><span class="w">                                </span><span class="k">AS</span><span class="w"> </span><span class="n">risco_percentual</span><span class="p">,</span>
+
+<span class="w">    </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">dt_emissao</span><span class="p">)</span><span class="w">          </span><span class="k">AS</span><span class="w"> </span><span class="n">ano_emissao</span><span class="p">,</span>
+<span class="w">    </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="p">,</span>
+<span class="w">    </span><span class="n">op</span><span class="p">.</span><span class="n">cd_estado</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="n">cop</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">ciclocultivarproagro</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ciclocultivarproagro</span><span class="p">.</span><span class="n">cd_ciclo_cultivar</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="n">op</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="n">op_complemento</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">cd_evento</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">empreendimento</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">statuscopproagro</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statuscopproagro</span><span class="p">.</span><span class="n">cd_status</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="k">LATERAL</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">CASE</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">empreendimento</span><span class="p">.</span><span class="n">produto</span><span class="p">)</span>
+<span class="w">               </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span><span class="w">  </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span>
+<span class="w">               </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;milho&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;milho 2ª safra&#39;</span>
+<span class="w">               </span><span class="k">WHEN</span><span class="w"> </span><span class="s1">&#39;trigo&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;trigo sequeiro&#39;</span>
+<span class="w">               </span><span class="k">ELSE</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">           </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cultura_zarc</span>
+<span class="p">)</span><span class="w"> </span><span class="n">mapa</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TRUE</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">zarc</span>
+<span class="w">        </span><span class="k">ON</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">geocodigo</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_tipo_solo</span><span class="p">::</span><span class="nb">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">cod_solo</span><span class="p">::</span><span class="nb">text</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">ciclocultivarproagro</span><span class="p">.</span><span class="n">descricao_ciclo</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">LOWER</span><span class="p">(</span><span class="n">zarc</span><span class="p">.</span><span class="n">grupo</span><span class="p">)</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="n">mapa</span><span class="p">.</span><span class="n">cultura_zarc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">cultura</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_inicio_plantio</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_final_decendio</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="n">zarc</span><span class="p">.</span><span class="n">data_inicial_decendio</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_fim_plantio</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_glebas_wkt</span><span class="w">   </span><span class="n">gleba</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">sicor_rcp_basico</span><span class="w">   </span><span class="n">rcp</span><span class="w">   </span><span class="k">ON</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rcp</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rcp</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">statuscopproagro</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;deferida&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">finalidade</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">atividade</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;agrícola&#39;</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">modalidade</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</details><div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>O cruzamento com o ZARC só retorna linhas para soja, milho e
 trigo — as únicas culturas atualmente carregadas na tabela ZARC.
@@ -740,7 +826,7 @@ fenologia.</p></li>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac968de890>
+<jinja2.runtime.BlockReference object at 0x7edfd65edb10>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

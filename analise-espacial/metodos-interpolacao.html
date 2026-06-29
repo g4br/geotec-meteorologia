@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -216,7 +218,7 @@
 </section>
 <section id="o-principio-fundamental-autocorrelacao-espacial">
 <h3>O princípio fundamental: autocorrelação espacial<a class="headerlink" href="#o-principio-fundamental-autocorrelacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
-<p>Todas as técnicas de interpolação baseiam-se, implícita ou explicitamente, na <strong>primeira lei da geografia</strong>: coisas próximas são mais parecidas que coisas distantes <span id="id1">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
+<p>Todas as técnicas de interpolação baseiam-se, implícita ou explicitamente, na <strong>primeira lei da geografia</strong>: coisas próximas são mais parecidas que coisas distantes <span id="id1">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">72</a>]</span>.</p>
 <p>Portanto:</p>
 <ul class="simple">
 <li><p>Pontos de medição <strong>mais próximos</strong> da localização de interesse têm <strong>maior influência</strong> na estimativa</p></li>
@@ -257,7 +259,7 @@
 </section>
 <section id="o-conceito-intuitivo">
 <h3>O conceito intuitivo<a class="headerlink" href="#o-conceito-intuitivo" title="Link permanente para este cabeçalho"></a></h3>
-<p>IDW é o método mais simples e intuitivo de interpolação <span id="id2">[<a class="reference internal" href="../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. A lógica é direta:</p>
+<p>IDW é o método mais simples e intuitivo de interpolação <span id="id2">[<a class="reference internal" href="../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">78</a>]</span>. A lógica é direta:</p>
 <blockquote>
 <div><p><em>“O valor em uma localização não medida é a média ponderada dos valores nos pontos medidos ao redor, onde o peso de cada ponto é inversamente proporcional à sua distância.”</em></p>
 </div></blockquote>
@@ -566,7 +568,7 @@ efeito bull’s eye interpolação”</p>
 </section>
 <section id="id6">
 <h3>O conceito intuitivo<a class="headerlink" href="#id6" title="Link permanente para este cabeçalho"></a></h3>
-<p>Krigagem é o método mais sofisticado de interpolação, baseado em <strong>geoestatística</strong> — o ramo da estatística que modela explicitamente a estrutura espacial de variáveis <span id="id7">[<a class="reference internal" href="../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>.</p>
+<p>Krigagem é o método mais sofisticado de interpolação, baseado em <strong>geoestatística</strong> — o ramo da estatística que modela explicitamente a estrutura espacial de variáveis <span id="id7">[<a class="reference internal" href="../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">79</a>, <a class="reference internal" href="../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">80</a>]</span>.</p>
 <p>A diferença fundamental em relação a IDW e Spline:</p>
 <blockquote>
 <div><p><strong>Krigagem não apenas estima valores, mas também quantifica a incerteza (variância) de cada estimativa.</strong></p>
@@ -1564,7 +1566,7 @@ SE (distância 20-40 km)
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac96776ad0>
+<jinja2.runtime.BlockReference object at 0x7edfd6dda710>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

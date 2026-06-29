@@ -1,5 +1,5 @@
 Modelagem de perdas e aplicações em decisão
-==========================================
+===========================================
 
 Este módulo apresenta os fundamentos da modelagem de perdas agrícolas no contexto do Proagro, discutindo como fenômenos meteorológicos adversos afetam a produtividade, como modelos podem quantificar essas relações, quais são as limitações espaciais e temporais para utilização desses modelos, e como ferramentas de geoestatística podem apoiar a mitigação de riscos e a tomada de decisão.
 

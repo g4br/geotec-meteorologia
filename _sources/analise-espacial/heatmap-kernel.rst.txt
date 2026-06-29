@@ -177,7 +177,7 @@ Esta abordagem permite diferenciar entre:
 - **Áreas com elevado risco relativo** (alta proporção de sinistros por operação)
 
 Interpretação analítica e considerações metodológicas
-----------------------------------------------------
+-----------------------------------------------------
 
 Contextualização de padrões espaciais
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -196,6 +196,7 @@ A interpretação adequada de hotspots requer contextualização multivariada:
 **Contextualização Temporal**
 - Análise de persistência de padrões através de múltiplas safras
 - Diferenciação entre:
+
   - **Hotspots persistentes**: vulnerabilidade estrutural
   - **Hotspots episódicos**: eventos climáticos pontuais
   - **Hotspots migratórios**: resposta a variabilidade climática interanual
@@ -240,9 +241,6 @@ Os mapas de densidade Kernel representam ferramentas indispensáveis para análi
 
 Contudo, sua aplicação deve considerar as limitações inerentes à técnica, particularmente no que concerne à seleção de parâmetros e contextualização analítica. A integração com métodos estatísticos formais constitui abordagem metodológica recomendada para produção de inferências espaciais robustas.
 
-.. figure:: /caminho/para/figura2.png
-   :alt: Mapa de densidade Kernel de COPs por seca
-   :align: center
-   :figclass: align-center
-
-   **Figura 2**: Mapa de densidade Kernel de Comunicações de Perda por seca, safra 2022/23. Cores quentes indicam áreas com alta concentração de COPs. Raio de busca: 30 km. Pontos pretos representam COPs individuais.
+.. TODO: gerar imagem figura2.png (densidade Kernel). Reativar bloco figure abaixo com caminho real.
+   Alt: Mapa de densidade Kernel de COPs por seca
+   Legenda: **Figura 2**: Mapa de densidade Kernel de Comunicações de Perda por seca, safra 2022/23. Cores quentes indicam áreas com alta concentração de COPs. Raio de busca: 30 km. Pontos pretos representam COPs individuais.

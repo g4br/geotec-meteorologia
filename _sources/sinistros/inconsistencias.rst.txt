@@ -47,35 +47,35 @@ Para enriquecer a análise com informações espaciais e do empreendimento, prec
 .. code-block:: sql
    :caption: COPs enriquecidas com localização e tipo de cultura
 
-   -- COPs com localização geográfica e informações do empreendimento
-   SELECT cop.ref_bacen,
-          cop.nu_ordem,
-          evento.nome_evento AS evento_alegado,
-          cop.dt_comunicacao,
-          cop.dt_inicio_plantio,
-          cop.dt_fim_plantio,
-          empreend.produto,
-          empreend.atividade,
-          complemento.cd_ibge_municipio,
-          op.cd_estado,
-          gleba.geom
-     FROM sicor_cop_basico AS cop
-     JOIN eventoproagro AS evento
-       ON cop.cd_evento = evento.cd_evento
-     JOIN sicor_operacao_basica_estado AS op
-       ON cop.ref_bacen = op.ref_bacen 
-      AND cop.nu_ordem = op.nu_ordem
-     JOIN sicor_complemento_operacao_basica AS complemento
-       ON op.ref_bacen = complemento.ref_bacen 
-      AND op.nu_ordem = complemento.nu_ordem
-     JOIN empreendimento AS empreend
-       ON op.cd_empreendimento = empreend.cd_empreendimento
-LEFT JOIN sicor_glebas AS gleba
-       ON op.ref_bacen = gleba.ref_bacen 
-      AND op.nu_ordem = gleba.nu_ordem
-    WHERE empreend.finalidade = 'custeio'
-      AND empreend.atividade = 'agrícola'
-      AND empreend.modalidade = 'lavoura';
+      -- COPs com localização geográfica e informações do empreendimento
+      SELECT cop.ref_bacen,
+             cop.nu_ordem,
+             evento.nome_evento AS evento_alegado,
+             cop.dt_comunicacao,
+             cop.dt_inicio_plantio,
+             cop.dt_fim_plantio,
+             empreend.produto,
+             empreend.atividade,
+             complemento.cd_ibge_municipio,
+             op.cd_estado,
+             gleba.geom
+        FROM sicor_cop_basico AS cop
+        JOIN eventoproagro AS evento
+          ON cop.cd_evento = evento.cd_evento
+        JOIN sicor_operacao_basica_estado AS op
+          ON cop.ref_bacen = op.ref_bacen 
+         AND cop.nu_ordem = op.nu_ordem
+        JOIN sicor_complemento_operacao_basica AS complemento
+          ON op.ref_bacen = complemento.ref_bacen 
+         AND op.nu_ordem = complemento.nu_ordem
+        JOIN empreendimento AS empreend
+          ON op.cd_empreendimento = empreend.cd_empreendimento
+   LEFT JOIN sicor_glebas AS gleba
+          ON op.ref_bacen = gleba.ref_bacen 
+         AND op.nu_ordem = gleba.nu_ordem
+       WHERE empreend.finalidade = 'custeio'
+         AND empreend.atividade = 'agrícola'
+         AND empreend.modalidade = 'lavoura';
 
 
 Os códigos de evento do Proagro são essenciais para filtrar e categorizar as análises. A tabela ``eventoproagro`` contém os seguintes eventos principais:
@@ -123,29 +123,29 @@ A consulta abaixo identifica todas as COPs por seca em determinado período e mu
 .. code-block:: sql
    :caption: Identificação de COPs por seca para análise de consistência
 
-   -- COPs por seca agrupadas por município e mês para cruzamento com dados meteorológicos
-   SELECT complemento.cd_ibge_municipio,
-          EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano,
-          EXTRACT(MONTH FROM cop.dt_comunicacao) AS mes,
-          COUNT(*) AS total_cops_seca,
-          MIN(cop.dt_inicio_plantio) AS plantio_mais_cedo,
-          MAX(cop.dt_fim_colheita) AS colheita_mais_tarde
-     FROM sicor_cop_basico AS cop
-     JOIN eventoproagro AS evento
-       ON cop.cd_evento = evento.cd_evento
-     JOIN sicor_operacao_basica_estado AS op
-       ON cop.ref_bacen = op.ref_bacen 
-      AND cop.nu_ordem = op.nu_ordem
-     JOIN sicor_complemento_operacao_basica AS complemento
-       ON op.ref_bacen = complemento.ref_bacen 
-      AND op.nu_ordem = complemento.nu_ordem
-    WHERE evento.cd_evento = 48  -- Código 48 = Seca
-      AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
- GROUP BY complemento.cd_ibge_municipio,
-          EXTRACT(YEAR FROM cop.dt_comunicacao),
-          EXTRACT(MONTH FROM cop.dt_comunicacao)
-   HAVING COUNT(*) >= 5  -- Municípios com concentração de COPs por seca
- ORDER BY total_cops_seca DESC;
+     -- COPs por seca agrupadas por município e mês para cruzamento com dados meteorológicos
+     SELECT complemento.cd_ibge_municipio,
+            EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano,
+            EXTRACT(MONTH FROM cop.dt_comunicacao) AS mes,
+            COUNT(*) AS total_cops_seca,
+            MIN(cop.dt_inicio_plantio) AS plantio_mais_cedo,
+            MAX(cop.dt_fim_colheita) AS colheita_mais_tarde
+       FROM sicor_cop_basico AS cop
+       JOIN eventoproagro AS evento
+         ON cop.cd_evento = evento.cd_evento
+       JOIN sicor_operacao_basica_estado AS op
+         ON cop.ref_bacen = op.ref_bacen 
+        AND cop.nu_ordem = op.nu_ordem
+       JOIN sicor_complemento_operacao_basica AS complemento
+         ON op.ref_bacen = complemento.ref_bacen 
+        AND op.nu_ordem = complemento.nu_ordem
+      WHERE evento.cd_evento = 48  -- Código 48 = Seca
+        AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
+   GROUP BY complemento.cd_ibge_municipio,
+            EXTRACT(YEAR FROM cop.dt_comunicacao),
+            EXTRACT(MONTH FROM cop.dt_comunicacao)
+     HAVING COUNT(*) >= 5  -- Municípios com concentração de COPs por seca
+   ORDER BY total_cops_seca DESC;
 
 Para análise espacial mais refinada, podemos utilizar as geometrias das glebas para identificar a localização exata das COPs e calcular proximidade a estações meteorológicas:
 
@@ -193,37 +193,37 @@ A consulta abaixo seleciona COPs por geada em estados onde o fenômeno é climat
 .. code-block:: sql
    :caption: COPs por geada com janela temporal para validação
 
-   -- COPs por geada com detalhamento temporal e espacial
-   SELECT cop.ref_bacen,
-          cop.nu_ordem,
-          cop.dt_comunicacao,
-          cop.dt_inicio_plantio,
-          cop.dt_fim_plantio,
-          empreend.produto,
-          complemento.cd_ibge_municipio,
-          op.cd_estado,
-          ciclo.descricao_ciclo,
-          -- Janela de 15 dias antes e depois da comunicação para buscar dados de temperatura
-          cop.dt_comunicacao - INTERVAL '15 days' AS inicio_janela_analise,
-          cop.dt_comunicacao + INTERVAL '15 days' AS fim_janela_analise
-     FROM sicor_cop_basico AS cop
-     JOIN eventoproagro AS evento
-       ON cop.cd_evento = evento.cd_evento
-     JOIN ciclocultivarproagro AS ciclo
-       ON cop.cd_ciclo_cultivar = ciclo.cd_ciclo_cultivar
-     JOIN sicor_operacao_basica_estado AS op
-       ON cop.ref_bacen = op.ref_bacen 
-      AND cop.nu_ordem = op.nu_ordem
-     JOIN sicor_complemento_operacao_basica AS complemento
-       ON op.ref_bacen = complemento.ref_bacen 
-      AND op.nu_ordem = complemento.nu_ordem
-     JOIN empreendimento AS empreend
-       ON op.cd_empreendimento = empreend.cd_empreendimento
-    WHERE evento.cd_evento = 24  -- Código 24 = Geada
-      AND op.cd_estado IN ('PR', 'SC', 'RS', 'SP', 'MG')  -- Estados com ocorrência de geada
-      AND EXTRACT(MONTH FROM cop.dt_comunicacao) BETWEEN 5 AND 9  -- Período típico de geada
-      AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
- ORDER BY cop.dt_comunicacao;
+     -- COPs por geada com detalhamento temporal e espacial
+     SELECT cop.ref_bacen,
+            cop.nu_ordem,
+            cop.dt_comunicacao,
+            cop.dt_inicio_plantio,
+            cop.dt_fim_plantio,
+            empreend.produto,
+            complemento.cd_ibge_municipio,
+            op.cd_estado,
+            ciclo.descricao_ciclo,
+            -- Janela de 15 dias antes e depois da comunicação para buscar dados de temperatura
+            cop.dt_comunicacao - INTERVAL '15 days' AS inicio_janela_analise,
+            cop.dt_comunicacao + INTERVAL '15 days' AS fim_janela_analise
+       FROM sicor_cop_basico AS cop
+       JOIN eventoproagro AS evento
+         ON cop.cd_evento = evento.cd_evento
+       JOIN ciclocultivarproagro AS ciclo
+         ON cop.cd_ciclo_cultivar = ciclo.cd_ciclo_cultivar
+       JOIN sicor_operacao_basica_estado AS op
+         ON cop.ref_bacen = op.ref_bacen 
+        AND cop.nu_ordem = op.nu_ordem
+       JOIN sicor_complemento_operacao_basica AS complemento
+         ON op.ref_bacen = complemento.ref_bacen 
+        AND op.nu_ordem = complemento.nu_ordem
+       JOIN empreendimento AS empreend
+         ON op.cd_empreendimento = empreend.cd_empreendimento
+      WHERE evento.cd_evento = 24  -- Código 24 = Geada
+        AND op.cd_estado IN ('PR', 'SC', 'RS', 'SP', 'MG')  -- Estados com ocorrência de geada
+        AND EXTRACT(MONTH FROM cop.dt_comunicacao) BETWEEN 5 AND 9  -- Período típico de geada
+        AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
+   ORDER BY cop.dt_comunicacao;
 
 **Interpretação esperada:** Geadas verdadeiras deixam assinatura clara em estações — múltiplas reportam temperaturas baixas simultaneamente. COP alegando geada sem nenhuma estação em raio razoável registrando frio é altamente suspeita. Atenção: em vales profundos pode haver inversão térmica muito localizada não capturada por estações em planalto — cruzar com topografia.
 
@@ -242,48 +242,48 @@ Para construir uma análise de consistência de magnitude, precisamos primeiro a
 .. code-block:: sql
    :caption: Agregação histórica de COPs por município, evento e cultura
 
-   -- Estatísticas históricas de COPs por município, evento e cultura
-   -- Base para construir padrões de referência de perdas
-   WITH cops_historico AS (
-       SELECT complemento.cd_ibge_municipio,
-              evento.nome_evento,
-              empreend.produto,
-              EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano,
-              COUNT(*) AS total_cops,
-              -- Calcular duração do ciclo em dias
-              AVG(cop.dt_fim_colheita - cop.dt_inicio_plantio) AS duracao_media_ciclo
-         FROM sicor_cop_basico AS cop
-         JOIN eventoproagro AS evento
-           ON cop.cd_evento = evento.cd_evento
-         JOIN sicor_operacao_basica_estado AS op
-           ON cop.ref_bacen = op.ref_bacen 
-          AND cop.nu_ordem = op.nu_ordem
-         JOIN sicor_complemento_operacao_basica AS complemento
-           ON op.ref_bacen = complemento.ref_bacen 
-          AND op.nu_ordem = complemento.nu_ordem
-         JOIN empreendimento AS empreend
-           ON op.cd_empreendimento = empreend.cd_empreendimento
-        WHERE empreend.finalidade = 'custeio'
-          AND empreend.atividade = 'agrícola'
-          AND empreend.modalidade = 'lavoura'
-          AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2015
-     GROUP BY complemento.cd_ibge_municipio,
-              evento.nome_evento,
-              empreend.produto,
-              EXTRACT(YEAR FROM cop.dt_comunicacao)
-   )
-   SELECT cd_ibge_municipio,
-          nome_evento,
-          produto,
-          COUNT(DISTINCT ano) AS anos_com_cops,
-          SUM(total_cops) AS total_historico,
-          AVG(total_cops) AS media_anual_cops,
-          STDDEV(total_cops) AS desvio_padrao_cops,
-          AVG(duracao_media_ciclo) AS duracao_media_ciclo_dias
-     FROM cops_historico
- GROUP BY cd_ibge_municipio, nome_evento, produto
-   HAVING COUNT(DISTINCT ano) >= 3  -- Pelo menos 3 anos de histórico
- ORDER BY total_historico DESC;
+     -- Estatísticas históricas de COPs por município, evento e cultura
+     -- Base para construir padrões de referência de perdas
+     WITH cops_historico AS (
+         SELECT complemento.cd_ibge_municipio,
+                evento.nome_evento,
+                empreend.produto,
+                EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano,
+                COUNT(*) AS total_cops,
+                -- Calcular duração do ciclo em dias
+                AVG(cop.dt_fim_colheita - cop.dt_inicio_plantio) AS duracao_media_ciclo
+           FROM sicor_cop_basico AS cop
+           JOIN eventoproagro AS evento
+             ON cop.cd_evento = evento.cd_evento
+           JOIN sicor_operacao_basica_estado AS op
+             ON cop.ref_bacen = op.ref_bacen 
+            AND cop.nu_ordem = op.nu_ordem
+           JOIN sicor_complemento_operacao_basica AS complemento
+             ON op.ref_bacen = complemento.ref_bacen 
+            AND op.nu_ordem = complemento.nu_ordem
+           JOIN empreendimento AS empreend
+             ON op.cd_empreendimento = empreend.cd_empreendimento
+          WHERE empreend.finalidade = 'custeio'
+            AND empreend.atividade = 'agrícola'
+            AND empreend.modalidade = 'lavoura'
+            AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2015
+       GROUP BY complemento.cd_ibge_municipio,
+                evento.nome_evento,
+                empreend.produto,
+                EXTRACT(YEAR FROM cop.dt_comunicacao)
+     )
+     SELECT cd_ibge_municipio,
+            nome_evento,
+            produto,
+            COUNT(DISTINCT ano) AS anos_com_cops,
+            SUM(total_cops) AS total_historico,
+            AVG(total_cops) AS media_anual_cops,
+            STDDEV(total_cops) AS desvio_padrao_cops,
+            AVG(duracao_media_ciclo) AS duracao_media_ciclo_dias
+       FROM cops_historico
+   GROUP BY cd_ibge_municipio, nome_evento, produto
+     HAVING COUNT(DISTINCT ano) >= 3  -- Pelo menos 3 anos de histórico
+   ORDER BY total_historico DESC;
 
 **Exemplo: Chuva excessiva moderada, perda catastrófica alegada**
 
@@ -340,93 +340,93 @@ A análise fenológica requer cruzamento das datas de plantio/colheita informada
 .. code-block:: sql
    :caption: Análise fenológica de COPs com cruzamento ZARC
 
-   -- COPs com análise de janela fenológica versus ZARC
-   SELECT cop.ref_bacen,
-          cop.nu_ordem,
-          evento.nome_evento,
-          empreend.produto,
-          ciclo.descricao_ciclo AS ciclo_cultivar,
-          cop.dt_inicio_plantio,
-          cop.dt_fim_plantio,
-          cop.dt_comunicacao,
-          -- Calcular dias desde plantio até comunicação da perda
-          cop.dt_comunicacao - cop.dt_inicio_plantio AS dias_ate_comunicacao,
-          -- Estimar estádio fenológico baseado em dias típicos
-          CASE 
-              WHEN (cop.dt_comunicacao - cop.dt_inicio_plantio) < 30 
-                   THEN 'Vegetativo inicial (V1-V4)'
-              WHEN (cop.dt_comunicacao - cop.dt_inicio_plantio) BETWEEN 30 AND 60 
-                   THEN 'Vegetativo avançado (V5-Vn)'
-              WHEN (cop.dt_comunicacao - cop.dt_inicio_plantio) BETWEEN 60 AND 90 
-                   THEN 'Floração/Enchimento (R1-R5)'
-              ELSE 'Maturação (R6-R8)'
-          END AS estadio_estimado,
-          complemento.cd_ibge_municipio
-     FROM sicor_cop_basico AS cop
-     JOIN eventoproagro AS evento
-       ON cop.cd_evento = evento.cd_evento
-     JOIN ciclocultivarproagro AS ciclo
-       ON cop.cd_ciclo_cultivar = ciclo.cd_ciclo_cultivar
-     JOIN sicor_operacao_basica_estado AS op
-       ON cop.ref_bacen = op.ref_bacen 
-      AND cop.nu_ordem = op.nu_ordem
-     JOIN sicor_complemento_operacao_basica AS complemento
-       ON op.ref_bacen = complemento.ref_bacen 
-      AND op.nu_ordem = complemento.nu_ordem
-     JOIN empreendimento AS empreend
-       ON op.cd_empreendimento = empreend.cd_empreendimento
-    WHERE evento.cd_evento = 48  -- Seca
-      AND empreend.produto = 'soja'
-      AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
- ORDER BY dias_ate_comunicacao;
+     -- COPs com análise de janela fenológica versus ZARC
+     SELECT cop.ref_bacen,
+            cop.nu_ordem,
+            evento.nome_evento,
+            empreend.produto,
+            ciclo.descricao_ciclo AS ciclo_cultivar,
+            cop.dt_inicio_plantio,
+            cop.dt_fim_plantio,
+            cop.dt_comunicacao,
+            -- Calcular dias desde plantio até comunicação da perda
+            cop.dt_comunicacao - cop.dt_inicio_plantio AS dias_ate_comunicacao,
+            -- Estimar estádio fenológico baseado em dias típicos
+            CASE 
+                WHEN (cop.dt_comunicacao - cop.dt_inicio_plantio) < 30 
+                     THEN 'Vegetativo inicial (V1-V4)'
+                WHEN (cop.dt_comunicacao - cop.dt_inicio_plantio) BETWEEN 30 AND 60 
+                     THEN 'Vegetativo avançado (V5-Vn)'
+                WHEN (cop.dt_comunicacao - cop.dt_inicio_plantio) BETWEEN 60 AND 90 
+                     THEN 'Floração/Enchimento (R1-R5)'
+                ELSE 'Maturação (R6-R8)'
+            END AS estadio_estimado,
+            complemento.cd_ibge_municipio
+       FROM sicor_cop_basico AS cop
+       JOIN eventoproagro AS evento
+         ON cop.cd_evento = evento.cd_evento
+       JOIN ciclocultivarproagro AS ciclo
+         ON cop.cd_ciclo_cultivar = ciclo.cd_ciclo_cultivar
+       JOIN sicor_operacao_basica_estado AS op
+         ON cop.ref_bacen = op.ref_bacen 
+        AND cop.nu_ordem = op.nu_ordem
+       JOIN sicor_complemento_operacao_basica AS complemento
+         ON op.ref_bacen = complemento.ref_bacen 
+        AND op.nu_ordem = complemento.nu_ordem
+       JOIN empreendimento AS empreend
+         ON op.cd_empreendimento = empreend.cd_empreendimento
+      WHERE evento.cd_evento = 48  -- Seca
+        AND empreend.produto = 'soja'
+        AND EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
+   ORDER BY dias_ate_comunicacao;
 
 Para uma análise mais robusta, podemos identificar COPs onde a janela de plantio declarada está fora do período recomendado pelo ZARC:
 
 .. code-block:: sql
    :caption: COPs com plantio potencialmente fora da janela ZARC
 
-   -- Identificar COPs com plantio fora da janela ZARC recomendada
-   SELECT cop.ref_bacen,
-          cop.nu_ordem,
-          evento.nome_evento,
-          empreend.produto,
-          ciclo.descricao_ciclo,
-          tiposolo.descricao AS tipo_solo,
-          cop.dt_inicio_plantio,
-          cop.dt_fim_plantio,
-          zarc.data_inicial_decendio AS zarc_inicio_janela,
-          zarc.data_final_decendio AS zarc_fim_janela,
-          zarc.risco AS zarc_risco,
-          -- Verificar se plantio está dentro da janela ZARC
-          CASE 
-              WHEN cop.dt_inicio_plantio BETWEEN zarc.data_inicial_decendio 
-                   AND zarc.data_final_decendio 
-                   THEN 'Dentro da janela'
-              ELSE 'FORA da janela ZARC'
-          END AS situacao_janela
-     FROM sicor_cop_basico AS cop
-     JOIN eventoproagro AS evento
-       ON cop.cd_evento = evento.cd_evento
-     JOIN ciclocultivarproagro AS ciclo
-       ON cop.cd_ciclo_cultivar = ciclo.cd_ciclo_cultivar
-     JOIN tiposoloproagro AS tiposolo
-       ON cop.cd_tipo_solo = tiposolo.cd_tipo_solo
-     JOIN sicor_operacao_basica_estado AS op
-       ON cop.ref_bacen = op.ref_bacen 
-      AND cop.nu_ordem = op.nu_ordem
-     JOIN sicor_complemento_operacao_basica AS complemento
-       ON op.ref_bacen = complemento.ref_bacen 
-      AND op.nu_ordem = complemento.nu_ordem
-     JOIN empreendimento AS empreend
-       ON op.cd_empreendimento = empreend.cd_empreendimento
-LEFT JOIN zarc_oficial AS zarc
-       ON cop.cd_tipo_solo = zarc.cod_solo 
-      AND ciclo.descricao_ciclo = zarc.grupo
-      AND complemento.cd_ibge_municipio = zarc.geocodigo
-      AND empreend.produto = zarc.cultura
-    WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
-      AND zarc.risco IS NOT NULL
- ORDER BY situacao_janela DESC, cop.dt_comunicacao;
+      -- Identificar COPs com plantio fora da janela ZARC recomendada
+      SELECT cop.ref_bacen,
+             cop.nu_ordem,
+             evento.nome_evento,
+             empreend.produto,
+             ciclo.descricao_ciclo,
+             tiposolo.descricao AS tipo_solo,
+             cop.dt_inicio_plantio,
+             cop.dt_fim_plantio,
+             zarc.data_inicial_decendio AS zarc_inicio_janela,
+             zarc.data_final_decendio AS zarc_fim_janela,
+             zarc.risco AS zarc_risco,
+             -- Verificar se plantio está dentro da janela ZARC
+             CASE 
+                 WHEN cop.dt_inicio_plantio BETWEEN zarc.data_inicial_decendio 
+                      AND zarc.data_final_decendio 
+                      THEN 'Dentro da janela'
+                 ELSE 'FORA da janela ZARC'
+             END AS situacao_janela
+        FROM sicor_cop_basico AS cop
+        JOIN eventoproagro AS evento
+          ON cop.cd_evento = evento.cd_evento
+        JOIN ciclocultivarproagro AS ciclo
+          ON cop.cd_ciclo_cultivar = ciclo.cd_ciclo_cultivar
+        JOIN tiposoloproagro AS tiposolo
+          ON cop.cd_tipo_solo = tiposolo.cd_tipo_solo
+        JOIN sicor_operacao_basica_estado AS op
+          ON cop.ref_bacen = op.ref_bacen 
+         AND cop.nu_ordem = op.nu_ordem
+        JOIN sicor_complemento_operacao_basica AS complemento
+          ON op.ref_bacen = complemento.ref_bacen 
+         AND op.nu_ordem = complemento.nu_ordem
+        JOIN empreendimento AS empreend
+          ON op.cd_empreendimento = empreend.cd_empreendimento
+   LEFT JOIN zarc_oficial AS zarc
+          ON cop.cd_tipo_solo = zarc.cod_solo 
+         AND ciclo.descricao_ciclo = zarc.grupo
+         AND complemento.cd_ibge_municipio = zarc.geocodigo
+         AND empreend.produto = zarc.cultura
+       WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
+         AND zarc.risco IS NOT NULL
+    ORDER BY situacao_janela DESC, cop.dt_comunicacao;
 
 **Interpretação esperada:** Requer conhecimento agronômico de vulnerabilidades fenológicas por cultura. Milho, por exemplo, é extremamente sensível a déficit no pendoamento (VT-R1); déficit antes ou depois tem impacto menor. COPs alegando perda catastrófica por déficit fora do período crítico são suspeitas. Proporção esperada de outliers fenológicos: baixa se perícias são tecnicamente competentes; alta sugere perícias de baixa qualidade ou má-fé.
 
@@ -443,37 +443,37 @@ COP registrada em 20 de março alega que seca severa causou perda total em fever
 .. code-block:: sql
    :caption: Análise temporal de COPs para detecção de inconsistências de data
 
-   -- Identificar COPs com potenciais inconsistências temporais
-   SELECT cop.ref_bacen,
-          cop.nu_ordem,
-          evento.nome_evento,
-          cop.dt_comunicacao,
-          cop.dt_inicio_plantio,
-          cop.dt_fim_plantio,
-          cop.dt_inicio_colheita,
-          cop.dt_fim_colheita,
-          -- Calcular intervalos temporais
-          cop.dt_comunicacao - cop.dt_inicio_plantio AS dias_plantio_comunicacao,
-          cop.dt_fim_colheita - cop.dt_inicio_plantio AS duracao_ciclo_declarada,
-          -- Identificar inconsistências óbvias
-          CASE 
-              WHEN cop.dt_comunicacao < cop.dt_inicio_plantio 
-                   THEN 'ERRO: Comunicação anterior ao plantio'
-              WHEN cop.dt_fim_plantio < cop.dt_inicio_plantio 
-                   THEN 'ERRO: Fim plantio anterior ao início'
-              WHEN cop.dt_inicio_colheita < cop.dt_fim_plantio 
-                   THEN 'ERRO: Colheita sobrepõe plantio'
-              WHEN (cop.dt_fim_colheita - cop.dt_inicio_plantio) > 300 
-                   THEN 'ALERTA: Ciclo muito longo (> 300 dias)'
-              WHEN (cop.dt_fim_colheita - cop.dt_inicio_plantio) < 60 
-                   THEN 'ALERTA: Ciclo muito curto (< 60 dias)'
-              ELSE 'Temporalidade plausível'
-          END AS analise_temporal
-     FROM sicor_cop_basico AS cop
-     JOIN eventoproagro AS evento
-       ON cop.cd_evento = evento.cd_evento
-    WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
- ORDER BY analise_temporal DESC, cop.dt_comunicacao;
+     -- Identificar COPs com potenciais inconsistências temporais
+     SELECT cop.ref_bacen,
+            cop.nu_ordem,
+            evento.nome_evento,
+            cop.dt_comunicacao,
+            cop.dt_inicio_plantio,
+            cop.dt_fim_plantio,
+            cop.dt_inicio_colheita,
+            cop.dt_fim_colheita,
+            -- Calcular intervalos temporais
+            cop.dt_comunicacao - cop.dt_inicio_plantio AS dias_plantio_comunicacao,
+            cop.dt_fim_colheita - cop.dt_inicio_plantio AS duracao_ciclo_declarada,
+            -- Identificar inconsistências óbvias
+            CASE 
+                WHEN cop.dt_comunicacao < cop.dt_inicio_plantio 
+                     THEN 'ERRO: Comunicação anterior ao plantio'
+                WHEN cop.dt_fim_plantio < cop.dt_inicio_plantio 
+                     THEN 'ERRO: Fim plantio anterior ao início'
+                WHEN cop.dt_inicio_colheita < cop.dt_fim_plantio 
+                     THEN 'ERRO: Colheita sobrepõe plantio'
+                WHEN (cop.dt_fim_colheita - cop.dt_inicio_plantio) > 300 
+                     THEN 'ALERTA: Ciclo muito longo (> 300 dias)'
+                WHEN (cop.dt_fim_colheita - cop.dt_inicio_plantio) < 60 
+                     THEN 'ALERTA: Ciclo muito curto (< 60 dias)'
+                ELSE 'Temporalidade plausível'
+            END AS analise_temporal
+       FROM sicor_cop_basico AS cop
+       JOIN eventoproagro AS evento
+         ON cop.cd_evento = evento.cd_evento
+      WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2020
+   ORDER BY analise_temporal DESC, cop.dt_comunicacao;
 
 **Interpretação esperada:** Erros de data são comuns e geralmente benignos (descuido administrativo). Correção via triangulação com outras evidências. Mas se há padrão sistemático de datas deslocadas sempre favorecendo produtor (ex: alegar perda antes da janela Zarc terminar quando evento foi depois), merece atenção.
 
@@ -530,74 +530,74 @@ Para identificar padrões e outliers em escala, precisamos agregar dados de COPs
 .. code-block:: sql
    :caption: Agregação mensal de COPs por município e evento
 
-   -- Agregação mensal de COPs por município e tipo de evento
-   -- Base para cálculo de z-scores e identificação de anomalias
-   WITH cops_mensal AS (
-       SELECT complemento.cd_ibge_municipio,
-              evento.nome_evento,
-              EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano,
-              EXTRACT(MONTH FROM cop.dt_comunicacao) AS mes,
-              COUNT(*) AS total_cops
-         FROM sicor_cop_basico AS cop
-         JOIN eventoproagro AS evento
-           ON cop.cd_evento = evento.cd_evento
-         JOIN sicor_operacao_basica_estado AS op
-           ON cop.ref_bacen = op.ref_bacen 
-          AND cop.nu_ordem = op.nu_ordem
-         JOIN sicor_complemento_operacao_basica AS complemento
-           ON op.ref_bacen = complemento.ref_bacen 
-          AND op.nu_ordem = complemento.nu_ordem
-        WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2015
-     GROUP BY complemento.cd_ibge_municipio,
-              evento.nome_evento,
-              EXTRACT(YEAR FROM cop.dt_comunicacao),
-              EXTRACT(MONTH FROM cop.dt_comunicacao)
-   ),
-   estatisticas_historicas AS (
-       SELECT cd_ibge_municipio,
-              nome_evento,
-              mes,
-              AVG(total_cops) AS media_historica,
-              STDDEV(total_cops) AS desvio_padrao,
-              PERCENTILE_CONT(0.90) WITHIN GROUP (ORDER BY total_cops) AS percentil_90
-         FROM cops_mensal
-     GROUP BY cd_ibge_municipio, nome_evento, mes
-       HAVING COUNT(*) >= 5  -- Mínimo 5 anos de dados
-   )
-   SELECT cm.cd_ibge_municipio,
-          cm.nome_evento,
-          cm.ano,
-          cm.mes,
-          cm.total_cops,
-          eh.media_historica,
-          eh.desvio_padrao,
-          eh.percentil_90,
-          -- Calcular z-score
-          CASE 
-              WHEN eh.desvio_padrao > 0 
-              THEN (cm.total_cops - eh.media_historica) / eh.desvio_padrao
-              ELSE 0
-          END AS z_score,
-          -- Classificar anomalia
-          CASE 
-              WHEN eh.desvio_padrao > 0 
-                   AND (cm.total_cops - eh.media_historica) / eh.desvio_padrao > 2 
-                   THEN 'OUTLIER ALTO (z > 2)'
-              WHEN eh.desvio_padrao > 0 
-                   AND (cm.total_cops - eh.media_historica) / eh.desvio_padrao > 1.5 
-                   THEN 'ACIMA DO ESPERADO (z > 1.5)'
-              WHEN eh.desvio_padrao > 0 
-                   AND (cm.total_cops - eh.media_historica) / eh.desvio_padrao < -1.5 
-                   THEN 'ABAIXO DO ESPERADO (z < -1.5)'
-              ELSE 'DENTRO DA NORMALIDADE'
-          END AS classificacao_anomalia
-     FROM cops_mensal cm
-     JOIN estatisticas_historicas eh
-       ON cm.cd_ibge_municipio = eh.cd_ibge_municipio
-      AND cm.nome_evento = eh.nome_evento
-      AND cm.mes = eh.mes
-    WHERE cm.ano = 2023  -- Ano de análise
- ORDER BY z_score DESC;
+     -- Agregação mensal de COPs por município e tipo de evento
+     -- Base para cálculo de z-scores e identificação de anomalias
+     WITH cops_mensal AS (
+         SELECT complemento.cd_ibge_municipio,
+                evento.nome_evento,
+                EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano,
+                EXTRACT(MONTH FROM cop.dt_comunicacao) AS mes,
+                COUNT(*) AS total_cops
+           FROM sicor_cop_basico AS cop
+           JOIN eventoproagro AS evento
+             ON cop.cd_evento = evento.cd_evento
+           JOIN sicor_operacao_basica_estado AS op
+             ON cop.ref_bacen = op.ref_bacen 
+            AND cop.nu_ordem = op.nu_ordem
+           JOIN sicor_complemento_operacao_basica AS complemento
+             ON op.ref_bacen = complemento.ref_bacen 
+            AND op.nu_ordem = complemento.nu_ordem
+          WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) >= 2015
+       GROUP BY complemento.cd_ibge_municipio,
+                evento.nome_evento,
+                EXTRACT(YEAR FROM cop.dt_comunicacao),
+                EXTRACT(MONTH FROM cop.dt_comunicacao)
+     ),
+     estatisticas_historicas AS (
+         SELECT cd_ibge_municipio,
+                nome_evento,
+                mes,
+                AVG(total_cops) AS media_historica,
+                STDDEV(total_cops) AS desvio_padrao,
+                PERCENTILE_CONT(0.90) WITHIN GROUP (ORDER BY total_cops) AS percentil_90
+           FROM cops_mensal
+       GROUP BY cd_ibge_municipio, nome_evento, mes
+         HAVING COUNT(*) >= 5  -- Mínimo 5 anos de dados
+     )
+     SELECT cm.cd_ibge_municipio,
+            cm.nome_evento,
+            cm.ano,
+            cm.mes,
+            cm.total_cops,
+            eh.media_historica,
+            eh.desvio_padrao,
+            eh.percentil_90,
+            -- Calcular z-score
+            CASE 
+                WHEN eh.desvio_padrao > 0 
+                THEN (cm.total_cops - eh.media_historica) / eh.desvio_padrao
+                ELSE 0
+            END AS z_score,
+            -- Classificar anomalia
+            CASE 
+                WHEN eh.desvio_padrao > 0 
+                     AND (cm.total_cops - eh.media_historica) / eh.desvio_padrao > 2 
+                     THEN 'OUTLIER ALTO (z > 2)'
+                WHEN eh.desvio_padrao > 0 
+                     AND (cm.total_cops - eh.media_historica) / eh.desvio_padrao > 1.5 
+                     THEN 'ACIMA DO ESPERADO (z > 1.5)'
+                WHEN eh.desvio_padrao > 0 
+                     AND (cm.total_cops - eh.media_historica) / eh.desvio_padrao < -1.5 
+                     THEN 'ABAIXO DO ESPERADO (z < -1.5)'
+                ELSE 'DENTRO DA NORMALIDADE'
+            END AS classificacao_anomalia
+       FROM cops_mensal cm
+       JOIN estatisticas_historicas eh
+         ON cm.cd_ibge_municipio = eh.cd_ibge_municipio
+        AND cm.nome_evento = eh.nome_evento
+        AND cm.mes = eh.mes
+      WHERE cm.ano = 2023  -- Ano de análise
+   ORDER BY z_score DESC;
 
 
 Índices climáticos padronizados
@@ -759,48 +759,48 @@ Aplicar regras de validação temporal automatizadas:
 .. code-block:: sql
    :caption: Classificação automática de consistência temporal
 
-   -- Classificação de consistência temporal de COPs
-   WITH cops_analise AS (
-       -- [usar CTE cops_base do passo anterior]
-       SELECT cop.ref_bacen,
-              cop.nu_ordem,
-              evento.nome_evento,
-              cop.dt_comunicacao,
-              cop.dt_inicio_plantio,
-              cop.dt_fim_plantio,
-              complemento.cd_ibge_municipio
-         FROM sicor_cop_basico AS cop
-         JOIN eventoproagro AS evento ON cop.cd_evento = evento.cd_evento
-         JOIN sicor_operacao_basica_estado AS op
-           ON cop.ref_bacen = op.ref_bacen AND cop.nu_ordem = op.nu_ordem
-         JOIN sicor_complemento_operacao_basica AS complemento
-           ON op.ref_bacen = complemento.ref_bacen AND op.nu_ordem = complemento.nu_ordem
-        WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) = 2023
-   )
-   SELECT ref_bacen,
-          nu_ordem,
-          nome_evento,
-          dt_comunicacao,
-          cd_ibge_municipio,
-          -- Regras de classificação
-          CASE 
-              -- Regra para SECA
-              WHEN nome_evento = 'Seca' 
-                   AND EXTRACT(MONTH FROM dt_comunicacao) BETWEEN 12 AND 2
-                   THEN 'ALERTA: Seca comunicada no período chuvoso'
-              -- Regra para GEADA fora do período típico
-              WHEN nome_evento = 'Geada'
-                   AND EXTRACT(MONTH FROM dt_comunicacao) NOT BETWEEN 5 AND 9
-                   THEN 'ALERTA: Geada fora do período típico'
-              -- Regra temporal básica
-              WHEN dt_comunicacao < dt_inicio_plantio
-                   THEN 'ERRO: Data comunicação anterior ao plantio'
-              WHEN (dt_fim_plantio - dt_inicio_plantio) < 0
-                   THEN 'ERRO: Datas de plantio inconsistentes'
-              ELSE 'Temporalidade OK'
-          END AS classificacao_temporal
-     FROM cops_analise
- ORDER BY classificacao_temporal DESC;
+     -- Classificação de consistência temporal de COPs
+     WITH cops_analise AS (
+         -- [usar CTE cops_base do passo anterior]
+         SELECT cop.ref_bacen,
+                cop.nu_ordem,
+                evento.nome_evento,
+                cop.dt_comunicacao,
+                cop.dt_inicio_plantio,
+                cop.dt_fim_plantio,
+                complemento.cd_ibge_municipio
+           FROM sicor_cop_basico AS cop
+           JOIN eventoproagro AS evento ON cop.cd_evento = evento.cd_evento
+           JOIN sicor_operacao_basica_estado AS op
+             ON cop.ref_bacen = op.ref_bacen AND cop.nu_ordem = op.nu_ordem
+           JOIN sicor_complemento_operacao_basica AS complemento
+             ON op.ref_bacen = complemento.ref_bacen AND op.nu_ordem = complemento.nu_ordem
+          WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) = 2023
+     )
+     SELECT ref_bacen,
+            nu_ordem,
+            nome_evento,
+            dt_comunicacao,
+            cd_ibge_municipio,
+            -- Regras de classificação
+            CASE 
+                -- Regra para SECA
+                WHEN nome_evento = 'Seca' 
+                     AND EXTRACT(MONTH FROM dt_comunicacao) BETWEEN 12 AND 2
+                     THEN 'ALERTA: Seca comunicada no período chuvoso'
+                -- Regra para GEADA fora do período típico
+                WHEN nome_evento = 'Geada'
+                     AND EXTRACT(MONTH FROM dt_comunicacao) NOT BETWEEN 5 AND 9
+                     THEN 'ALERTA: Geada fora do período típico'
+                -- Regra temporal básica
+                WHEN dt_comunicacao < dt_inicio_plantio
+                     THEN 'ERRO: Data comunicação anterior ao plantio'
+                WHEN (dt_fim_plantio - dt_inicio_plantio) < 0
+                     THEN 'ERRO: Datas de plantio inconsistentes'
+                ELSE 'Temporalidade OK'
+            END AS classificacao_temporal
+       FROM cops_analise
+   ORDER BY classificacao_temporal DESC;
 
 **Passo 3 — Priorização**
 
@@ -811,42 +811,42 @@ Ranquear COPs por score de inconsistência:
 .. code-block:: sql
    :caption: Cálculo de score de priorização para investigação
 
-   -- Score de priorização para investigação
-   WITH cops_scored AS (
-       SELECT cop.ref_bacen,
-              cop.nu_ordem,
-              evento.nome_evento,
-              op.vl_parc_credito,
-              complemento.cd_ibge_municipio,
-              -- Score simplificado baseado em valor e características
-              (op.vl_parc_credito / 
-               NULLIF((SELECT AVG(vl_parc_credito) 
-                         FROM sicor_operacao_basica_estado 
-                        WHERE EXTRACT(YEAR FROM dt_emissao) = 2023), 0)
-              ) AS fator_valor_relativo
-         FROM sicor_cop_basico AS cop
-         JOIN eventoproagro AS evento ON cop.cd_evento = evento.cd_evento
-         JOIN sicor_operacao_basica_estado AS op
-           ON cop.ref_bacen = op.ref_bacen AND cop.nu_ordem = op.nu_ordem
-         JOIN sicor_complemento_operacao_basica AS complemento
-           ON op.ref_bacen = complemento.ref_bacen AND op.nu_ordem = complemento.nu_ordem
-        WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) = 2023
-   )
-   SELECT ref_bacen,
-          nu_ordem,
-          nome_evento,
-          vl_parc_credito,
-          cd_ibge_municipio,
-          fator_valor_relativo,
-          -- Score de priorização (quanto maior, mais prioritário)
-          CASE 
-              WHEN fator_valor_relativo > 3 THEN 'PRIORIDADE ALTA'
-              WHEN fator_valor_relativo > 1.5 THEN 'PRIORIDADE MÉDIA'
-              ELSE 'PRIORIDADE NORMAL'
-          END AS nivel_priorizacao
-     FROM cops_scored
- ORDER BY fator_valor_relativo DESC
-    LIMIT 100;
+     -- Score de priorização para investigação
+     WITH cops_scored AS (
+         SELECT cop.ref_bacen,
+                cop.nu_ordem,
+                evento.nome_evento,
+                op.vl_parc_credito,
+                complemento.cd_ibge_municipio,
+                -- Score simplificado baseado em valor e características
+                (op.vl_parc_credito / 
+                 NULLIF((SELECT AVG(vl_parc_credito) 
+                           FROM sicor_operacao_basica_estado 
+                          WHERE EXTRACT(YEAR FROM dt_emissao) = 2023), 0)
+                ) AS fator_valor_relativo
+           FROM sicor_cop_basico AS cop
+           JOIN eventoproagro AS evento ON cop.cd_evento = evento.cd_evento
+           JOIN sicor_operacao_basica_estado AS op
+             ON cop.ref_bacen = op.ref_bacen AND cop.nu_ordem = op.nu_ordem
+           JOIN sicor_complemento_operacao_basica AS complemento
+             ON op.ref_bacen = complemento.ref_bacen AND op.nu_ordem = complemento.nu_ordem
+          WHERE EXTRACT(YEAR FROM cop.dt_comunicacao) = 2023
+     )
+     SELECT ref_bacen,
+            nu_ordem,
+            nome_evento,
+            vl_parc_credito,
+            cd_ibge_municipio,
+            fator_valor_relativo,
+            -- Score de priorização (quanto maior, mais prioritário)
+            CASE 
+                WHEN fator_valor_relativo > 3 THEN 'PRIORIDADE ALTA'
+                WHEN fator_valor_relativo > 1.5 THEN 'PRIORIDADE MÉDIA'
+                ELSE 'PRIORIDADE NORMAL'
+            END AS nivel_priorizacao
+       FROM cops_scored
+   ORDER BY fator_valor_relativo DESC
+      LIMIT 100;
 
 
 Limitações e cuidados essenciais

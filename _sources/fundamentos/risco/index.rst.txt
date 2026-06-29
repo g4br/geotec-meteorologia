@@ -11,11 +11,8 @@ Arquitetura conceitual do risco agrícola
 
 Uma forma acessível de compreender o risco agrícola é decompô-lo em três componentes que se encontram — e interagem — no campo. Essa estrutura triádica encontra-se corroborada por literatura acadêmica recente e por práticas institucionalizadas no Brasil :cite:`ipcc:2014,cpi2020`:
 
-.. figure:: triangulo_risco.png
-   :align: center
-   :width: 70%
-
-   Os três componentes essenciais do risco agrícola brasileiro: perigo, exposição e vulnerabilidade.
+.. TODO: gerar imagem triangulo_risco.png (width 70%). Reativar bloco figure abaixo.
+   Legenda: Os três componentes essenciais do risco agrícola brasileiro: perigo, exposição e vulnerabilidade.
 
 
 Perigo (*hazard*)
@@ -122,11 +119,8 @@ O **momento** em que um evento meteorológico ocorre é tão importante quanto s
 
 A sensibilidade fenológica foi validada em múltiplas culturas. Para soja, as fases de floração e enchimento de grãos concentram 90-100% da vulnerabilidade a déficit hídrico, enquanto germinação-emergência apresenta apenas 40% de sensibilidade relativa :cite:`doorenbos:1979`:
 
-.. figure:: sensibilidade_fenologica_soja.png
-   :align: center
-   :width: 80%
-
-   Sensibilidade da soja ao déficit hídrico por fase fenológica. Fonte: Adaptado de estudos de modelagem agrometeorológica.
+.. TODO: gerar imagem sensibilidade_fenologica_soja.png (width 80%). Reativar bloco figure abaixo.
+   Legenda: Sensibilidade da soja ao déficit hídrico por fase fenológica. Fonte: Adaptado de estudos de modelagem agrometeorológica.
 
 .. table:: Tabela de Sensibilidade Relativa ao Déficit Hídrico da Soja — Revisão Bibliográfica
    :widths: 30 20 50
@@ -284,11 +278,8 @@ Mapas municipais — e, progressivamente, por talhão — que indicam épocas de
 
 Estudos de validação confirmam boa concordância entre as recomendações do ZARC e o estresse hídrico observado em campo, avaliada por métricas estatísticas de ajuste (índice de concordância d e RMSE) :cite:`embrapa_zarcpro2020`.
 
-.. figure:: distribuicao_risco_zarc.png
-   :align: center
-   :width: 80%
-
-   Distribuição do risco climático ZARC por ciclo de plantio (exemplo: soja em município do Centro-Oeste).
+.. TODO: gerar imagem distribuicao_risco_zarc.png (width 80%). Reativar bloco figure abaixo.
+   Legenda: Distribuição do risco climático ZARC por ciclo de plantio (exemplo: soja em município do Centro-Oeste).
 
 **Inovações em desenvolvimento:**
 
@@ -358,11 +349,8 @@ Quadro comparativo de instrumentos
 Fluxo integrado de gestão de risco
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. figure:: fluxograma_gestao_risco.png
-   :align: center
-   :width: 90%
-
-   Fluxograma do sistema de gestão de risco agrícola no Brasil (ZARC + Proagro/Seguro Rural).
+.. TODO: gerar imagem fluxograma_gestao_risco.png (width 90%). Reativar bloco figure abaixo.
+   Legenda: Fluxograma do sistema de gestão de risco agrícola no Brasil (ZARC + Proagro/Seguro Rural).
 
 
 Validação por indicadores: sensoriamento remoto

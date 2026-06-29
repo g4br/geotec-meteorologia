@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
@@ -153,10 +155,10 @@ manchas quentes correspondem às concentrações que o KDE realça.</span><a cla
 <h2>I de Moran global: existe padrão?<a class="headerlink" href="#i-de-moran-global-existe-padrao" title="Link permanente para este cabeçalho"></a></h2>
 <p>O KDE mostra <em>onde</em> há concentração, mas não diz se ela é estatisticamente significativa.
 Para isso, passa-se de pontos para áreas (ex.: contagem de COPs por município) e
-aplica-se o <strong>I de Moran global</strong> <span id="id1">[<a class="reference internal" href="../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, que mede a autocorrelação espacial — o quanto valores
+aplica-se o <strong>I de Moran global</strong> <span id="id1">[<a class="reference internal" href="../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">73</a>]</span>, que mede a autocorrelação espacial — o quanto valores
 parecidos tendem a estar perto uns dos outros. É a tradução estatística da Lei de Tobler:
 <em>“tudo está relacionado com tudo, mas coisas próximas estão mais relacionadas que coisas
-distantes”</em> <span id="id2">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
+distantes”</em> <span id="id2">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">72</a>]</span>.</p>
 <p>O cálculo exige uma <strong>matriz de pesos espaciais</strong>, que define quem é vizinho de quem. O
 critério Queen considera vizinhos os municípios que compartilham qualquer fronteira ou
 vértice:</p>
@@ -209,7 +211,7 @@ senão distorcem a matriz de pesos.</p>
 <section id="lisa-onde-estao-os-clusters">
 <h2>LISA: onde estão os clusters<a class="headerlink" href="#lisa-onde-estao-os-clusters" title="Link permanente para este cabeçalho"></a></h2>
 <p>O I global resume tudo em <strong>um único número</strong> — diz que há padrão, mas não onde. Os
-<strong>LISA</strong> (<em>Local Indicators of Spatial Association</em>, ou I de Moran local) <span id="id3">[<a class="reference internal" href="../referencias.html#id247" title="Luc Anselin. Local indicators of spatial association—LISA. Geographical Analysis, 27(2):93–115, 1995. doi:10.1111/j.1538-4632.1995.tb00338.x.">68</a>]</span> abrem esse número
+<strong>LISA</strong> (<em>Local Indicators of Spatial Association</em>, ou I de Moran local) <span id="id3">[<a class="reference internal" href="../referencias.html#id247" title="Luc Anselin. Local indicators of spatial association—LISA. Geographical Analysis, 27(2):93–115, 1995. doi:10.1111/j.1538-4632.1995.tb00338.x.">74</a>]</span> abrem esse número
 por município, classificando cada um em quatro tipos de cluster:</p>
 <ul class="simple">
 <li><p><strong>Alto-Alto (AA)</strong>: muitas COPs cercado de vizinhos com muitas COPs — o núcleo de um
@@ -254,7 +256,7 @@ hotspots e outliers descritos na lista de tipos de cluster.</p>
 </section>
 <section id="getis-ord-gi-hotspots-e-coldspots">
 <h2>Getis-Ord Gi*: hotspots e coldspots<a class="headerlink" href="#getis-ord-gi-hotspots-e-coldspots" title="Link permanente para este cabeçalho"></a></h2>
-<p>O <strong>Gi*</strong> é complementar ao LISA <span id="id4">[<a class="reference internal" href="../referencias.html#id273" title="Arthur Getis and J. Keith Ord. The analysis of spatial association by use of distance statistics. Geographical Analysis, 24(3):189–206, 1992. doi:10.1111/j.1538-4632.1992.tb00261.x.">75</a>]</span>: em vez de classificar em quadrantes, ele produz um
+<p>O <strong>Gi*</strong> é complementar ao LISA <span id="id4">[<a class="reference internal" href="../referencias.html#id273" title="Arthur Getis and J. Keith Ord. The analysis of spatial association by use of distance statistics. Geographical Analysis, 24(3):189–206, 1992. doi:10.1111/j.1538-4632.1992.tb00261.x.">81</a>]</span>: em vez de classificar em quadrantes, ele produz um
 escore z que mede a intensidade de <em>hotspots</em> (agrupamentos de valores altos) e
 <em>coldspots</em> (de valores baixos). Escores z altos e positivos marcam <em>hotspots</em> robustos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">esda.getisord</span><span class="w"> </span><span class="kn">import</span> <span class="n">G_Local</span>
@@ -268,7 +270,7 @@ escore z que mede a intensidade de <em>hotspots</em> (agrupamentos de valores al
 <h2>Duas armadilhas a evitar<a class="headerlink" href="#duas-armadilhas-a-evitar" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>MAUP — o problema da unidade de área modificável.</strong> Os resultados mudam conforme a
 unidade espacial escolhida. Contar COPs por município ou por uma grade regular pode dar
-valores de Moran e mapas de cluster diferentes para os <em>mesmos</em> dados <span id="id5">[<a class="reference internal" href="../referencias.html#id249" title="S. Openshaw. The modifiable areal unit problem. Technical Report 38, Geo Books, 1984.">69</a>]</span>. Não existe escala
+valores de Moran e mapas de cluster diferentes para os <em>mesmos</em> dados <span id="id5">[<a class="reference internal" href="../referencias.html#id249" title="S. Openshaw. The modifiable areal unit problem. Technical Report 38, Geo Books, 1984.">75</a>]</span>. Não existe escala
 “certa” única — por isso é bom comparar mais de uma e desconfiar de conclusões que só
 aparecem em uma escala específica.</p>
 <div class="tip admonition">
@@ -294,7 +296,7 @@ unidade de área modificável exemplo”</p>
 </dd>
 </dl>
 </div>
-<p><strong>Falácia ecológica</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id311" title="W. S. Robinson. Ecological correlations and the behavior of individuals. American Sociological Review, 15(3):351–357, 1950. doi:10.2307/2087176.">70</a>]</span>. Um padrão observado no agregado (ex.: municípios com mais COPs
+<p><strong>Falácia ecológica</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id311" title="W. S. Robinson. Ecological correlations and the behavior of individuals. American Sociological Review, 15(3):351–357, 1950. doi:10.2307/2087176.">76</a>]</span>. Um padrão observado no agregado (ex.: municípios com mais COPs
 tendem a ter certa característica) <strong>não</strong> pode ser transferido automaticamente para o
 indivíduo (uma gleba específica daquele município). Conclusões sobre áreas não são
 conclusões sobre as glebas dentro delas — confundir os dois níveis leva a erro de
@@ -317,7 +319,7 @@ interpretação e, no limite, a injustiça na análise de um caso concreto.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac96d7c890>
+<jinja2.runtime.BlockReference object at 0x7edfd70402d0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

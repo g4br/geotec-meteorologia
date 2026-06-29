@@ -884,6 +884,7 @@ Não confiar apenas em interpolação. Buscar concordância entre:
 +------------------+----------------------+----------------------+---------------------+
 | Convergência     | ❌ Diverge do MERGE  | ✅ Concorda com NDVI | ✅ Indica stress    |
 +------------------+----------------------+----------------------+---------------------+
+
 **Interpretação:**
 
 Interpolação sugere precipitação normal, mas MERGE e NDVI indicam seca. Como interpolação tem incerteza moderada e diverge de outras fontes, **dar peso maior** a MERGE/NDVI. Provável que houve déficit localizado não capturado por estações distantes.

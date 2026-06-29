@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
       <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
       <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
@@ -25,6 +26,7 @@
       <script src="../_static/clipboard.min.js"></script>
       <script src="../_static/copybutton.js"></script>
       <script src="../_static/translations.js"></script>
+      <script src="../_static/design-tabs.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
@@ -119,7 +121,7 @@ depois pode ser cruzada com a localização das COPs.</p>
 <h2>IDW — inverse distance weighting<a class="headerlink" href="#idw-inverse-distance-weighting" title="Link permanente para este cabeçalho"></a></h2>
 <p>O IDW estima o valor em um ponto como uma <strong>média ponderada</strong> dos valores das estações,
 dando mais peso às mais próximas — o peso cai com o inverso da distância elevada a uma
-potência <span id="id1">[<a class="reference internal" href="../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. É o método mais intuitivo e não exige ajuste de modelo:</p>
+potência <span id="id1">[<a class="reference internal" href="../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">78</a>]</span>. É o método mais intuitivo e não exige ajuste de modelo:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Para cada ponto da grade, pondera as estações pelo inverso da distância^potência.</span>
@@ -161,7 +163,7 @@ uma medida de incerteza da estimativa.</p>
 </section>
 <section id="krigagem">
 <h2>Krigagem<a class="headerlink" href="#krigagem" title="Link permanente para este cabeçalho"></a></h2>
-<p>A <strong>Krigagem</strong> é o método geoestatístico de referência <span id="id2">[<a class="reference internal" href="../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>. Em vez de pesos fixos, ela aprende
+<p>A <strong>Krigagem</strong> é o método geoestatístico de referência <span id="id2">[<a class="reference internal" href="../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">79</a>, <a class="reference internal" href="../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">80</a>]</span>. Em vez de pesos fixos, ela aprende
 a estrutura de correlação espacial do próprio dado por meio do <strong>semivariograma</strong> — uma
 curva que descreve como a diferença entre pares de estações cresce com a distância — e usa
 essa estrutura para estimar valores de forma estatisticamente ótima.</p>
@@ -245,7 +247,7 @@ sinistros.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x70ac9637e110>
+<jinja2.runtime.BlockReference object at 0x7edfd8159c50>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

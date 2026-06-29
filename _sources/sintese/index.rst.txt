@@ -86,20 +86,20 @@ Por que monitorar clima é gestão de risco fiscal
      :widths: 25 30 45
 
      * - Ano
-     - R$ bi
-     - Variação
+       - R$ bi
+       - Variação
      * - 2017
-     - 1,0
-     - —
+       - 1,0
+       - —
      * - 2022
-     - 3,5
-     - +250%
+       - 3,5
+       - +250%
      * - 2023
-     - 9,4
-     - +840% em 6 anos
+       - 9,4
+       - +840% em 6 anos
      * - 2024
-     - 9,0
-     - patamar elevado
+       - 9,0
+       - patamar elevado
 
 Elementos climáticos × planta
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,20 +114,20 @@ Elementos climáticos × planta
      :widths: 12 38 50
 
      * - Cultura
-     - Janela
-     - Risco principal
+       - Janela
+       - Risco principal
      * - Soja
-     - R1-R2 + R5-R6
-     - Déficit hídrico → > 50% perda
+       - R1-R2 + R5-R6
+       - Déficit hídrico → > 50% perda
      * - Milho
-     - VT-R1 (5-7 dias!)
-     - Pólen × estigma
+       - VT-R1 (5-7 dias!)
+       - Pólen × estigma
      * - Trigo (espigamento)
-     - Geada < -2°C
-     - Esterilidade
+       - Geada < -2°C
+       - Esterilidade
      * - Trigo (maturação)
-     - Chuva
-     - Germinação na espiga, giberela
+       - Chuva
+       - Germinação na espiga, giberela
 
 * **Total mensal "bom" ≠ disponibilidade hídrica adequada** —
   150 mm em 3 dias + 27 dias secos pode causar perda total

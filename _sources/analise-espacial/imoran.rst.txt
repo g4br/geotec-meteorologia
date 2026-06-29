@@ -269,15 +269,15 @@ Para cada localização :math:`i`, calculamos **quanto seu valor se desvia da m�
 
 Considere taxa de COPs em 5 municípios:
 
-===========  ===============  ======================  =================
-Município    Taxa de COPs (%) Média                  Desvio
-===========  ===============  ======================  =================
-A            12               15                      -3
-B            20               15                      +5
-C            18               15                      +3
-D            10               15                      -5
-E            15               15                      0
-===========  ===============  ======================  =================
+=========  ================  =====  ======
+Município  Taxa de COPs (%)  Média  Desvio
+=========  ================  =====  ======
+A          12                15     -3
+B          20                15     +5
+C          18                15     +3
+D          10                15     -5
+E          15                15     0
+=========  ================  =====  ======
 
 **Por que padronizar?**
 
@@ -2169,7 +2169,7 @@ Glossário de termos técnicos
     Probabilidade de observar estatística tão extrema ou mais extrema que a calculada, assumindo hipótese nula verdadeira. p < 0,05 indica significância.
 
 **Z-score**
-    Número de desvios-padrão que o I observado está distante da expectativa sob aleatoriedade. |z| > 1,96 → p < 0,05.
+    Número de desvios-padrão que o I observado está distante da expectativa sob aleatoriedade. :math:`|z| > 1{,}96` → p < 0,05.
 
 
 Conclusão: O I de Moran como pilar da análise espacial
