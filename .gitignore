@@ -1,0 +1,5 @@
+# Build internals — não servidos pelo GitHub Pages
+.doctrees/
+.backup-*/
+_sources/
+.buildinfo
