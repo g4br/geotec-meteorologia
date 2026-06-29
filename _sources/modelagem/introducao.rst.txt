@@ -1,0 +1,341 @@
+Introdução à modelagem de perdas agrícolas
+==========================================
+
+O que significa modelar perdas agrícolas a partir do clima
+----------------------------------------------------------
+
+Modelar perdas agrícolas a partir do clima consiste em estabelecer relações quantitativas entre variáveis meteorológicas — como precipitação, temperatura, umidade e radiação solar — e a produtividade das culturas. Em termos práticos, trata-se de traduzir condições climáticas observadas em estimativas numéricas de redução de rendimento, fundamentadas em padrões históricos e conhecimentos agronômicos.
+
+A premissa fundamental é que a produtividade agrícola não é um valor aleatório. Ela resulta da interação entre fatores genéticos da planta, práticas de manejo adotadas pelo produtor e condições ambientais durante o ciclo de cultivo. Quando as condições ambientais se desviam do padrão favorável — seja por falta ou excesso de chuva, temperaturas extremas ou ocorrência de geadas — a planta responde com redução de crescimento, abortamento de flores ou grãos, e consequente queda de produtividade.
+
+A modelagem não pretende prever o futuro com precisão absoluta, nem substituir a avaliação técnica de campo. Seu papel é fornecer um referencial quantitativo, baseado em evidências, que permita comparar a magnitude esperada de uma perda climática com a perda efetivamente alegada em uma comunicação de perda (COP). Essa comparação fornece subsídios para avaliar a coerência entre o evento meteorológico ocorrido e a alegação do produtor.
+
+No contexto do Proagro, a modelagem de perdas cumpre função de instrumento de apoio à decisão. Ela permite que analistas e peritos disponham de uma estimativa independente, derivada de dados climáticos objetivos, para confrontar com as informações declaradas nas comunicações de perdas registradas no Sicor.
+
+
+Principais objetivos da modelagem de perdas
+-------------------------------------------
+
+A aplicação de modelos de perdas agrícolas no contexto do Proagro atende a múltiplos objetivos complementares.
+
+O primeiro objetivo é **estimar impactos esperados**. Dado um conjunto de condições climáticas observadas durante uma safra em determinada região, o modelo produz uma estimativa da redução de produtividade que seria esperada para aquelas condições. Essa estimativa serve como referência técnica para avaliar se uma alegação de perda é compatível com o cenário climático efetivamente ocorrido.
+
+O segundo objetivo é **antecipar riscos por fase fenológica**. Os modelos incorporam o conhecimento de que diferentes fases do desenvolvimento da planta apresentam sensibilidades distintas aos estresses climáticos. Uma seca prolongada durante a floração da soja, por exemplo, causa impactos mais severos do que a mesma seca durante a fase vegetativa inicial. Ao identificar qual fase fenológica coincidia com o evento adverso, o modelo aplica fatores de perda apropriados à situação específica.
+
+O terceiro objetivo é **fundamentar decisões técnicas e operacionais**. Antes do início da safra, modelos de risco climático auxiliam na definição de zonas de plantio seguras e épocas recomendadas, informação essa que alimenta o Zoneamento Agrícola de Risco Climático (ZARC). Durante a safra, indicadores derivados de modelos podem acionar alertas para inspeções prioritárias em regiões afetadas por eventos extremos. Após a ocorrência de sinistros, a estimativa modelada de perda orienta a análise de coerência das comunicações recebidas.
+
+O quarto objetivo é **subsidiar o monitoramento e a auditoria**. Ao comparar perdas alegadas com perdas estimadas pelo modelo em escala municipal ou regional, é possível identificar padrões atípicos que merecem investigação mais detalhada. Por exemplo, uma concentração anômala de comunicações de perdas em município onde os indicadores climáticos não sugerem evento adverso significativo constitui sinal de alerta para análise mais aprofundada.
+
+
+Exemplos de perdas por fenômenos meteorológicos adversos
+--------------------------------------------------------
+
+Os modelos de perdas agrícolas tipicamente consideram quatro categorias principais de fenômenos meteorológicos adversos que afetam a produtividade no Brasil: seca, excesso de chuva, geada e calor extremo.
+
+**Seca (déficit hídrico)**
+
+A falta de água no solo durante o ciclo de cultivo constitui a principal causa de perdas agrícolas no Brasil. Quando a disponibilidade hídrica cai abaixo das necessidades da planta, ocorrem reduções progressivas na taxa de fotossíntese, fechamento de estômatos, murcha de folhas e, em casos severos, senescência prematura de tecidos. A magnitude da perda depende da intensidade e duração do déficit, mas principalmente da fase fenológica em que ocorre. Durante a floração e enchimento de grãos, períodos de seca de 15 a 20 dias podem causar perdas de 30% a 50% na produtividade de culturas como soja e milho. A mesma condição de déficit durante a fase vegetativa inicial, quando a planta ainda pode recuperar-se, tende a causar perdas menores, da ordem de 10% a 15%.
+
+**Excesso de chuva (encharcamento e perdas na colheita)**
+
+O excesso de precipitação prejudica a produtividade por dois mecanismos distintos. O encharcamento prolongado do solo compromete a aeração das raízes, favorece o desenvolvimento de doenças fúngicas e, em casos extremos, causa morte de plantas por asfixia radicular. Além disso, chuvas intensas no período próximo à colheita — especialmente para culturas como soja — podem causar abertura prematura de vagens, queda de grãos no solo e deterioração da qualidade do produto colhido. Adicionalmente, a impossibilidade de operar máquinas colheitadeiras em solo encharcado prolonga o período de exposição da cultura a perdas.
+
+**Geada (dano por frio)**
+
+Temperaturas mínimas muito baixas, tipicamente abaixo de 2°C dependendo da cultura e do estágio de desenvolvimento, causam formação de cristais de gelo nos tecidos vegetais, rompimento de células e morte de tecidos. O dano por geada apresenta forte variabilidade espacial: áreas em baixadas e fundos de vale sofrem maior impacto devido ao fenômeno de inversão térmica, enquanto encostas e topos de elevação frequentemente escapam das temperaturas mais severas. Para culturas sensíveis como café e citros, uma única noite de geada severa pode causar perdas totais em áreas afetadas. Para culturas anuais como trigo e milho safrinha, a severidade do dano depende da fase fenológica: geadas durante a floração ou enchimento de grãos causam perdas significativas, enquanto eventos ocorridos após a maturação fisiológica têm impacto reduzido.
+
+**Calor extremo (estresse térmico)**
+
+Temperaturas máximas elevadas, especialmente acima de 35°C para culturas de verão, afetam negativamente processos fisiológicos críticos. Durante a floração, temperaturas excessivas prejudicam a viabilidade do pólen, reduzem a taxa de fecundação e aumentam o abortamento de flores e vagens. Durante o enchimento de grãos, ondas de calor aceleram a maturação, reduzindo o período disponível para acúmulo de fotoassimilados e resultando em grãos menores. O impacto do calor extremo é potencializado quando coincide com déficit hídrico, situação em que a planta não consegue resfriar-se por transpiração.
+
+
+Conexão com o Sicor, ZARC e o monitoramento do Proagro
+------------------------------------------------------
+
+A modelagem de perdas agrícolas não opera isoladamente, mas integra-se a um ecossistema de dados e instrumentos de política agrícola. No contexto brasileiro, três elementos são particularmente relevantes: o Sistema de Operações do Crédito Rural (Sicor), o Zoneamento Agrícola de Risco Climático (ZARC) e o Programa de Garantia da Atividade Agropecuária (Proagro).
+
+O **Sicor** constitui a principal fonte de dados sobre operações de crédito rural e comunicações de perdas. As tabelas do Sicor contêm informações georreferenciadas sobre as glebas financiadas, incluindo coordenadas ou polígonos, culturas plantadas, instituições financeiras envolvidas, peritos responsáveis pelas avaliações e detalhes das comunicações de perdas. Essa base de dados permite associar cada operação a um contexto espacial específico, viabilizando a integração com dados climáticos e a aplicação de modelos de perdas.
+
+O **ZARC**, coordenado pelo Ministério da Agricultura e elaborado com participação da Embrapa, define para cada município, cultura e tipo de solo quais são os períodos de plantio recomendados, considerando o risco climático histórico :cite:`embrapa:zarc`. O ZARC estabelece, para cada combinação município-cultura-ciclo-tipo de solo, as datas de plantio que apresentam probabilidade aceitável de sucesso (tipicamente 80% ou mais de chance de não haver perda por déficit hídrico). Operações de crédito rural com cobertura do Proagro devem observar as indicações do ZARC, e eventuais comunicações de perdas são analisadas também à luz da aderência ao zoneamento.
+
+O **Proagro** é o programa de seguro agrícola público que garante ao produtor rural a exoneração de obrigações financeiras em caso de perda de produção por eventos climáticos adversos cobertos pelo programa. As comunicações de perdas (COPs) submetidas ao Proagro são registradas no Sicor e constituem o objeto primário de análise para verificação de coerência entre evento alegado e condições climáticas efetivamente ocorridas.
+
+A modelagem de perdas agrícolas conecta esses três elementos: utiliza dados de localização das glebas obtidos do Sicor, considera as premissas de risco climático incorporadas no ZARC, e produz estimativas que subsidiam a análise das comunicações de perdas registradas no Proagro. Essa integração permite construir indicadores de risco que comparam a magnitude das perdas alegadas com a magnitude das perdas esperadas dado o cenário climático observado.
+
+
+Como são construídos os modelos de perdas
+-----------------------------------------
+
+A construção de modelos de perdas agrícolas envolve a integração de dados históricos de clima e produtividade, a definição de variáveis que representem adequadamente os fenômenos meteorológicos relevantes, e a escolha de técnicas estatísticas ou computacionais para estabelecer as relações entre clima e perda. Esta seção apresenta os fundamentos conceituais desse processo.
+
+
+Uso de dados históricos de clima e produtividade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Todo modelo de perdas fundamenta-se em séries históricas que permitem identificar padrões recorrentes na relação entre condições climáticas e resultados produtivos. A lógica subjacente é que o comportamento passado das culturas em resposta a diferentes cenários climáticos contém informação útil para estimar o que ocorreria em situações similares.
+
+Os **dados climáticos** utilizados na modelagem provêm de múltiplas fontes. As estações meteorológicas convencionais e automáticas do INMET (Instituto Nacional de Meteorologia) fornecem observações pontuais de precipitação, temperatura, umidade e outras variáveis, com séries que podem alcançar várias décadas de registros. Dados de reanálise climática, como o produto ERA5 do ECMWF ou o CHIRPS para precipitação, oferecem cobertura espacial contínua em grade regular, preenchendo lacunas de regiões sem estações de superfície :cite:`munoz-sabater:2021,funk:2015`. Dados de satélite permitem derivar estimativas de precipitação, temperatura de superfície e condições de vegetação com resolução espacial de centenas de metros a poucos quilômetros.
+
+Os **dados de produtividade** tipicamente originam-se de levantamentos oficiais conduzidos pelo IBGE (Instituto Brasileiro de Geografia e Estatística), como a Produção Agrícola Municipal (PAM), que fornece produtividade média por município para as principais culturas. Dados de safras específicas podem ser obtidos de registros da CONAB (Companhia Nacional de Abastecimento) ou, no contexto do Proagro, das próprias operações registradas no Sicor. Para aplicações em escala de gleba, dados de produtividade derivados de monitores de colheita ou declarações do produtor podem complementar as fontes oficiais.
+
+Um aspecto crítico no uso de dados históricos de produtividade é a separação entre **variabilidade climática** e **tendência tecnológica**. A produtividade agrícola brasileira apresenta tendência crescente ao longo das décadas devido a melhorias genéticas, adoção de novas práticas de manejo, correção de solos e expansão da irrigação. Se essa tendência não for adequadamente tratada, o modelo pode confundir efeitos tecnológicos com efeitos climáticos. Uma abordagem comum é descontar a tendência linear ou polinomial de longo prazo antes de calibrar o modelo, garantindo que as flutuações remanescentes reflitam principalmente respostas ao clima.
+
+
+Relação entre variáveis meteorológicas e perdas observadas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A construção de um modelo de perdas requer definir quais variáveis meteorológicas serão consideradas e como elas serão representadas. A escolha depende do tipo de perda que se deseja modelar e da disponibilidade de dados.
+
+As variáveis meteorológicas mais frequentemente utilizadas incluem:
+
+- **Precipitação acumulada** em diferentes janelas temporais (30, 60, 90 dias) durante o ciclo de cultivo. Acumulados baixos indicam déficit hídrico; acumulados muito elevados podem indicar excesso de chuva.
+
+- **Balanço hídrico**, que considera não apenas a precipitação, mas também a evapotranspiração potencial determinada por temperatura, umidade e radiação. O balanço hídrico fornece uma medida mais precisa da disponibilidade efetiva de água para a planta do que a precipitação isolada.
+
+- **Temperatura máxima e mínima**, utilizadas para identificar eventos de calor extremo (dias com temperatura acima de limiares críticos) e geada (noites com temperatura abaixo de limiares de dano).
+
+- **Contagem de dias com condições adversas**, como número de dias consecutivos sem chuva significativa (veranicos), número de dias com temperatura máxima acima de 35°C, ou número de noites com temperatura mínima abaixo de 2°C.
+
+- **Índices climáticos padronizados**, como o SPI (Standardized Precipitation Index) e o SPEI (Standardized Precipitation-Evapotranspiration Index), que expressam a condição climática em termos de desvios em relação à média histórica, facilitando comparações entre regiões e períodos.
+
+A relação entre essas variáveis e a perda de produtividade não é necessariamente linear. Existe tipicamente um intervalo de condições favoráveis dentro do qual a cultura se desenvolve normalmente, e perdas ocorrem quando as condições se afastam desse intervalo. Além disso, a sensibilidade varia conforme a fase fenológica: uma mesma condição de déficit hídrico pode causar perdas muito distintas dependendo de ocorrer durante a floração ou durante a maturação.
+
+O **modelo de penalização de produtividade** adotado pelo INMET no sistema SISDAGRO :cite:`inmet:sisdagro` exemplifica essa abordagem. Baseado na metodologia de Doorenbos e Kassam :cite:`doorenbos:1979`, esse modelo relaciona a queda relativa de rendimento com o déficit relativo de evapotranspiração, expresso pela relação (1 - ETr/ETc), onde ETr é a evapotranspiração real e ETc é a evapotranspiração da cultura em condições ótimas. A magnitude da penalização é modulada por um coeficiente de sensibilidade (Ky) que varia conforme a fase fenológica, sendo tipicamente maior durante a floração e enchimento de grãos.
+
+
+Modelos estatísticos simples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A abordagem mais direta para modelagem de perdas utiliza técnicas estatísticas clássicas, como regressão linear ou modelos com variáveis categóricas derivadas de percentis.
+
+**Regressão linear** estabelece uma relação matemática entre uma variável dependente (perda de produtividade ou produtividade observada) e uma ou mais variáveis explicativas (indicadores climáticos). A forma geral é:
+
+Perda (%) = β₀ + β₁ × X₁ + β₂ × X₂ + ... + ε
+
+onde X₁, X₂, ... representam variáveis climáticas (por exemplo, SPI acumulado, número de dias com temperatura extrema), β₁, β₂, ... são coeficientes estimados a partir dos dados históricos, e ε representa o erro não explicado pelo modelo.
+
+A vantagem da regressão linear é a transparência: os coeficientes têm interpretação direta. Se o coeficiente do SPI é -8, isso significa que cada unidade de redução no SPI está associada a um aumento de 8 pontos percentuais na perda estimada. Essa interpretabilidade facilita a comunicação dos resultados e a verificação de coerência agronômica dos parâmetros estimados.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Gráfico de dispersão de pontos (variável climática × perda) com a reta
+      de regressão ajustada e a dispersão dos resíduos em torno dela.
+   :Função: torna concreto o conceito de regressão linear e a interpretação dos
+      coeficientes descritos no parágrafo anterior.
+   :Busca sugerida: "linear regression scatter plot fitted line"; "regressão linear reta
+      ajustada dispersão"
+   :Fonte provável: Wikimedia Commons, documentação scikit-learn
+   :Facilidade: alta
+
+**Modelos baseados em percentis** categorizam as condições climáticas em faixas de risco. Por exemplo, se a precipitação acumulada em determinado período ficou abaixo do percentil 20 histórico, classifica-se como "condição de seca severa"; se ficou entre os percentis 20 e 40, classifica-se como "seca moderada"; e assim por diante. Cada categoria é então associada a uma faixa esperada de perda, derivada da experiência histórica. Essa abordagem é intuitiva e roubsta a valores extremos, embora perca informação ao discretizar variáveis contínuas.
+
+
+Modelos baseados em índices climáticos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Uma categoria específica de modelos utiliza índices climáticos padronizados como variáveis explicativas centrais. Esses índices têm a vantagem de serem comparáveis ao longo do tempo e entre regiões distintas.
+
+O **SPI (Standardized Precipitation Index)** transforma a precipitação acumulada em um valor adimensional que indica quantos desvios-padrão a precipitação observada se afasta da média histórica para aquele período e localidade. Valores de SPI próximos de zero indicam condições normais; valores negativos indicam precipitação abaixo da média (seca); valores positivos indicam precipitação acima da média. A convenção usual classifica SPI entre -1 e 0 como seca leve, entre -1,5 e -1 como seca moderada, entre -2 e -1,5 como seca severa, e abaixo de -2 como seca extrema.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Série temporal do SPI com faixas coloridas de classificação (de seca
+      extrema a condições úmidas) distribuídas em torno do zero.
+   :Função: dá forma visual à escala de classificação do SPI descrita no parágrafo
+      anterior.
+   :Busca sugerida: "SPI standardized precipitation index time series drought categories";
+      "índice SPI classificação seca"
+   :Fonte provável: NOAA/NCEI, Wikimedia Commons, artigos abertos
+   :Facilidade: alta
+
+O **SPEI (Standardized Precipitation-Evapotranspiration Index)** incorpora não apenas a precipitação, mas também a demanda evaporativa da atmosfera, fornecendo uma medida de balanço hídrico padronizado. Em regiões quentes onde a evapotranspiração é elevada, o SPEI tende a capturar melhor o estresse hídrico efetivo sobre as plantas do que o SPI isolado.
+
+Modelos baseados nesses índices utilizam fórmulas do tipo:
+
+Perda estimada (%) = f(SPI) ou Perda estimada (%) = f(SPEI)
+
+onde a função f pode ser linear, por faixas, ou mais complexa. A calibração da função é feita com base nos dados históricos de produtividade e índices climáticos.
+
+No contexto do SISDAGRO do INMET, o balanço hídrico sequencial de Thornthwaite e Mather :cite:`thornthwaite:1955` é utilizado para calcular a disponibilidade de água no solo ao longo do ciclo, e a perda de produtividade é estimada pelo modelo de Doorenbos e Kassam :cite:`doorenbos:1979`, que relaciona o déficit de evapotranspiração real em relação à potencial com a penalização de rendimento.
+
+
+Modelos baseados em aprendizado de máquina
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Abordagens de aprendizado de máquina (machine learning) oferecem alternativas aos modelos estatísticos clássicos, com capacidade de capturar relações não-lineares e interações complexas entre variáveis sem exigir especificação prévia da forma funcional.
+
+**Floresta aleatória (Random Forest)** é um algoritmo que combina múltiplas árvores de decisão, cada uma treinada em subconjuntos aleatórios dos dados, e agrega suas previsões para produzir uma estimativa final. Esse método é robusto a outliers, lida naturalmente com variáveis categóricas e contínuas, e fornece métricas de importância das variáveis que auxiliam na interpretação dos resultados.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Esquema de floresta aleatória mostrando várias árvores de decisão em
+      paralelo e a agregação (média/votação) de suas previsões em um resultado final.
+   :Função: ilustra visualmente como o Random Forest combina múltiplas árvores, conforme
+      descrito no parágrafo anterior.
+   :Busca sugerida: "random forest diagram ensemble decision trees"; "floresta aleatória
+      esquema árvores de decisão"
+   :Fonte provável: Wikimedia Commons, documentação scikit-learn
+   :Facilidade: alta
+
+**Gradient Boosting** e suas variantes (XGBoost, LightGBM) constroem sequencialmente um conjunto de modelos fracos (tipicamente árvores de decisão rasas), onde cada modelo subsequente foca em corrigir os erros dos anteriores. Esses métodos frequentemente alcançam alta acurácia preditiva, embora a interpretação dos resultados seja menos direta que nos modelos lineares.
+
+**Redes neurais** podem capturar padrões muito complexos nos dados, mas exigem volumes maiores de dados para treinamento e apresentam maior risco de sobreajuste (overfitting), além de funcionarem como "caixas-pretas" cuja lógica interna é difícil de interpretar.
+
+No contexto do Proagro, a escolha entre modelos estatísticos clássicos e aprendizado de máquina envolve um balanço entre acurácia preditiva e interpretabilidade. Para fins de auditoria e perícia, onde é necessário justificar decisões técnicas, modelos mais simples e interpretáveis podem ser preferíveis mesmo que sacrifiquem alguma precisão. Modelos de aprendizado de máquina podem ser mais adequados para triagem inicial em larga escala, identificando casos atípicos que merecem análise mais detalhada.
+
+
+Aplicações dos modelos em decisões do Proagro
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Os modelos de perdas podem apoiar diferentes etapas do processo decisório relacionado ao Proagro:
+
+Na **análise de sinistros**, o modelo fornece uma estimativa independente da perda esperada dadas as condições climáticas observadas na localização e período relevantes. Essa estimativa serve como referência para avaliar a plausibilidade da perda alegada na comunicação de perdas.
+
+Na **definição de critérios de alerta**, os modelos podem ser aplicados de forma prospectiva para identificar regiões onde eventos climáticos adversos provavelmente causaram perdas significativas. Essas regiões podem receber atenção prioritária no processamento de comunicações de perdas.
+
+Na **priorização de casos para análise detalhada**, a comparação entre perda estimada e perda alegada permite identificar discrepâncias significativas que justificam investigação adicional. Casos onde a perda alegada excede substancialmente a perda estimada pelo modelo, ou onde alegações de perda ocorrem em contexto climático favorável, constituem candidatos naturais para verificação mais aprofundada.
+
+Na **construção de indicadores de risco**, a agregação dos resultados de modelagem em nível de município, microrregião ou por instituição financeira permite identificar padrões espaciais ou concentrações atípicas de comunicações de perdas que podem indicar problemas sistêmicos ou fragilidades nos processos de verificação.
+
+
+Limitações espaciais e temporais dos modelos
+--------------------------------------------
+
+A aplicação de modelos de perdas agrícolas requer compreensão clara de suas limitações, especialmente aquelas relacionadas às escalas espacial e temporal em que os modelos operam. O reconhecimento dessas limitações é essencial para evitar interpretações incorretas e decisões mal fundamentadas.
+
+
+Importância da escala espacial
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Os dados climáticos utilizados na modelagem são coletados ou estimados em escalas espaciais específicas que frequentemente não coincidem com a escala das glebas individuais financiadas pelo crédito rural.
+
+**Dados pontuais de estações meteorológicas** fornecem medições precisas para a localização exata da estação, mas a representatividade dessas medições decresce rapidamente com a distância. A precipitação, em particular, apresenta alta variabilidade espacial, especialmente em regiões onde chuvas convectivas (pancadas localizadas) predominam. Uma estação pode registrar 50 mm de chuva enquanto outra estação a 20 km de distância registra apenas 5 mm no mesmo dia. Essa variabilidade limita a confiabilidade de atribuir a condição climática de uma estação distante a uma gleba específica.
+
+**Dados em grade (gridded data)** provenientes de reanálises climáticas ou estimativas satelitais oferecem cobertura espacial contínua, mas com resolução limitada :cite:`xavier:2016`. Produtos comuns apresentam resolução de 0,1° (aproximadamente 10 km) a 0,25° (aproximadamente 25 km). Isso significa que todas as glebas dentro de uma célula de grade de 10 km × 10 km recebem o mesmo valor de precipitação ou temperatura, mesmo que condições locais variem substancialmente dentro dessa área.
+
+**Dados municipais** agregam informações para todo o território de um município, que pode variar de algumas centenas a milhares de quilômetros quadrados. Essa agregação mascara a heterogeneidade interna: um município pode apresentar condições climáticas favoráveis em sua porção norte e condições adversas em sua porção sul, mas apenas uma média é reportada.
+
+**Polígono da gleba** representa a escala de interesse final para análise de comunicações de perdas individuais. Glebas financiadas pelo Proagro tipicamente têm áreas de dezenas a centenas de hectares, escala muito menor que a resolução da maioria dos dados climáticos disponíveis.
+
+Essas diferenças de escala têm implicações práticas importantes. Quando um modelo estima uma perda de 25% com base em dados climáticos de grade de 10 km, essa estimativa representa uma condição média para uma área de 10.000 hectares. A gleba específica sob análise, com 100 hectares, pode ter experimentado condições significativamente diferentes — melhores ou piores — que a média regional.
+
+
+Limitações relacionadas à densidade de estações meteorológicas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O Brasil apresenta distribuição heterogênea de estações meteorológicas, com maior densidade nas regiões Sul e Sudeste e menor cobertura nas regiões Centro-Oeste, Norte e interior do Nordeste — justamente áreas de expansão da fronteira agrícola.
+
+A **baixa densidade de estações** em determinadas regiões significa que os valores de precipitação e temperatura atribuídos a uma gleba podem derivar de estações localizadas a dezenas ou centenas de quilômetros de distância. Quanto maior essa distância, menor a confiabilidade da estimativa climática.
+
+As **técnicas de interpolação** utilizadas para estimar condições climáticas em pontos sem estações introduzem incertezas adicionais. Métodos como interpolação pelo inverso da distância (IDW) ou kriging produzem superfícies contínuas a partir de observações pontuais, mas a qualidade dessas estimativas depende da densidade e distribuição das estações utilizadas. Em regiões com poucas estações, as superfícies interpoladas podem não capturar adequadamente eventos localizados.
+
+**Falhas e lacunas temporais** nas séries de estações constituem outro desafio. Estações podem apresentar períodos sem registro devido a problemas de equipamento, manutenção ou comunicação de dados. O preenchimento dessas lacunas, seja por interpolação temporal ou espacial, introduz incertezas que se propagam para as estimativas dos modelos.
+
+
+Limitações e restrições de aplicação temporal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Os modelos de perdas são calibrados com dados históricos e aplicados para estimar perdas em safras correntes ou passadas. Essa abordagem pressupõe que as relações entre clima e produtividade observadas no passado permanecem válidas no presente e futuro, o que nem sempre é o caso.
+
+**Mudanças tecnológicas** alteram continuamente a sensibilidade das culturas ao clima. Cultivares modernas frequentemente apresentam maior tolerância a estresses hídricos ou térmicos que cultivares mais antigas. Práticas de manejo evoluem, com adoção crescente de irrigação suplementar, plantio direto e cobertura de solo. Essas mudanças significam que um mesmo cenário climático pode resultar em perdas diferentes dependendo do período considerado.
+
+**Mudanças climáticas de longo prazo** alteram os padrões de referência utilizados na calibração dos modelos. Se a distribuição histórica de precipitação foi utilizada para calcular índices como o SPI, e essa distribuição está se modificando devido a mudanças climáticas, os valores de referência tornam-se progressivamente menos representativos das condições atuais.
+
+**Eventos extremos raros** apresentam desafios particulares. Modelos calibrados com dados históricos que não incluem eventos extremos não são capazes de estimar adequadamente perdas em cenários sem precedentes. Se uma região nunca experimentou seca tão severa quanto a observada em determinada safra, o modelo não dispõe de informação histórica para estimar a magnitude da perda associada.
+
+**Variabilidade interanual** intrínseca dos sistemas climáticos significa que anos com condições climáticas aparentemente similares podem resultar em produtividades diferentes. Essa variabilidade residual, não explicada pelas variáveis climáticas consideradas no modelo, contribui para a incerteza das estimativas.
+
+
+Riscos de extrapolação e uso inadequado de modelos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O uso de modelos fora de seu domínio de validade constitui um dos principais riscos na aplicação prática.
+
+**Extrapolação para culturas não representadas** ocorre quando um modelo calibrado para soja é aplicado para estimar perdas em milho ou feijão. Embora todas essas culturas respondam ao clima, suas sensibilidades específicas diferem substancialmente, e um modelo não é transferível sem recalibração.
+
+**Extrapolação para regiões não representadas** é problemática porque a relação entre clima e produtividade pode variar geograficamente. Um modelo calibrado para o oeste da Bahia pode não ser adequado para estimar perdas no norte do Paraná, mesmo para a mesma cultura, devido a diferenças em solos, padrões de precipitação e práticas de manejo regionais.
+
+**Extrapolação para condições extremas não observadas** na calibração pode produzir estimativas pouco confiáveis. Se o modelo foi calibrado com dados onde o SPI nunca foi inferior a -2,5, aplicá-lo para um evento com SPI de -3,5 envolve extrapolação para uma região onde o comportamento do modelo não foi testado.
+
+**Interpretação literal de resultados pontuais** sem considerar incertezas é um erro comum. Se o modelo estima uma perda de 23%, isso não significa que a perda real é exatamente 23%, mas sim que, dado o cenário climático e as limitações do modelo, a perda esperada está em torno desse valor, com uma faixa de incerteza que deve ser comunicada explicitamente.
+
+A comunicação adequada dessas limitações é parte essencial do uso responsável de modelos em decisões que afetam produtores e recursos públicos.
+
+
+Uso de modelos de perdas e geoestatística para mitigar riscos no Proagro
+------------------------------------------------------------------------
+
+Esta seção apresenta como a combinação de modelos de perdas agrícolas e técnicas de geoestatística pode contribuir para a mitigação de riscos no Proagro, apoiando a tomada de decisão, a priorização de auditorias e a construção de indicadores de risco.
+
+
+Apoio à mitigação de riscos e tomada de decisão
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A integração de modelos de perdas com dados do Sicor permite construir sistemas de apoio à decisão que fundamentam análises técnicas em evidências quantitativas.
+
+No **apoio ao julgamento de sinistros**, o modelo fornece uma estimativa de perda esperada que pode ser comparada com a perda alegada na comunicação de perdas. Se a estimativa do modelo é de 15% de perda e a alegação é de 50%, essa discrepância constitui um alerta que justifica análise mais aprofundada. Inversamente, se modelo e alegação convergem para valores similares, isso reforça a plausibilidade da comunicação.
+
+Na **priorização de auditorias**, os recursos limitados de fiscalização podem ser direcionados para casos onde a probabilidade de irregularidade é maior. Métricas derivadas de modelos — como a razão entre perda alegada e perda estimada, agregada por município, instituição financeira ou perito avaliador — permitem identificar concentrações atípicas que merecem atenção prioritária.
+
+Na **construção de indicadores de risco**, a combinação de dados de múltiplas fontes — clima, produtividade histórica, características das glebas, histórico de comunicações de perdas — permite desenvolver indicadores compostos que sinalizam situações de risco elevado. Por exemplo, um indicador pode combinar a frequência histórica de comunicações de perdas em determinado município, a consistência dessas comunicações com os indicadores climáticos, e padrões de relacionamento entre produtores, instituições financeiras e peritos.
+
+
+Papel da geoestatística e de técnicas espaciais
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A geoestatística oferece um conjunto de técnicas para analisar e modelar a estrutura espacial de fenômenos, permitindo extrair informação adicional da distribuição geográfica dos dados.
+
+**Interpolação espacial de variáveis climáticas** permite estimar valores de precipitação, temperatura ou outros indicadores em localizações onde não existem estações meteorológicas. Técnicas como kriging utilizam a autocorrelação espacial dos dados para produzir estimativas ótimas, além de fornecer medidas de incerteza associadas a cada estimativa. Isso permite mapear condições climáticas em toda a área de interesse e associar a cada gleba uma estimativa de condição climática, mesmo que não haja estação meteorológica próxima.
+
+**Análise espacial de clusters de perdas** identifica concentrações geográficas de comunicações de perdas que excedem o esperado pelo acaso. Técnicas como análise de densidade kernel ou estatísticas de autocorrelação espacial local (por exemplo, LISA — Local Indicators of Spatial Association) permitem detectar "hot spots" de comunicações de perdas :cite:`anselin:1995`. A interpretação desses clusters deve considerar o contexto: um cluster de perdas em região atingida por evento climático extremo é esperado; um cluster em região sem evento adverso documentado constitui anomalia que merece investigação.
+
+**Identificação de padrões atípicos** em relação ao contexto agroclimático utiliza a distribuição espacial das comunicações de perdas e dos indicadores climáticos para sinalizar inconsistências. Por exemplo, se um município apresenta elevada concentração de comunicações de perdas por seca enquanto os municípios vizinhos — com condições climáticas similares — não apresentam, essa discrepância espacial constitui sinal de alerta.
+
+
+Exemplo de uso integrado de dados
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A análise integrada de risco no Proagro pode seguir um fluxo que combina múltiplas fontes de dados e técnicas:
+
+Em uma primeira etapa, os **dados do Sicor** são utilizados para identificar as glebas com comunicações de perdas em determinado período e região, extraindo informações sobre localização, cultura, área financiada, perda alegada, instituição financeira e perito avaliador.
+
+Na segunda etapa, **séries temporais de clima** são obtidas para as localizações das glebas, calculando-se indicadores como SPI, contagem de dias com temperatura extrema e balanço hídrico para o período relevante do ciclo de cultivo.
+
+Na terceira etapa, **modelos de perdas** são aplicados para estimar a perda esperada em cada gleba dado o cenário climático observado, gerando uma estimativa independente que pode ser comparada com a perda alegada.
+
+Na quarta etapa, **análises espaciais** são realizadas para identificar padrões na distribuição das discrepâncias entre perda alegada e estimada, verificando se existem concentrações geográficas de casos atípicos ou se as anomalias distribuem-se aleatoriamente.
+
+Na quinta etapa, os resultados são sintetizados em **relatórios ou mapas de risco** que destacam casos ou regiões que merecem atenção prioritária, documentando as premissas utilizadas e as limitações das análises.
+
+Esse fluxo exemplifica como a combinação de dados estruturados (Sicor), dados geoespaciais (clima, localização de glebas) e técnicas analíticas (modelagem de perdas, geoestatística) pode produzir informação útil para a gestão de riscos do Proagro.
+
+
+Boas práticas e cuidados na aplicação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O uso responsável de modelos de perdas e técnicas geoestatísticas no contexto do Proagro requer atenção a um conjunto de boas práticas.
+
+**Documentação de premissas** é essencial. Toda análise deve explicitar quais fontes de dados foram utilizadas, qual modelo foi aplicado, quais parâmetros foram considerados e quais simplificações foram adotadas. Essa documentação permite que terceiros avaliem a adequação da metodologia e reproduzam os resultados.
+
+**Comunicação de incertezas** deve acompanhar todas as estimativas. Em vez de reportar apenas um valor pontual ("a perda estimada é de 22%"), a comunicação deve incluir uma faixa de incerteza ("a perda estimada é de 22%, com intervalo de confiança de 16% a 28%"). Essa prática evita a falsa impressão de precisão e permite que os tomadores de decisão considerem a magnitude da incerteza em suas avaliações.
+
+**Uso responsável em decisões que afetam produtores e recursos públicos** implica reconhecer que modelos são ferramentas de apoio, não substitutos do julgamento técnico qualificado. Uma estimativa de perda abaixo da alegação não significa automaticamente que há irregularidade; pode significar que o modelo não capturou adequadamente as condições locais, que houve perdas por fatores não-climáticos, ou que há genuína incerteza na estimativa. Decisões finais devem considerar múltiplas fontes de evidência, incluindo inspeção de campo quando pertinente.
+
+**Verificação de coerência agronômica** dos resultados é necessária. Se um modelo estima ganho de produtividade em condições de seca extrema, há claramente um erro na especificação ou calibração que precisa ser investigado antes de utilizar o modelo para decisões.
+
+**Atualização periódica dos modelos** é recomendada para incorporar dados mais recentes e refletir mudanças tecnológicas ou climáticas que possam afetar as relações estimadas. Modelos calibrados há uma década podem não refletir adequadamente as condições atuais.
+
+
+Considerações finais
+--------------------
+
+A modelagem de perdas agrícolas e as técnicas de geoestatística constituem ferramentas valiosas para apoiar a gestão de riscos no Proagro, mas seu uso efetivo requer compreensão clara de seus fundamentos, capacidades e limitações.
+
+Os modelos não substituem a avaliação técnica de campo nem eliminam a necessidade de julgamento profissional. Eles complementam a análise ao fornecer uma referência quantitativa, baseada em dados climáticos objetivos, que permite fundamentar decisões em evidências e identificar casos que merecem atenção especial.
+
+O reconhecimento explícito das limitações — espaciais, temporais e metodológicas — é condição necessária para o uso responsável dessas ferramentas. Comunicar incertezas, documentar premissas e evitar interpretações literais de estimativas pontuais são práticas essenciais para garantir que os modelos contribuam positivamente para a qualidade das decisões, sem induzir falsa confiança ou conclusões precipitadas.
+
+A integração entre dados do Sicor, informações meteorológicas e análises espaciais representa uma oportunidade para aprimorar o monitoramento do Proagro, tornando-o mais fundamentado em evidências e mais eficiente na alocação de recursos de fiscalização. O desenvolvimento contínuo de capacidades nessa área — tanto em termos de ferramentas quanto de formação de pessoal — é investimento que pode gerar retornos significativos para a gestão do crédito rural brasileiro.

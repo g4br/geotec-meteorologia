@@ -1,0 +1,39 @@
+Fenômenos meteorológicos
+========================
+
+Esta seção apresenta os fenômenos meteorológicos que afetam a produção agrícola e
+explica como traduzi-los em informação útil para o monitoramento do crédito rural e
+do Proagro. O percurso parte do conceito e chega ao indicador: primeiro os
+**fundamentos** — o que é risco agrícola, como os elementos do clima atuam sobre as
+culturas, o papel do El Niño–Oscilação Sul e quais fontes de dados meteorológicos
+estão disponíveis no Brasil; em seguida, as aplicações práticas, predominantemente em
+Python, que mostram como acessar esses dados e analisá-los.
+
+O fio condutor é sempre o mesmo: **Conceito → Fenômeno → Dado → Indicador**. A
+intenção não é produzir veredito automático sobre uma operação ou uma Comunicação de
+Perda (COP). Os indicadores, escores e cruzamentos descritos aqui são instrumentos de
+**priorização e investigação** — a leitura final do caso é sempre humana.
+
+.. tip::
+
+   Material de aula disponível em:
+   https://drive.google.com/drive/u/0/folders/1rz_PuNsmL7SUrc0pb5ox1UaEi1kJmMBO
+
+.. note::
+
+   Os blocos de código (Python) são um recurso **opcional**, voltado a quem vai reproduzir
+   ou adaptar as análises. As ideias essenciais estão sempre na prosa que acompanha cada
+   bloco — é possível acompanhar todo o material sem ler o código. Trechos que dependem de
+   bibliotecas mais avançadas (``xarray``, ``geopandas``, ``pykrige``) são exemplos de
+   *como se faz*, não pré-requisito para entender o conceito.
+
+.. toctree::
+   :maxdepth: 3
+
+   fundamentos/index
+   analise-espacial/index
+   sinistros/index
+   modelagem/index
+   sintese/index
+   referencias
+   material-extra/index

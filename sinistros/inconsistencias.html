@@ -6,28 +6,28 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Identificação de outliers e inconsistências meteorológicas em sinistros &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Identificação de outliers e inconsistências meteorológicas em sinistros &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/inconsistencias.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/sinistros/inconsistencias.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Análise de recorrência meteorológica em áreas e culturas" href="recorrencia.html" />
     <link rel="prev" title="Análise de sinistros, outliers e tipologias de risco meteorológico" href="index.html" /> 
 </head>
@@ -40,12 +40,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -53,35 +53,39 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
-<li class="toctree-l4"><a class="reference internal" href="aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
-<li class="toctree-l4"><a class="reference internal" href="seca-soja.html">Caso 1 — seca em soja</a></li>
-<li class="toctree-l4"><a class="reference internal" href="chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="geada-trigo.html">Caso 3 — geada em trigo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="aulas/index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Identificação de outliers e inconsistências meteorológicas em sinistros</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#estrutura-de-dados-para-analise-de-consistencia">Estrutura de dados para análise de consistência</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tipologia-de-outliers-meteorologicos">Tipologia de outliers meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ferramentas-e-indicadores-para-deteccao">Ferramentas e indicadores para detecção</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#workflow-operacional-integrado">Workflow operacional integrado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-e-cuidados-essenciais">Limitações e cuidados essenciais</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conclusao-da-secao">Conclusão da seção</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aulas/index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -90,15 +94,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
       <li class="breadcrumb-item active">Identificação de outliers e inconsistências meteorológicas em sinistros</li>
       <li class="wy-breadcrumbs-aside">
@@ -125,8 +128,8 @@
 <section id="base-de-dados-central-cops-e-operacoes">
 <h3>Base de dados central: COPs e operações<a class="headerlink" href="#base-de-dados-central-cops-e-operacoes" title="Link permanente para este cabeçalho"></a></h3>
 <p>A tabela <code class="docutils literal notranslate"><span class="pre">sicor_cop_basico</span></code> é o ponto de partida para qualquer análise de consistência meteorológica. Ela registra os pedidos de cobertura do Proagro, incluindo o evento alegado, datas críticas e status do pedido. A consulta abaixo demonstra como obter uma visão geral das COPs com seus respectivos eventos e informações temporais:</p>
-<div class="literal-block-wrapper docutils container" id="id22">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 10 - </span><span class="caption-text">Consulta básica de COPs com informações de evento e período</span><a class="headerlink" href="#id22" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 10 - </span><span class="caption-text">Consulta básica de COPs com informações de evento e período</span><a class="headerlink" href="#id2" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Visão geral das COPs com evento alegado e janela temporal</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -146,8 +149,8 @@
 </div>
 </div>
 <p>Para enriquecer a análise com informações espaciais e do empreendimento, precisamos relacionar as COPs com as operações originais e suas glebas:</p>
-<div class="literal-block-wrapper docutils container" id="id23">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 11 - </span><span class="caption-text">COPs enriquecidas com localização e tipo de cultura</span><a class="headerlink" href="#id23" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 11 - </span><span class="caption-text">COPs enriquecidas com localização e tipo de cultura</span><a class="headerlink" href="#id3" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- COPs com localização geográfica e informações do empreendimento</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -239,8 +242,8 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p>Uma COP registrada em fevereiro alega perda total por seca prolongada afetando lavoura de milho. Análise dos dados meteorológicos revela que janeiro e fevereiro tiveram precipitação acumulada 180% acima da média histórica para aquele município, com chuvas distribuídas ao longo do período (não concentradas em poucos eventos). Todas as estações INMET em raio de 50 km convergem nessa informação. Produto MERGE confirma anomalia positiva de precipitação. Índices de vegetação (NDVI) da região mostram vigor acima da média. Não houve seca — houve o oposto. A alegação é fisicamente inconsistente com realidade climática documentada por múltiplas fontes independentes.</p>
 <p>A consulta abaixo identifica todas as COPs por seca em determinado período e município, preparando os dados para cruzamento com fontes meteorológicas:</p>
 <p>Para análise espacial mais refinada, podemos utilizar as geometrias das glebas para identificar a localização exata das COPs e calcular proximidade a estações meteorológicas:</p>
-<div class="literal-block-wrapper docutils container" id="id24">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 12 - </span><span class="caption-text">COPs por seca com localização espacial para triangulação</span><a class="headerlink" href="#id24" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 12 - </span><span class="caption-text">COPs por seca com localização espacial para triangulação</span><a class="headerlink" href="#id4" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- COPs por seca com centroide da gleba para análise espacial</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -287,8 +290,8 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p><strong>Exemplo: Chuva excessiva moderada, perda catastrófica alegada</strong></p>
 <p>COP alega perda total (100%) por chuva excessiva em milho. Dados mostram precipitação 30% acima da média no mês — excesso real, mas moderado. Glebas vizinhas com topografia similar tiveram perdas médias de 25%. Não houve enchente regional documentada. Alegação de perda total é desproporcionalmente alta para intensidade do evento.</p>
 <p>A consulta abaixo identifica COPs por chuva excessiva e as prepara para análise comparativa com vizinhança:</p>
-<div class="literal-block-wrapper docutils container" id="id25">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 13 - </span><span class="caption-text">COPs por chuva excessiva com contexto espacial para comparação</span><a class="headerlink" href="#id25" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 13 - </span><span class="caption-text">COPs por chuva excessiva com contexto espacial para comparação</span><a class="headerlink" href="#id5" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- COPs por chuva excessiva com vizinhança espacial</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -329,8 +332,8 @@ AND empreend.modalidade = ‘lavoura’;</p>
 <p>COP alega perda de 60% em soja por seca ocorrida exclusivamente em novembro-dezembro, quando planta estava em estádio vegetativo inicial (V2-V4). Soja é relativamente tolerante a déficit neste estádio — perda esperada seria &lt; 15%. Estádio crítico (floração e enchimento de grãos, R1-R5) ocorreria em janeiro-fevereiro, período que teve precipitação normal. Timing do déficit não explica magnitude da perda.</p>
 <p>A análise fenológica requer cruzamento das datas de plantio/colheita informadas na COP com o ZARC para verificar coerência:</p>
 <p>Para uma análise mais robusta, podemos identificar COPs onde a janela de plantio declarada está fora do período recomendado pelo ZARC:</p>
-<div class="literal-block-wrapper docutils container" id="id26">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 14 - </span><span class="caption-text">COPs com plantio potencialmente fora da janela ZARC</span><a class="headerlink" href="#id26" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 14 - </span><span class="caption-text">COPs com plantio potencialmente fora da janela ZARC</span><a class="headerlink" href="#id6" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Identificar COPs com plantio fora da janela ZARC recomendada</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">       </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">,</span>
@@ -401,6 +404,29 @@ AND empreend.produto = zarc.cultura</p>
 <section id="series-historicas-e-climatologia-de-referencia">
 <h3>Séries históricas e climatologia de referência<a class="headerlink" href="#series-historicas-e-climatologia-de-referencia" title="Link permanente para este cabeçalho"></a></h3>
 <p>A base de qualquer análise de consistência meteorológica é dispor de séries históricas longas e confiáveis que estabeleçam o “normal climatológico” da região. Sem referência do que é típico, não podemos identificar o que é atípico. A climatologia de referência serve como “régua” contra a qual medimos desvios.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Foto de uma estação meteorológica automática do INMET em campo
+(abrigo, pluviômetro e sensores).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>concretiza a fonte de dados pontuais (estações INMET/BDMEP) que sustenta a
+climatologia de referência descrita nesta seção.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“INMET automatic weather station”; “estação meteorológica automática
+INMET”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>INMET, Wikimedia Commons</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <p><strong>Dados essenciais a buscar:</strong></p>
 <p>Para cada município ou célula de grade relevante:</p>
 <p><strong>Precipitação:</strong></p>
@@ -431,7 +457,7 @@ AND empreend.produto = zarc.cultura</p>
 <h3>Índices climáticos padronizados<a class="headerlink" href="#indices-climaticos-padronizados" title="Link permanente para este cabeçalho"></a></h3>
 <p>Usar séries brutas de precipitação e temperatura é ponto de partida, mas índices padronizados agregam informação de forma mais robusta e comparável entre regiões e períodos.</p>
 <p><strong>SPI — Standardized Precipitation Index (Índice Padronizado de Precipitação)</strong></p>
-<p>SPI é o índice mais amplamente utilizado para caracterizar déficit ou excesso hídrico <span id="id1">[<a class="reference internal" href="../../referencias.html#id251" title="T. B. McKee, N. J. Doesken, and J. Kleist. The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology, 179–184. American Meteorological Society, 1993.">76</a>, <a class="reference internal" href="../../referencias.html#id258" title="M. Svoboda, M. Hayes, and D. Wood. Standardized precipitation index user guide. Technical Report WMO-No. 1090, World Meteorological Organization, 2012. URL: https://library.wmo.int/records/item/39629.">77</a>]</span>. Transforma precipitação acumulada em valor padronizado que indica quantos desvios-padrão o período está acima ou abaixo da média histórica.</p>
+<p>SPI é o índice mais amplamente utilizado para caracterizar déficit ou excesso hídrico <span id="id1">[<a class="reference internal" href="../referencias.html#id251" title="T. B. McKee, N. J. Doesken, and J. Kleist. The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology, 179–184. American Meteorological Society, 1993.">76</a>, <a class="reference internal" href="../referencias.html#id258" title="M. Svoboda, M. Hayes, and D. Wood. Standardized precipitation index user guide. Technical Report WMO-No. 1090, World Meteorological Organization, 2012. URL: https://library.wmo.int/records/item/39629.">77</a>]</span>. Transforma precipitação acumulada em valor padronizado que indica quantos desvios-padrão o período está acima ou abaixo da média histórica.</p>
 <p><strong>Vantagens:</strong></p>
 <ul class="simple">
 <li><p>Comparável entre regiões com climatologias diferentes (SPI = -1,5 significa “déficit severo” tanto no semiárido quanto no Sul chuvoso)</p></li>
@@ -479,6 +505,28 @@ AND empreend.produto = zarc.cultura</p>
 </tbody>
 </table>
 <p><strong>Interpretação esperada:</strong> COPs com SPI &gt; 0 alegando seca são outliers imediatos. COPs com SPI entre -0,5 e 0 alegando “seca severa” ou perdas &gt; 50% são inconsistentes. COPs com SPI &lt; -1,5 são climaticamente consistentes.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapa do Monitor de Secas do Brasil (ou mapa de SPI) com a classificação
+de severidade da seca por região em escala de cores.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>mostra um produto operacional pronto que materializa o índice SPI discutido na
+tabela anterior, útil para triangular a alegação de seca.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“Monitor de Secas Brasil mapa”; “SPI drought index map Brazil”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>ANA/Monitor de Secas, INMET, CPTEC/INPE</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 </section>
 <section id="cruzamento-multivariado-e-triangulacao-de-fontes">
 <h3>Cruzamento multivariado e triangulação de fontes<a class="headerlink" href="#cruzamento-multivariado-e-triangulacao-de-fontes" title="Link permanente para este cabeçalho"></a></h3>
@@ -561,8 +609,8 @@ AND empreend.produto = zarc.cultura</p>
 <p>Para processar sistematicamente centenas ou milhares de COPs:</p>
 <p><strong>Passo 1 — Preparação de Dados</strong></p>
 <p>A extração inicial de COPs para análise pode ser estruturada em uma CTE (Common Table Expression) que centraliza todos os dados necessários:</p>
-<div class="literal-block-wrapper docutils container" id="id27">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 15 - </span><span class="caption-text">CTE base para extração de COPs para análise de consistência</span><a class="headerlink" href="#id27" title="Link Permanente para esse código"></a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 15 - </span><span class="caption-text">CTE base para extração de COPs para análise de consistência</span><a class="headerlink" href="#id7" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- CTE estruturada para análise de lote de COPs</span>
 <span class="k">WITH</span><span class="w"> </span><span class="n">cops_base</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span>
@@ -669,429 +717,6 @@ AND empreend.produto = zarc.cultura</p>
 <p>Nas próximas seções, expandiremos essa análise para além de consistência climática individual, explorando padrões de <strong>recorrência</strong> (atores que aparecem repetidamente em COPs inconsistentes) e <strong>correlações</strong> (redes de atores conectados com alta sinistralidade). A análise meteorológica é o alicerce; sobre ele construiremos detecção de padrões comportamentais mais complexos.</p>
 </section>
 </section>
-<section id="identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">
-<h1>Identificação de outliers e inconsistências meteorológicas em sinistros2<a class="headerlink" href="#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2" title="Link permanente para este cabeçalho"></a></h1>
-<p>Quando falamos de “outliers” em análise de dados, geralmente nos referimos a valores que se desviam significativamente do padrão esperado — observações que estão nas caudas extremas de uma distribuição, muito acima ou muito abaixo da norma. No contexto meteorológico aplicado ao Proagro, o conceito ganha uma dimensão específica e crítica: um <strong>outlier meteorológico</strong> não é simplesmente um evento climático extremo em si (secas severas, geadas intensas, chuvas torrenciais acontecem e são eventos reais que causam perdas legítimas), mas sim uma <strong>incompatibilidade entre o fenômeno alegado em uma COP e a realidade climática objetivamente verificável</strong> através de dados de monitoramento.</p>
-<p>A lógica é direta: se um produtor comunica perda total por seca em determinada gleba durante janeiro, mas múltiplas fontes de dados meteorológicos (estações próximas, produtos satelitais, índices climáticos) indicam que aquele mês teve precipitação acima da média histórica para a região, há uma contradição fundamental. Não estamos dizendo que chuvas extremas não ocorrem (ocorrem), nem que medições meteorológicas são perfeitas (não são) — estamos identificando uma <strong>divergência significativa entre alegação e evidência disponível</strong> que merece investigação aprofundada. Essa divergência é o outlier que nos interessa: não o clima por si, mas a inconsistência entre clima alegado e clima documentado.</p>
-<p>Esse tipo de análise opera em dois níveis complementares. No nível mais direto e óbvio, detectamos casos onde há contradição flagrante: COP alega geada em município tropical de baixa altitude em pleno verão, sem que nenhuma estação meteorológica em 200 km de raio tenha registrado temperaturas abaixo de 15°C. A inconsistência é tão clara que dispensa sofisticação estatística — é inverossimilhança física. Mas há nível mais sutil e frequente: COP alega seca moderada causando perda de 60%, mas análise de múltiplos índices sugere que déficit hídrico foi leve, historicamente compatível com perdas na faixa de 15-25% para aquela cultura. Não há impossibilidade física (déficit existiu), mas há desproporção entre intensidade climática e magnitude de perda declarada que levanta questões. Ambos os níveis importam; ambos requerem ferramentas analíticas adequadas.</p>
-<p>É essencial enfatizar desde o início que identificar outlier meteorológico <strong>não é acusar fraude</strong>. Há múltiplas razões legítimas pelas quais alegação pode divergir de dados climáticos regionais: dados meteorológicos têm lacunas espaciais e temporais (evento pode ter ocorrido entre estações), eventos podem ser extremamente localizados (granizo devastador em área de 5 km² não será capturado por estação a 30 km), produtores podem atribuir perda ao fenômeno errado por desconhecimento técnico (atribuir a seca o que na verdade foi ataque de pragas), ou pode haver fatores locais específicos (tipo de solo, drenagem inadequada) que amplificaram impacto de evento climático moderado. O outlier é <strong>sinal de alerta</strong>, não conclusão. Indica que este caso merece atenção adicional, triangulação com outras fontes de evidência, e possivelmente inspeção de campo. É ferramenta de triagem inteligente, não de julgamento sumário.</p>
-<p>Dito isso, a experiência prática mostra que análise sistemática de consistência meteorológica identifica tanto erros técnicos genuínos quanto, sim, casos de declarações deliberadamente falsas ou exageradas. O valor da ferramenta está precisamente em sua capacidade de <strong>separar o joio do trigo</strong> em volumes imensos de COPs — milhares por safra — direcionando recursos limitados de investigação para onde têm maior probabilidade de encontrar problemas reais. Sem essa triagem objetiva, supervisão opera às cegas ou por amostragem aleatória, desperdiçando esforço em casos sem problema enquanto casos problemáticos passam despercebidos.</p>
-<section id="id2">
-<h2>Tipologia de outliers meteorológicos<a class="headerlink" href="#id2" title="Link permanente para este cabeçalho"></a></h2>
-<section id="id3">
-<h3>Contradições diretas de fenômeno<a class="headerlink" href="#id3" title="Link permanente para este cabeçalho"></a></h3>
-<p>O tipo mais elementar e flagrante de outlier meteorológico ocorre quando o fenômeno alegado é fisicamente incompatível com as condições climáticas observadas na região e período. Esses são casos onde não há ambiguidade interpretativa — dados climáticos <strong>contradizem diretamente</strong> a alegação.</p>
-<p><strong>Exemplo clássico: Seca alegada em período de chuvas abundantes</strong></p>
-<p>Uma COP registrada em fevereiro alega perda total por seca prolongada afetando lavoura de milho. Análise dos dados meteorológicos revela que janeiro e fevereiro tiveram precipitação acumulada 180% acima da média histórica para aquele município, com chuvas distribuídas ao longo do período (não concentradas em poucos eventos). Todas as estações INMET em raio de 50 km convergem nessa informação. Produto MERGE confirma anomalia positiva de precipitação. Índices de vegetação (NDVI) da região mostram vigor acima da média. Não houve seca — houve o oposto. A alegação é fisicamente inconsistente com realidade climática documentada por múltiplas fontes independentes.</p>
-<p><strong>Buscar na base de dados:</strong> Para cada COP alegando seca, extrair: (1) precipitação acumulada no ciclo da cultura de todas as estações INMET em raio de 80 km; (2) comparar com climatologia histórica (média e desvio-padrão dos últimos 30 anos); (3) calcular anomalia padronizada (z-score); (4) classificar: z &gt; 1,5 (chuvas muito acima da média) incompatível com seca; z entre -0,5 e +0,5 (próximo da média) questionável para “seca severa”; z &lt; -1,5 (déficit significativo) consistente com seca.</p>
-<p><strong>Interpretação esperada:</strong> Espera-se encontrar pequena proporção de outliers flagrantes (&lt; 5% das COPs por seca), pois contradições tão diretas são raras se produtor/perito têm mínimo de boa-fé ou conhecimento local. Se proporção for alta (&gt; 15%), sugere problema sistêmico na região/IF/perito que merece investigação institucional, não apenas caso a caso.</p>
-<p><strong>Exemplo clássico: Geada alegada sem queda de temperatura</strong></p>
-<p>COP em junho alega geada matou café em região serrana de Minas Gerais. Temperaturas mínimas registradas nas estações próximas durante todo o mês ficaram acima de 8°C — abaixo do threshold de geada severa para café (&lt; 2°C) e mesmo abaixo de geada leve (&lt; 5°C). Não houve inversão térmica documentada. Imagens de satélite não mostram área queimada típica de geada intensa. Produtores vizinhos não reportaram geada.</p>
-<p><strong>Buscar na base:</strong> Para COPs por geada: (1) temperatura mínima absoluta registrada em janela de ±7 dias da data alegada, raio 50 km; (2) identificar se alguma estação registrou T &lt; 5°C; (3) verificar se múltiplas estações convergem (geada é fenômeno regional, afeta área ampla); (4) cruzar com alertas de geada emitidos por CPTEC/INMET no período.</p>
-<p><strong>Interpretação esperada:</strong> Geadas verdadeiras deixam assinatura clara em estações — múltiplas reportam temperaturas baixas simultaneamente. COP alegando geada sem nenhuma estação em raio razoável registrando frio é altamente suspeita. Atenção: em vales profundos pode haver inversão térmica muito localizada não capturada por estações em planalto — cruzar com topografia.</p>
-</section>
-<section id="id4">
-<h3>Incompatibilidade de magnitude<a class="headerlink" href="#id4" title="Link permanente para este cabeçalho"></a></h3>
-<p>Categoria mais sutil: fenômeno alegado ocorreu, mas sua intensidade documentada é <strong>insuficiente</strong> para justificar magnitude da perda declarada. Não há contradição absoluta, mas desproporção estatística significativa.</p>
-<p><strong>Exemplo: Déficit hídrico leve, perda severa alegada</strong></p>
-<p>COP alega perda de 75% em soja por seca. Análise do SPI (Standardized Precipitation Index) para ciclo da cultura indica SPI = -0,8 (déficit leve, entre -0,5 e -1,0). Historicamente, naquela região e cultura, déficits nessa faixa estão associados a perdas médias de 20-30%, não 75%. Há déficit real — não se pode dizer que “não houve seca” — mas magnitude é incompatível com perda declarada.</p>
-<p><strong>Buscar na base:</strong> (1) Calcular SPI mensal ou para ciclo completo da cultura (ex: SPI-3 ou SPI-4 cobrindo período crítico); (2) construir curva histórica de “SPI × perda declarada” para região/cultura usando safras anteriores; (3) identificar COPs onde perda declarada está acima do percentil 90 da curva histórica para aquele valor de SPI — esses são outliers de magnitude.</p>
-<p><strong>Interpretação esperada:</strong> Relação entre severidade climática e perda não é determinística (há variabilidade devido a solo, manejo, variedades), mas é estatisticamente estruturada. Outliers extremos (perda declarada 2-3 desvios-padrão acima da esperada para aquele clima) merecem atenção. Proporção esperada de outliers: ~5-10% (cauda da distribuição). Se muito maior, problema.</p>
-<p><strong>Exemplo: Chuva excessiva moderada, perda catastrófica alegada</strong></p>
-<p>COP alega perda total (100%) por chuva excessiva em milho. Dados mostram precipitação 30% acima da média no mês — excesso real, mas moderado. Glebas vizinhas com topografia similar tiveram perdas médias de 25%. Não houve enchente regional documentada. Alegação de perda total é desproporcionalmente alta para intensidade do evento.</p>
-<p><strong>Buscar na base:</strong> (1) Para cada COP por chuva excessiva, calcular percentil de precipitação acumulada no mês/período (comparando com histórico); (2) percentil &gt; 90 indica chuva muito acima da média; percentil 70-90 indica excesso moderado; &lt; 70 não caracteriza excesso; (3) comparar magnitude de perda com percentil de chuva — espera-se correlação positiva; outliers são casos com percentil baixo mas perda alta.</p>
-<p><strong>Interpretação esperada:</strong> Chuvas extremas (&gt; percentil 95) causam perdas generalizadas e altas. Chuvas moderadamente acima da média causam perdas localizadas e variáveis. COP isolada com perda muito alta quando chuva foi moderada é outlier — pode ser por microrelevo local (área mal drenada), pode ser erro de estimativa, pode ser problema.</p>
-</section>
-<section id="id5">
-<h3>Incompatibilidade fenológica<a class="headerlink" href="#id5" title="Link permanente para este cabeçalho"></a></h3>
-<p>Outliers onde fenômeno ocorreu em estádio da cultura que <strong>não deveria</strong> causar perda significativa, ou perda alegada não corresponde ao tipo de impacto esperado para aquele estádio.</p>
-<p><strong>Exemplo: Déficit hídrico em estádio vegetativo de soja</strong></p>
-<p>COP alega perda de 60% em soja por seca ocorrida exclusivamente em novembro-dezembro, quando planta estava em estádio vegetativo inicial (V2-V4). Soja é relativamente tolerante a déficit neste estádio — perda esperada seria &lt; 15%. Estádio crítico (floração e enchimento de grãos, R1-R5) ocorreria em janeiro-fevereiro, período que teve precipitação normal. Timing do déficit não explica magnitude da perda.</p>
-<p><strong>Buscar na base:</strong> (1) Identificar data de plantio registrada no Sicor; (2) estimar estádio fenológico da cultura na data alegada de perda (usar modelos de graus-dia ou calendários fenológicos regionais); (3) cruzar com literatura técnica de sensibilidade da cultura a déficit por estádio; (4) identificar COPs onde perda alta é alegada em estádio pouco sensível.</p>
-<p><strong>Interpretação esperada:</strong> Requer conhecimento agronômico de vulnerabilidades fenológicas por cultura. Milho, por exemplo, é extremamente sensível a déficit no pendoamento (VT-R1); déficit antes ou depois tem impacto menor. COPs alegando perda catastrófica por déficit fora do período crítico são suspeitas. Proporção esperada de outliers fenológicos: baixa se perícias são tecnicamente competentes; alta sugere perícias de baixa qualidade ou má-fé.</p>
-</section>
-<section id="id6">
-<h3>Inconsistências temporais<a class="headerlink" href="#id6" title="Link permanente para este cabeçalho"></a></h3>
-<p>Outliers onde timing do fenômeno alegado não corresponde a dados climáticos, ou onde duração alegada é inconsistente com registros.</p>
-<p><strong>Exemplo: Datas incompatíveis</strong></p>
-<p>COP registrada em 20 de março alega que seca severa causou perda total em fevereiro. Dados de estações mostram que fevereiro teve precipitação normal, mas <strong>janeiro</strong> teve déficit severo. Há déficit na região, mas em mês diferente do alegado — possivelmente erro de datas na COP, possivelmente perda atribuída ao período errado.</p>
-<p><strong>Buscar na base:</strong> (1) Comparar data de ocorrência do fenômeno registrada na COP com séries temporais diárias/semanais de variáveis climáticas; (2) identificar se houve evento climático adverso em ±30 dias da data alegada (pode ser erro de registro); (3) se evento existiu mas em outro período, marcar como inconsistência temporal — pode ser erro burocrático, não fraude.</p>
-<p><strong>Interpretação esperada:</strong> Erros de data são comuns e geralmente benignos (descuido administrativo). Correção via triangulação com outras evidências. Mas se há padrão sistemático de datas deslocadas sempre favorecendo produtor (ex: alegar perda antes da janela Zarc terminar quando evento foi depois), merece atenção.</p>
-</section>
-</section>
-<section id="id7">
-<h2>Ferramentas e indicadores para detecção<a class="headerlink" href="#id7" title="Link permanente para este cabeçalho"></a></h2>
-<section id="id8">
-<h3>Séries históricas e climatologia de referência<a class="headerlink" href="#id8" title="Link permanente para este cabeçalho"></a></h3>
-<p>A base de qualquer análise de consistência meteorológica é dispor de séries históricas longas e confiáveis que estabeleçam o “normal climatológico” da região. Sem referência do que é típico, não podemos identificar o que é atípico. A climatologia de referência serve como “régua” contra a qual medimos desvios.</p>
-<p><strong>Dados essenciais a buscar:</strong></p>
-<p>Para cada município ou célula de grade relevante:</p>
-<p><strong>Precipitação:</strong>
-- Séries mensais de precipitação acumulada dos últimos 30 anos (padrão OMM para climatologia)
-- Calcular para cada mês: média, mediana, desvio-padrão, percentis 10, 25, 75, 90
-- Identificar sazonalidade (meses chuvosos vs. secos)
-- Calcular extremos históricos (máximo e mínimo absolutos)</p>
-<p><strong>Temperatura:</strong>
-- Séries mensais de temperatura média, mínima e máxima dos últimos 30 anos
-- Calcular estatísticas descritivas (média, DP, percentis)
-- Identificar limiares críticos por cultura (ex: temperatura mínima &lt; 2°C = risco alto de geada para café)</p>
-<p><strong>Fontes recomendadas:</strong>
-- Estações INMET (dados históricos disponíveis via BDMEP)
-- Produtos em grade históricos (MERGE para Brasil, CHIRPS globalmente)
-- Reanálises climáticas (ERA5 do ECMWF — resolução 25 km, cobre 1950-presente)</p>
-<p><strong>Processamento:</strong></p>
-<p>Para cada COP:</p>
-<ol class="arabic simple">
-<li><p>Identificar município ou coordenadas da gleba</p></li>
-<li><p>Extrair séries climáticas da estação mais próxima (ou interpolação de múltiplas)</p></li>
-<li><p>Para o mês/período da COP, calcular:</p>
-<ul class="simple">
-<li><p>Valor observado (P_obs para precipitação, T_obs para temperatura)</p></li>
-<li><p>Média climatológica (P_clim, T_clim)</p></li>
-<li><p>Desvio padronizado: z = (P_obs - P_clim) / σ</p></li>
-</ul>
-</li>
-<li><p>Classificar:</p>
-<ul class="simple">
-<li><p>z &lt; -2: déficit/frio extremo (&lt; percentil 2,5)</p></li>
-<li><p>z entre -2 e -1: déficit/frio severo (percentil 2,5 a 16)</p></li>
-<li><p>z entre -1 e -0,5: déficit/frio moderado</p></li>
-<li><p>z entre -0,5 e +0,5: normal</p></li>
-<li><p>z entre +0,5 e +1: excesso/calor moderado</p></li>
-<li><p>z &gt; +2: excesso/calor extremo</p></li>
-</ul>
-</li>
-</ol>
-<p><strong>Interpretação:</strong></p>
-<p>COP alegando seca com z &gt; 0 (precipitação acima da média) é outlier flagrante. COP alegando seca com z entre -0,5 e 0 (próximo da média) é questionável para “seca severa”. COP alegando seca com z &lt; -1,5 é climaticamente consistente.</p>
-</section>
-<section id="id9">
-<h3>Índices climáticos padronizados<a class="headerlink" href="#id9" title="Link permanente para este cabeçalho"></a></h3>
-<p>Usar séries brutas de precipitação e temperatura é ponto de partida, mas índices padronizados agregam informação de forma mais robusta e comparável entre regiões e períodos.</p>
-<p><strong>SPI — Standardized Precipitation Index (Índice Padronizado de Precipitação)</strong></p>
-<p>SPI é o índice mais amplamente utilizado para caracterizar déficit ou excesso hídrico <span id="id10">[<a class="reference internal" href="../../referencias.html#id251" title="T. B. McKee, N. J. Doesken, and J. Kleist. The relationship of drought frequency and duration to time scales. In Proceedings of the 8th Conference on Applied Climatology, 179–184. American Meteorological Society, 1993.">76</a>, <a class="reference internal" href="../../referencias.html#id258" title="M. Svoboda, M. Hayes, and D. Wood. Standardized precipitation index user guide. Technical Report WMO-No. 1090, World Meteorological Organization, 2012. URL: https://library.wmo.int/records/item/39629.">77</a>]</span>. Transforma precipitação acumulada em valor padronizado que indica quantos desvios-padrão o período está acima ou abaixo da média histórica.</p>
-<p><strong>Vantagens:</strong>
-- Comparável entre regiões com climatologias diferentes (SPI = -1,5 significa “déficit severo” tanto no semiárido quanto no Sul chuvoso)
-- Escalas múltiplas (SPI-1 para 1 mês, SPI-3 para 3 meses, SPI-6 para 6 meses) capturam déficits de curto vs. longo prazo
-- Amplamente validado e usado por agências meteorológicas globalmente</p>
-<p><strong>Como calcular:</strong></p>
-<ol class="arabic simple">
-<li><p>Para cada localização, obter série mensal de precipitação (mínimo 30 anos)</p></li>
-<li><p>Para cada mês do ano (janeiro, fevereiro, etc.), ajustar distribuição de probabilidade (tipicamente Gamma) aos dados históricos</p></li>
-<li><p>Transformar precipitação observada em probabilidade acumulada</p></li>
-<li><p>Converter probabilidade acumulada em valor de distribuição normal padrão → este é o SPI</p></li>
-</ol>
-<p>Felizmente, não é necessário implementar do zero: bibliotecas como <cite>climate_indices</cite> (Python) e pacotes R fazem o cálculo.</p>
-<p><strong>Interpretação do SPI:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Valor do SPI</p></th>
-<th class="head"><p>Classificação</p></th>
-<th class="head"><p>Implicação para Proagro</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>SPI ≥ 2,0</p></td>
-<td><p>Umidade extrema</p></td>
-<td><p>Incompatível com seca</p></td>
-</tr>
-<tr class="row-odd"><td><p>SPI entre 1,5 e 2,0</p></td>
-<td><p>Muito úmido</p></td>
-<td><p>Improvável seca</p></td>
-</tr>
-<tr class="row-even"><td><p>SPI entre 1,0 e 1,5</p></td>
-<td><p>Moderadamente úmido</p></td>
-<td><p>Não caracteriza seca</p></td>
-</tr>
-<tr class="row-odd"><td><p>SPI entre -1,0 e +1,0</p></td>
-<td><p>Próximo do normal</p></td>
-<td><p>Questionável para
-“seca severa”</p></td>
-</tr>
-<tr class="row-even"><td><p>SPI entre -1,0 e -1,5</p></td>
-<td><p>Moderadamente seco</p></td>
-<td><p>Seca leve/moderada</p></td>
-</tr>
-<tr class="row-odd"><td><p>SPI entre -1,5 e -2,0</p></td>
-<td><p>Severamente seco</p></td>
-<td><p>Seca severa</p></td>
-</tr>
-<tr class="row-even"><td><p>SPI ≤ -2,0</p></td>
-<td><p>Extremamente seco</p></td>
-<td><p>Seca extrema</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Buscar na base:</strong></p>
-<p>Para COPs alegando seca:</p>
-<ol class="arabic simple">
-<li><p>Calcular SPI-3 (3 meses acumulados) cobrindo período crítico da cultura</p></li>
-<li><p>Classificar COPs por faixa de SPI</p></li>
-<li><p>Cruzar com magnitude de perda declarada</p></li>
-</ol>
-<p><strong>Interpretação esperada:</strong></p>
-<p>COPs com SPI &gt; 0 alegando seca são outliers imediatos. COPs com SPI entre -0,5 e 0 alegando “seca severa” ou perdas &gt; 50% são inconsistentes. COPs com SPI &lt; -1,5 são climaticamente consistentes (embora magnitude de perda ainda possa ser questionável). Espera-se correlação negativa entre SPI e perda declarada: quanto mais negativo o SPI (déficit maior), maior a perda. Outliers são casos que desviam dessa correlação esperada.</p>
-<p><strong>SPEI — Standardized Precipitation-Evapotranspiration Index</strong></p>
-<p>Evolução do SPI que incorpora não apenas precipitação mas também evapotranspiração potencial (calculada a partir de temperatura) <span id="id11">[<a class="reference internal" href="../../referencias.html#id253" title="S. M. Vicente-Serrano, S. Beguéría, and J. I. López-Moreno. A multiscalar drought index sensitive to global warming: the Standardized Precipitation Evapotranspiration Index. Journal of Climate, 23(7):1696–1718, 2010. doi:10.1175/2009JCLI2909.1.">78</a>]</span>. Mais realista para caracterizar déficit hídrico porque chuva sozinha não define disponibilidade de água — também importa quanto a planta/solo perde por evaporação.</p>
-<p><strong>Vantagem sobre SPI:</strong> Em regiões quentes, mês pode ter precipitação próxima da média mas evapotranspiração muito alta devido a temperaturas elevadas → déficit hídrico efetivo que SPI subestimaria, SPEI captura.</p>
-<p><strong>Cálculo:</strong> Similar ao SPI, mas baseado em balanço P - PET (precipitação menos evapotranspiração potencial). Requer dados de temperatura além de precipitação.</p>
-<p><strong>Uso no Proagro:</strong> Preferível ao SPI quando há dados de temperatura disponíveis e quando analisando culturas em regiões quentes (Centro-Oeste, Nordeste). Interpretação é idêntica ao SPI.</p>
-<p><strong>PDSI — Palmer Drought Severity Index</strong></p>
-<p>Índice de seca que incorpora persistência de déficit (déficit acumulado ao longo de meses) <span id="id12">[<a class="reference internal" href="../../referencias.html#id310" title="W. C. Palmer. Meteorological drought. Technical Report Research Paper No. 45, U.S. Weather Bureau, Washington, D.C., 1965.">79</a>]</span>. Mais apropriado para secas de longo prazo (agrícolas, hidrológicas) que para eventos de curto prazo.</p>
-<p><strong>Vantagem:</strong> Captura memória de déficit — mesmo se mês atual teve chuva razoável, se meses anteriores foram secos, PDSI ainda indica seca persistente.</p>
-<p><strong>Desvantagem:</strong> Cálculo complexo, menos padronizado que SPI/SPEI.</p>
-<p><strong>Uso no Proagro:</strong> Útil para culturas perenes (café, cana) ou ciclos longos, menos para culturas anuais de ciclo curto.</p>
-</section>
-<section id="indices-de-eventos-extremos">
-<h3>Índices de eventos extremos<a class="headerlink" href="#indices-de-eventos-extremos" title="Link permanente para este cabeçalho"></a></h3>
-<p>Além de caracterizar déficit ou excesso médio, precisamos identificar <strong>eventos extremos pontuais</strong> — dias ou sequências de dias com condições anômalas.</p>
-<p><strong>Onda de Calor / Frio</strong></p>
-<p>Sequências de dias consecutivos com temperaturas acima (calor) ou abaixo (frio) de limiar crítico.</p>
-<p><strong>Definição:</strong>
-- Onda de calor: ≥ 3 dias consecutivos com T_max &gt; percentil 90 histórico
-- Onda de frio: ≥ 3 dias consecutivos com T_min &lt; percentil 10 histórico</p>
-<p><strong>Índice de Onda de Geada (IOG) — adaptação específica:</strong></p>
-<p>Para geada, limiar não é estatístico mas absoluto: temperatura mínima &lt; threshold crítico por cultura.</p>
-<p><strong>Exemplo — Café:</strong></p>
-<ul class="simple">
-<li><p>T_min &lt; 2°C: geada severa (dano total provável)</p></li>
-<li><p>T_min entre 2-5°C: geada moderada (dano parcial)</p></li>
-<li><p>T_min entre 5-8°C: geada leve (dano mínimo)</p></li>
-</ul>
-<p><strong>Buscar na base:</strong></p>
-<p>Para COPs por geada:</p>
-<ol class="arabic simple">
-<li><p>Extrair série diária de T_min para ±15 dias da data alegada, raio 50 km</p></li>
-<li><p>Identificar dias com T_min &lt; 5°C</p></li>
-<li><p>Contar sequência de dias consecutivos abaixo do limiar (duração da geada)</p></li>
-<li><p>Classificar intensidade: quantos dias abaixo de 2°C (severa), entre 2-5°C (moderada)</p></li>
-</ol>
-<p><strong>Interpretação:</strong></p>
-<p>COP alegando geada sem nenhum dia com T_min &lt; 5°C é outlier. COP alegando “geada severa com perda total” quando houve apenas 1 dia com T_min = 4°C (geada leve) é incompatibilidade de magnitude. COP com múltiplos dias consecutivos &lt; 2°C é consistente com geada severa.</p>
-<p><strong>Dias Consecutivos Sem Chuva (CDD — Consecutive Dry Days)</strong></p>
-<p>Métrica de veranico (estiagem curta dentro da estação chuvosa). Particularmente relevante para culturas anuais sensíveis a stress hídrico em períodos críticos.</p>
-<p><strong>Definição:</strong> Número máximo de dias consecutivos com precipitação &lt; 1 mm.</p>
-<p><strong>Buscar na base:</strong></p>
-<p>Para COPs por seca/veranico:</p>
-<ol class="arabic simple">
-<li><p>Extrair série diária de precipitação durante ciclo da cultura</p></li>
-<li><p>Calcular CDD para janelas móveis (ex: máximo de dias secos consecutivos em fevereiro)</p></li>
-<li><p>Comparar com climatologia: CDD médio histórico e extremos</p></li>
-</ol>
-<p><strong>Interpretação:</strong></p>
-<p>CDD &gt; 20 dias em pleno período chuvoso é veranico severo. CDD &lt; 10 dias não caracteriza veranico significativo. COPs alegando “veranico prolongado” com CDD &lt; 15 dias são questionáveis. Cruzar com estádio fenológico: veranico de 10 dias em floração pode ser devastador; em estádio vegetativo inicial, impacto menor.</p>
-</section>
-<section id="mapas-de-anomalia-e-analise-visual">
-<h3>Mapas de anomalia e análise visual<a class="headerlink" href="#mapas-de-anomalia-e-analise-visual" title="Link permanente para este cabeçalho"></a></h3>
-<p>Índices numéricos são essenciais, mas visualização espacial adiciona camada crítica de interpretação, permitindo identificar padrões que números isolados obscurecem.</p>
-<p><strong>Mapas de Anomalia de Precipitação</strong></p>
-<p>Mostram quanto cada região recebeu acima ou abaixo da média climatológica para dado período.</p>
-<p><strong>Construção:</strong></p>
-<ol class="arabic simple">
-<li><p>Para cada célula de grade ou município:</p>
-<ul class="simple">
-<li><p>P_obs = precipitação observada no período (ex: janeiro/2023)</p></li>
-<li><p>P_clim = média climatológica (média dos janeiros 1991-2020)</p></li>
-<li><p>Anomalia = P_obs - P_clim (em mm ou %)</p></li>
-<li><p>Anomalia padronizada = (P_obs - P_clim) / σ</p></li>
-</ul>
-</li>
-<li><p>Mapear com escala de cores divergente (azul para excesso, marrom/vermelho para déficit)</p></li>
-</ol>
-<p><strong>Interpretação:</strong></p>
-<p>Sobrepor localização de COPs por seca ao mapa de anomalia. COPs em áreas vermelhas (déficit) são consistentes. COPs em áreas azuis (excesso) são outliers flagrantes. COPs em áreas brancas/neutras (próximo da média) são questionáveis para “seca severa”.</p>
-<p><strong>Buscar na base:</strong></p>
-<ol class="arabic simple">
-<li><p>Obter produto em grade de precipitação (MERGE, CHIRPS)</p></li>
-<li><p>Calcular anomalia mensal ou sazonal</p></li>
-<li><p>Extrair valor de anomalia para cada localização de COP</p></li>
-<li><p>Classificar: anomalia &lt; -50 mm compatível com seca; &gt; +50 mm incompatível; entre -20 e +20 mm questionável</p></li>
-</ol>
-<p><strong>Gráficos de Tendência Temporal Local</strong></p>
-<p>Para cada localização de interesse (município, gleba), plotar série temporal de variável climática com contexto histórico.</p>
-<p><strong>Exemplo — Análise de COP por seca em fevereiro/2023:</strong></p>
-<p>Gráfico mostra:</p>
-<ul class="simple">
-<li><p>Série histórica de precipitação de fevereiro (1991-2022) como pontos cinzas</p></li>
-<li><p>Média histórica como linha horizontal</p></li>
-<li><p>Bandas de percentis 25-75 (range “normal”) sombreadas</p></li>
-<li><p>Valor de fevereiro/2023 destacado em vermelho</p></li>
-</ul>
-<p><strong>Interpretação visual imediata:</strong></p>
-<p>Se ponto vermelho está dentro da banda cinza (quartil central), fevereiro/2023 foi típico — inconsistente com alegação de seca excepcional. Se está abaixo do percentil 25, foi seco — consistente com seca. Se está acima do percentil 75, foi chuvoso — totalmente inconsistente.</p>
-<p><strong>Buscar na base:</strong></p>
-<ol class="arabic simple">
-<li><p>Séries históricas mensais das últimas 3 décadas para municípios com COPs</p></li>
-<li><p>Gerar gráficos automaticamente (Python/R)</p></li>
-<li><p>Anotar visualmente: valor observado vs. contexto histórico</p></li>
-<li><p>Incluir em relatórios técnicos de COPs priorizadas</p></li>
-</ol>
-</section>
-<section id="id13">
-<h3>Cruzamento multivariado e triangulação de fontes<a class="headerlink" href="#id13" title="Link permanente para este cabeçalho"></a></h3>
-<p>Nenhuma fonte de dado é perfeita. Robustez vem de convergência entre múltiplas fontes independentes.</p>
-<p><strong>Framework de Triangulação:</strong></p>
-<p>Para cada COP:</p>
-<ol class="arabic simple">
-<li><p><strong>Fonte 1 — Estações pontuais (INMET):</strong> Extrair dados de estações em raio de 50 km. Calcular médias ponderadas por distância inversa. Gerar indicador: “estações indicam déficit/excesso?”</p></li>
-<li><p><strong>Fonte 2 — Produto em grade (MERGE/CHIRPS):</strong> Extrair valor do pixel cobrindo gleba. Calcular anomalia. Indicador: “grade indica déficit/excesso?”</p></li>
-<li><p><strong>Fonte 3 — Índice de vegetação (NDVI):</strong> Se disponível, extrair NDVI médio da gleba no período. NDVI baixo sugere stress vegetativo (pode ser por déficit hídrico, praga, doença). Indicador: “vegetação mostra stress?”</p></li>
-<li><p><strong>Fonte 4 — Relatos regionais:</strong> Verificar se houve alertas meteorológicos oficiais (CPTEC, Defesa Civil), notícias na imprensa local, comunicados de sindicatos rurais sobre evento adverso naquela região/período. Indicador: “há relatos independentes do evento?”</p></li>
-</ol>
-<p><strong>Matriz de Convergência:</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>COP</p></th>
-<th class="head"><p>Estações</p></th>
-<th class="head"><p>MERGE</p></th>
-<th class="head"><p>NDVI</p></th>
-<th class="head"><p>Relatos</p></th>
-<th class="head"><p>Conclusão</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>COP-001 (seca)</p></td>
-<td><p>Déficit</p></td>
-<td><p>Déficit</p></td>
-<td><p>Baixo</p></td>
-<td><p>Sim</p></td>
-<td><p>✅ Consistente</p></td>
-</tr>
-<tr class="row-odd"><td><p>COP-002 (seca)</p></td>
-<td><p>Normal</p></td>
-<td><p>Leve déficit</p></td>
-<td><p>Normal</p></td>
-<td><p>Não</p></td>
-<td><p>⚠️ Inconclusivo</p></td>
-</tr>
-<tr class="row-even"><td><p>COP-003 (seca)</p></td>
-<td><p>Excesso</p></td>
-<td><p>Excesso</p></td>
-<td><p>Alto</p></td>
-<td><p>Não</p></td>
-<td><p>❌ Inconsistente</p></td>
-</tr>
-<tr class="row-odd"><td><p>COP-004 (geada)</p></td>
-<td><p>T_min=3°C</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
-<td><p>Baixo</p></td>
-<td><p>Sim (local)</p></td>
-<td><p>✅ Consistente</p></td>
-</tr>
-<tr class="row-even"><td><p>COP-005 (geada)</p></td>
-<td><p>T_min=12°C</p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
-<td><p>Normal</p></td>
-<td><p>Não</p></td>
-<td><p>❌ Inconsistente</p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Regra de decisão:</strong></p>
-<ul class="simple">
-<li><p><strong>≥ 3 fontes convergindo para consistência:</strong> COP climaticamente plausível → análise de rotina</p></li>
-<li><p><strong>2 fontes a favor, 2 contra ou inconclusivas:</strong> COP ambígua → triangular com evidências adicionais (documentos, fotos, inspeção)</p></li>
-<li><p><strong>≥ 3 fontes convergindo para inconsistência:</strong> COP climaticamente implausível → <strong>priorizar investigação</strong></p></li>
-</ul>
-<p><strong>Interpretação esperada:</strong></p>
-<p>Maioria das COPs legítimas terá convergência de fontes. Proporção esperada de inconsistentes: &lt; 10%. Se &gt; 20% das COPs de IF/perito/região são inconsistentes por triangulação, há problema sistêmico.</p>
-</section>
-</section>
-<section id="id14">
-<h2>Workflow operacional integrado<a class="headerlink" href="#id14" title="Link permanente para este cabeçalho"></a></h2>
-<section id="id15">
-<h3>Passo a passo para análise de lote de COPs<a class="headerlink" href="#id15" title="Link permanente para este cabeçalho"></a></h3>
-<p>Para processar sistematicamente centenas ou milhares de COPs:</p>
-<p><strong>Passo 1 — Preparação de Dados</strong></p>
-<p>☐ Carregar base de COPs (data, local, fenômeno alegado, perda declarada)
-☐ Carregar séries históricas de clima (estações + produtos em grade)
-☐ Carregar climatologia de referência (médias, desvios, percentis)
-☐ Carregar dados auxiliares (NDVI, relatos, alertas)</p>
-<p><strong>Passo 2 — Cálculo de Indicadores por COP</strong></p>
-<p>Para cada COP, calcular automaticamente:</p>
-<p>☐ Anomalia de precipitação (mm e z-score)
-☐ SPI/SPEI para período relevante
-☐ Extremos (T_min para geada, CDD para veranico, percentil de chuva para excesso)
-☐ Distância até estação mais próxima (incerteza espacial)
-☐ Convergência de fontes (score 0-4)</p>
-<p><strong>Passo 3 — Classificação de Consistência</strong></p>
-<p>Aplicar regras:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SE (fenômeno = seca) E (z_precip &gt; 0):
-    classificação = &quot;INCONSISTENTE - Precipitação acima da média&quot;
-
-SE (fenômeno = seca) E (SPI &gt; -0,5):
-    classificação = &quot;QUESTIONÁVEL - Déficit leve para perda severa&quot;
-
-SE (fenômeno = seca) E (SPI &lt; -1,5):
-    classificação = &quot;CONSISTENTE - Déficit documentado&quot;
-
-SE (fenômeno = geada) E (T_min &gt; 8°C):
-    classificação = &quot;INCONSISTENTE - Sem frio registrado&quot;
-
-SE (fenômeno = geada) E (T_min entre 2-5°C):
-    classificação = &quot;CONSISTENTE - Geada moderada documentada&quot;
-</pre></div>
-</div>
-<p><strong>Passo 4 — Priorização</strong></p>
-<p>Ranquear COPs por score de inconsistência:</p>
-<p><strong>Score = (1 - convergência_fontes) × magnitude_anomalia × valor_COP</strong></p>
-<p>COPs com score alto são prioridade máxima para investigação.</p>
-<p><strong>Passo 5 — Geração de Relatórios</strong></p>
-<p>Para COPs priorizadas, gerar automaticamente:</p>
-<ul class="simple">
-<li><p>Ficha técnica com todos indicadores</p></li>
-<li><p>Gráficos de série temporal (contexto histórico)</p></li>
-<li><p>Mapa de localização sobre anomalia espacial</p></li>
-<li><p>Resumo textual de inconsistências encontradas</p></li>
-</ul>
-<p><strong>Passo 6 — Revisão Humana e Decisão</strong></p>
-<p>Analistas revisam COPs priorizadas, consideram contexto adicional, decidem próximos passos (solicitar documentos adicionais, vistoria, auditoria).</p>
-</section>
-</section>
-<section id="id16">
-<h2>Limitações e cuidados essenciais<a class="headerlink" href="#id16" title="Link permanente para este cabeçalho"></a></h2>
-<section id="id17">
-<h3>Nenhuma fonte de dados é perfeita<a class="headerlink" href="#id17" title="Link permanente para este cabeçalho"></a></h3>
-<p><strong>Estações meteorológicas:</strong> Cobertura esparsa, falhas de medição, descalibração, erros de localização. Eventos muito localizados (&lt; 10 km) podem não ser capturados.</p>
-<p><strong>Produtos em grade:</strong> Resolução limitada (5-10 km), interpolam e combinam múltiplas fontes (herdam incertezas), podem suavizar extremos.</p>
-<p><strong>Índices de vegetação:</strong> Integram efeito de clima mas também de pragas, doenças, manejo. NDVI baixo não prova déficit hídrico — pode ser outro fator.</p>
-<p><strong>Relatos:</strong> Subjetivos, podem ser exagerados ou minimizados por interesses locais.</p>
-<p><strong>Implicação:</strong> Sempre usar múltiplas fontes. Inconsistência em todas as fontes é mais confiável que inconsistência em apenas uma.</p>
-</section>
-<section id="id18">
-<h3>Outliers não são provas, são hipóteses<a class="headerlink" href="#id18" title="Link permanente para este cabeçalho"></a></h3>
-<p>Identificar COP como outlier meteorológico <strong>não prova fraude</strong>. Prova que há divergência entre alegação e dados disponíveis que justifica investigação. Investigação pode concluir:</p>
-<ul class="simple">
-<li><p>Dados meteorológicos eram inadequados (evento ocorreu mas não foi capturado)</p></li>
-<li><p>Perda decorreu de fator não climático (praga, erro de manejo) incorretamente atribuído a clima</p></li>
-<li><p>Houve exagero não intencional (produtor superestimou perda por desconhecimento)</p></li>
-<li><p>Houve declaração falsa intencional</p></li>
-</ul>
-<p>Análise meteorológica sozinha <strong>não distingue</strong> entre essas possibilidades. É ponto de partida, não ponto final.</p>
-</section>
-<section id="id19">
-<h3>Variabilidade espacial fina e microclimas<a class="headerlink" href="#id19" title="Link permanente para este cabeçalho"></a></h3>
-<p>Clima varia em múltiplas escalas. Fenômenos muito localizados (tromba d’água, granizo em corredor estreito, inversão térmica em vale específico) podem afetar gleba sem afetar entorno. Dados regionais não capturam.</p>
-<p><strong>Mitigação:</strong> Para COPs em áreas de relevo complexo ou próximas a fatores geográficos especiais (lagos, escarpas), ser mais conservador. Complementar com inspeção de campo ou imagens de alta resolução.</p>
-</section>
-<section id="id20">
-<h3>Erros de registro e má atribuição<a class="headerlink" href="#id20" title="Link permanente para este cabeçalho"></a></h3>
-<p>Produtor pode genuinamente ter tido perda, mas atribuir ao fenômeno errado por desconhecimento técnico. Exemplo: perda por ataque de lagarta atribuída a “seca” porque planta murchou.</p>
-<p><strong>Análise meteorológica detectará inconsistência</strong> (não houve seca), mas problema não é fraude — é erro técnico que perícia competente deveria corrigir.</p>
-</section>
-</section>
-<section id="id21">
-<h2>Conclusão da seção<a class="headerlink" href="#id21" title="Link permanente para este cabeçalho"></a></h2>
-<p>A identificação de outliers e inconsistências meteorológicas é a primeira linha de defesa analítica contra uso inadequado do Proagro. Não substitui outras formas de verificação (análise documental, inspeção de campo, auditoria de processos), mas as complementa ao fornecer <strong>triagem objetiva baseada em realidade física mensurável</strong>. Quando aplicada sistematicamente a todas as COPs, transforma supervisão de processo artesanal e amostral em processo inteligente e direcionado. Produtores e peritos de boa-fé não são penalizados — suas COPs consistentes passam por validação rápida. Casos problemáticos emergem dos dados e recebem a atenção que merecem. O sistema como um todo se fortalece, recursos públicos são protegidos, e confiança no Proagro é preservada.</p>
-<p>Nas próximas seções, expandiremos essa análise para além de consistência climática individual, explorando padrões de <strong>recorrência</strong> (atores que aparecem repetidamente em COPs inconsistentes) e <strong>correlações</strong> (redes de atores conectados com alta sinistralidade). A análise meteorológica é o alicerce; sobre ele construiremos detecção de padrões comportamentais mais complexos.</p>
-</section>
-</section>
 
 
            </div>
@@ -1108,7 +733,7 @@ SE (fenômeno = geada) E (T_min entre 2-5°C):
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c10112d810>
+<jinja2.runtime.BlockReference object at 0x70ac9639d310>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

@@ -1,0 +1,162 @@
+Aula prática 4a — download das grades do CPTEC (MERGE e SAMeT)
+===============================================================
+
+Esta é a primeira de duas aulas sobre **dados em grade**. Aqui
+exercitamos apenas o **download** dos arquivos diários (e da
+climatologia) dos produtos:
+
+* **MERGE/CPTEC** — análise diária de precipitação combinando
+  pluviômetros e satélite (formato GRIB2),
+* **SAMeT/CPTEC** — análise diária de temperatura máxima e mínima em
+  grade (NetCDF).
+
+A manipulação dos arquivos baixados aparece em
+:doc:`fonte-de-dados4-manipulandodadosgrade`.
+
+.. contents:: Nesta aula
+   :local:
+   :depth: 2
+
+Objetivo
+--------
+
+Implementar dois *loops* de download (um em Bash, outro em Python)
+que descarregam a climatologia diária e a série observada de 2023–2024
+a partir do FTP público do CPTEC/INPE.
+
+Estrutura de pastas
+-------------------
+
+Criamos antes a árvore que receberá os arquivos:
+
+.. code-block:: bash
+
+   mkdir -p gridded-data/climatology gridded-data/merge gridded-data/samet
+   cd gridded-data
+   mkdir tmin tmax prec
+
+URLs base
+---------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Produto
+     - URL raiz
+   * - MERGE (precipitação)
+     - https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/DAILY/
+   * - SAMeT (Tmin/Tmax)
+     - https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/DAILY/
+   * - Climatologia SAMeT (TMAX/TMIN)
+     - https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/CLIMATOLOGY/DAILY_AVERAGE/
+
+Os caminhos completos seguem padrões previsíveis com a data
+embutida — exatamente o caso de um *loop*.
+
+Versão bash (climatologia)
+--------------------------
+
+A climatologia tem 365 arquivos por variável, um por dia do ano. O
+*loop* abaixo monta o nome do arquivo (ex.: ``01jan``, ``02jan``,
+…, ``31dec``) e usa ``wget``:
+
+.. code-block:: bash
+   :caption: Loop em Bash para baixar a climatologia diária do SAMeT.
+
+   %%bash
+   dataini='20250101'
+   for ((d=0; d<=365; d++)); do
+       data=$(date -d"$dataini +$d days" +%d%b | tr '[:upper:]' '[:lower:]')
+       echo $data
+       wget https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/CLIMATOLOGY/DAILY_AVERAGE/TMAX/SAMeT_CPTEC_TMAX_00Z$data.nc \
+            -O climatology/SAMeT_CPTEC_TMAX_00Z$data.nc
+       wget https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/CLIMATOLOGY/DAILY_AVERAGE/TMIN/SAMeT_CPTEC_TMIN_00Z$data.nc \
+            -O climatology/SAMeT_CPTEC_TMIN_00Z$data.nc
+   done
+
+Versão Python (observação 2023–2024)
+-------------------------------------
+
+Para os dados observados, mostramos a alternativa em Python — útil
+quando o ambiente não tem Bash ou quando queremos tratamento de erro
+mais explícito:
+
+.. code-block:: python
+   :caption: Download dos dados diários de MERGE e SAMeT para 2023–2024.
+
+   import datetime as dt
+   import requests
+   import os
+
+   dataini = dt.datetime(2023, 1, 1)
+   datafim = dt.datetime(2024, 12, 31)
+
+   data = dataini
+   while data <= datafim:
+       ano, mes, dia = data.strftime('%Y'), data.strftime('%m'), data.strftime('%d')
+       data_str = f'{ano}{mes}{dia}'
+       print(f'Iniciando download de {ano}-{mes}-{dia}')
+
+       # MERGE — precipitação (GRIB2)
+       resp = requests.get(
+           f'https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/DAILY/'
+           f'{ano}/{mes}/MERGE_CPTEC_{data_str}.grib2'
+       )
+       if resp.status_code == 200:
+           with open(f'merge/MERGE_CPTEC_{data_str}.grib2', 'wb') as f:
+               f.write(resp.content)
+
+       # SAMeT TMAX
+       resp = requests.get(
+           f'https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/DAILY/TMAX/'
+           f'{ano}/{mes}/SAMeT_CPTEC_TMAX_{data_str}.nc'
+       )
+       if resp.status_code == 200:
+           with open(f'tmax/SAMeT_CPTEC_TMAX_{data_str}.nc', 'wb') as f:
+               f.write(resp.content)
+
+       # SAMeT TMIN — idem
+
+       data += dt.timedelta(days=1)
+
+Volumes esperados
+-----------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 15 60
+
+   * - Produto
+     - Tamanho por dia
+     - Volume aproximado (2 anos)
+   * - MERGE GRIB2
+     - ~600 kB
+     - ~440 MB
+   * - SAMeT TMAX/TMIN NetCDF
+     - ~1,2 MB cada
+     - ~1,7 GB no total
+   * - Climatologia (365 dias)
+     - ~1,2 MB
+     - ~450 MB por variável
+
+Discussão
+---------
+
+O FTP público do CPTEC é a forma mais barata e estável de obter as
+grades diárias para o Brasil — sem chave de API, sem cadastro. Em
+contrapartida:
+
+* não há SLA (o servidor pode ficar fora do ar por horas);
+* arquivos antigos podem desaparecer da pasta corrente após anos
+  (é preciso usar a estrutura ``/YEAR/MONTH/`` para histórico longo);
+* dependendo da rede, baixar 2 anos completos pode levar várias
+  horas — vale paralelizar com ``aiohttp`` ou ``concurrent.futures``.
+
+Próximos passos
+---------------
+
+* :doc:`fonte-de-dados4-manipulandodadosgrade` — abrir, recortar e
+  calcular anomalias com ``xarray`` e ``cartopy``.
+* :doc:`../gridded` — visão geral conceitual das grades MERGE e
+  SAMeT (resolução, projeção, fontes de calibração).

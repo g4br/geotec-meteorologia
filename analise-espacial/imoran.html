@@ -6,29 +6,29 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantificando autocorrelação espacial: O índice I de Moran &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Quantificando autocorrelação espacial: O índice I de Moran &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/imoran.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/analise-espacial/imoran.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Técnicas de interpolação espacial aplicadas ao risco agrícola" href="metodos-interpolacao.html" />
     <link rel="prev" title="Visualização preliminar: mapas de calor e densidade kernel" href="heatmap-kernel.html" /> 
 </head>
@@ -41,12 +41,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -54,41 +54,194 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
-<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Quantificando autocorrelação espacial: O índice I de Moran</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#da-intuicao-visual-a-certeza-estatistica">Da intuição visual à certeza estatística</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fundamentos-teoricos-do-indice-i-de-moran">Fundamentos teóricos do índice I de Moran</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#mecanica-do-calculo-compreendendo-a-formula">Mecânica do cálculo: compreendendo a fórmula</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#testes-de-significancia-estatistica">Testes de significância estatística</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#interpretacao-do-indice-i-de-moran-no-contexto-do-proagro">Interpretação do índice I de Moran no contexto do Proagro</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#o-diagrama-de-dispersao-de-moran">O diagrama de dispersão de Moran</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#limitacoes-e-armadilhas-do-indice-i-de-moran">Limitações e armadilhas do índice I de Moran</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#boas-praticas-e-checklist-de-verificacao">Boas práticas e checklist de verificação</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#casos-especiais-e-consideracoes-avancadas">Casos especiais e considerações avançadas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sintese-e-integracao-com-outros-modulos-do-geotec">Síntese e integração com outros módulos do geotec</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#recursos-adicionais-e-implementacao-pratica">Recursos adicionais e implementação prática</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#glossario-de-termos-tecnicos">Glossário de termos técnicos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#conclusao-o-i-de-moran-como-pilar-da-analise-espacial">Conclusão: O I de Moran como pilar da análise espacial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quantificando autocorrelação espacial: O índice I de Moran</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#da-intuicao-visual-a-certeza-estatistica">Da intuição visual à certeza estatística</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#o-problema-da-aleatoriedade-espacial">O problema da aleatoriedade espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-solucao-estatistica">A solução estatística</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fundamentos-teoricos-do-indice-i-de-moran">Fundamentos teóricos do índice I de Moran</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#definicao-e-conceito-central">Definição e conceito central</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contexto-historico">Contexto histórico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-conceito-de-autocorrelacao-espacial">O conceito de autocorrelação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos">Autocorrelação: quando os dados conversam com seus vizinhos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tipos-de-autocorrelacao-espacial">Tipos de autocorrelação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-escala-do-indice-i-de-moran">A escala do índice I de Moran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#valores-possiveis-e-interpretacao">Valores possíveis e interpretação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#significancia-estatistica-o-papel-crucial-do-valor-p">Significância estatística: O papel crucial do valor-p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-o-valor-do-indice-nao-basta">Por que o valor do índice não basta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacao-do-valor-p">Interpretação do valor-p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#regra-fundamental-da-interpretacao">Regra fundamental da interpretação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplos-praticos-de-interpretacao-conjunta">Exemplos práticos de interpretação conjunta</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mecanica-do-calculo-compreendendo-a-formula">Mecânica do cálculo: compreendendo a fórmula</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#a-formula-matematica-completa">A fórmula matemática completa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#desmembrando-a-formula-passo-a-passo">Desmembrando a fórmula passo a passo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passo-1-padronizacao-dos-dados-desvios-da-media">Passo 1: padronização dos dados (desvios da média)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passo-2-definir-vizinhanca-a-matriz-de-pesos-espaciais">Passo 2: definir vizinhança (A matriz de pesos espaciais)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passo-3-calcular-produtos-cruzados-ponderados">Passo 3: calcular produtos cruzados ponderados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#passo-4-normalizar">Passo 4: normalizar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacao-final-i-de-moran-como-correlacao-espacial">Interpretação final: I de Moran como correlação espacial</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#testes-de-significancia-estatistica">Testes de significância estatística</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-precisamos-de-testes-de-significancia">Por que precisamos de testes de significância</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hipoteses-do-teste">Hipóteses do teste</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abordagem-analitica-aproximacao-pela-normal">Abordagem analítica (aproximação pela normal)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#esperanca-e-variancia-teoricas">Esperança e variância teóricas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#z-score-e-valor-p">Z-Score e valor-p</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-da-abordagem-analitica">Limitações da abordagem analítica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abordagem-por-simulacao-teste-de-permutacao-monte-carlo">Abordagem por simulação (teste de permutação Monte Carlo)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#procedimento-detalhado">Procedimento detalhado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vantagens-do-teste-de-permutacao">Vantagens do teste de permutação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#numero-de-permutacoes-necessario">Número de permutações necessário</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-numerico-completo-de-teste-de-permutacao">Exemplo numérico completo de teste de permutação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visualizando-o-teste-histograma-de-permutacao">Visualizando o teste: histograma de permutação</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#interpretacao-do-indice-i-de-moran-no-contexto-do-proagro">Interpretação do índice I de Moran no contexto do Proagro</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#padroes-esperados-vs-anomalos">Padrões esperados vs. anômalos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autocorrelacao-alta-e-significativa-quando-e-esperada">Autocorrelação alta e significativa: quando É esperada</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autocorrelacao-baixa-ou-ausente-quando-e-esperada">Autocorrelação baixa ou ausente: quando É esperada</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#divergencias-que-sinalizam-anomalias">Divergências que sinalizam anomalias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplos-detalhados-de-interpretacao">Exemplos detalhados de interpretação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-1-cops-por-seca-padrao-esperado-de-fenomeno-regional">Exemplo 1: COPs por seca — padrão esperado de fenômeno regional</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-2-cops-por-granizo-fenomeno-localizado-baixa-autocorrelacao">Exemplo 2: COPs por granizo — fenômeno localizado, baixa autocorrelação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-3-cops-com-padrao-suspeito-divergencia-entre-perdas-e-clima">Exemplo 3: COPs com padrão suspeito — divergência entre perdas e clima</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-4-autocorrelacao-moderada-em-ambos-coerencia-parcial">Exemplo 4: autocorrelação moderada em ambos — coerência parcial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#o-diagrama-de-dispersao-de-moran">O diagrama de dispersão de Moran</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#conceito-e-construcao">Conceito e construção</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#eixos-do-diagrama">Eixos do diagrama</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inclinacao-da-linha-de-regressao">Inclinação da linha de regressão</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#os-quatro-quadrantes-e-suas-interpretacoes">Os quatro quadrantes e suas interpretações</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quadrante-i-superior-direito-high-high-hh">Quadrante I (superior direito) — high-high (HH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quadrante-iii-inferior-esquerdo-low-low-ll">Quadrante III (inferior esquerdo) — low-low (LL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quadrante-ii-superior-esquerdo-low-high-lh">Quadrante II (superior esquerdo) — low-high (LH)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quadrante-iv-inferior-direito-high-low-hl">Quadrante IV (inferior direito) — high-low (HL)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacao-da-linha-de-regressao">Interpretação da linha de regressão</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inclinacao-positiva-acentuada-i-alto"><strong>Inclinação positiva acentuada (I alto)</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inclinacao-proxima-de-zero-i-proximo-de-0"><strong>Inclinação próxima de zero (I próximo de 0)</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inclinacao-negativa-i-negativo-raro"><strong>Inclinação negativa (I negativo, raro)</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#utilidade-pratica-do-diagrama-para-o-proagro">Utilidade prática do diagrama para o Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#identificacao-visual-rapida-de-outliers">Identificação visual rápida de outliers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diagnostico-de-influencia-de-observacoes-extremas">Diagnóstico de influência de observações extremas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparacao-visual-entre-diferentes-variaveis">Comparação visual entre diferentes variáveis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comunicacao-com-nao-especialistas">Comunicação com não-especialistas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-completo-de-diagrama-de-moran">Exemplo completo de diagrama de Moran</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#limitacoes-e-armadilhas-do-indice-i-de-moran">Limitações e armadilhas do índice I de Moran</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#limitacao-1-sensibilidade-a-definicao-de-vizinhanca">Limitação 1: sensibilidade à definição de vizinhança</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-problema">O problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-comparativo">Exemplo comparativo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-ocorre">Por que ocorre</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boa-pratica-analise-de-sensibilidade">Boa prática: análise de sensibilidade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recomendacao-para-relatorios">Recomendação para relatórios</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacao-2-medida-global-pode-mascarar-heterogeneidade-local">Limitação 2: medida global pode mascarar heterogeneidade local</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">O problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-ilustrativo">Exemplo ilustrativo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solucao-analise-lisa">Solução: análise LISA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alternativa-analise-estratificada">Alternativa: análise estratificada</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacao-3-nao-detecta-todos-os-tipos-de-padrao-espacial">Limitação 3: não detecta todos os tipos de padrão espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#padroes-nao-capturados">Padrões não capturados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-pratico">Exemplo prático</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recomendacao">Recomendação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacao-4-nao-implica-causalidade">Limitação 4: não implica causalidade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-problema-fundamental">O problema fundamental</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-contexto-do-proagro">No contexto do Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boa-pratica">Boa prática</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#armadilha-1-multiplos-testes-sem-correcao">Armadilha 1: múltiplos testes sem correção</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">O problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-proagro">No Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solucoes">Soluções</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#armadilha-2-ignorar-pressuposto-de-estacionariedade">Armadilha 2: ignorar pressuposto de estacionariedade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">O problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo">Exemplo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diagnostico">Diagnóstico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#alternativa">Alternativa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#armadilha-3-usar-i-de-moran-com-dados-de-contagem-bruta">Armadilha 3: usar I de Moran com dados de contagem bruta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">O problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solucao">Solução</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-correto">Exemplo correto</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#boas-praticas-e-checklist-de-verificacao">Boas práticas e checklist de verificação</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#checklist-para-analise-rigorosa-com-i-de-moran">Checklist para análise rigorosa com I de Moran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#antes-de-calcular">Antes de calcular</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#durante-o-calculo">Durante o cálculo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analise-de-sensibilidade">Análise de sensibilidade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpretacao">Interpretação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentacao-e-reporte">Documentação e reporte</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-de-reporte-completo-e-adequado">Exemplo de reporte completo e adequado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelo-de-texto-para-relatorio-tecnico">Modelo de texto para relatório técnico</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#casos-especiais-e-consideracoes-avancadas">Casos especiais e considerações avançadas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dados-com-zeros-inflacionados">Dados com zeros inflacionados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#situacao">Situação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#problema">Problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Soluções</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unidades-espaciais-com-areas-muito-heterogeneas">Unidades espaciais com áreas muito heterogêneas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Situação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Soluções</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lidar-com-ilhas-ou-unidades-isoladas">Lidar com ilhas ou unidades isoladas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Situação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Problema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Soluções</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#autocorrelacao-temporal-vs-espacial">Autocorrelação temporal vs. espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Situação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#consideracao">Consideração</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analise-complementar">Análise complementar</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sintese-e-integracao-com-outros-modulos-do-geotec">Síntese e integração com outros módulos do geotec</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recapitulacao-dos-conceitos-centrais">Recapitulação dos conceitos centrais</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#posicao-do-i-de-moran-no-workflow-analitico-do-proagro">Posição do I de Moran no workflow analítico do Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integracao-com-outras-dimensoes-do-geotec">Integração com outras dimensões do geotec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quando-usar-e-quando-nao-usar-i-de-moran">Quando usar e quando NÃO usar I de Moran</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-i-de-moran-quando">✅ use I de Moran quando:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nao-use-i-de-moran-ou-use-com-cautela-extrema-quando">❌ NÃO use I de Moran (ou use com cautela extrema) quando:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#recursos-adicionais-e-implementacao-pratica">Recursos adicionais e implementação prática</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#implementacao-em-python-pysal">Implementação em Python (pysal)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-exemplo-completo">Código exemplo completo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bibliotecas-recomendadas">Bibliotecas recomendadas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#implementacao-em-r-spdep">Implementação em R (spdep)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codigo-exemplo">Código exemplo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#softwares-gis-qgis-geoda">Softwares GIS (QGIS / geoda)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#glossario-de-termos-tecnicos">Glossário de termos técnicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusao-o-i-de-moran-como-pilar-da-analise-espacial">Conclusão: O I de Moran como pilar da análise espacial</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recapitulacao-final">Recapitulação final</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-i-de-moran-e-apenas-o-comeco">O I de Moran É apenas o começo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proximo-passo-lisa-local-indicators-of-spatial-association">Próximo passo: LISA (local indicators of spatial association)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mensagem-final">Mensagem final</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -97,15 +250,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
       <li class="breadcrumb-item active">Quantificando autocorrelação espacial: O índice I de Moran</li>
       <li class="wy-breadcrumbs-aside">
@@ -146,7 +298,7 @@
 </section>
 <section id="contexto-historico">
 <h3>Contexto histórico<a class="headerlink" href="#contexto-historico" title="Link permanente para este cabeçalho"></a></h3>
-<p>Patrick Alfred Pierce Moran (1917-1988) desenvolveu este índice como parte de pesquisas em genética de populações e epidemiologia. O artigo seminal <em>“Notes on Continuous Stochastic Phenomena”</em>, publicado na <em>Biometrika</em> <span id="id1">[<a class="reference internal" href="../../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, introduziu formalmente o conceito de autocorrelação espacial quantitativa, revolucionando a análise de dados geográficos.</p>
+<p>Patrick Alfred Pierce Moran (1917-1988) desenvolveu este índice como parte de pesquisas em genética de populações e epidemiologia. O artigo seminal <em>“Notes on Continuous Stochastic Phenomena”</em>, publicado na <em>Biometrika</em> <span id="id1">[<a class="reference internal" href="../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, introduziu formalmente o conceito de autocorrelação espacial quantitativa, revolucionando a análise de dados geográficos.</p>
 <p>Antes do trabalho de Moran, análises espaciais eram predominantemente descritivas e qualitativas. A introdução de uma medida quantitativa com propriedades estatísticas bem definidas permitiu testes de hipótese rigorosos e abriu caminho para toda a família de estatísticas espaciais que usamos hoje.</p>
 </section>
 <section id="o-conceito-de-autocorrelacao-espacial">
@@ -155,7 +307,7 @@
 <section id="autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos">
 <h3>Autocorrelação: quando os dados conversam com seus vizinhos<a class="headerlink" href="#autocorrelacao-quando-os-dados-conversam-com-seus-vizinhos" title="Link permanente para este cabeçalho"></a></h3>
 <p>Em estatística clássica (não-espacial), assume-se que observações são <strong>independentes</strong> umas das outras — o valor medido em um local não deveria influenciar ou estar correlacionado com o valor em outro local. Essa é a premissa fundamental de muitos testes estatísticos tradicionais (t-test, ANOVA, regressão linear ordinária).</p>
-<p>Mas dados espaciais frequentemente <strong>violam essa premissa</strong>. Como discutimos anteriormente, a primeira lei da geografia <span id="id2">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span> nos diz que coisas próximas tendem a ser mais parecidas que coisas distantes.</p>
+<p>Mas dados espaciais frequentemente <strong>violam essa premissa</strong>. Como discutimos anteriormente, a primeira lei da geografia <span id="id2">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span> nos diz que coisas próximas tendem a ser mais parecidas que coisas distantes.</p>
 <p>No contexto agrícola e do Proagro:</p>
 <ul class="simple">
 <li><p>A taxa de COPs por seca no município A não é independente da taxa no município B se ambos compartilham fronteira e foram afetados pela mesma massa de ar seca</p></li>
@@ -192,6 +344,30 @@
 </ul>
 </dd>
 </dl>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Painel com três grades/mapas ilustrando autocorrelação positiva
+(clustering de valores similares), nula (distribuição aleatória) e negativa (padrão
+tipo tabuleiro de xadrez).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>dá uma referência visual imediata para os três tipos de autocorrelação
+descritos nesta seção, antes de discutir a escala numérica de I.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“spatial autocorrelation positive negative random grid”; “tipos de
+autocorrelação espacial xadrez agrupado”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GeoDa/PySAL, Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 </section>
 <section id="a-escala-do-indice-i-de-moran">
 <h3>A escala do índice I de Moran<a class="headerlink" href="#a-escala-do-indice-i-de-moran" title="Link permanente para este cabeçalho"></a></h3>
@@ -414,6 +590,30 @@ E    0    0    1    0    0
 </dd>
 </dl>
 </div></blockquote>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diagrama comparando contiguidade <strong>Rainha (Queen)</strong> e <strong>Torre (Rook)</strong>
+sobre uma grade — destacando, para uma célula central, quais vizinhos contam em cada
+critério (Queen inclui contatos por vértice; Rook, só por aresta).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>torna concreta a definição de vizinhança por contiguidade, etapa mais crítica
+na construção da matriz de pesos espaciais.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“queen rook contiguity spatial weights diagram”; “contiguidade rainha
+torre vizinhança espacial”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GeoDa/PySAL, Wikimedia Commons</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <p><strong>Distância Fixa (Distance Band)</strong></p>
 <blockquote>
 <div><p>Municípios cujos centroides estão a menos de <span class="math notranslate nohighlight">\(d\)</span> km são vizinhos.</p>
@@ -1038,6 +1238,30 @@ Pode haver leve tendência de produtores em certos municípios reportarem mais p
 <div class="math notranslate nohighlight">
 \[I \approx \text{slope} = \frac{\text{Cov}(z_i, \text{Lag}(z_i))}{\text{Var}(z_i)}\]</div>
 <p>Quanto mais íngreme a linha (positiva), maior a autocorrelação positiva.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diagrama de dispersão de Moran anotado, com os quatro quadrantes
+rotulados (HH, LL, LH, HL), o eixo X (valor padronizado), o eixo Y (spatial lag) e a
+reta de regressão cuja inclinação é o I de Moran.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>serve de referência limpa para a leitura dos quatro quadrantes detalhados a
+seguir, complementando os esquemas em ASCII do texto.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“Moran scatterplot four quadrants HH LL HL LH”; “diagrama de dispersão
+de Moran quadrantes spatial lag”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GeoDa/PySAL, Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 </section>
 <section id="os-quatro-quadrantes-e-suas-interpretacoes">
 <h3>Os quatro quadrantes e suas interpretações<a class="headerlink" href="#os-quatro-quadrantes-e-suas-interpretacoes" title="Link permanente para este cabeçalho"></a></h3>
@@ -2140,7 +2364,7 @@ com COPs?</p></th>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c101091d10>
+<jinja2.runtime.BlockReference object at 0x70ac9735ca50>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

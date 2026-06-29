@@ -1,0 +1,95 @@
+Catálogo de fontes de dados meteorológicos
+==========================================
+
+Esta página consolida os portais públicos usados ao longo do curso. A
+mesma lista aparece no caderno
+``Fonte-de-Dados-LinksDasFontes.ipynb`` e serve de referência para o
+restante das aulas práticas.
+
+.. seealso::
+
+   :doc:`../estacoes`, :doc:`../gridded`,
+   :doc:`../satelite-meteorologico`, :doc:`../radar` e
+   :doc:`../indicacao-dados` discutem o conteúdo de cada fonte. Esta
+   página é apenas o índice de URLs.
+
+Estações meteorológicas
+-----------------------
+
+INMET
+~~~~~
+
+* Mapa de estações: https://mapas.inmet.gov.br/
+* BDMEP (banco histórico): https://bdmep.inmet.gov.br/
+* Catálogo de estações automáticas: https://portal.inmet.gov.br/paginas/catalogoaut
+* Dados históricos (download em ZIP por ano): https://portal.inmet.gov.br/dadoshistoricos
+* Tabela em tempo real: https://tempo.inmet.gov.br/TabelaEstacoes/A001
+
+CEMADEN (pluviômetros)
+~~~~~~~~~~~~~~~~~~~~~~
+
+* Mapa interativo: https://mapainterativo.cemaden.gov.br/
+
+ANA (pluviômetros e fluviômetros)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Mapa Hidroweb: https://www.snirh.gov.br/hidroweb/mapa
+* Séries históricas: https://www.snirh.gov.br/hidroweb/serieshistoricas
+
+Centros estaduais (PMTCRH/CPTEC)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Epagri/Ciram (SC): https://ciram.epagri.sc.gov.br/agroconnect/
+* Funceme (CE): http://www.funceme.br/
+* Simepar (PR): https://www.simepar.br/
+* Inema (BA), Cemaden estadual, etc. — lista completa em
+  http://proclima.cptec.inpe.br/introd.shtml
+
+Privadas
+~~~~~~~~
+
+* Sigma Meteorologia: https://sigmameteorologia.com/sigmaweb/stations.php
+
+Monitores de seca
+-----------------
+
+* Monitor de Secas do Brasil (ANA): https://monitordesecas.ana.gov.br/mapa
+* Anomalia / SPI / Quantis (INMET): https://clima.inmet.gov.br/prec
+* Monitoramento CPTEC/INPE: https://clima.cptec.inpe.br/monitoramentobrasil/pt
+* SPI global gridded (NOAA / CMORPH): https://www.drought.gov/data-maps-tools/global-gridded-standardized-precipitation-index-spi-cmorph-daily
+
+Centros nacionais
+-----------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 40 35
+
+   * - Instituição
+     - Foco principal
+     - Site
+   * - **INMET**
+     - Monitoramento, previsão do tempo e clima, avisos severos, rede
+       de estações automáticas e convencionais
+     - https://portal.inmet.gov.br
+   * - **CPTEC/INPE**
+     - Previsão numérica, monitoramento climático, MERGE, SAMeT,
+       produtos sazonais e subsazonais
+     - https://www.cptec.inpe.br
+   * - **ANA**
+     - Recursos hídricos, vazões, fluviometria, Monitor de Secas
+     - https://www.gov.br/ana
+   * - **CEMADEN**
+     - Alertas de desastres naturais, pluviômetros automáticos
+     - https://www.gov.br/mcti/pt-br/composicao/cemaden
+
+Dados em grade (gridded)
+------------------------
+
+* MERGE/CPTEC (precipitação diária): https://ftp.cptec.inpe.br/modelos/tempo/MERGE/
+* SAMeT/CPTEC (temperatura diária): https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/
+* CHIRPS (UCSB, precipitação global): https://www.chc.ucsb.edu/data/chirps
+* NOAA CPC (precipitação): https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html
+* NOAA CPC (temperatura): https://psl.noaa.gov/data/gridded/data.cpc.globaltemp.html
+* Copernicus Climate Data Store: https://cds.climate.copernicus.eu/datasets
+* MERRA-2 (NASA GMAO): https://gmao.gsfc.nasa.gov/gmao-products/merra-2/data-access_merra-2/

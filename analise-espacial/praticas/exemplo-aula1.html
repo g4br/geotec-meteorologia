@@ -6,29 +6,29 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+  <title>Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/praticas/exemplo-aula1.html" />
-      <script src="../../../_static/jquery.js"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-      <script src="../../../_static/doctools.js"></script>
-      <script src="../../../_static/sphinx_highlight.js"></script>
-      <script src="../../../_static/clipboard.min.js"></script>
-      <script src="../../../_static/copybutton.js"></script>
-      <script src="../../../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/analise-espacial/praticas/exemplo-aula1.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../../search.html" />
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
     <link rel="next" title="Bloco 1 — KDE e I de Moran global (município)" href="kde-moran.html" />
     <link rel="prev" title="Aulas práticas — análise espacial, estatística e interpolação" href="index.html" /> 
 </head>
@@ -41,12 +41,12 @@
 
           
           
-          <a href="../../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -54,29 +54,32 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../interpolacao-espacial.html">Interpolação espacial</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="index.html">Aulas práticas — análise espacial, estatística e interpolação</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="index.html#sequencia-sugerida">Sequência sugerida</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Aulas práticas — análise espacial, estatística e interpolação</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#sequencia-sugerida">Sequência sugerida</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="kde-moran.html">Bloco 1 — KDE e I de Moran global (município)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lisa-maup-gistar.html">Bloco 2 — LISA, MAUP, falácia ecológica e Getis-Ord Gi*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="idw-spline-krigagem.html">Bloco 3 — IDW, spline RBF e krigagem ordinária</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -85,15 +88,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">GeoCreditoRural</a>
+          <a href="../../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
           <li class="breadcrumb-item"><a href="index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
       <li class="breadcrumb-item active">Bloco 0 — exemplo integrado: Tobler → Moran → LISA → MAUP</li>
@@ -239,7 +241,7 @@ calculamos o <strong>lag espacial</strong> e correlacionamos:</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id1">
-<img alt="Dispersão valor da célula × média dos vizinhos (Lei de Tobler)." src="../../../_images/cell014_out1.png" />
+<img alt="Dispersão valor da célula × média dos vizinhos (Lei de Tobler)." src="../../_images/cell014_out1.png" />
 <figcaption>
 <p><span class="caption-number">Figura 33 - </span><span class="caption-text">Demonstração visual da Lei de Tobler: a inclinação positiva
 indica que células com muitas COPs tendem a estar próximas de
@@ -283,7 +285,7 @@ vizinhança para checar <strong>robustez do resultado</strong>:</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id2">
-<img alt="Histograma do I de Moran sob 999 permutações + valor observado." src="../../../_images/cell019_out0.png" />
+<img alt="Histograma do I de Moran sob 999 permutações + valor observado." src="../../_images/cell019_out0.png" />
 <figcaption>
 <p><span class="caption-number">Figura 34 - </span><span class="caption-text">Distribuição permutada do I de Moran (cinza) com o valor
 observado em destaque (linha vertical). Quando o observado cai
@@ -312,7 +314,7 @@ espacial.</span><a class="headerlink" href="#id2" title="Link Permanente para es
 </pre></div>
 </div>
 <figure class="align-center" id="id3">
-<img alt="Diagrama de Moran para n_cops." src="../../../_images/cell021_out0.png" />
+<img alt="Diagrama de Moran para n_cops." src="../../_images/cell021_out0.png" />
 <figcaption>
 <p><span class="caption-number">Figura 35 - </span><span class="caption-text">Diagrama de Moran. A <strong>inclinação</strong> da reta de regressão é o
 próprio I de Moran. Quadrantes superior-direito e inferior-esquerdo
@@ -335,7 +337,7 @@ contêm <strong>clusters</strong>; superior-esquerdo e inferior-direito contêm
 </pre></div>
 </div>
 <figure class="align-center" id="id4">
-<img alt="Mapa LISA de COPs no Sul do Brasil." src="../../../_images/cell024_out1.png" />
+<img alt="Mapa LISA de COPs no Sul do Brasil." src="../../_images/cell024_out1.png" />
 <figcaption>
 <p><span class="caption-number">Figura 36 - </span><span class="caption-text">Mapa LISA com células classificadas como HH (vermelho), LL (azul),
 HL (laranja) e LH (azul claro). O Sul gaúcho aparece como o
@@ -374,7 +376,7 @@ geográficas):</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id5">
-<img alt="Painel comparando LISA de COPs e LISA de déficit hídrico." src="../../../_images/cell027_out2.png" />
+<img alt="Painel comparando LISA de COPs e LISA de déficit hídrico." src="../../_images/cell027_out2.png" />
 <figcaption>
 <p><span class="caption-number">Figura 37 - </span><span class="caption-text">Painel com <strong>LISA de COPs</strong> e <strong>LISA de déficit hídrico</strong> lado a
 lado. Onde os dois mapas batem (HH em ambos), temos coerência;
@@ -410,7 +412,7 @@ olhar mais de perto.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id6">
-<img alt="Mapa de recorrência temporal por célula." src="../../../_images/cell030_out3.png" />
+<img alt="Mapa de recorrência temporal por célula." src="../../_images/cell030_out3.png" />
 <figcaption>
 <p><span class="caption-number">Figura 38 - </span><span class="caption-text">Classe de recorrência por célula. Áreas crônicas (4+ anos com
 COPs) merecem investigação adicional, mesmo quando o I de Moran
@@ -504,7 +506,7 @@ unidade municipal.</p></li>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c1049bf250>
+<jinja2.runtime.BlockReference object at 0x70ac96915350>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

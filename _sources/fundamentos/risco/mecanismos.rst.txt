@@ -1,0 +1,33 @@
+Mecanismos fisiológicos
+=======================
+
+A produção agrícola resulta de uma complexa interação entre fatores climáticos, fisiológicos e temporais que determinam quando e como as plantas convertem recursos em biomassa útil. Esta conversão é regulada por três "moedas" biológicas fundamentais: **água**, **energia luminosa** e **tempo biológico (fator térmico)** :cite:`dias2018ecofisiologia,pereira1989aspectos`.
+
+1. **Água**: A água é a moeda biológica fundamental, atuando como reagente na fotossíntese, meio de transporte de nutrientes, mantenedora da turgescência celular e reguladora térmica através da transpiração. O balanço hídrico no solo representa a contabilidade entre entrada (precipitação, irrigação) e saída (evapotranspiração) de água, sendo a disponibilidade hídrica atual no solo o dado mais relevante para o produtor :cite:`dias2018ecofisiologia,ferreira2001agricultura`.
+
+2. **Energia Luminosa**: A radiação solar é convertida em energia química através da fotossíntese, dependendo diretamente da Radiação Fotossintética Ativa (PAR). A eficiência desta conversão varia entre espécies e é afetada por condições ambientais, seguindo o modelo que considera fotossíntese bruta, respiração de manutenção e respiração de síntese :cite:`pereira1989aspectos,gazzoni2024impacto`.
+
+3. **Tempo Biológico (fator térmico)**: A temperatura regula a velocidade dos processos metabólicos através do conceito de graus-dia, onde cada cultura possui temperatura basal inferior e superior específicas, além de uma constante térmica necessária para completar cada fase de desenvolvimento. O timing adequado é crucial para a sincronização dos processos fisiológicos :cite:`sentelhas2012grausdia`.
+
+Onde o clima atua no ciclo da cultura
+-------------------------------------
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Esquema dos estádios fenológicos de uma cultura de grãos (ex.: soja ou
+      milho), da semeadura à maturação, em sequência ilustrada.
+   :Função: dá uma visão geral das fases citadas a seguir, conectando cada etapa do ciclo
+      ao momento em que o clima atua.
+   :Busca sugerida: "soybean growth stages diagram"; "estádios fenológicos soja milho
+      esquema"
+   :Fonte provável: Embrapa, serviços de extensão (universidades), Wikimedia Commons
+   :Facilidade: alta
+
+**Estabelecimento (Semeadura → Emergência)**: fase crítica, a umidade do solo e a temperatura determinam diretamente o sucesso da germinação e o vigor inicial das plântulas. Condições inadequadas podem comprometer o estande de plantas desde o início :cite:`oliveira2022estresses,dias2018ecofisiologia`.
+
+**Desenvolvimento Vegetativo**: Durante esta fase, radiação + água determinam a quantidade de biomassa construída, enquanto a temperatura regula a velocidade desse processo. A fotossíntese líquida depende da disponibilidade simultânea de luz e água. :cite:`dias2018ecofisiologia,pereira1989aspectos`.
+
+**Fase Reprodutiva**: A fase reprodutiva representa o período de maior sensibilidade climática onde pequenas desarmonias de água, temperatura ou luz têm impacto desproporcional no número de estruturas reprodutivas. A formação de gametas é altamente sensível ao estresse hídrico e térmico, e a polinização pode ser prejudicada por temperaturas extremas :cite:`martins2024nogueira,dias2018ecofisiologia`.
+
+**Enchimento e Maturação**: Avanço e fase final dos cultivos, radiação e água sustentam o transporte de assimilados, enquanto temperaturas muito altas aceleram demais o ciclo e reduzem o peso do produto final. Altas temperaturas aumentam a respiração de manutenção, reduzindo a eficiência de conversão :cite:`dias2018ecofisiologia`.

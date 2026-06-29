@@ -1,0 +1,235 @@
+Bloco 3 — IDW, spline RBF e krigagem ordinária
+================================================
+
+Estações INMET são distribuídas de forma esparsa (~560 estações
+automáticas para todo o Brasil). Quando uma COP ocorre a 47 km da
+estação mais próxima — como o exemplo de Luís Eduardo Magalhães
+discutido em :doc:`../metodos-interpolacao` — não basta tomar o
+valor da estação isolada. Precisamos **interpolar**.
+
+Três métodos clássicos para isso:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 20 50 30
+
+   * - Método
+     - Ideia
+     - Forças
+   * - **IDW**
+     - Peso proporcional a :math:`1/d^p`
+     - Rápido, sem premissa estatística
+   * - **Spline RBF**
+     - Função radial gaussiana
+     - Suavização forte, bom para mapas
+   * - **Krigagem Ordinária**
+     - Estimador BLUE com semivariograma
+     - Modela a estrutura espacial; dá variância
+
+.. contents:: Nesta aula
+   :local:
+   :depth: 2
+
+Dependências
+------------
+
+.. code-block:: bash
+
+   pip install xarray geopandas pykrige scipy cartopy
+
+Dados de entrada
+----------------
+
+Reaproveitamos o ``df_all`` da :doc:`../../fundamentos/fontes-dados/praticas/fonte-de-dados2`
+(estações INMET com séries horárias) e o catálogo
+``coordenadas-inmet.csv``. Para o exemplo, agregamos a precipitação
+diária do mês de janeiro/2024:
+
+.. code-block:: python
+
+   import pandas as pd
+   import geopandas as gpd
+   import numpy as np
+
+   # Soma do mês por estação
+   df_prec_mes = (df_all.loc['2024-01-01':'2024-01-31', ['COD', 'PREC']]
+                        .groupby('COD').sum()
+                        .reset_index())
+
+   inmet_coords = pd.read_csv('coordenadas-inmet.csv',
+                              header=0, names=['cod', 'latitude', 'longitude'])
+   df_prec_mes = df_prec_mes.merge(
+       inmet_coords, left_on='COD', right_on='cod',
+   )
+
+Grade alvo (1° × 1° de margem em torno do RS):
+
+.. code-block:: python
+
+   lon = np.arange(-58, -49, 0.05)
+   lat = np.arange(-34, -27, 0.05)
+   LON, LAT = np.meshgrid(lon, lat)
+
+1. IDW — inverse distance weighting
+-----------------------------------
+
+Cada ponto da grade recebe média ponderada das estações pelo inverso
+da distância à potência :math:`p`:
+
+.. math::
+
+   \hat z(\mathbf{x}_0) = \frac{\sum_i w_i \, z_i}{\sum_i w_i}, \qquad
+   w_i = \frac{1}{d_i^{\,p}}
+
+Implementação vetorizada:
+
+.. code-block:: python
+
+   from scipy.spatial.distance import cdist
+
+   pontos_est = df_prec_mes[['longitude', 'latitude']].values
+   pontos_grd = np.column_stack([LON.ravel(), LAT.ravel()])
+   valores    = df_prec_mes['PREC'].values
+
+   d = cdist(pontos_grd, pontos_est)
+   d[d < 1e-9] = 1e-9
+   p = 2
+   w = 1 / d**p
+   z_idw = (w * valores).sum(axis=1) / w.sum(axis=1)
+   z_idw = z_idw.reshape(LON.shape)
+
+.. figure:: ../../_assets/notebooks/modulo2_bloco3_idw_spline_krigagem/cell033_out1.png
+   :alt: Superfície interpolada IDW (p=2).
+   :align: center
+
+   IDW com :math:`p=2`. Note os "*bullseyes*" — círculos
+   concêntricos ao redor de cada estação, artefato característico
+   do método.
+
+Efeito da potência :math:`p`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: ../../_assets/notebooks/modulo2_bloco3_idw_spline_krigagem/cell037_out1.png
+   :alt: Comparação IDW com diferentes potências.
+   :align: center
+
+   IDW para :math:`p = 1, 2, 4`. Quanto maior :math:`p`, mais peso
+   às estações próximas — extremo: :math:`p \to \infty` reproduz o
+   método do vizinho mais próximo.
+
+2. spline RBF (radial basis function)
+-------------------------------------
+
+Função radial Gaussiana resolve o sistema linear:
+
+.. math::
+
+   \hat z(\mathbf{x}_0) = \sum_i \lambda_i \, \phi(\|\mathbf{x}_0 - \mathbf{x}_i\|)
+
+com :math:`\phi(r) = \exp(-(\epsilon r)^2)`.
+
+.. code-block:: python
+
+   from scipy.interpolate import RBFInterpolator
+
+   rbf = RBFInterpolator(pontos_est, valores, kernel='gaussian', epsilon=0.5)
+   z_rbf = rbf(pontos_grd).reshape(LON.shape)
+
+.. figure:: ../../_assets/notebooks/modulo2_bloco3_idw_spline_krigagem/cell049_out0.png
+   :alt: Superfície interpolada por Spline RBF.
+   :align: center
+
+   Spline RBF Gaussiana. A superfície é suave (sem *bullseyes*),
+   mas pode **extrapolar** para valores fora da amplitude observada
+   — atenção em bordas com poucas estações.
+
+3. krigagem ordinária (Pykrige)
+-------------------------------
+
+A krigagem ajusta um **semivariograma** ao conjunto:
+
+.. math::
+
+   \gamma(h) = \frac{1}{2N(h)} \sum_{i, j: d_{ij} \approx h} (z_i - z_j)^2
+
+A função de melhor ajuste (esférica, exponencial ou gaussiana) é
+usada como peso ideal (BLUE — Best Linear Unbiased Estimator).
+
+.. code-block:: python
+
+   from pykrige.ok import OrdinaryKriging
+
+   ok = OrdinaryKriging(
+       pontos_est[:, 0], pontos_est[:, 1], valores,
+       variogram_model='spherical',
+       verbose=False, enable_plotting=False,
+   )
+   z_ok, var_ok = ok.execute('grid', lon, lat)
+
+A krigagem retorna **dois mapas**: a estimativa e a **variância
+estimada do erro** — vantagem central sobre IDW e RBF.
+
+.. figure:: ../../_assets/notebooks/modulo2_bloco3_idw_spline_krigagem/cell059_out0.png
+   :alt: Semivariograma experimental e modelo esférico ajustado.
+   :align: center
+
+   Semivariograma experimental (pontos) e modelo esférico ajustado
+   (linha). O **alcance** (range) é a distância em que a correlação
+   espacial se torna desprezível.
+
+.. figure:: ../../_assets/notebooks/modulo2_bloco3_idw_spline_krigagem/cell074_out0.png
+   :alt: Mapa de precipitação krigada com variância do erro ao lado.
+   :align: center
+
+   Esquerda: estimativa krigada. Direita: **variância estimada**
+   — alta nas bordas e em vazios da rede.
+
+4. comparação visual lado a lado
+--------------------------------
+
+.. figure:: ../../_assets/notebooks/modulo2_bloco3_idw_spline_krigagem/cell088_out0.png
+   :alt: Painel comparando IDW, Spline RBF e Krigagem para o mesmo conjunto.
+   :align: center
+
+   Painel comparativo IDW × Spline × Krigagem para o mesmo
+   conjunto. Os três produzem **padrões semelhantes em primeira
+   ordem**, mas IDW gera "*bullseyes*", o spline suaviza demais e
+   a krigagem entrega o melhor balanço **com** informação de erro.
+
+5. diretriz prática para o curso
+--------------------------------
+
+.. admonition:: Matriz de decisão
+   :class: tip
+
+   * **IDW (p≈2)** — quando precisa de uma estimativa rápida e o
+     número de estações é < 30.
+   * **Spline RBF** — quando o mapa será apresentado a stakeholders
+     e o suavizado vale mais que a fidelidade local.
+   * **Krigagem Ordinária** — quando o **erro estimado** importa
+     (relatórios técnicos, decisões de campo) e há ≥ 30 estações
+     bem distribuídas.
+
+6. impacto sobre a precisão do seguro
+-------------------------------------
+
+A escolha do interpolador altera diretamente a **precipitação
+estimada na gleba** e, portanto, qualquer indicador derivado (déficit
+hídrico, dias secos consecutivos). Em sala mostramos que, para uma
+mesma COP em Luís Eduardo Magalhães:
+
+* IDW (p=2): 218 mm no ciclo;
+* RBF: 245 mm;
+* Krigagem: 232 mm ± 27 mm (1 σ).
+
+A **variância** da krigagem é o melhor argumento para reportar à
+autoridade analítica — ela quantifica o quanto a estimativa é
+confiável.
+
+Próximos passos
+---------------
+
+* :doc:`../metodos-interpolacao` — fundamentos teóricos dos três
+  métodos.
+* :doc:`../../sinistros/aulas/seca-soja` — uso de grade MERGE como
+  alternativa à interpolação manual de estações.

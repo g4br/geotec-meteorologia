@@ -1,0 +1,251 @@
+Previsão de rendimento com redes neurais — caso da soja
+==========================================================
+
+Esta página apresenta, em síntese, a metodologia exposta no
+Módulo 4.2 do curso: **uma rede neural artificial (RNA)
+multimodal** para previsão de rendimento médio municipal de **soja**
+no Brasil, combinando dados de **sensoriamento remoto**, **clima** e
+**fenologia**. O conteúdo é baseado na dissertação de mestrado do
+instrutor (PPGSR/UFRGS), apresentada como referência prática do
+estado da arte.
+
+.. contents:: Nesta página
+   :local:
+   :depth: 2
+
+Por que prever rendimento?
+--------------------------
+
+Quatro aplicações operacionais imediatas:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Domínio
+     - Uso da previsão de rendimento
+   * - Crédito rural
+     - Calibrar expectativas de colheita, dimensionar
+       financiamento, avaliar plausibilidade de sinistros
+       (Proagro).
+   * - Política agrícola
+     - Antecipar safras abaixo da média para acionar mecanismos
+       de suporte.
+   * - Mercado
+     - Gestão de estoques e precificação de contratos futuros.
+   * - Seguro
+     - Estabelecer produtividades esperadas (PE) e avaliar
+       desvios em comunicações de perda (COPs).
+
+Formalmente:
+
+.. math::
+
+   \hat y = f(X_1, X_2, \ldots, X_n)
+
+onde :math:`\hat y` é o rendimento previsto e :math:`X_1 \ldots X_n`
+são covariáveis agrometeorológicas, fenológicas, pedológicas e de
+manejo.
+
+Por que RNAs funcionam bem para grãos
+-------------------------------------
+
+* **Aproximação universal** :cite:`cybenko:1989` — uma RNA aprende a
+  forma funcional sem que o analista precise especificá-la.
+* **Não-linearidades** — 35 °C no florescimento da soja causa dano
+  desproporcional, não apenas "um pouco mais" de perda que 30 °C.
+* **Interações temporais** — déficit hídrico combinado com alta
+  temperatura no enchimento produz perdas **sinérgicas**, não a
+  soma dos efeitos isolados.
+* **Integração de fontes** — tabulares (clima por fase, fenologia,
+  solo) somam-se a séries (NDVI mensal) sem reorganização manual.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Esquema de um perceptron multicamadas (MLP), com camada de entrada,
+      camadas ocultas densamente conectadas e neurônio de saída.
+   :Função: dá forma visual à arquitetura de RNA discutida nesta seção, antes da
+      implementação em Keras.
+   :Busca sugerida: "multilayer perceptron MLP architecture diagram"; "perceptron
+      multicamadas rede neural esquema"
+   :Fonte provável: Wikimedia Commons, documentação Keras/TensorFlow
+   :Facilidade: alta
+
+.. note::
+
+   No contexto Proagro/Sicor — com dados tabulares em médias mensais
+   ou decendiais — o **MLP** (perceptron multicamadas) é o ponto de
+   partida natural antes de CNNs ou LSTMs.
+
+Variável-alvo e covariáveis típicas
+-----------------------------------
+
+* **Alvo**: rendimento médio municipal (kg/ha) — soja, município ×
+  safra.
+* **Climáticas** (por fase ou mês): precipitação acumulada,
+  temperaturas máx/mín/média, radiação solar, ETo, balanço hídrico
+  (P − ETo).
+* **Fenologia · solo · tempo**: ciclo vegetativo/reprodutivo
+  (WCPMS, ZARC), data de semeadura, AWC, % argila, altitude,
+  latitude, ENSO (Niño 3.4 SST), tendência tecnológica (ano-safra).
+
+Modelo hibrido com 3 ramos paralelos
+------------------------------------
+
+A dissertação parte do princípio que **o tempo biológico da planta
+define as janelas de agregação climática** — não o calendário civil
+fixo ("precipitação de janeiro" não é uma janela agronomicamente
+significativa).
+
+Fluxo de dados
+~~~~~~~~~~~~~~
+
+#. **Sensoriamento remoto + construção de séries temporais
+   municipais** (NDVI/EVI) — MODIS/HLS;
+#. **Extração automática de métricas fenológicas** por município/
+   safra (início, pico, fim, taxa de senescência, integrada);
+#. **Integração climática orientada pela fenologia** — janelas
+   climáticas ancoradas no ciclo real, não no calendário;
+#. **Construção do dataset ampliado e modelagem preditiva**.
+
+Arquitetura da RNA
+~~~~~~~~~~~~~~~~~~
+
+Três ramos paralelos (divisão do trabalho):
+
+* **Ramo 1** — vê tudo junto (interações gerais);
+* **Ramo 2** — foca só no **clima** (27 variáveis meteorológicas);
+* **Ramo 3** — foca só na **fenologia** (10 métricas de NDVI).
+
+Saída em duas partes:
+
+* **Previsão base** (rendimento médio esperado);
+* **Correção regional** (calibração local).
+
+Detalhes operacionais:
+
+* Treinamento com **penalidade assimétrica** forçando subestimação
+  (preferível para finalidade de Proagro — pagamento indevido tem
+  custo maior que pagamento parcial).
+* **Calibração pós-treino** corrige inconsistências locais sem
+  retreinar a rede.
+
+Treinamento — implementação Keras
+---------------------------------
+
+A arquitetura básica para o ponto de partida MLP no Keras:
+
+.. code-block:: python
+
+   from tensorflow import keras
+   from tensorflow.keras import layers
+
+   model = keras.Sequential([
+       layers.Input(shape=(n_features,)),
+       layers.Dense(8, activation='relu', name='hidden1'),
+       layers.Dense(6, activation='relu', name='hidden2'),
+       layers.Dense(1, name='output'),    # regressão → sem softmax
+   ])
+
+   model.compile(optimizer='adam', loss='mse',
+                  metrics=['mae', 'mape'])
+
+   history = model.fit(
+       X_train, y_train,
+       epochs=100,
+       batch_size=32,
+       validation_split=0.2,
+   )
+
+.. admonition:: Parâmetros do ``.fit()``
+   :class: tip
+
+   * **``epochs=100``** — 100 ciclos completos sobre todo o dataset
+     de treino. Mais épocas → mais treinamento; risco de
+     *overfitting*.
+   * **``batch_size=32``** — 32 amostras por atualização dos pesos.
+     Comum: 16/32/64/128 (potências de 2). Menor batch → mais
+     atualizações (ruidosas, mas converge rápido); maior batch →
+     atualizações estáveis (mais memória).
+   * **``validation_split=0.2``** — separa 20% dos dados de treino
+     para monitorar o erro de validação a cada época.
+
+Algoritmo de treinamento
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+#. A rede faz uma previsão com os pesos atuais;
+#. Calcula-se o erro entre previsão e observado (MSE, RMSE);
+#. **Backpropagation** calcula o gradiente do erro em relação a
+   cada peso;
+#. Os pesos são atualizados na direção oposta ao gradiente —
+   passo controlado pela taxa de aprendizado;
+#. Repete-se por várias épocas sobre o conjunto de treinamento.
+
+Configurações típicas para grãos: **2 a 4 camadas ocultas, dezenas
+a centenas de neurônios cada**.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Ilustração de descida do gradiente sobre uma superfície de erro,
+      mostrando os passos em direção ao mínimo da função de perda.
+   :Função: complementa o algoritmo de treinamento (backpropagation e atualização dos
+      pesos) descrito nos passos anteriores.
+   :Busca sugerida: "gradient descent loss surface diagram"; "descida do gradiente
+      superfície de erro esquema"
+   :Fonte provável: Wikimedia Commons, documentação Keras/TensorFlow
+   :Facilidade: alta
+
+Resultados típicos
+------------------
+
+Resultado obtido na dissertação (e replicado em literatura
+recente, Monteiro et al. 2023/24):
+
+* **rRMSE ≈ 6%** em escala nacional;
+* **rRMSE ≈ 16%** em escala municipal para soja.
+
+A perda de acurácia ao descer de escala (país → município) reflete
+a **variância intermediária** discutida em :doc:`introducao` —
+sinal climático claro, mas com ruído local crescente.
+
+Pesos e interpretabilidade (SHAP)
+---------------------------------
+
+Apesar do *trade-off* "ganho em flexibilidade, custo em
+interpretabilidade", técnicas de **explainability** permitem
+inspecionar a importância relativa de cada variável:
+
+* **Variáveis fenológicas** — peso típico das métricas de NDVI
+  (início, pico, integrada);
+* **Variáveis climáticas** — peso típico de balanço hídrico e
+  temperatura por fase fenológica;
+* **Variáveis compostas** (interações) — capturadas pelo ramo 1
+  (visão integrada).
+
+A análise SHAP mostra quais variáveis dominam a previsão para cada
+caso individual — útil para auditoria operacional ("por que a rede
+previu produtividade baixa para este município?").
+
+Limitações
+----------
+
+* **Generalização para extremos** — RNAs aprendem padrões da
+  amostra de treino. Eventos sem análogo histórico (anomalia
+  climática inédita) tendem a ser subestimados.
+* **Dados de treino** — qualidade e cobertura municipal limitam o
+  desempenho; municípios pequenos com poucas safras na base têm
+  predição menos confiável.
+* **Custo de manutenção** — recalibração periódica conforme a
+  base de COPs e os dados de SR/clima crescem.
+
+Próximos passos
+---------------
+
+* :doc:`introducao` — fundamentos conceituais da modelagem de
+  perdas.
+* :doc:`modelos-classicos` — alternativas estatísticas e
+  agroclimáticas (regressão, GDD, balanço hídrico).
+* :doc:`aprendizado-de-maquina` — visão geral de ML para
+  agricultura (Random Forest, XGBoost, CNN, LSTM).

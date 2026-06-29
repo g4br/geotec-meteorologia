@@ -1,0 +1,180 @@
+Análise de sinistros, outliers e tipologias de risco meteorológico
+================================================================================
+
+Nos módulos anteriores, desenvolvemos um conjunto robusto de técnicas que nos permitiram visualizar, quantificar e interpretar padrões espaciais no Proagro. Aprendemos a identificar onde as perdas se concentram, a verificar se essas concentrações são estatisticamente significativas e a estimar condições climáticas em localizações sem medição direta. Essas ferramentas responderam fundamentalmente à pergunta sobre *onde* as coisas acontecem no território. Agora, damos um passo adiante: não basta saber onde — precisamos entender *o que está acontecendo* naqueles locais e, mais importante, se o que está acontecendo faz sentido quando confrontado com a realidade climática objetivamente verificável.
+
+Esta seção reúne os estudos de caso que fecham o curso: dado um conjunto de Comunicações
+de Perda (COP) do Proagro, **a meteorologia registrada é compatível com o evento
+declarado?** Uma COP por seca deveria coincidir com um déficit de chuva; uma por chuva
+excessiva, com um excesso; uma por geada, com temperaturas suficientemente baixas. Quando
+os dados meteorológicos **não** sustentam o evento declarado, a COP merece um olhar mais
+atento.
+
+O objetivo central deste módulo é utilizar **informações meteorológicas rigorosas** como âncora para identificar padrões atípicos, recorrências suspeitas e possíveis inconsistências em comunicações de perda. Partimos do princípio fundamental de que o Proagro cobre perdas decorrentes de fenômenos naturais adversos — e a imensa maioria dessas alegações envolve eventos climáticos: seca, chuva excessiva, geada, granizo, vendaval. Portanto, verificar se o fenômeno alegado efetivamente ocorreu no local e período declarados, e se sua intensidade é compatível com a magnitude da perda reportada, constitui o **primeiro e mais fundamental filtro de consistência**.
+
+É fundamental estabelecer desde já o que este módulo *não* é e *não* faz. Não construímos um sistema automático de detecção de fraude que rotula casos como fraudulentos com base em algoritmos. Identificamos anomalias estatísticas e padrões suspeitos que geram **hipóteses para investigação humana qualificada**. Geramos hipóteses, não vereditos. Apontamos caminhos para investigação, não conclusões definitivas.
+
+O pipeline conceitual
+---------------------
+
+Os três casos — seca em soja, chuva excessiva em trigo e geada em trigo — seguem o mesmo
+encadeamento **Conceito → Fenômeno → Dado → Indicador**:
+
+#. **Recorte temático**: filtrar as COPs por fenômeno e cultura no recorte do Sicor.
+#. **Vínculo espacial**: associar cada COP às fontes meteorológicas que a cobrem — a grade
+   (MERGE para chuva, SAMeT para temperatura) e as estações INMET mais próximas.
+#. **Anomalia**: comparar o **observado** com a **climatologia** do mesmo dia-do-ano, na
+   janela do evento e ao longo do ciclo (em decêndios). A anomalia é simplesmente
+   :math:`\text{observado} - \text{climatologia}`.
+#. **Flag de plausibilidade**: marcar as COPs em que a anomalia contradiz o evento
+   declarado.
+
+.. important::
+
+   Os *flags* são indicadores de **plausibilidade**, para **priorização e investigação** —
+   nunca um veredito sobre a operação. Um *flag* não diz que houve fraude; diz que aquele
+   caso merece análise pericial humana, porque os dados meteorológicos disponíveis não
+   confirmam, à primeira vista, o evento declarado. A leitura final é sempre humana, e a
+   ausência de *flag* tampouco atesta a perda. Os exemplos são **educacionais**.
+
+Anomalia em relação à climatologia
+-----------------------------------
+
+O cerne de todos os casos é a anomalia decendial. Compara-se o acumulado (ou a média)
+observado em um decêndio com a média climatológica dos mesmos dias-do-ano:
+
+.. code-block:: python
+
+   import pandas as pd
+
+   # Observado: soma do decêndio na grade (MERGE), no pixel mais próximo da COP.
+   obs = (ds_prec.sel(longitude=lon_cop, latitude=lat_cop, method='nearest')
+          .sel(time=slice(dec_inicio, dec_fim))['rdp'].sum().values)
+
+   # Climatologia: soma dos mesmos dias-do-ano na climatologia de longo prazo.
+   datas = pd.date_range(dec_inicio, dec_fim, freq='D')
+   doys = [d.dayofyear for d in datas]
+   clima = (ds_prec_clima['pmed']
+            .sel(time=ds_prec_clima.time.dt.dayofyear.isin(doys)).sum().values)
+
+   anomalia_mm = float(obs) - float(clima)   # negativa = mais seco que o normal
+
+Esse mesmo raciocínio, com temperatura mínima no lugar da chuva, sustenta o caso da geada.
+
+A climatologia de referência
+------------------------------
+
+A anomalia só faz sentido contra uma **linha de base** bem definida. Nos exemplos, a
+climatologia é a **média de longo prazo por dia-do-ano**, calculada a partir das próprias
+séries das grades nacionais: precipitação do **MERGE/CPTEC** (série desde 1998) e
+temperatura do **SAMeT/CPTEC** (desde 2000). Para cada dia-do-ano, toma-se a média
+histórica naquele pixel; a anomalia de um decêndio é a diferença entre o observado no
+período e a soma (ou média) climatológica dos mesmos dias-do-ano.
+
+Três pontos importam para a leitura:
+
+- **A linha de base define o "normal".** Mudar o período-base ou a fonte da grade muda as
+  anomalias — e, portanto, os flags. A climatologia usada deve ser sempre declarada.
+- **A resolução da grade limita o que é visível.** O MERGE tem ~10 km; um veranico de
+  gleba ou uma geada de baixada podem não aparecer no pixel. Isso é decisivo para a
+  interpretação dos flags (ver a ressalva abaixo).
+- **Janela do evento × ciclo.** Calcular a anomalia tanto na janela declarada quanto no
+  ciclo completo reduz a chance de um evento real, mas mal datado, passar despercebido.
+
+Como ler — e como **não** usar — um flag
+-----------------------------------------
+
+.. important::
+
+   Repetir "não é veredito" não basta: o flag só permanece um instrumento de priorização
+   se for **usado** como tal. As salvaguardas abaixo são parte do método, não um adendo.
+
+- **Custo do falso positivo é assimétrico.** Um falso positivo recai sobre um produtor
+  legítimo — priorizado para fiscalização ou com indenização questionada por uma limitação
+  do *dado*, não por irregularidade. Esse custo deve pesar mais que a conveniência de
+  "fechar a fila".
+- **Limitação da grade gera falso positivo.** Como a grade de ~10 km não captura extremos
+  localizados, uma seca ou geada **real** de gleba pode produzir um flag de
+  "implausível". Antes de tratar um caso como suspeito, verifique se a divergência não é,
+  na verdade, ausência de estação próxima ou pixel grosseiro (o diagnóstico individual
+  MERGE × INMET existe para isso).
+- **A decisão humana deve ser registrada.** O flag entra no laudo como um indício entre
+  outros; a conclusão pericial — confirmando ou afastando o indício — deve ser explicitada
+  e justificada, nunca substituída pelo escore.
+- **Ausência de flag não atesta a perda.** Um caso não-flagado apenas não levantou
+  contradição com os dados disponíveis; não é prova de regularidade.
+
+Pipeline auditorial — bloco A vs bloco B
+-----------------------------------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
+
+   * - Bloco
+     - Foco
+   * - **A — Plausibilidade**
+     - Cada COP analisada individualmente contra dados
+       meteorológicos objetivos (Aulas 1-3).
+   * - **B — Padrões agregados**
+     - Recorrência espacial, concentração de peritos/IFs,
+       tríades produtor × perito × IF, raio de atuação, razão
+       pago/crédito (Aulas 4-5).
+
+A inteligência operacional surge do **cruzamento** entre os dois
+blocos — COPs com flag A ativo **em região com sinal B ativo** são
+prioridade.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Conteúdo conceitual
+
+   inconsistencias
+   recorrencia
+   tipologia
+   aplicacoes
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Estudos de caso (plausibilidade por COP)
+
+   seca-soja
+   chuva-trigo
+   geada-trigo
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Aulas práticas (notebooks)
+
+   aulas/index
+
+.. _faq-sinistros:
+
+Perguntas e respostas — módulo 3
+----------------------------------
+
+Esta seção aborda as principais dúvidas sobre análise de sinistros, identificação de inconsistências meteorológicas e padrões de recorrência no Proagro. As respostas partem do pressuposto de que o leitor conhece os fundamentos dos módulos anteriores, mas não tem formação em meteorologia ou estatística.
+
+**Como se conecta uma COP do Sicor com os dados climáticos de uma estação do INMET?**
+
+A conexão é espacial e temporal, não por chave cadastral direta. Cada COP no Sicor possui as coordenadas da gleba (latitude e longitude do centroide); cada estação do INMET possui sua localização conhecida. O vínculo é estabelecido calculando a distância entre a gleba e todas as estações disponíveis — usando a fórmula de Haversine para distâncias sobre a esfera terrestre — e selecionando as três mais próximas. Usa-se um conjunto de três estações (e não apenas a mais próxima) para garantir robustez: se a estação principal tiver lacunas de dados, as adjacentes complementam. A dimensão temporal é dada pelas datas declaradas na COP (início e fim do evento, início e fim do ciclo da cultura).
+
+**O que é anomalia de precipitação e como ela evidencia uma seca real?**
+
+A anomalia de precipitação é a diferença entre o volume de chuva observado em um período e a média climatológica dos mesmos dias em anos anteriores: anomalia = observado − climatologia. Uma anomalia negativa significa que choveu menos do que o esperado para aquela época e local. Para verificar a plausibilidade de uma COP por seca, calcula-se essa anomalia tanto na janela de tempo declarada quanto ao longo de todo o ciclo da cultura, em decêndios (períodos de dez dias). Uma COP é marcada como meteorologicamente implausível apenas quando nem a janela declarada nem nenhum decêndio do ciclo mostram déficit — uma regra deliberadamente conservadora para evitar falsos positivos.
+
+**O que é o produto MERGE e por que é mais útil do que usar só as estações do INMET?**
+
+O MERGE é um produto de precipitação em grade desenvolvido pelo CPTEC/INPE que funde estimativas de satélite (constelação IMERG-GPM da NASA) com dados de estações pluviométricas (INMET, ANA, CEMADEN), produzindo um campo contínuo de chuva sobre a América do Sul com resolução de aproximadamente 10 km e série desde 1998 :cite:`rozante:2010`. Sua vantagem sobre as estações isoladas é a cobertura espacial completa: enquanto as estações são medidas pontuais com lacunas entre elas, o MERGE fornece estimativa para qualquer ponto do território, incluindo glebas distantes de qualquer estação. A contrapartida é que, por ser uma média de área, o MERGE pode não capturar eventos muito localizados como um veranico de gleba ou uma célula convectiva isolada.
+
+**Como identificar padrões atípicos de recorrência de COPs?**
+
+A análise de recorrência identifica produtores, glebas ou regiões que acumulam comunicações de perda em múltiplas safras. Tecnicamente, agrupam-se as COPs pelo identificador do produtor ou pelas coordenadas da gleba e contam-se as safras distintas em que houve registro. O ponto crítico é que recorrência, por si só, não indica irregularidade: regiões com risco climático crônico (semiárido, áreas sujeitas a veranico ou geada frequente) naturalmente acumulam sinistros ao longo dos anos. O que eleva a suspeita é a convergência de múltiplos sinais: recorrência alta combinada com COPs meteorologicamente implausíveis, raio de atuação atípico de peritos ou concentração entre agentes.
+
+**O que é risco de base e por que o falso positivo é mais custoso do que parece?**
+
+Risco de base é o desalinhamento entre o que o índice climático indica e o que efetivamente aconteceu na gleba. Uma estação distante ou um pixel grosseiro pode registrar precipitação normal enquanto aquela propriedade específica sofreu um veranico real — o sistema classifica a COP como implausível, mas a perda foi genuína. Esse é o falso positivo: um produtor legítimo colocado sob suspeita por uma limitação do dado, não por irregularidade. O custo assimétrico está em que esse produtor pode ter sua indenização questionada ou ser priorizado para fiscalização sem razão. Por isso, um flag de implausibilidade é sempre o início de uma investigação, nunca uma conclusão.
+
+**Como o padrão de atuação de um perito pode ser analisado sem presumir má-fé?**
+
+Analisam-se indicadores como o raio geográfico de atuação (até que distância o perito realiza vistorias), a concentração de COPs com determinadas instituições financeiras, a latência entre a comunicação da COP e a visita de campo, e a proporção de COPs deferidas. Cada um desses indicadores tem explicações legítimas: um perito que cobre área extensa pode simplesmente ser especialista em uma cultura rara naquela região. O que merece aprofundamento é a convergência de múltiplos desvios sem explicação estrutural — e mesmo assim, a conclusão sobre conduta é sempre matéria de perícia humana qualificada, não de algoritmo.

@@ -1,0 +1,32 @@
+Fontes de informação meteorológica (informações granulares)
+===========================================================
+A integração de dados meteorológicos ao monitoramento agrícola representa um ponto fundamental para a agricultura, oferecendo benefícios significativos tanto para a produtividade, auxiliando os produtores na tomada de decisão frente aos estádios fenológicos das lavouras, como também, no âmbito do Proagro para a validação de solicitações de CoPs.
+
+A integração de dados meteorológicos permite o monitoramento contínuo de variáveis críticas como temperatura, umidade, precipitação, radiação solar e velocidade do vento. Sistemas modernos utilizam redes de sensores distribuídos, estações meteorológicas automatizadas e dados de satélite para fornecer informações precisas, como por exemplo iniciativas como o MERGE e SAMeT, produtos que combinam dados de múltiplas fontes de estações meteorológicas com dados de satélite para gerar estimativas de precipitação e temperatura com alta resolução espacial e temporal.
+
+**Conteúdo**
+
+.. toctree::
+   :maxdepth: 4
+   :caption: Conceitos
+
+   estacoes
+   gridded
+   satelite-meteorologico
+   radar
+   indicacao-dados
+   panorama-nacional
+   instituicoes-por-estado
+   plataformas-visualizacao
+   exemplo-graus-dia-trigo
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Aulas práticas (notebooks)
+
+   praticas/index
+
+
+
+
+

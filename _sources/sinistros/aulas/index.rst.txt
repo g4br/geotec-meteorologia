@@ -1,0 +1,60 @@
+Aulas práticas — plausibilidade meteorológica e recorrência
+============================================================
+
+As cinco aulas práticas deste módulo aplicam todo o ferramental dos
+Módulos 1 e 2 a **estudos de caso reais** de Comunicações de
+Ocorrência de Perdas (COPs) do Sicor, organizados por
+*par evento × cultura*:
+
+.. grid:: 2
+
+   .. grid-item-card:: Aula 1 — Seca em soja
+      :link: seca-soja
+      :link-type: doc
+
+      Pipeline didático completo: anomalia de precipitação (MERGE
+      × climatologia), agregação por decêndio, flags de
+      implausibilidade e diagnóstico MERGE × INMET para casos
+      suspeitos.
+
+   .. grid-item-card:: Aula 2 — Chuva excessiva em trigo
+      :link: chuva-trigo
+      :link-type: doc
+
+      Mesma estrutura da Aula 1 com **lógica invertida**: suspeito
+      é a anomalia *negativa*. Mapa interativo de decêndios e
+      cobertura nacional.
+
+   .. grid-item-card:: Aula 3 — Geada em trigo
+      :link: geada-trigo
+      :link-type: doc
+
+      Plausibilidade de geada baseada em SAMeT/TMIN e CHIRPS:
+      pixel ≤ limiar, agregação fenológica, validação por
+      diagnóstico de imagem GOES.
+
+   .. grid-item-card:: Aula 4 — Recorrência espacial
+      :link: recorrencia-espacial
+      :link-type: doc
+
+      Comparação entre Sul (RS/PR/SC) e SEALBA (BA/SE/AL).
+      Agregação municipal, índice de recorrência, mapas
+      coropléticos de classes de recorrência.
+
+   .. grid-item-card:: Aula 5 — Concentração por agentes
+      :link: recorrencia-agentes
+      :link-type: doc
+
+      Distribuição de COPs por perito e por IF; índice de Gini de
+      concentração; sinais de outlier institucional ou
+      operacional.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   seca-soja
+   chuva-trigo
+   geada-trigo
+   recorrencia-espacial
+   recorrencia-agentes

@@ -6,29 +6,29 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Previsão de rendimento com redes neurais — caso da soja &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Previsão de rendimento com redes neurais — caso da soja &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/modelagem/previsao-rendimento-rna.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/modelagem/previsao-rendimento-rna.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Análise de recorrência" href="recorrencia.html" />
     <link rel="prev" title="Aprendizado de máquina para previsão de rendimentos agrícolas" href="aprendizado-de-maquina.html" /> 
 </head>
@@ -41,12 +41,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -54,35 +54,39 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
-<li class="toctree-l3"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Previsão de rendimento com redes neurais — caso da soja</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#por-que-prever-rendimento">Por que prever rendimento?</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#por-que-rnas-funcionam-bem-para-graos">Por que RNAs funcionam bem para grãos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#variavel-alvo-e-covariaveis-tipicas">Variável-alvo e covariáveis típicas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#modelo-hibrido-com-3-ramos-paralelos">Modelo hibrido com 3 ramos paralelos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#treinamento-implementacao-keras">Treinamento — implementação Keras</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#resultados-tipicos">Resultados típicos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pesos-e-interpretabilidade-shap">Pesos e interpretabilidade (SHAP)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#limitacoes">Limitações</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#proximos-passos">Próximos passos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aprendizado-de-maquina.html">Aprendizado de máquina para previsão de rendimentos agrícolas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Previsão de rendimento com redes neurais — caso da soja</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#por-que-prever-rendimento">Por que prever rendimento?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#por-que-rnas-funcionam-bem-para-graos">Por que RNAs funcionam bem para grãos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variavel-alvo-e-covariaveis-tipicas">Variável-alvo e covariáveis típicas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modelo-hibrido-com-3-ramos-paralelos">Modelo hibrido com 3 ramos paralelos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fluxo-de-dados">Fluxo de dados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#arquitetura-da-rna">Arquitetura da RNA</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#treinamento-implementacao-keras">Treinamento — implementação Keras</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#algoritmo-de-treinamento">Algoritmo de treinamento</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resultados-tipicos">Resultados típicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pesos-e-interpretabilidade-shap">Pesos e interpretabilidade (SHAP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitacoes">Limitações</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proximos-passos">Próximos passos</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -91,15 +95,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Modelagem de perdas e aplicações em decisão</a></li>
       <li class="breadcrumb-item active">Previsão de rendimento com redes neurais — caso da soja</li>
       <li class="wy-breadcrumbs-aside">
@@ -187,7 +190,7 @@ manejo.</p>
 <section id="por-que-rnas-funcionam-bem-para-graos">
 <h2><a class="toc-backref" href="#id3" role="doc-backlink">Por que RNAs funcionam bem para grãos</a><a class="headerlink" href="#por-que-rnas-funcionam-bem-para-graos" title="Link permanente para este cabeçalho"></a></h2>
 <ul class="simple">
-<li><p><strong>Aproximação universal</strong> <span id="id1">[<a class="reference internal" href="../../referencias.html#id280" title="George Cybenko. Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals and Systems, 2(4):303–314, 1989. doi:10.1007/BF02551274.">124</a>]</span> — uma RNA aprende a
+<li><p><strong>Aproximação universal</strong> <span id="id1">[<a class="reference internal" href="../referencias.html#id280" title="George Cybenko. Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals and Systems, 2(4):303–314, 1989. doi:10.1007/BF02551274.">122</a>]</span> — uma RNA aprende a
 forma funcional sem que o analista precise especificá-la.</p></li>
 <li><p><strong>Não-linearidades</strong> — 35 °C no florescimento da soja causa dano
 desproporcional, não apenas “um pouco mais” de perda que 30 °C.</p></li>
@@ -197,6 +200,29 @@ soma dos efeitos isolados.</p></li>
 <li><p><strong>Integração de fontes</strong> — tabulares (clima por fase, fenologia,
 solo) somam-se a séries (NDVI mensal) sem reorganização manual.</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Esquema de um perceptron multicamadas (MLP), com camada de entrada,
+camadas ocultas densamente conectadas e neurônio de saída.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>dá forma visual à arquitetura de RNA discutida nesta seção, antes da
+implementação em Keras.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“multilayer perceptron MLP architecture diagram”; “perceptron
+multicamadas rede neural esquema”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wikimedia Commons, documentação Keras/TensorFlow</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>No contexto Proagro/Sicor — com dados tabulares em médias mensais
@@ -309,6 +335,29 @@ passo controlado pela taxa de aprendizado;</p></li>
 </ol>
 <p>Configurações típicas para grãos: <strong>2 a 4 camadas ocultas, dezenas
 a centenas de neurônios cada</strong>.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Ilustração de descida do gradiente sobre uma superfície de erro,
+mostrando os passos em direção ao mínimo da função de perda.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>complementa o algoritmo de treinamento (backpropagation e atualização dos
+pesos) descrito nos passos anteriores.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“gradient descent loss surface diagram”; “descida do gradiente
+superfície de erro esquema”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wikimedia Commons, documentação Keras/TensorFlow</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 </section>
 </section>
 <section id="resultados-tipicos">
@@ -381,7 +430,7 @@ agricultura (Random Forest, XGBoost, CNN, LSTM).</p></li>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c1031a5b90>
+<jinja2.runtime.BlockReference object at 0x70ac974dc790>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

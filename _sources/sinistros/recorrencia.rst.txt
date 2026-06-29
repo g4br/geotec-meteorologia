@@ -1,0 +1,1632 @@
+Análise de recorrência meteorológica em áreas e culturas
+========================================================
+
+
+A análise de recorrência meteorológica busca identificar **padrões
+atípicos** na distribuição temporal e espacial de comunicações de perda
+(COPs), contrapondo-os ao histórico climático conhecido das regiões
+produtoras. Trata-se de uma abordagem **comparativa e exploratória**,
+que não substitui a perícia de campo, mas oferece elementos
+complementares para compreender o contexto em que perdas agrícolas são
+reportadas.
+
+Nesta seção, apresentamos três eixos de análise:
+
+1. **Padrões atípicos por região ou cultura**: identificação de áreas ou
+   cultivos que apresentam frequência de sinistros descolada do
+   comportamento climático histórico local.
+2. **Clusters temporais e espaciais**: avaliação da concentração de COPs
+   em períodos e locais coincidentes com eventos meteorológicos extremos
+   documentados.
+3. **Recorrência em anos sem adversidades**: detecção de comunicações de
+   perda repetidas em propriedades ou regiões sem registro de eventos
+   climáticos adversos significativos.
+
+--------------
+
+1. identificação de regiões ou culturas com padrões atípicos
+------------------------------------------------------------
+
+1.1. conceito
+~~~~~~~~~~~~~
+
+Espera-se que a **frequência de sinistros agrícolas** em determinada
+região ou cultura acompanhe, em linhas gerais, a **variabilidade
+climática histórica** local. Por exemplo:
+
+-  Regiões com histórico recorrente de **secas** tendem a apresentar
+   maior número de COPs relacionadas à estiagem.
+-  Culturas de ciclo curto em áreas sujeitas a **geadas tardias** tendem
+   a concentrar sinistros em janelas temporais específicas (final de
+   inverno, primavera).
+
+Quando a frequência, intensidade ou distribuição temporal de COPs **não
+se ajusta ao padrão climático conhecido**, pode sinalizar:
+
+-  **Mudanças no perfil produtivo** (novas culturas, novos sistemas de
+   plantio);
+-  **Fragilidades na gestão de risco** (produtores alocando lavouras em
+   áreas climática ou agroclimaticamente inadequadas);
+-  **Situações que merecem investigação adicional** (possíveis
+   inconsistências, má compreensão do ZARC, ou falhas na perícia).
+
+1.2. metodologia didática
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A análise de padrões atípicos envolve:
+
+**a) Definição de uma linha de base climática**
+
+-  Utilizar **séries históricas de precipitação, temperatura, umidade
+   relativa** e outros parâmetros para caracterizar o “comportamento
+   esperado” de uma região ou microrregião.
+-  Fontes: INMET, MERGE, CHIRPS, ERA5, bancos climáticos estaduais.
+-  Período mínimo recomendado: **10 a 30 anos** (quanto maior, mais
+   robusto o padrão).
+
+**b) Caracterização da exposição agrícola**
+
+-  Extrair do **Sicor** informações sobre:
+
+   -  Culturas plantadas na região;
+   -  Datas de plantio e colheita (ciclo fenológico esperado);
+   -  Área cultivada por safra;
+   -  Modalidade de financiamento (custeio, investimento).
+
+-  Cruzar com **ZARC**: verificar se as culturas estão sendo plantadas
+   em períodos e locais considerados de risco aceitável.
+
+**c) Cálculo de taxas de sinistralidade**
+
+-  Para cada região (município, microrregião, gleba), calcular:
+
+.. math::
+
+
+   \text{Taxa de Sinistralidade} = \frac{\text{Nº de COPs no período}}{\text{Nº de operações contratadas no período}} \times 100
+
+-  Comparar a **taxa observada** com a **taxa esperada** (baseada no
+   histórico climático e no ZARC).
+
+**d) Identificação de desvios**
+
+-  Regiões ou culturas com taxas de sinistralidade **significativamente
+   superiores** à média histórica podem indicar:
+
+   -  **Eventos climáticos extremos localizados** (necessário verificar
+      dados meteorológicos);
+   -  **Vulnerabilidade estrutural** (solos inadequados, cultivares mal
+      adaptados);
+   -  **Situações que demandam análise mais detalhada**.
+
+1.3. exemplos de consultas SQL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+**Exemplo 1.3.1: taxa de sinistralidade por município e cultura**
+
+Esta consulta calcula a taxa de sinistralidade (percentual de operações
+com COP) por município e cultura, considerando operações de custeio
+agrícola.
+
+.. code:: sql
+
+   -- Objetivo: Calcular taxa de sinistralidade por município e cultura
+   -- Contexto didático: Identificar municípios com taxas atípicas em relação à média regional
+
+   WITH operacoes_por_municipio AS (
+       -- Operações de custeio agrícola por município e cultura
+       SELECT 
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4) AS cod_produto,
+           emp.produto,
+           EXTRACT(YEAR FROM op.dt_emissao) AS ano_safra,
+           COUNT(DISTINCT op.ref_bacen || '-' || op.nu_ordem) AS total_operacoes,
+           SUM(op.vl_parc_credito) AS valor_total_credito,
+           SUM(op.vl_area_financ) AS area_total_financiada
+       FROM 
+           sicor_operacao_basica_estado AS op
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND SUBSTRING(op.cd_empreendimento FROM 1 FOR 1) = '1' -- Atividade: Agrícola
+           AND SUBSTRING(op.cd_empreendimento FROM 2 FOR 1) = '1' -- Finalidade: Custeio
+           AND op.dt_emissao >= '2020-01-01'
+           AND op.dt_emissao < '2024-01-01'
+       GROUP BY 
+           op.cd_estado, 
+           comp.cd_ibge_municipio, 
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4),
+           emp.produto,
+           EXTRACT(YEAR FROM op.dt_emissao)
+   ),
+
+   cops_por_municipio AS (
+       -- COPs por município e cultura
+       SELECT 
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4) AS cod_produto,
+           EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano_safra,
+           COUNT(DISTINCT cop.ref_bacen || '-' || cop.nu_ordem) AS total_cops,
+           COUNT(DISTINCT CASE 
+               WHEN evt.nome_evento ILIKE '%seca%' OR evt.nome_evento ILIKE '%estiagem%' 
+               THEN cop.ref_bacen || '-' || cop.nu_ordem 
+           END) AS cops_seca,
+           COUNT(DISTINCT CASE 
+               WHEN evt.nome_evento ILIKE '%geada%' 
+               THEN cop.ref_bacen || '-' || cop.nu_ordem 
+           END) AS cops_geada,
+           COUNT(DISTINCT CASE 
+               WHEN evt.nome_evento ILIKE '%chuva%' OR evt.nome_evento ILIKE '%granizo%' 
+               THEN cop.ref_bacen || '-' || cop.nu_ordem 
+           END) AS cops_excesso_chuva
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen 
+               AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2020-01-01'
+           AND cop.dt_comunicacao < '2024-01-01'
+           AND cop.cd_status IN (1, 2, 3) -- Status: Protocolado, Em análise, Deferido
+       GROUP BY 
+           op.cd_estado, 
+           comp.cd_ibge_municipio, 
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4),
+           EXTRACT(YEAR FROM cop.dt_comunicacao)
+   )
+
+   -- Cálculo da taxa de sinistralidade
+   SELECT 
+       opm.uf,
+       opm.cod_municipio,
+       opm.produto,
+       opm.ano_safra,
+       opm.total_operacoes,
+       COALESCE(cpm.total_cops, 0) AS total_cops,
+       ROUND(
+           (COALESCE(cpm.total_cops, 0)::NUMERIC / opm.total_operacoes * 100), 
+           2
+       ) AS taxa_sinistralidade_pct,
+       COALESCE(cpm.cops_seca, 0) AS cops_por_seca,
+       COALESCE(cpm.cops_geada, 0) AS cops_por_geada,
+       COALESCE(cpm.cops_excesso_chuva, 0) AS cops_por_chuva,
+       ROUND(opm.area_total_financiada, 2) AS area_total_ha,
+       ROUND(opm.valor_total_credito / 1000000, 2) AS valor_total_milhoes_reais
+   FROM 
+       operacoes_por_municipio AS opm
+       LEFT JOIN cops_por_municipio AS cpm
+           ON opm.uf = cpm.uf
+           AND opm.cod_municipio = cpm.cod_municipio
+           AND opm.cod_produto = cpm.cod_produto
+           AND opm.ano_safra = cpm.ano_safra
+   WHERE 
+       opm.total_operacoes >= 10 -- Filtro: mínimo de 10 operações para análise estatisticamente relevante
+   ORDER BY 
+       taxa_sinistralidade_pct DESC,
+       opm.total_operacoes DESC
+   LIMIT 100;
+
+**Interpretação didática:**
+
+-  Esta consulta permite identificar combinações de **município +
+   cultura + ano** com taxas de sinistralidade elevadas.
+-  Taxas superiores a 30-40% merecem atenção, especialmente se não
+   houver eventos climáticos documentados.
+-  A classificação por tipo de evento (seca, geada, chuva) ajuda a
+   correlacionar com dados meteorológicos.
+-  O filtro de 10 operações mínimas evita distorções estatísticas em
+   pequenas amostras.
+
+**Limitações:** - A consulta assume que a data de comunicação da COP
+reflete o ano-safra de ocorrência do sinistro, o que nem sempre é
+verdadeiro (há defasagem entre ocorrência e comunicação). - Não
+considera eventos meteorológicos localizados (tornados, granizo pontual)
+que podem afetar poucas glebas.
+
+--------------
+
+
+**Exemplo 1.3.2: recorrência de COPs por CPF/CNPJ do produtor**
+
+Esta consulta identifica produtores (CPF/CNPJ) com alta recorrência de
+COPs em múltiplos anos, indicando possível vulnerabilidade estrutural ou
+necessidade de análise técnica.
+
+.. code:: sql
+
+   -- Objetivo: Identificar produtores com alta recorrência de COPs
+   -- Contexto didático: Detectar padrões de sinistralidade recorrente em nível de beneficiário
+
+   WITH cops_por_produtor AS (
+       SELECT 
+           mut.cd_cpf_cnpj AS cpf_cnpj_produtor,
+           op.cd_estado AS uf,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4) AS cod_produto,
+           emp.produto,
+           EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano_cop,
+           COUNT(DISTINCT cop.ref_bacen || '-' || cop.nu_ordem) AS num_cops,
+           SUM(op.vl_parc_credito) AS valor_total_credito,
+           AVG(op.vl_area_financ) AS area_media_ha,
+           STRING_AGG(DISTINCT evt.nome_evento, ', ' ORDER BY evt.nome_evento) AS eventos_reportados
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen 
+               AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_mutuarios AS mut
+               ON cop.ref_bacen = mut.ref_bacen
+               AND mut.cd_primeiro = 'S' -- Apenas o primeiro mutuário (titular)
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2018-01-01'
+           AND cop.dt_comunicacao < '2024-01-01'
+           AND cop.cd_status IN (1, 2, 3)
+       GROUP BY 
+           mut.cd_cpf_cnpj,
+           op.cd_estado,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4),
+           emp.produto,
+           EXTRACT(YEAR FROM cop.dt_comunicacao)
+   ),
+
+   recorrencia_produtor AS (
+       SELECT 
+           cpf_cnpj_produtor,
+           uf,
+           produto,
+           COUNT(DISTINCT ano_cop) AS num_anos_com_cop,
+           SUM(num_cops) AS total_cops_periodo,
+           ARRAY_AGG(ano_cop ORDER BY ano_cop) AS anos_com_cop,
+           STRING_AGG(DISTINCT eventos_reportados, ' | ') AS todos_eventos,
+           ROUND(AVG(area_media_ha), 2) AS area_media_ha,
+           ROUND(SUM(valor_total_credito) / 1000000, 2) AS valor_total_milhoes
+       FROM 
+           cops_por_produtor
+       GROUP BY 
+           cpf_cnpj_produtor,
+           uf,
+           produto
+       HAVING 
+           COUNT(DISTINCT ano_cop) >= 3 -- Produtor com COPs em 3 ou mais anos diferentes
+   )
+
+   SELECT 
+       rp.cpf_cnpj_produtor,
+       rp.uf,
+       rp.produto,
+       rp.num_anos_com_cop,
+       rp.total_cops_periodo,
+       rp.anos_com_cop,
+       rp.todos_eventos,
+       rp.area_media_ha,
+       rp.valor_total_milhoes,
+       -- Cálculo de score de risco de recorrência
+       ROUND(
+           (rp.num_anos_com_cop * 10) + 
+           (rp.total_cops_periodo * 5) + 
+           (CASE WHEN rp.todos_eventos ILIKE '%seca%' THEN 5 ELSE 0 END) +
+           (CASE WHEN rp.area_media_ha > 100 THEN 10 ELSE 0 END),
+           0
+       ) AS score_recorrencia
+   FROM 
+       recorrencia_produtor AS rp
+   ORDER BY 
+       rp.num_anos_com_cop DESC,
+       rp.total_cops_periodo DESC
+   LIMIT 200;
+
+**Interpretação didática:**
+
+-  Produtores com COPs em **3 ou mais anos** merecem análise agronômica
+   e climática detalhada.
+-  O campo ``anos_com_cop`` permite verificar se há padrão temporal
+   (anos consecutivos vs. espaçados).
+-  A coluna ``todos_eventos`` indica se há predominância de um tipo de
+   evento (ex.: sempre seca).
+-  O ``score_recorrencia`` é uma métrica didática combinando múltiplos
+   fatores de risco.
+
+**Próximos passos na análise:** 1. Cruzar com dados climáticos: houve
+seca/geada documentada nos anos reportados? 2. Verificar histórico de
+glebas: as COPs ocorrem sempre nas mesmas áreas? 3. Analisar
+conformidade com ZARC: as datas de plantio estão adequadas? 4. Verificar
+laudos periciais: há padrões nas justificativas de perda?
+
+--------------
+
+
+**Exemplo 1.3.3: análise de recorrência por gleba específica**
+
+Esta consulta rastreia a história de uma gleba específica ao longo de
+múltiplas safras, identificando operações e COPs associadas.
+
+.. code:: sql
+
+   -- Objetivo: Analisar histórico de operações e COPs em glebas específicas
+   -- Contexto didático: Entender padrões de recorrência espacial (mesma área, múltiplos sinistros)
+
+   WITH historico_gleba AS (
+       SELECT 
+           g.ref_bacen,
+           g.nu_ordem,
+           g.nu_indice,
+           op.dt_emissao AS data_operacao,
+           EXTRACT(YEAR FROM op.dt_emissao) AS ano_safra,
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           emp.produto,
+           emp.variedade,
+           op.vl_parc_credito AS valor_credito,
+           g.area_gleba,
+           mut.cd_cpf_cnpj AS cpf_cnpj_produtor,
+           prop.cd_car AS codigo_car,
+           -- Verificar se há COP associada
+           CASE 
+               WHEN cop.ref_bacen IS NOT NULL THEN 'SIM'
+               ELSE 'NÃO'
+           END AS teve_cop,
+           cop.dt_comunicacao AS data_cop,
+           evt.nome_evento AS evento_cop,
+           cop.cd_status AS status_cop,
+           st_cop.descricao AS descricao_status_cop
+       FROM 
+           sicor_glebas AS g
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON g.ref_bacen = op.ref_bacen 
+               AND g.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN sicor_mutuarios AS mut
+               ON op.ref_bacen = mut.ref_bacen
+               AND mut.cd_primeiro = 'S'
+           LEFT JOIN sicor_propriedades AS prop
+               ON op.ref_bacen = prop.ref_bacen
+               AND op.nu_ordem = prop.nu_ordem
+           LEFT JOIN sicor_cop_basico AS cop
+               ON op.ref_bacen = cop.ref_bacen 
+               AND op.nu_ordem = cop.nu_ordem
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+           LEFT JOIN statuscopproagro AS st_cop
+               ON cop.cd_status = st_cop.cd_status
+       WHERE 
+           op.recurso_publico = TRUE
+           AND op.dt_emissao >= '2018-01-01'
+           -- Filtrar por área de interesse (exemplo: glebas com área entre 50 e 200 ha)
+           AND g.area_gleba BETWEEN 50 AND 200
+   )
+
+   -- Identificar glebas com recorrência de COPs
+   SELECT 
+       h.ref_bacen,
+       h.nu_indice AS indice_gleba,
+       h.uf,
+       h.cod_municipio,
+       h.codigo_car,
+       h.cpf_cnpj_produtor,
+       COUNT(DISTINCT h.ano_safra) AS num_safras_operacao,
+       SUM(CASE WHEN h.teve_cop = 'SIM' THEN 1 ELSE 0 END) AS num_cops,
+       ARRAY_AGG(DISTINCT h.ano_safra ORDER BY h.ano_safra) AS anos_operacao,
+       ARRAY_AGG(
+           DISTINCT h.ano_safra || ': ' || h.evento_cop 
+           ORDER BY h.ano_safra
+       ) FILTER (WHERE h.teve_cop = 'SIM') AS historico_cops,
+       STRING_AGG(DISTINCT h.produto, ', ') AS culturas_plantadas,
+       ROUND(AVG(h.area_gleba), 2) AS area_gleba_media_ha,
+       ROUND(SUM(h.valor_credito) / 1000000, 2) AS valor_total_credito_milhoes,
+       -- Flag de alerta para glebas com alta recorrência
+       CASE 
+           WHEN SUM(CASE WHEN h.teve_cop = 'SIM' THEN 1 ELSE 0 END) >= 3 
+               THEN 'ALERTA: Alta recorrência'
+           WHEN SUM(CASE WHEN h.teve_cop = 'SIM' THEN 1 ELSE 0 END) >= 2 
+               THEN 'ATENÇÃO: Recorrência moderada'
+           ELSE 'Normal'
+       END AS classificacao_risco
+   FROM 
+       historico_gleba AS h
+   GROUP BY 
+       h.ref_bacen,
+       h.nu_indice,
+       h.uf,
+       h.cod_municipio,
+       h.codigo_car,
+       h.cpf_cnpj_produtor
+   HAVING 
+       SUM(CASE WHEN h.teve_cop = 'SIM' THEN 1 ELSE 0 END) >= 2 -- Mínimo 2 COPs
+   ORDER BY 
+       num_cops DESC,
+       num_safras_operacao DESC
+   LIMIT 100;
+
+**Interpretação didática:**
+
+-  Glebas com **2 ou mais COPs** em anos diferentes indicam
+   vulnerabilidade estrutural ou climática.
+-  A comparação entre ``anos_operacao`` e ``historico_cops`` revela a
+   frequência relativa de sinistros.
+-  O código CAR permite cruzar com dados ambientais (aptidão de solo,
+   topografia, vegetação).
+-  A classificação de risco é didática e pode ser ajustada conforme
+   critérios locais.
+
+**Análises complementares:** - Sobrepor as geometrias dessas glebas com
+mapas de aptidão agrícola e declividade. - Verificar se as glebas estão
+em áreas de risco ambiental (APPs, reserva legal). - Cruzar com dados
+climáticos locais: há correspondência entre COPs e eventos extremos?
+
+--------------
+
+2. avaliação de clusters temporais e espaciais
+----------------------------------------------
+
+.. _conceito-1:
+
+2.1. conceito
+~~~~~~~~~~~~~
+
+Eventos meteorológicos extremos (secas prolongadas, geadas intensas,
+granizo, vendavais) tendem a provocar **concentração espacial e temporal
+de sinistros**. Espera-se que regiões atingidas por esses eventos
+apresentem picos de COPs em períodos coincidentes.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Foto de lavoura danificada por granizo — folhas rasgadas, plantas
+      quebradas e grãos/frutos perfurados após a tempestade.
+   :Função: ilustra um evento extremo localizado (granizo) capaz de gerar a concentração
+      espacial e temporal de COPs discutida nesta seção.
+   :Busca sugerida: "hail damage crop field"; "lavoura danificada por granizo"
+   :Fonte provável: Embrapa, INMET, Wikimedia Commons
+   :Facilidade: alta
+
+A análise de **clusters** busca:
+
+-  **Validar a consistência** entre sinistros reportados e eventos
+   meteorológicos documentados;
+-  **Identificar concentrações anômalas** de COPs em locais ou períodos
+   sem registro de adversidades climáticas significativas;
+-  **Subsidiar a compreensão** de como fenômenos extremos se propagam
+   espacialmente e afetam diferentes culturas.
+
+.. _metodologia-didática-1:
+
+2.2. metodologia didática
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**a) Detecção de eventos extremos**
+
+-  Utilizar **índices climáticos** e **alertas meteorológicos**:
+
+   -  **SPI** (Standardized Precipitation Index) para secas :cite:`mckee:1993`;
+   -  **Temperatura mínima absoluta** para geadas;
+   -  **Radar meteorológico e alertas** para granizo e tempestades;
+   -  **Umidade do solo** (modelos como Noah-MP, GLDAS) para estresse
+      hídrico.
+
+**b) Georreferenciamento de COPs**
+
+-  Mapear as glebas ou municípios de origem das COPs.
+-  Atribuir **coordenadas geográficas** (centroides ou polígonos de
+   glebas).
+-  Organizar por **data de ocorrência do sinistro** (não apenas data de
+   comunicação).
+
+**c) Análise de sobreposição espacial**
+
+-  Sobrepor:
+
+   -  **Mapas de eventos extremos** (áreas afetadas por seca, geada,
+      granizo);
+   -  **Mapas de COPs** (por data e localização).
+
+-  Técnicas:
+
+   -  **Buffer analysis** (raio de X km em torno do evento);
+   -  **Kernel Density Estimation** (densidade de COPs);
+   -  **Análise de autocorrelação espacial** (Moran’s I, Getis-Ord
+      Gi\*).
+
+**d) Análise de sobreposição temporal**
+
+-  Identificar **janelas temporais** de ocorrência do evento extremo
+   (ex.: 15 a 25 de setembro de 2021 – geada).
+-  Verificar se há pico de COPs nos dias/semanas imediatamente
+   subsequentes.
+-  Comparar com baseline: em anos sem evento extremo, quantas COPs
+   ocorreram no mesmo período do ano?
+
+.. _exemplos-de-consultas-sql-1:
+
+2.3. exemplos de consultas SQL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+**Exemplo 2.3.1: detecção de clusters temporais de COPs**
+
+Esta consulta identifica concentrações temporais de COPs (picos de
+comunicações em curtos períodos), que podem indicar eventos climáticos
+regionais.
+
+.. code:: sql
+
+   -- Objetivo: Identificar períodos com concentração anormal de COPs
+   -- Contexto didático: Detectar possíveis eventos climáticos extremos através de picos de comunicação
+
+   WITH cops_diarias AS (
+       SELECT 
+           cop.dt_comunicacao AS data_cop,
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4) AS cod_produto,
+           emp.produto,
+           evt.nome_evento,
+           COUNT(DISTINCT cop.ref_bacen || '-' || cop.nu_ordem) AS num_cops_dia,
+           SUM(op.vl_parc_credito) AS valor_total_dia,
+           AVG(op.vl_area_financ) AS area_media_dia
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen 
+               AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2022-01-01'
+           AND cop.dt_comunicacao < '2024-01-01'
+           AND cop.cd_status IN (1, 2, 3)
+       GROUP BY 
+           cop.dt_comunicacao,
+           op.cd_estado,
+           comp.cd_ibge_municipio,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4),
+           emp.produto,
+           evt.nome_evento
+   ),
+
+   estatisticas_baseline AS (
+       -- Calcular média e desvio padrão para cada UF/município/produto
+       SELECT 
+           uf,
+           cod_municipio,
+           cod_produto,
+           produto,
+           AVG(num_cops_dia) AS media_cops_dia,
+           STDDEV(num_cops_dia) AS desvio_padrao_cops_dia,
+           MAX(num_cops_dia) AS max_cops_dia
+       FROM 
+           cops_diarias
+       GROUP BY 
+           uf, cod_municipio, cod_produto, produto
+   )
+
+   -- Identificar dias com concentração anormal (outliers)
+   SELECT 
+       cd.data_cop,
+       cd.uf,
+       cd.cod_municipio,
+       cd.produto,
+       cd.nome_evento,
+       cd.num_cops_dia,
+       ROUND(eb.media_cops_dia, 2) AS media_historica,
+       ROUND(eb.desvio_padrao_cops_dia, 2) AS desvio_padrao,
+       -- Z-score: quantos desvios padrão acima da média
+       ROUND(
+           (cd.num_cops_dia - eb.media_cops_dia) / NULLIF(eb.desvio_padrao_cops_dia, 0),
+           2
+       ) AS z_score,
+       -- Classificação do pico
+       CASE 
+           WHEN (cd.num_cops_dia - eb.media_cops_dia) / NULLIF(eb.desvio_padrao_cops_dia, 0) >= 3 
+               THEN 'EXTREMO (>3σ)'
+           WHEN (cd.num_cops_dia - eb.media_cops_dia) / NULLIF(eb.desvio_padrao_cops_dia, 0) >= 2 
+               THEN 'ALTO (>2σ)'
+           WHEN (cd.num_cops_dia - eb.media_cops_dia) / NULLIF(eb.desvio_padrao_cops_dia, 0) >= 1.5 
+               THEN 'MODERADO (>1.5σ)'
+           ELSE 'NORMAL'
+       END AS classificacao_pico,
+       ROUND(cd.area_media_dia, 2) AS area_media_ha,
+       ROUND(cd.valor_total_dia / 1000000, 2) AS valor_total_milhoes
+   FROM 
+       cops_diarias AS cd
+       INNER JOIN estatisticas_baseline AS eb
+           ON cd.uf = eb.uf
+           AND cd.cod_municipio = eb.cod_municipio
+           AND cd.cod_produto = eb.cod_produto
+   WHERE 
+       -- Filtrar apenas outliers significativos
+       (cd.num_cops_dia - eb.media_cops_dia) / NULLIF(eb.desvio_padrao_cops_dia, 0) >= 1.5
+       AND cd.num_cops_dia >= 5 -- Mínimo 5 COPs no dia
+   ORDER BY 
+       z_score DESC,
+       cd.data_cop DESC
+   LIMIT 200;
+
+**Interpretação didática:**
+
+-  Dias com **z-score > 2** indicam concentração anormal de COPs,
+   sugerindo evento climático regional.
+-  O campo ``nome_evento`` ajuda a identificar o tipo predominante de
+   sinistro (seca, geada, etc.).
+-  Picos “EXTREMOS” (>3σ) merecem verificação imediata com dados
+   meteorológicos.
+-  Esta análise é sensível a problemas operacionais (ex.: lote de COPs
+   enviadas de uma só vez pela IF).
+
+**Próximos passos:** 1. Para cada pico identificado, consultar dados
+meteorológicos da região na data do evento. 2. Verificar se há alertas
+do INMET, Cemaden ou Defesa Civil no período. 3. Mapear espacialmente as
+glebas afetadas (próxima consulta).
+
+--------------
+
+
+**Exemplo 2.3.2: análise espacial de clusters de COPs em relação a eventos extremos**
+
+Esta consulta utiliza funções espaciais do PostGIS para identificar
+aglomerações geográficas de COPs próximas a regiões com eventos
+climáticos documentados.
+
+.. code:: sql
+
+   -- Objetivo: Identificar clusters espaciais de COPs e comparar com áreas de eventos extremos
+   -- Contexto didático: Validar consistência geográfica entre sinistros e fenômenos climáticos
+   -- NOTA: Esta consulta assume que há dados espaciais de eventos climáticos (ex.: polígonos de seca)
+
+   WITH cops_com_localizacao AS (
+       SELECT 
+           cop.ref_bacen,
+           cop.nu_ordem,
+           cop.dt_comunicacao,
+           EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano_cop,
+           EXTRACT(MONTH FROM cop.dt_comunicacao) AS mes_cop,
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           evt.nome_evento,
+           g.geom AS geometria_gleba,
+           ST_Centroid(g.geom) AS centroide_gleba,
+           g.area_gleba,
+           emp.produto
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen 
+               AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           INNER JOIN sicor_glebas AS g
+               ON cop.ref_bacen = g.ref_bacen 
+               AND cop.nu_ordem = g.nu_ordem
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2022-01-01'
+           AND cop.dt_comunicacao < '2024-01-01'
+           AND cop.cd_status IN (1, 2, 3)
+           AND g.geom IS NOT NULL -- Apenas COPs com geometria válida
+   ),
+
+   -- Criar grid hexagonal para análise de densidade espacial
+   grid_analise AS (
+       SELECT 
+           row_number() OVER () AS grid_id,
+           geom AS hexagono
+       FROM 
+           -- Criar grid hexagonal sobre área de estudo (exemplo: todo o Brasil)
+           -- Ajustar bbox conforme região de interesse
+           ST_HexagonGrid(
+               50000, -- Tamanho do hexágono em metros (50 km)
+               (SELECT ST_SetSRID(ST_Extent(centroide_gleba), 4674) FROM cops_com_localizacao)
+           ) AS hexgrid(geom)
+   ),
+
+   cops_por_hexagono AS (
+       SELECT 
+           ga.grid_id,
+           ga.hexagono,
+           cop.ano_cop,
+           cop.nome_evento,
+           COUNT(*) AS num_cops_hex,
+           AVG(cop.area_gleba) AS area_media_hex,
+           STRING_AGG(DISTINCT cop.produto, ', ') AS produtos_afetados,
+           -- Calcular centroide do hexágono para visualização
+           ST_AsText(ST_Centroid(ga.hexagono)) AS centroide_hex_wkt
+       FROM 
+           grid_analise AS ga
+           INNER JOIN cops_com_localizacao AS cop
+               ON ST_Intersects(ga.hexagono, cop.centroide_gleba)
+       GROUP BY 
+           ga.grid_id,
+           ga.hexagono,
+           cop.ano_cop,
+           cop.nome_evento
+   )
+
+   -- Identificar hexágonos com alta concentração (hotspots)
+   SELECT 
+       cph.grid_id,
+       cph.ano_cop,
+       cph.nome_evento,
+       cph.num_cops_hex,
+       cph.produtos_afetados,
+       ROUND(cph.area_media_hex, 2) AS area_media_ha,
+       cph.centroide_hex_wkt,
+       -- Classificação de densidade
+       CASE 
+           WHEN cph.num_cops_hex >= 50 THEN 'HOTSPOT CRÍTICO'
+           WHEN cph.num_cops_hex >= 20 THEN 'HOTSPOT ALTO'
+           WHEN cph.num_cops_hex >= 10 THEN 'HOTSPOT MODERADO'
+           ELSE 'DENSIDADE NORMAL'
+       END AS classificacao_cluster,
+       -- Calcular área do hexágono em km²
+       ROUND(ST_Area(cph.hexagono::geography) / 1000000, 2) AS area_hexagono_km2,
+       -- Densidade de COPs por km²
+       ROUND(
+           cph.num_cops_hex::NUMERIC / (ST_Area(cph.hexagono::geography) / 1000000),
+           2
+       ) AS densidade_cops_por_km2
+   FROM 
+       cops_por_hexagono AS cph
+   WHERE 
+       cph.num_cops_hex >= 10 -- Filtrar apenas hexágonos com 10+ COPs
+   ORDER BY 
+       cph.num_cops_hex DESC,
+       cph.ano_cop DESC
+   LIMIT 100;
+
+**Interpretação didática:**
+
+-  **Hotspots críticos** (50+ COPs em 50km) indicam provável evento
+   climático regional extremo.
+-  A análise hexagonal é mais robusta que análise municipal, pois não
+   depende de limites administrativos.
+-  Os resultados podem ser exportados para GIS e sobrepostos com mapas
+   de eventos climáticos.
+-  A coluna ``centroide_hex_wkt`` permite visualização em ferramentas
+   como QGIS ou Google Earth.
+
+**Validação necessária:** 1. Sobrepor hexágonos com mapas de: -
+Precipitação acumulada (CHIRPS, MERGE) - Temperatura mínima (geada) -
+Alertas do INMET/Cemaden 2. Verificar se hotspots coincidem com áreas de
+eventos extremos documentados. 3. Investigar hotspots **sem evento
+climático correspondente** (possível problema operacional ou fragilidade
+estrutural).
+
+--------------
+
+
+**Exemplo 2.3.3: correlação temporal entre eventos climáticos e COPs por IF**
+
+Esta consulta analisa o padrão temporal de comunicação de COPs por
+Instituição Financeira após eventos climáticos extremos, identificando
+possíveis atrasos ou concentrações.
+
+.. code:: sql
+
+   -- Objetivo: Analisar tempo decorrido entre ocorrência de evento e comunicação da COP por IF
+   -- Contexto didático: Identificar padrões de comunicação e possíveis atrasos na notificação
+
+   WITH cops_com_datas AS (
+       SELECT 
+           cop.ref_bacen,
+           cop.nu_ordem,
+           op.cnpj_if,
+           ifs.nome_if,
+           ifs.segmento_if,
+           cop.dt_comunicacao AS data_comunicacao,
+           -- Estimar data do evento a partir das datas de plantio/colheita
+           COALESCE(
+               cop.dt_inicio_plantio,
+               op.dt_inic_plantio
+           ) AS data_estimada_plantio,
+           COALESCE(
+               cop.dt_inicio_colheita,
+               op.dt_inic_colheita
+           ) AS data_estimada_colheita,
+           evt.nome_evento,
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           emp.produto,
+           op.vl_parc_credito AS valor_credito
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen 
+               AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           LEFT JOIN ifssicor AS ifs
+               ON op.cnpj_if = ifs.cnpj_if
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2022-01-01'
+           AND cop.dt_comunicacao < '2024-01-01'
+           AND cop.cd_status IN (1, 2, 3)
+   ),
+
+   analise_temporal_if AS (
+       SELECT 
+           cnpj_if,
+           nome_if,
+           segmento_if,
+           uf,
+           nome_evento,
+           EXTRACT(YEAR FROM data_comunicacao) AS ano_safra,
+           COUNT(*) AS num_cops,
+           -- Calcular tempo médio entre plantio e comunicação
+           ROUND(
+               AVG(data_comunicacao - data_estimada_plantio),
+               0
+           ) AS dias_medio_plantio_comunicacao,
+           -- Calcular dispersão temporal das comunicações
+           MIN(data_comunicacao) AS primeira_comunicacao,
+           MAX(data_comunicacao) AS ultima_comunicacao,
+           MAX(data_comunicacao) - MIN(data_comunicacao) AS janela_comunicacao_dias,
+           -- Estatísticas financeiras
+           SUM(valor_credito) / 1000000 AS valor_total_milhoes,
+           AVG(valor_credito) AS valor_medio_cop
+       FROM 
+           cops_com_datas
+       WHERE 
+           data_estimada_plantio IS NOT NULL
+       GROUP BY 
+           cnpj_if,
+           nome_if,
+           segmento_if,
+           uf,
+           nome_evento,
+           EXTRACT(YEAR FROM data_comunicacao)
+   )
+
+   SELECT 
+       ati.nome_if,
+       ati.segmento_if,
+       ati.uf,
+       ati.ano_safra,
+       ati.nome_evento,
+       ati.num_cops,
+       ati.dias_medio_plantio_comunicacao,
+       ati.primeira_comunicacao,
+       ati.ultima_comunicacao,
+       ati.janela_comunicacao_dias,
+       ROUND(ati.valor_total_milhoes, 2) AS valor_total_milhoes,
+       ROUND(ati.valor_medio_cop, 2) AS valor_medio_cop,
+       -- Classificação do padrão temporal
+       CASE 
+           WHEN ati.janela_comunicacao_dias <= 30 
+               THEN 'CONCENTRADO (≤30 dias)'
+           WHEN ati.janela_comunicacao_dias <= 90 
+               THEN 'MODERADO (31-90 dias)'
+           ELSE 'DISPERSO (>90 dias)'
+       END AS padrao_temporal,
+       -- Flag de possível atraso
+       CASE 
+           WHEN ati.dias_medio_plantio_comunicacao > 180 
+               THEN 'POSSÍVEL ATRASO'
+           ELSE 'DENTRO DO ESPERADO'
+       END AS indicador_atraso
+   FROM 
+       analise_temporal_if AS ati
+   WHERE 
+       ati.num_cops >= 10 -- Mínimo 10 COPs para análise estatística
+   ORDER BY 
+       ati.num_cops DESC,
+       ati.janela_comunicacao_dias ASC
+   LIMIT 100;
+
+**Interpretação didática:**
+
+-  IFs com **janela de comunicação concentrada** (≤30 dias) e muitas
+   COPs podem indicar evento climático pontual bem documentado.
+-  **Janelas dispersas** (>90 dias) podem sugerir:
+
+   -  Eventos múltiplos ao longo da safra, ou
+   -  Problemas operacionais na comunicação, ou
+   -  Diferentes etapas fenológicas afetadas.
+
+-  O indicador ``dias_medio_plantio_comunicacao`` deve ser interpretado
+   com cautela, pois:
+
+   -  Eventos na colheita são naturalmente mais próximos da comunicação.
+   -  Eventos no plantio podem ter efeitos que só se manifestam meses
+      depois.
+
+**Análise complementar:** - Cruzar com picos de comunicação
+identificados na consulta 2.3.1. - Verificar se a concentração temporal
+coincide com alertas meteorológicos. - Investigar IFs com padrões muito
+diferentes das demais na mesma região.
+
+--------------
+
+3. detecção de COPs repetidas em anos sem eventos climáticos adversos
+---------------------------------------------------------------------
+
+.. _conceito-2:
+
+3.1. conceito
+~~~~~~~~~~~~~
+
+A **recorrência de sinistros** em uma mesma propriedade ou gleba, ano
+após ano, **sem correspondência com eventos climáticos adversos
+documentados**, pode indicar:
+
+-  **Problemas estruturais** (solos degradados, manejo inadequado,
+   cultivares inadequadas);
+-  **Má interpretação do ZARC** (plantio em áreas ou épocas de risco
+   elevado);
+-  **Situações que merecem atenção técnica adicional** (possível
+   subfaturamento de risco, fragilidades na gestão da propriedade, ou
+   inconsistências).
+
+Importante: a recorrência, por si só, **não é prova de irregularidade**,
+mas é um **sinal de alerta** que justifica análise mais aprofundada.
+
+.. _metodologia-didática-2:
+
+3.2. metodologia didática
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**a) Seleção de propriedades ou glebas recorrentes**
+
+-  Filtrar no Sicor propriedades que apresentaram **COPs em 3 ou mais
+   anos consecutivos** (ou em X dos últimos Y anos).
+-  Atenção especial para propriedades com **mesma causa de sinistro
+   recorrente** (ex.: sempre “seca” ou sempre “geada”).
+
+**b) Verificação do histórico climático**
+
+-  Para cada ano com COP, verificar se há **evento extremo documentado**
+   na região da gleba:
+
+   -  Consultar séries temporais de precipitação, temperatura, umidade
+      do solo;
+   -  Verificar alertas do INMET, Cemaden, Defesa Civil;
+   -  Consultar boletins agrometeorológicos estaduais.
+
+**c) Classificação das situações**
+
++---------------+----------------+-------------------------------------+
+| Situação      | Descrição      | Interpretação possível              |
++===============+================+=====================================+
+| **A**         | COP recorrente | Região de alta exposição a risco    |
+|               | + evento       | climático; pode justificar          |
+|               | climático      | sinistros.                          |
+|               | confirmado em  |                                     |
+|               | todos os anos  |                                     |
++---------------+----------------+-------------------------------------+
+| **B**         | COP recorrente | Possível problema estrutural (solo, |
+|               | + evento       | manejo); requer análise agronômica. |
+|               | climático em   |                                     |
+|               | alguns anos,   |                                     |
+|               | mas não em     |                                     |
+|               | todos          |                                     |
++---------------+----------------+-------------------------------------+
+| **C**         | COP recorrente | Situação atípica; demanda           |
+|               | + ausência de  | investigação técnica detalhada.     |
+|               | evento         |                                     |
+|               | climático      |                                     |
+|               | adverso        |                                     |
+|               | significativo  |                                     |
++---------------+----------------+-------------------------------------+
+
+**d) Análise complementar**
+
+-  Verificar:
+
+   -  **Aptidão do solo** (capacidade de retenção hídrica, fertilidade);
+   -  **Conformidade com ZARC** (datas de plantio, cultivares
+      recomendadas);
+   -  **Histórico de vistorias e perícias** (se há padrão nos laudos);
+   -  **Perfil do beneficiário** (área total, diversificação de
+      culturas, histórico de crédito).
+
+.. _exemplos-de-consultas-sql-2:
+
+3.3. exemplos de consultas SQL
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+**Exemplo 3.3.1: identificação de propriedades com alta recorrência de COPs**
+
+Esta consulta identifica propriedades (por código CAR) com COPs
+recorrentes, possibilitando análise posterior da correspondência com
+eventos climáticos.
+
+.. code:: sql
+
+   -- Objetivo: Identificar propriedades com alta recorrência de COPs ao longo de múltiplos anos
+   -- Contexto didático: Sinalizar casos que merecem análise agronômica e climática detalhada
+
+   WITH cops_por_propriedade_ano AS (
+       SELECT 
+           prop.cd_car AS codigo_car,
+           mut.cd_cpf_cnpj AS cpf_cnpj_produtor,
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4) AS cod_produto,
+           emp.produto,
+           EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano_cop,
+           evt.nome_evento,
+           COUNT(DISTINCT cop.ref_bacen || '-' || cop.nu_ordem) AS num_cops_ano,
+           SUM(op.vl_parc_credito) AS valor_total_credito_ano,
+           AVG(op.vl_area_financ) AS area_media_ano
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen 
+               AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen 
+               AND op.nu_ordem = comp.nu_ordem
+           INNER JOIN sicor_propriedades AS prop
+               ON cop.ref_bacen = prop.ref_bacen
+               AND cop.nu_ordem = prop.nu_ordem
+           LEFT JOIN sicor_mutuarios AS mut
+               ON cop.ref_bacen = mut.ref_bacen
+               AND mut.cd_primeiro = 'S'
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2018-01-01'
+           AND cop.dt_comunicacao < '2024-01-01'
+           AND cop.cd_status IN (1, 2, 3)
+           AND prop.cd_car IS NOT NULL
+           AND prop.cd_car != '' -- Apenas propriedades com CAR válido
+       GROUP BY 
+           prop.cd_car,
+           mut.cd_cpf_cnpj,
+           op.cd_estado,
+           comp.cd_ibge_municipio,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4),
+           emp.produto,
+           EXTRACT(YEAR FROM cop.dt_comunicacao),
+           evt.nome_evento
+   ),
+
+   recorrencia_propriedade AS (
+       SELECT 
+           codigo_car,
+           cpf_cnpj_produtor,
+           uf,
+           cod_municipio,
+           produto,
+           COUNT(DISTINCT ano_cop) AS num_anos_com_cop,
+           SUM(num_cops_ano) AS total_cops_periodo,
+           ARRAY_AGG(DISTINCT ano_cop ORDER BY ano_cop) AS anos_com_cop,
+           STRING_AGG(
+               DISTINCT ano_cop || ': ' || nome_evento || ' (' || num_cops_ano || ')', 
+               ' | ' 
+               ORDER BY ano_cop
+           ) AS historico_detalhado,
+           -- Identificar evento predominante
+           MODE() WITHIN GROUP (ORDER BY nome_evento) AS evento_predominante,
+           ROUND(AVG(area_media_ano), 2) AS area_media_ha,
+           ROUND(SUM(valor_total_credito_ano) / 1000000, 2) AS valor_total_milhoes
+       FROM 
+           cops_por_propriedade_ano
+       GROUP BY 
+           codigo_car,
+           cpf_cnpj_produtor,
+           uf,
+           cod_municipio,
+           produto
+   )
+
+   SELECT 
+       rp.codigo_car,
+       rp.cpf_cnpj_produtor,
+       rp.uf,
+       rp.cod_municipio,
+       rp.produto,
+       rp.num_anos_com_cop,
+       rp.total_cops_periodo,
+       rp.anos_com_cop,
+       rp.evento_predominante,
+       rp.historico_detalhado,
+       rp.area_media_ha,
+       rp.valor_total_milhoes,
+       -- Score de recorrência (simplificado)
+       CASE 
+           WHEN rp.num_anos_com_cop >= 5 
+               THEN 'CRÍTICO: 5+ anos com COP'
+           WHEN rp.num_anos_com_cop >= 3 
+               THEN 'ALTO: 3-4 anos com COP'
+           WHEN rp.num_anos_com_cop = 2 
+               THEN 'MODERADO: 2 anos com COP'
+           ELSE 'BAIXO'
+       END AS nivel_recorrencia,
+       -- Flag para casos de mesma causa recorrente
+       CASE 
+           WHEN rp.evento_predominante ILIKE '%seca%' AND rp.num_anos_com_cop >= 3
+               THEN 'ALERTA: Seca recorrente'
+           WHEN rp.evento_predominante ILIKE '%geada%' AND rp.num_anos_com_cop >= 2
+               THEN 'ALERTA: Geada recorrente'
+           ELSE 'Normal'
+       END AS flag_especial
+   FROM 
+       recorrencia_propriedade AS rp
+   WHERE 
+       rp.num_anos_com_cop >= 3 -- Mínimo 3 anos com COP
+   ORDER BY 
+       rp.num_anos_com_cop DESC,
+       rp.total_cops_periodo DESC
+   LIMIT 200;
+
+**Interpretação didática:**
+
+-  Propriedades com **5+ anos com COP** representam casos extremos que
+   demandam análise urgente.
+-  O campo ``evento_predominante`` indica se há recorrência da mesma
+   causa (ex.: sempre seca).
+-  O ``historico_detalhado`` mostra ano a ano os eventos e quantidade de
+   COPs.
+-  A flag ``ALERTA: Seca recorrente`` sugere possível inadequação da
+   propriedade para aquela cultura ou necessidade de irrigação.
+
+**Próximos passos:** 1. Para cada propriedade identificada, verificar
+dados climáticos dos anos com COP. 2. Consultar CAR para avaliar
+topografia, tipo de solo, reserva legal, APPs. 3. Verificar conformidade
+com ZARC: as datas de plantio estavam adequadas? 4. Analisar laudos
+periciais: há padrão nas justificativas ou recomendações?
+
+--------------
+
+
+**Exemplo 3.3.2: cruzamento de recorrência com dados climáticos (conceitual)**
+
+Esta consulta **conceitual** demonstra como seria a integração entre
+dados de COPs recorrentes e dados climáticos históricos. Em um sistema
+real, seria necessário ter tabela com índices climáticos por
+município/ano.
+
+.. code:: sql
+
+   -- NOTA: Esta é uma consulta DIDÁTICA/CONCEITUAL
+   -- Assume a existência de uma tabela 'indices_climaticos' com dados históricos
+   -- Em implementação real, dados climáticos viriam de APIs externas ou tabelas previamente carregadas
+
+   -- Estrutura hipotética da tabela de índices climáticos:
+   -- CREATE TABLE indices_climaticos (
+   --     cod_municipio INTEGER,
+   --     ano INTEGER,
+   --     mes INTEGER,
+   --     precipitacao_mm NUMERIC,
+   --     temperatura_media_c NUMERIC,
+   --     temperatura_minima_c NUMERIC,
+   --     spi_3meses NUMERIC,  -- Standardized Precipitation Index
+   --     dias_com_tmin_abaixo_zero INTEGER,
+   --     umidade_relativa_media NUMERIC
+   -- );
+
+   WITH propriedades_recorrentes AS (
+       -- Usar resultado da consulta anterior (3.3.1)
+       -- Aqui simplificado para exemplo
+       SELECT 
+           prop.cd_car AS codigo_car,
+           op.cd_estado AS uf,
+           comp.cd_ibge_municipio AS cod_municipio,
+           EXTRACT(YEAR FROM cop.dt_comunicacao) AS ano_cop,
+           evt.nome_evento,
+           COUNT(DISTINCT cop.ref_bacen || '-' || cop.nu_ordem) AS num_cops
+       FROM 
+           sicor_cop_basico AS cop
+           INNER JOIN sicor_operacao_basica_estado AS op
+               ON cop.ref_bacen = op.ref_bacen AND cop.nu_ordem = op.nu_ordem
+           INNER JOIN sicor_complemento_operacao_basica AS comp 
+               ON op.ref_bacen = comp.ref_bacen AND op.nu_ordem = comp.nu_ordem
+           INNER JOIN sicor_propriedades AS prop
+               ON cop.ref_bacen = prop.ref_bacen AND cop.nu_ordem = prop.nu_ordem
+           LEFT JOIN eventoproagro AS evt 
+               ON cop.cd_evento = evt.cd_evento
+       WHERE 
+           op.recurso_publico = TRUE
+           AND cop.dt_comunicacao >= '2020-01-01'
+           AND prop.cd_car IS NOT NULL
+       GROUP BY 
+           prop.cd_car, op.cd_estado, comp.cd_ibge_municipio,
+           EXTRACT(YEAR FROM cop.dt_comunicacao), evt.nome_evento
+   ),
+
+   -- CONCEITUAL: Integração com dados climáticos
+   analise_clima_cops AS (
+       SELECT 
+           pr.codigo_car,
+           pr.uf,
+           pr.cod_municipio,
+           pr.ano_cop,
+           pr.nome_evento,
+           pr.num_cops,
+           -- Dados climáticos do ano da COP (CONCEITUAL)
+           -- ic.precipitacao_mm AS precip_anual,
+           -- ic.spi_3meses AS indice_seca,
+           -- ic.dias_com_tmin_abaixo_zero AS dias_geada,
+           -- Classificação climática do ano (CONCEITUAL)
+           CASE 
+               -- WHEN ic.spi_3meses < -1.5 THEN 'ANO SECO'
+               -- WHEN ic.spi_3meses > 1.5 THEN 'ANO ÚMIDO'
+               -- WHEN ic.dias_com_tmin_abaixo_zero >= 5 THEN 'ANO COM GEADAS'
+               ELSE 'NORMAL' -- Placeholder
+           END AS classificacao_climatica_ano
+       FROM 
+           propriedades_recorrentes AS pr
+           -- LEFT JOIN indices_climaticos AS ic
+           --     ON pr.cod_municipio = ic.cod_municipio
+           --     AND pr.ano_cop = ic.ano
+       -- WHERE ic.ano IS NOT NULL
+   )
+
+   -- Identificar casos de COP SEM evento climático adverso documentado
+   SELECT 
+       aca.codigo_car,
+       aca.uf,
+       aca.cod_municipio,
+       aca.ano_cop,
+       aca.nome_evento AS evento_reportado,
+       aca.num_cops,
+       aca.classificacao_climatica_ano,
+       -- Flag de inconsistência (DIDÁTICO)
+       CASE 
+           WHEN aca.nome_evento ILIKE '%seca%' 
+                AND aca.classificacao_climatica_ano != 'ANO SECO'
+               THEN 'INCONSISTÊNCIA: COP por seca em ano normal/úmido'
+           WHEN aca.nome_evento ILIKE '%geada%' 
+                AND aca.classificacao_climatica_ano != 'ANO COM GEADAS'
+               THEN 'INCONSISTÊNCIA: COP por geada sem evento documentado'
+           WHEN aca.classificacao_climatica_ano = 'NORMAL'
+               THEN 'INVESTIGAR: Ano climático normal'
+           ELSE 'CONSISTENTE'
+       END AS analise_consistencia
+   FROM 
+       analise_clima_cops AS aca
+   ORDER BY 
+       aca.codigo_car, aca.ano_cop;
+
+**Interpretação didática:**
+
+-  Esta consulta é **conceitual** e demonstra a **lógica** de cruzamento
+   de dados.
+-  Em implementação real, dados climáticos viriam de:
+
+   -  APIs de serviços meteorológicos (INMET, Cemaden, NASA);
+   -  Tabelas pré-processadas com índices climáticos por município/ano;
+   -  Integração com sistemas de alertas (ex.: Monitor de Secas).
+
+-  A flag de ``INCONSISTÊNCIA`` é didática e simplificada; análise real
+   requer:
+
+   -  Verificar escala temporal fina (mensal/decenal, não apenas anual);
+   -  Considerar variabilidade espacial dentro do município;
+   -  Avaliar condições específicas da cultura e fenologia.
+
+**Implementação prática:** 1. Carregar dados de estações meteorológicas
+do INMET para os municípios de interesse. 2. Calcular índices climáticos
+(SPI, temperatura mínima, precipitação acumulada). 3. Criar tabela
+``indices_climaticos`` no banco de dados. 4. Executar a consulta
+ajustando os JOINs e filtros.
+
+--------------
+
+
+**Exemplo 3.3.3: análise de recorrência por IF e região**
+
+Esta consulta analisa padrões de recorrência agregados por Instituição
+Financeira e região, útil para identificar tendências sistêmicas.
+
+.. code:: sql
+
+   -- Objetivo: Analisar padrões de recorrência de COPs por IF e região
+   -- Contexto didático: Identificar se há concentração de recorrência em determinadas IFs ou regiões
+
+   WITH operacoes_cops_agregadas AS (
+       SELECT 
+           op.cnpj_if,
+           ifs.nome_if,
+           ifs.segmento_if,
+           op.cd_estado AS uf,
+           SUBSTRING(op.cd_empreendimento FROM 5 FOR 4) AS cod_produto,
+           emp.produto,
+           mut.cd_cpf_cnpj AS cpf_cnpj_produtor,
+           EXTRACT(YEAR FROM op.dt_emissao) AS ano_safra,
+           -- Flag: teve COP?
+           CASE 
+               WHEN cop.ref_bacen IS NOT NULL THEN 1 
+               ELSE 0 
+           END AS teve_cop,
+           op.vl_parc_credito AS valor_credito
+       FROM 
+           sicor_operacao_basica_estado AS op
+           LEFT JOIN sicor_cop_basico AS cop
+               ON op.ref_bacen = cop.ref_bacen 
+               AND op.nu_ordem = cop.nu_ordem
+               AND cop.cd_status IN (1, 2, 3)
+           LEFT JOIN ifssicor AS ifs
+               ON op.cnpj_if = ifs.cnpj_if
+           LEFT JOIN empreendimento AS emp 
+               ON op.cd_empreendimento = emp.cd_empreendimento
+           LEFT JOIN sicor_mutuarios AS mut
+               ON op.ref_bacen = mut.ref_bacen
+               AND mut.cd_primeiro = 'S'
+       WHERE 
+           op.recurso_publico = TRUE
+           AND op.dt_emissao >= '2020-01-01'
+           AND op.dt_emissao < '2024-01-01'
+           AND SUBSTRING(op.cd_empreendimento FROM 1 FOR 1) = '1' -- Agrícola
+           AND SUBSTRING(op.cd_empreendimento FROM 2 FOR 1) = '1' -- Custeio
+   ),
+
+   produtores_recorrentes_por_if_regiao AS (
+       SELECT 
+           cnpj_if,
+           nome_if,
+           segmento_if,
+           uf,
+           produto,
+           cpf_cnpj_produtor,
+           COUNT(DISTINCT ano_safra) AS num_anos_operacao,
+           SUM(teve_cop) AS num_anos_com_cop,
+           SUM(valor_credito) / 1000000 AS valor_total_milhoes
+       FROM 
+           operacoes_cops_agregadas
+       GROUP BY 
+           cnpj_if, nome_if, segmento_if, uf, produto, cpf_cnpj_produtor
+       HAVING 
+           COUNT(DISTINCT ano_safra) >= 3 -- Mínimo 3 anos de operação
+           AND SUM(teve_cop) >= 2 -- Mínimo 2 anos com COP
+   )
+
+   -- Agregação final por IF e região
+   SELECT 
+       pr.cnpj_if,
+       pr.nome_if,
+       pr.segmento_if,
+       pr.uf,
+       pr.produto,
+       COUNT(DISTINCT pr.cpf_cnpj_produtor) AS num_produtores_recorrentes,
+       SUM(pr.num_anos_operacao) AS total_anos_operacao,
+       SUM(pr.num_anos_com_cop) AS total_anos_com_cop,
+       -- Taxa de recorrência da IF/região/cultura
+       ROUND(
+           (SUM(pr.num_anos_com_cop)::NUMERIC / SUM(pr.num_anos_operacao) * 100),
+           2
+       ) AS taxa_recorrencia_pct,
+       ROUND(SUM(pr.valor_total_milhoes), 2) AS valor_total_milhoes,
+       -- Classificação de risco
+       CASE 
+           WHEN (SUM(pr.num_anos_com_cop)::NUMERIC / SUM(pr.num_anos_operacao) * 100) >= 50
+               THEN 'ALTO RISCO'
+           WHEN (SUM(pr.num_anos_com_cop)::NUMERIC / SUM(pr.num_anos_operacao) * 100) >= 30
+               THEN 'RISCO MODERADO'
+           ELSE 'RISCO BAIXO'
+       END AS classificacao_risco
+   FROM 
+       produtores_recorrentes_por_if_regiao AS pr
+   GROUP BY 
+       pr.cnpj_if, pr.nome_if, pr.segmento_if, pr.uf, pr.produto
+   HAVING 
+       COUNT(DISTINCT pr.cpf_cnpj_produtor) >= 5 -- Mínimo 5 produtores recorrentes
+   ORDER BY 
+       taxa_recorrencia_pct DESC,
+       num_produtores_recorrentes DESC
+   LIMIT 100;
+
+**Interpretação didática:**
+
+-  IFs com **taxa de recorrência > 50%** em determinada região/cultura
+   podem indicar:
+
+   -  Perfil de carteira mais exposto a riscos climáticos;
+   -  Concentração geográfica em áreas vulneráveis;
+   -  Necessidade de revisão de critérios de concessão ou de assistência
+      técnica.
+
+-  A análise por segmento da IF (banco comercial, cooperativa, etc.)
+   pode revelar diferenças de perfil de risco.
+-  Importante: alta recorrência não implica irregularidade, pode
+   simplesmente refletir exposição legítima a áreas de risco estrutural.
+
+**Uso didático:** - Esta consulta pode subsidiar discussões sobre: -
+Critérios de zoneamento agroclimático; - Políticas de mitigação de risco
+(ex.: incentivo à irrigação); - Aperfeiçoamento do ZARC; - Estratégias
+de diversificação de carteira das IFs.
+
+--------------
+
+4. limitações e considerações
+-----------------------------
+
+4.1. limitações espaciais e temporais
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Resolução dos dados climáticos:** - Produtos de satélite e reanálise
+têm resolução espacial limitada (5 km a 50 km), podendo não captar
+eventos muito localizados (ex.: granizo pontual, tornado). - Estações
+meteorológicas são esparsas; interpolação espacial introduz incertezas.
+
+**Séries históricas curtas:** - Regiões com menos de 10 anos de dados
+dificultam a definição de um padrão climático robusto. - Mudanças
+climáticas podem alterar padrões históricos, tornando baselines
+desatualizados.
+
+**Defasagem temporal:** - Dados meteorológicos podem levar dias ou
+semanas para serem consolidados e validados. - COPs podem ser
+comunicadas com atraso, dificultando correlação temporal precisa.
+
+4.2. limitações metodológicas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Correlação não é causalidade:** - A coincidência entre evento
+climático e COP não prova que o evento foi a causa única ou principal do
+sinistro. - Outros fatores podem contribuir: pragas, doenças, manejo
+inadequado, questões econômicas.
+
+**Fatores não-climáticos:** - Manejo, solo, cultivar, pragas, doenças,
+questões econômicas podem influenciar perdas agrícolas. - A análise de
+recorrência meteorológica deve ser complementada com análise agronômica.
+
+**Heterogeneidade dentro de uma mesma gleba:** - Uma propriedade pode
+ter talhões afetados e outros não, dependendo de microvariações
+topográficas, de solo ou de manejo. - Análise espacial deve considerar
+variabilidade intra-gleba.
+
+4.3. considerações éticas e de interpretação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Natureza didática:** - A análise de recorrência **não é uma ferramenta
+de auditoria operacional**, mas um **instrumento de contexto**. -
+Resultados devem ser interpretados com cautela e sempre validados por
+perícia de campo.
+
+**Respeito à diversidade de situações:** - Propriedades com alta
+recorrência de sinistros podem simplesmente estar localizadas em áreas
+de elevado risco climático estrutural — o que não caracteriza
+irregularidade, mas reforça a importância do ZARC e da assistência
+técnica. - Toda conclusão baseada em análise de recorrência **deve ser
+validada por perícia de campo** e análise agronômica específica.
+
+**Evitar estigmatização:** - Resultados nunca devem ser usados para
+estigmatizar regiões, produtores ou IFs. - O objetivo é **compreender**
+e **mitigar** riscos, não julgar ou penalizar.
+
+--------------
+
+5. questões para reflexão
+-------------------------
+
+1. Como definir um “padrão atípico” de sinistralidade de forma
+   estatisticamente robusta? Quais testes estatísticos seriam
+   apropriados?
+
+2. De que forma a expansão agrícola para novas fronteiras (ex.:
+   Matopiba) pode alterar os padrões históricos de recorrência?
+
+3. Qual o papel do ZARC na prevenção de situações de alta recorrência?
+   Como integrar análises de recorrência meteorológica com as
+   recomendações do ZARC?
+
+4. Em que medida eventos climáticos extremos de baixa frequência (ex.:
+   geada em região tropical) devem ser tratados diferentemente em
+   análises de recorrência?
+
+5. Como comunicar resultados de análise de recorrência de forma a evitar
+   estigmatização de regiões ou produtores?
+
+6. Quais são os limites éticos e legais do uso de dados de recorrência
+   para decisões de concessão de crédito ou cobertura de seguro?
+
+7. Como integrar dados de sensoriamento remoto (índices de vegetação,
+   umidade de solo) com análises de recorrência baseadas em dados
+   tabulares do Sicor?
+
+--------------
+
+6. síntese da seção
+-------------------
+
+Esta seção apresentou três abordagens complementares para análise de
+recorrência meteorológica em áreas e culturas:
+
+1. **Padrões atípicos**: identificação de regiões ou cultivos com
+   sinistralidade descolada do histórico climático.
+2. **Clusters espaciais-temporais**: validação de concentrações de COPs
+   em períodos e locais coincidentes com eventos extremos.
+3. **Recorrência sem adversidades**: detecção de sinistros repetidos em
+   anos sem eventos climáticos documentados.
+
+Todas as abordagens compartilham a mesma lógica pedagógica:
+
+   **Conceito → Fenômeno → Dado → Indicador → Contexto de Decisão**
+
+E todas têm o mesmo objetivo didático: **fornecer ferramentas
+conceituais e metodológicas** para que técnicos possam compreender, de
+forma integrada, como informações meteorológicas, climáticas,
+agronômicas e cadastrais podem subsidiar a análise de risco no crédito
+rural e no Proagro.
+
+Elementos-Chave para análise didática:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Dados necessários:** - Operações de crédito (Sicor) - COPs e eventos
+reportados - Glebas georreferenciadas - Dados climáticos históricos -
+ZARC e recomendações agronômicas - Perfil dos beneficiários e IFs
+
+**Consultas SQL como ferramenta didática:** - Permitem exploração
+estruturada e reproduzível dos dados - Facilitam identificação de
+padrões e anomalias - Podem ser adaptadas a diferentes contextos
+regionais - Servem como base para desenvolvimento de painéis e sistemas
+de alerta
+
+**Princípios de interpretação:** - Sempre com rigor técnico e
+transparência de limitações - Respeito à complexidade da realidade
+agrícola brasileira - Complementaridade com outras fontes de informação
+- Foco em compreensão e mitigação de riscos, nunca em julgamento sumário
+
+--------------
+
+7. orientações para uso didático deste material
+-----------------------------------------------
+
+Este material foi desenvolvido para capacitação técnica e **não deve ser
+utilizado para análise operacional ou auditoria sem validação de
+campo**.
+
+**Público-alvo:** - Técnicos do BCB, TCU, seguradoras, analistas de
+risco - Subscritores e peritos de seguro agrícola - Gestores de IFs e
+cooperativas de crédito - Pesquisadores em risco agrícola e mudanças
+climáticas
+
+**Como utilizar as consultas SQL:** 1. Adaptar filtros e parâmetros ao
+contexto regional de interesse 2. Validar resultados com conhecimento
+local (agrônomos, extensionistas) 3. Cruzar com dados climáticos e
+agronômicos complementares 4. Documentar premissas e limitações de cada
+análise
+
+**Próximos passos sugeridos:** - Desenvolver notebooks Jupyter com
+exemplos práticos - Criar visualizações geográficas (mapas, heatmaps)
+dos resultados - Integrar com APIs de dados climáticos em tempo real -
+Construir painéis de monitoramento (dashboards) para acompanhamento
+contínuo
+
+--------------
+
+**Este documento é parte integrante do Material Didático do Grupo 4 –
+Produto 1 do Projeto Geotec.**
+
+*Última atualização: [Data a ser preenchida]*

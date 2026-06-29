@@ -6,28 +6,28 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aula 5 — análise integrada de COPs: recorrência, concentração e valores &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
+  <title>Aula 5 — análise integrada de COPs: recorrência, concentração e valores &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/sinistros/aulas/recorrencia-agentes.html" />
-      <script src="../../../_static/jquery.js"></script>
-      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-      <script src="../../../_static/doctools.js"></script>
-      <script src="../../../_static/sphinx_highlight.js"></script>
-      <script src="../../../_static/clipboard.min.js"></script>
-      <script src="../../../_static/copybutton.js"></script>
-      <script src="../../../_static/translations.js"></script>
-    <script src="../../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../../search.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/sinistros/aulas/recorrencia-agentes.html" />
+      <script src="../../_static/jquery.js"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+      <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/sphinx_highlight.js"></script>
+      <script src="../../_static/clipboard.min.js"></script>
+      <script src="../../_static/copybutton.js"></script>
+      <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
     <link rel="next" title="Modelagem de perdas e aplicações em decisão" href="../../modelagem/index.html" />
     <link rel="prev" title="Aula 4 — recorrência espacial e atores: Sul × SEALBA" href="recorrencia-espacial.html" /> 
 </head>
@@ -40,12 +40,12 @@
 
           
           
-          <a href="../../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -53,35 +53,38 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../inconsistencias.html#identificacao-de-outliers-e-inconsistencias-meteorologicas-em-sinistros2">Identificação de outliers e inconsistências meteorológicas em sinistros2</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../seca-soja.html">Caso 1 — seca em soja</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../geada-trigo.html">Caso 3 — geada em trigo</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#o-pipeline-conceitual">O pipeline conceitual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#anomalia-em-relacao-a-climatologia">Anomalia em relação à climatologia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#a-climatologia-de-referencia">A climatologia de referência</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#como-ler-e-como-nao-usar-um-flag">Como ler — e como <strong>não</strong> usar — um flag</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#pipeline-auditorial-bloco-a-vs-bloco-b">Pipeline auditorial — bloco A vs bloco B</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../inconsistencias.html">Identificação de outliers e inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../recorrencia.html">Análise de recorrência meteorológica em áreas e culturas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tipologia.html">Tipologias de inconsistências meteorológicas em sinistros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../aplicacoes.html">Aplicações práticas da análise e interpolação espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../seca-soja.html">Caso 1 — seca em soja</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chuva-trigo.html">Caso 2 — chuva excessiva em trigo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../geada-trigo.html">Caso 3 — geada em trigo</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="seca-soja.html">Aula 1 — plausibilidade meteorológica: seca em soja</a></li>
+<li class="toctree-l4"><a class="reference internal" href="chuva-trigo.html">Aula 2 — plausibilidade meteorológica: chuva excessiva em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="geada-trigo.html">Aula 3 — plausibilidade meteorológica: geada em trigo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recorrencia-espacial.html">Aula 4 — recorrência espacial e atores: Sul × SEALBA</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Aula 5 — análise integrada de COPs: recorrência, concentração e valores</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#perguntas-e-respostas-modulo-3">Perguntas e respostas — módulo 3</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -90,15 +93,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">GeoCreditoRural</a>
+          <a href="../../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
           <li class="breadcrumb-item"><a href="index.html">Aulas práticas — plausibilidade meteorológica e recorrência</a></li>
       <li class="breadcrumb-item active">Aula 5 — análise integrada de COPs: recorrência, concentração e valores</li>
@@ -160,19 +162,19 @@ para 12 caracteres:</p>
 </div>
 <p>Mapa de densidade nacional por evento (hexbin):</p>
 <figure class="align-center" id="id3">
-<img alt="Hexbin nacional — Chuva excessiva." src="../../../_images/cell007_out0.png" />
+<img alt="Hexbin nacional — Chuva excessiva." src="../../_images/cell007_out0.png" />
 <figcaption>
 <p><span class="caption-number">Figura 95 - </span><span class="caption-text">Densidade nacional de COPs — <strong>Chuva excessiva</strong>.</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id4">
-<img alt="Hexbin nacional — Seca." src="../../../_images/cell007_out4.png" />
+<img alt="Hexbin nacional — Seca." src="../../_images/cell007_out4.png" />
 <figcaption>
 <p><span class="caption-number">Figura 96 - </span><span class="caption-text">Densidade nacional de COPs — <strong>Seca</strong>.</span><a class="headerlink" href="#id4" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id5">
-<img alt="Hexbin nacional — Geada." src="../../../_images/cell007_out6.png" />
+<img alt="Hexbin nacional — Geada." src="../../_images/cell007_out6.png" />
 <figcaption>
 <p><span class="caption-number">Figura 97 - </span><span class="caption-text">Densidade nacional de COPs — <strong>Geada</strong>.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
@@ -220,7 +222,7 @@ deduplicado:</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id6">
-<img alt="Linha do tempo do produtor estudado — volume + crédito × pago." src="../../../_images/cell019_out01.png" />
+<img alt="Linha do tempo do produtor estudado — volume + crédito × pago." src="../../_images/cell019_out01.png" />
 <figcaption>
 <p><span class="caption-number">Figura 98 - </span><span class="caption-text">Linha do tempo do produtor — superior: volume anual (COPs vs
 contratos únicos); inferior: crédito contratado × valor pago
@@ -247,11 +249,11 @@ contratos únicos); inferior: crédito contratado × valor pago
 </pre></div>
 </div>
 <figure class="align-center" id="id7">
-<img alt="Top 15 peritos por volume." src="../../../_images/cell030_out01.png" />
+<img alt="Top 15 peritos por volume." src="../../_images/cell030_out01.png" />
 <figcaption>
 <p><span class="caption-number">Figura 99 - </span><span class="caption-text">Top 15 peritos por volume de contratos. Anotação à direita
 mostra contratos/ano. O <strong>TCU (Acórdão 2493/2024)</strong> identificou
-peritos com mais de 750 perícias/ano <span id="id1">[<a class="reference internal" href="../../../referencias.html#id245" title="Tribunal de Contas da União. Acórdão n. 2493/2024 – plenário: auditoria operacional no proagro e no ZARC. Technical Report, TCU, 2024. URL: https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2493/2024/Plen%C3%A1rio.">5</a>]</span> —
+peritos com mais de 750 perícias/ano <span id="id1">[<a class="reference internal" href="../../referencias.html#id245" title="Tribunal de Contas da União. Acórdão n. 2493/2024 – plenário: auditoria operacional no proagro e no ZARC. Technical Report, TCU, 2024. URL: https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2493/2024/Plen%C3%A1rio.">5</a>]</span> —
 logisticamente inviável se cada perícia exige visita a campo.</span><a class="headerlink" href="#id7" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
@@ -316,7 +318,7 @@ criterioso.</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id8">
-<img alt="Distribuição do raio máximo de atuação por perito." src="../../../_images/cell041_out0.png" />
+<img alt="Distribuição do raio máximo de atuação por perito." src="../../_images/cell041_out0.png" />
 <figcaption>
 <p><span class="caption-number">Figura 100 - </span><span class="caption-text">Histograma e scatter (volume × dispersão) do raio máximo por
 perito. A mediana costuma ficar abaixo de 100 km. <strong>Peritos com
@@ -324,7 +326,7 @@ raio &gt; 300 km são candidatos naturais à investigação</strong>.</span><a c
 </figcaption>
 </figure>
 <figure class="align-center" id="id9">
-<img alt="Mapa Cartopy de centroides de atuação por perito." src="../../../_images/cell043_out01.png" />
+<img alt="Mapa Cartopy de centroides de atuação por perito." src="../../_images/cell043_out01.png" />
 <figcaption>
 <p><span class="caption-number">Figura 101 - </span><span class="caption-text">Cartopy com centroides geográficos dos peritos. Tamanho =
 volume. Vermelho = raio &gt; 300 km.</span><a class="headerlink" href="#id9" title="Link Permanente para essa imagem"></a></p>
@@ -380,7 +382,7 @@ estatística):</p>
 </pre></div>
 </div>
 <figure class="align-center" id="id10">
-<img alt="Scatter volume × razão por perito." src="../../../_images/cell056_out01.png" />
+<img alt="Scatter volume × razão por perito." src="../../_images/cell056_out01.png" />
 <figcaption>
 <p><span class="caption-number">Figura 102 - </span><span class="caption-text">Scatter volume × razão por perito. O <strong>quadrante superior
 direito</strong> (alta razão E alto volume) é o mais relevante
@@ -388,7 +390,7 @@ analiticamente.</span><a class="headerlink" href="#id10" title="Link Permanente 
 </figcaption>
 </figure>
 <figure class="align-center" id="id11">
-<img alt="Boxplot da razão pago/crédito por evento." src="../../../_images/cell062_out01.png" />
+<img alt="Boxplot da razão pago/crédito por evento." src="../../_images/cell062_out01.png" />
 <figcaption>
 <p><span class="caption-number">Figura 103 - </span><span class="caption-text">Boxplot da razão por <strong>tipo de evento</strong>. Permite ver se há
 diferenças sistemáticas — perda total tende a ocorrer mais em
@@ -396,7 +398,7 @@ alguns eventos (geada, granizo).</span><a class="headerlink" href="#id11" title=
 </figcaption>
 </figure>
 <figure class="align-center" id="id12">
-<img alt="Mapa de COPs com razão pago/crédito &gt; 1." src="../../../_images/cell065_out11.png" />
+<img alt="Mapa de COPs com razão pago/crédito &gt; 1." src="../../_images/cell065_out11.png" />
 <figcaption>
 <p><span class="caption-number">Figura 104 - </span><span class="caption-text">Mapa de COPs onde o pagamento foi <strong>maior que o solicitado</strong>.
 Esses casos justificam revisão caso a caso.</span><a class="headerlink" href="#id12" title="Link Permanente para essa imagem"></a></p>
@@ -422,7 +424,7 @@ volume, tríades recorrentes;</p></li>
 <p>Nenhum indicador isolado <strong>acusa</strong> irregularidade. A função do
 conjunto é <strong>filtrar onde investigar</strong> — TCU/BCB usam combinação
 de indicadores convergentes para priorizar auditoria
-<span id="id2">[<a class="reference internal" href="../../../referencias.html#id245" title="Tribunal de Contas da União. Acórdão n. 2493/2024 – plenário: auditoria operacional no proagro e no ZARC. Technical Report, TCU, 2024. URL: https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2493/2024/Plen%C3%A1rio.">5</a>]</span>.</p>
+<span id="id2">[<a class="reference internal" href="../../referencias.html#id245" title="Tribunal de Contas da União. Acórdão n. 2493/2024 – plenário: auditoria operacional no proagro e no ZARC. Technical Report, TCU, 2024. URL: https://pesquisa.apps.tcu.gov.br/doc/acordao-completo/2493/2024/Plen%C3%A1rio.">5</a>]</span>.</p>
 </div>
 </section>
 <section id="proximos-passos">
@@ -449,7 +451,7 @@ de indicadores convergentes para priorizar auditoria
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c100f3fa50>
+<jinja2.runtime.BlockReference object at 0x70ac969c1f10>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

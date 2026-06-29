@@ -1,0 +1,443 @@
+El Niño–Oscilação Sul: clima, vegetação e agricultura
+=====================================================
+
+Visão geral do fenômeno
+-----------------------
+
+O El Niño–Oscilação Sul (ENOS, ou ENSO em inglês) é o principal mecanismo de
+variabilidade climática interanual do planeta. Ele resulta do acoplamento entre o oceano
+e a atmosfera no Pacífico equatorial: alterações na temperatura da superfície do mar
+(TSM) e na circulação dos ventos modulam a convecção tropical e reorganizam os padrões de
+chuva e temperatura em várias regiões do mundo, inclusive no Sul do Brasil. O conteúdo
+desta seção apoia-se no livro `El Niño Oscilação Sul: clima, vegetação e agricultura
+<https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/1164333/1/el-nino.pdf>`_,
+da Embrapa, e em estudos sobre a relação entre o ENOS e a produção agrícola brasileira
+:cite:`enso2020,schaab2018elnino`.
+
+O ENOS combina dois componentes:
+
+#. as anomalias de temperatura da superfície do mar no Pacífico equatorial; e
+#. a Oscilação Sul, que é a flutuação da pressão ao nível do mar entre Taiti e Darwin.
+
+Quando prevalecem águas mais quentes no Pacífico equatorial central e leste, configura-se
+a fase quente — o **El Niño**. O resfriamento anômalo caracteriza a fase fria — a **La
+Niña**. Essa "gangorra" oceano-atmosfera desloca as áreas de convecção e influencia
+sistemas meteorológicos em escala hemisférica.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Esquema lado a lado da circulação de Walker no Pacífico em condições
+      neutras, El Niño e La Niña (setas de vento, ascensão/subsidência, posição da
+      convecção e da água quente).
+   :Função: ilustra visualmente o acoplamento oceano-atmosfera e a "gangorra" descrita no
+      parágrafo anterior, antes de formalizar as fases.
+   :Busca sugerida: "Walker circulation El Niño La Niña diagram NOAA"; "circulação de
+      Walker ENOS esquema"
+   :Fonte provável: NOAA Climate.gov, Wikimedia Commons
+   :Facilidade: alta
+
+Definição e fases
+-----------------
+
+- **El Niño (fase quente)**: aquecimento anômalo e persistente das águas do Pacífico
+  equatorial, com enfraquecimento dos ventos alísios e reorganização da célula de Walker.
+- **La Niña (fase fria)**: resfriamento anômalo das mesmas águas, com fortalecimento dos
+  alísios e resposta atmosférica oposta.
+- **Condição neutra**: ausência de anomalias persistentes, com o sistema próximo à média
+  histórica.
+
+Essas fases não têm periodicidade fixa e variam bastante em duração e intensidade. A
+resposta climática na América do Sul, incluindo o Sul do Brasil, depende tanto da fase
+quanto da configuração espacial das anomalias no Pacífico.
+
+Monitoramento e classificação
+------------------------------
+
+O estado do ENOS é monitorado por índices padronizados, baseados sobretudo em anomalias
+de TSM em regiões-chave do Pacífico equatorial. Esses índices permitem uma caracterização
+consistente do fenômeno, essencial para a pesquisa, a previsão e a comunicação. A
+:numref:`tbl:enso:indices` resume os dois índices mais usados operacionalmente.
+
+.. table:: Principais índices de monitoramento do ENOS.
+   :name: tbl:enso:indices
+
+   +--------------------------------+---------------------------------+----------------------------+-------------------------------+
+   | Índice                         | O que mede                      | Região                     | Limiar                        |
+   +================================+=================================+============================+===============================+
+   | **Oceanic Niño Index (ONI)**   | Anomalia de TSM (média móvel    | Niño 3.4 (5°N–5°S,         | El Niño: ≥ +0,5 °C;           |
+   |                                | de 3 meses)                     | 120°W–170°W)               | La Niña: ≤ −0,5 °C, por ao    |
+   |                                |                                 |                            | menos 5 trimestres seguidos   |
+   +--------------------------------+---------------------------------+----------------------------+-------------------------------+
+   | **Índice de Oscilação Sul      | Diferença padronizada da        | Taiti menos Darwin         | El Niño: valores negativos;   |
+   | (SOI)**                        | pressão ao nível do mar         | (Austrália)                | La Niña: valores positivos    |
+   +--------------------------------+---------------------------------+----------------------------+-------------------------------+
+
+O **ONI** é o principal indicador usado pela NOAA (agência de oceano e atmosfera dos EUA)
+para a classificação oficial dos eventos, porque a região Niño 3.4 é a mais
+representativa do acoplamento oceano-atmosfera que define o ENOS. O **SOI** captura a
+componente atmosférica do fenômeno e foi, historicamente, um de seus primeiros
+indicadores.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Mapa do Pacífico equatorial com as regiões de monitoramento Niño 1+2,
+      Niño 3, Niño 3.4 e Niño 4 demarcadas em caixas.
+   :Função: localiza geograficamente as regiões citadas na tabela de índices (ONI/SOI),
+      especialmente a Niño 3.4.
+   :Busca sugerida: "Niño 3.4 regions map Pacific"; "ENSO monitoring regions map NOAA"
+   :Fonte provável: NOAA/CPC, Wikimedia Commons
+   :Facilidade: alta
+
+Diversidade do ENOS e teleconexões com a América do Sul
+--------------------------------------------------------
+
+Nem todo El Niño é igual. A pesquisa climatológica passou de uma visão única do fenômeno
+para o reconhecimento de subtipos, definidos pela posição geográfica do aquecimento
+máximo da TSM. Essa posição determina onde a principal fonte de calor é liberada na
+atmosfera e, com isso, altera a resposta da circulação global — gerando padrões de
+teleconexão distintos sobre o Sul do Brasil. Os principais tipos são:
+
+- **El Niño do Pacífico Leste (EP), ou canônico**: o tipo "clássico", com anomalias de
+  TSM mais intensas na porção leste do Pacífico equatorial, perto da costa da América do
+  Sul (regiões Niño 1+2 e Niño 3).
+- **El Niño do Pacífico Central (CP), ou Modoki**: o pico do aquecimento ocorre na região
+  central do Pacífico (próximo à Linha Internacional de Data, região Niño 4),
+  frequentemente flanqueado por águas mais frias que o normal a leste e a oeste.
+- **Eventos mistos (MIX)**: apresentam características dos dois tipos, com aquecimento
+  anômalo que se estende tanto pelo setor central quanto pelo leste do Pacífico.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Comparação de mapas de anomalia de TSM do Pacífico: El Niño do Pacífico
+      Leste (canônico) vs. El Niño do Pacífico Central (Modoki), mostrando a posição
+      distinta do aquecimento máximo.
+   :Função: torna concreta a diferença espacial entre os subtipos EP e CP descritos na
+      lista acima.
+   :Busca sugerida: "Eastern Pacific vs Central Pacific El Niño Modoki SST anomaly map";
+      "El Niño Modoki canonical SST comparison"
+   :Fonte provável: NOAA, artigos científicos abertos, Wikimedia Commons
+   :Facilidade: média
+
+A resposta da precipitação no Sul do Brasil é sensível a esse tipo de evento, como
+sintetiza a :numref:`tbl:enso:precip`.
+
+.. table:: Padrões de anomalias de precipitação no Sul do Brasil por fase e tipo de ENOS.
+   :name: tbl:enso:precip
+
+   +---------------------------+--------------------------+--------------------------+-------------------------+-------------------------+
+   | Fase/Tipo                 | Primavera (SON)          | Verão (DJF)              | Outono (MAM)            | Inverno (JJA)           |
+   +===========================+==========================+==========================+=========================+=========================+
+   | **El Niño EP (canônico)** | Acima do normal (sinal   | Acima do normal (sinal   | Acima do normal (sinal  | Acima do normal (sinal  |
+   |                           | forte e consistente)     | forte)                   | mais fraco)             | moderado)               |
+   +---------------------------+--------------------------+--------------------------+-------------------------+-------------------------+
+   | **El Niño CP (Modoki)**   | Acima do normal (sinal   | Excesso no sudeste       | Acima do normal (sinal  | Anomalias positivas no  |
+   |                           | moderado a forte)        | (sinal variável)         | fraco)                  | norte da região         |
+   +---------------------------+--------------------------+--------------------------+-------------------------+-------------------------+
+   | **La Niña**               | Abaixo do normal (sinal  | Abaixo do normal (sinal  | Próximo à normalidade   | Próximo à normalidade   |
+   |                           | forte e consistente)     | forte)                   | ou levemente abaixo     |                         |
+   +---------------------------+--------------------------+--------------------------+-------------------------+-------------------------+
+
+Em síntese: o El Niño EP traz o sinal mais robusto de **precipitação acima da média** no
+sudeste da América do Sul, incluindo todo o Sul do Brasil, sobretudo na primavera e no
+verão. O El Niño CP tem efeito mais heterogêneo — também tende ao excesso de chuva, mas
+com sinal mais fraco ou distribuição espacial diferente. Os eventos MIX exibem padrão
+parecido com o EP, porém mais fraco.
+
+Vale notar que os impactos do ENOS não ocorrem isoladamente: a TSM do Atlântico Tropical
+modula a resposta. Anomalias negativas de TSM no Atlântico Tropical Sul tendem a
+fortalecer as secas induzidas pelo El Niño no Norte e Nordeste, enquanto anomalias
+positivas as enfraquecem. Essa interação entre as bacias oceânicas ajuda a explicar por
+que eventos El Niño de intensidade parecida no Pacífico produzem impactos regionais de
+magnitude distinta.
+
+Impactos na climatologia do Sul do Brasil
+------------------------------------------
+
+Climatologia de base (PR, SC, RS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A Região Sul tem clima predominantemente subtropical (tipos Cfa e Cfb na classificação de
+Köppen), sem estação seca definida e com as quatro estações bem marcadas. A referência
+detalhada dessa climatologia é o *Atlas Climático da Região Sul do Brasil* (Embrapa), que
+compila dados de mais de 600 estações meteorológicas ao longo de 30 anos (1976–2005).
+
+- **Precipitação**: distribuição relativamente uniforme ao longo do ano, com totais
+  anuais de cerca de 1.200 mm a mais de 2.000 mm. Os maiores volumes ocorrem no planalto
+  catarinense e no noroeste do Rio Grande do Sul. A primavera e o outono tendem a ser as
+  estações mais chuvosas, associadas a sistemas frontais e a complexos convectivos de
+  mesoescala.
+- **Temperatura**: forte variação sazonal e gradiente latitudinal, com médias anuais
+  diminuindo de norte para sul. Os verões são quentes (médias acima de 24 °C no norte do
+  Paraná) e os invernos frios (médias abaixo de 14 °C nas áreas de maior altitude do
+  planalto, onde geadas são frequentes).
+
+Essa climatologia "normal" é a linha de base contra a qual se medem as anomalias do ENOS.
+
+Anomalias em anos de El Niño e La Niña
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **El Niño**: tendência robusta de **precipitação acima da média**, mais forte na
+  primavera e no verão. O excesso de chuva favorece inundações. O aumento da nebulosidade
+  pode deixar as temperaturas máximas diurnas mais amenas, mas as mínimas noturnas tendem
+  a ser mais altas.
+- **La Niña**: padrão oposto. A circulação alterada inibe os sistemas produtores de chuva,
+  resultando em **precipitação abaixo da média**, sobretudo na primavera e no verão, com
+  risco de estiagens e secas. A menor nebulosidade aumenta a radiação solar e, combinada
+  com a subsidência do ar, favorece temperaturas diurnas elevadas e ondas de calor,
+  intensificando o estresse hídrico sobre as culturas.
+
+A resposta tem forte sazonalidade: o sinal de precipitação mais confiável do El Niño no
+Sul ocorre na primavera austral (setembro a novembro), ainda que o pico do aquecimento no
+Pacífico aconteça no verão. Esse descompasso é útil para a agricultura — uma previsão de
+El Niño emitida no meio do ano antecipa, com boa confiança, as condições hídricas do final
+do ciclo das culturas de inverno e do início das de verão.
+
+Anomalias de produtividade nas principais culturas
+--------------------------------------------------
+
+As anomalias climáticas do ENOS se traduzem em impactos sobre a produtividade, com uma
+resposta dicotômica entre as safras de verão e de inverno. A
+:numref:`tbl:enso:produtividade` reúne os resultados de diversos estudos para o Brasil; as
+referências são apresentadas como atribuição direta aos estudos primários sintetizados.
+
+.. table:: Impactos mais prováveis do ENOS sobre os principais cultivos de grãos no Brasil (síntese de estudos).
+   :name: tbl:enso:produtividade
+
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Cultura        | Região | Safra            | Impacto El Niño | Impacto La Niña | Estudo                     |
+   +================+========+==================+=================+=================+============================+
+   | Trigo          | Sul    | inverno          | negativo        | positivo        | Cunha et al., 1999         |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Cevada         | Sul    | inverno          | negativo        | positivo        | Cunha et al., 2001a        |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Canola         | Sul    | inverno          | negativo        | positivo        | Dalmago et al., 2018       |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Soja           | Sul    | verão            | positivo        | negativo        | Berlato & Fontana, 1999    |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Arroz          | Sul    | verão            | negativo        | positivo        | Carmona & Berlato, 2002    |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Milho          | Sul    | verão            | positivo        | negativo        | Berlato et al., 2005       |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Trigo          | Sul    | verão            | positivo        | negativo        | Alberto et al., 2006       |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Milho          | Sul    | inverno          | negativo        | positivo        | Alberto et al., 2006       |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Soja           | Sul    | verão            | positivo        | negativo        | Pilau et al., 2022         |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Soja           | Sul    | verão            | positivo        | negativo        | Arsego et al., 2018        |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Soja / Feijão  | Sul    | verão            | positivo        | negativo        | Caron & Minuzzi, 2019      |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Arroz irrigado | Sul    | verão            | negativo        | positivo        | Carmona & Berlato, 2002    |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Soja           | Norte  | verão            | negativo        | positivo        | Nóia Jr. & Sentelhas, 2019 |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+   | Milho          | Norte  | verão (2ª safra) | negativo        | positivo        | Nóia Jr. & Sentelhas, 2019 |
+   +----------------+--------+------------------+-----------------+-----------------+----------------------------+
+
+.. note::
+
+   A coluna "Estudo" lista, por atribuição autor-ano, a **literatura primária** que
+   embasa cada linha. Esses trabalhos são sintetizados a partir das fontes citadas nesta
+   seção (o livro da Embrapa e :cite:`enso2020,schaab2018elnino`) e **não estão indexados
+   individualmente** na bibliografia do material — daí aparecerem como texto, e não como
+   ``:cite:``. Para a referência completa de um estudo específico, consulte a bibliografia
+   do livro-fonte da Embrapa.
+
+Soja e milho (culturas de verão)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **El Niño**: geralmente **benéfico**. O aumento da disponibilidade hídrica na primavera
+  e no verão coincide com as fases mais críticas para o rendimento (desenvolvimento
+  vegetativo, florescimento e enchimento de grãos) e mitiga o risco de veranicos.
+- **La Niña**: tipicamente **prejudicial** e o principal risco climático para as safras de
+  verão. A fase fria associa-se a déficits hídricos e secas na primavera e no verão; a
+  irregularidade das chuvas atrasa o plantio e compromete o estabelecimento da lavoura. O
+  estresse hídrico nas fases reprodutivas, somado a ondas de calor, pode causar quebras de
+  safra severas. O déficit hídrico é a principal causa de frustração de safras de verão no
+  Sul.
+
+Trigo (cultura de inverno)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **El Niño**: geralmente **prejudicial**. O excesso de chuva e a alta umidade na
+  primavera coincidem com o espigamento, a floração e o enchimento de grãos, criando
+  ambiente favorável a doenças fúngicas — com destaque para a **giberela** (*Gibberella
+  zeae*), que reduz o rendimento e pode contaminar os grãos com micotoxinas. A maior
+  nebulosidade também limita a fotossíntese.
+- **La Niña**: tende a ser **benéfica**. Tempo mais seco e ensolarado na primavera reduz a
+  pressão de doenças e favorece o enchimento de grãos e a colheita, com rendimentos e
+  qualidade superiores.
+
+O paradoxo dos anos neutros
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Uma simulação para Santa Maria (RS), no período de 1969 a 2003, mostrou que a maior
+disponibilidade hídrica no solo ocorre em anos de El Niño, e a menor em anos **neutros** —
+não em anos de La Niña. Consequentemente, os maiores rendimentos simulados de soja e milho
+ocorreram sob El Niño, e os de trigo, sob La Niña.
+
+O resultado contraintuitivo é o **paradoxo dos anos neutros**: para as culturas de verão
+no Sul, os anos neutros foram associados ao **maior risco de perda de rendimento**, por
+causa da menor disponibilidade hídrica. Sem o forçamento positivo de chuvas de um El Niño,
+a climatologia normal da região não garante água suficiente para a alta demanda
+evapotranspirativa de soja e milho no pico do desenvolvimento, deixando as lavouras
+expostas a veranicos. Ou seja: a ausência de um alerta de La Niña **não** significa
+ausência de risco de seca. A :numref:`tbl:enso:resumo` consolida os impactos.
+
+.. table:: Resumo dos impactos do ENOS na produtividade e riscos para as principais culturas do Sul.
+   :name: tbl:enso:resumo
+
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   | Cultura         | Fase do ENOS | Impacto típico             | Principal risco associado                       |
+   +=================+==============+============================+=================================================+
+   | **Soja**        | El Niño      | Positivo                   | Excesso de umidade no plantio/colheita,         |
+   |                 |              |                            | acamamento                                      |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   |                 | La Niña      | Negativo (alto risco)      | Estresse hídrico (seca), ondas de calor         |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   |                 | Neutro       | Negativo (risco mod.–alto) | Déficit hídrico por ausência de forçante        |
+   |                 |              |                            | positivo (veranicos)                            |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   | **Milho**       | El Niño      | Positivo                   | Excesso de umidade no plantio/colheita,         |
+   |                 |              |                            | lixiviação de N                                 |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   |                 | La Niña      | Negativo (alto risco)      | Estresse hídrico (seca), ondas de calor         |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   |                 | Neutro       | Negativo (risco mod.–alto) | Déficit hídrico por ausência de forçante        |
+   |                 |              |                            | positivo (veranicos)                            |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   | **Trigo**       | El Niño      | Negativo (alto risco)      | Excesso de chuva e umidade, doenças fúngicas    |
+   |                 |              |                            | (giberela), perda de qualidade                  |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   |                 | La Niña      | Positivo                   | Geadas tardias (risco menor, mas presente)      |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+   |                 | Neutro       | Próximo à média            | Condições variáveis, menor pressão de doenças   |
+   |                 |              |                            | que no El Niño                                  |
+   +-----------------+--------------+----------------------------+-------------------------------------------------+
+
+Previsão do ENOS e mitigação de risco
+--------------------------------------
+
+Previsibilidade e a barreira da primavera
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A previsão do ENOS com meses de antecedência se apoia na "memória" do oceano, que evolui
+muito mais devagar que a atmosfera. Sinais precursores — como o acúmulo de **volume de
+água quente (WWV)** subsuperficial no Pacífico oeste e a propagação de ondas de Kelvin —
+podem anteceder o pico de um El Niño em 6 a 9 meses.
+
+A previsibilidade, porém, não é uniforme ao longo do ano. Existe a **barreira de
+previsibilidade da primavera (boreal)**: uma queda na acurácia dos modelos quando suas
+projeções cruzam março, abril e maio do Hemisfério Norte. Nesse período de transição
+sazonal, o acoplamento oceano-atmosfera é mais fraco e o sinal do ENOS é pequeno, o que
+torna o sistema mais sensível a ruído. Para o Hemisfério Sul, essa barreira gera incerteza
+no outono — justamente quando se decidem os plantios das culturas de inverno.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Gráfico "spaghetti"/pluma de previsão do ENOS (model plume do IRI/CPC):
+      conjunto de previsões de anomalia da Niño 3.4 ao longo dos próximos meses.
+   :Função: mostra na prática a natureza probabilística e a dispersão entre modelos,
+      reforçando a ideia de barreira de previsibilidade.
+   :Busca sugerida: "IRI ENSO forecast plume Niño 3.4"; "CPC ENSO model forecast plume"
+   :Fonte provável: IRI/Columbia, NOAA/CPC
+   :Facilidade: alta
+
+Previsões probabilísticas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Pela natureza caótica do clima, as previsões do ENOS são **probabilísticas**, não
+determinísticas: em vez de afirmar que um evento ocorrerá, elas indicam mudanças nas
+chances de cada resultado. As previsões sazonais de agências como o CPC/NOAA e o
+CPTEC/INPE são expressas de duas formas:
+
+#. **Probabilidade das fases do ENOS**: a chance percentual de El Niño, La Niña ou
+   condição neutra nos próximos trimestres (as três somam 100%).
+#. **Probabilidade de anomalias climáticas**: a chance de a precipitação ou a temperatura
+   caírem em cada tercil — acima do normal, dentro da normalidade ou abaixo. Na
+   climatologia, cada tercil tem 33,3% de chance; uma previsão de El Niño pode, por
+   exemplo, elevar a chance de chuva "acima do normal" no Sul para 50%.
+
+Uma probabilidade alta não é garantia, mas indica que as decisões de manejo devem se
+preparar para o cenário mais provável.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Série histórica do índice ONI em barras (vermelho/azul) marcando
+      episódios de El Niño e La Niña ao longo das décadas.
+   :Função: dá noção da frequência, duração e intensidade variáveis dos eventos,
+      complementando a discussão de classificação e probabilidade.
+   :Busca sugerida: "ONI historical time series bar chart El Niño La Niña"; "Oceanic Niño
+      Index history"
+   :Fonte provável: NOAA/CPC, Golden Gate Weather Services, Wikimedia Commons
+   :Facilidade: alta
+
+ZARC como ferramenta de gestão
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O **Zoneamento Agrícola de Risco Climático (ZARC)** é uma ferramenta da política agrícola
+brasileira, desenvolvida e mantida pela Embrapa. Ele define, para cada cultura e
+município, as épocas de plantio em que o risco de perda por eventos climáticos adversos
+(seca, chuva excessiva, geada) é menor que 20%, 30% ou 40%. Baseia-se em séries climáticas
+históricas e modelos de simulação de culturas, e seu cumprimento é requisito para acesso a
+programas como o Proagro e o seguro rural :cite:`mapa_zarc,embrapa_zarc`.
+
+Hoje o ZARC é estático, baseado na climatologia de longo prazo. Há, porém, uma proposta na
+Embrapa para torná-lo mais dinâmico, incorporando as previsões sazonais de ENOS para
+ajustar anualmente as janelas de plantio. Em um ano de La Niña previsto, por exemplo, a
+janela do milho poderia ser ajustada para evitar os períodos de maior probabilidade de
+estresse hídrico — passando de uma gestão baseada no passado para uma gestão proativa.
+
+Manejo adaptativo por fase do ENOS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+**Em anos de El Niño**
+
+- **Culturas de verão (soja e milho)**: cenário geralmente favorável. Recomenda-se iniciar
+  o plantio no começo da janela do ZARC para aproveitar a umidade e investir em
+  tecnologias de alto potencial produtivo, com atenção a cultivares resistentes ao
+  acamamento.
+- **Cultura de inverno (trigo)**: o foco é o manejo de doenças. Priorizar cultivares
+  tolerantes à giberela, intensificar o monitoramento e aplicar fungicidas de forma
+  preventiva. A colheita deve ocorrer assim que os grãos atingem a umidade ideal, e a
+  adubação nitrogenada exige cuidado pelo risco de lixiviação.
+
+
+**Em anos de La Niña**
+
+- **Culturas de verão (soja e milho)**: a prioridade é conservar água no solo — plantio
+  direto, boa cobertura de palha, rotação de culturas e cultivares tolerantes ao estresse
+  hídrico. O cumprimento rigoroso das janelas de menor risco do ZARC é fundamental.
+- **Cultura de inverno (trigo)**: risco climático menor. As condições mais secas e
+  ensolaradas são favoráveis, permitindo focar no potencial produtivo.
+
+A :numref:`tbl:enso:janelas` resume as janelas sensíveis e os riscos por fase.
+
+.. table:: Janelas sensíveis e riscos por fase do ENOS (Sul).
+   :name: tbl:enso:janelas
+
+   +-------------+----------------+------------------------------+-------------------------------------+
+   | Cultura     | Janela crítica | Riscos em El Niño            | Riscos em La Niña                   |
+   +=============+================+==============================+=====================================+
+   | Soja        | V4–R5          | encharcamento, ferrugem,     | déficit hídrico, onda de calor      |
+   |             |                | mofo                         |                                     |
+   +-------------+----------------+------------------------------+-------------------------------------+
+   | Milho (1ª)  | V6–R3          | acamamento, doenças foliares | estresse hídrico na                 |
+   |             |                |                              | polinização/enchimento              |
+   +-------------+----------------+------------------------------+-------------------------------------+
+   | Trigo       | R3–colheita    | chuva/umidade, germinação    | geada tardia (local), déficit       |
+   |             |                | pré-colheita, queda de PH    | hídrico leve (geralmente benigno)   |
+   +-------------+----------------+------------------------------+-------------------------------------+
+
+.. note::
+
+   A leitura conjunta de fase do ENOS, fenologia da cultura e janela do ZARC é um
+   instrumento de **priorização e antecipação de risco** — apoia o planejamento e a
+   triagem de operações, não substitui a análise técnica de cada caso.

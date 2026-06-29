@@ -6,28 +6,28 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/estatistica.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/analise-espacial/estatistica.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Visualização preliminar: mapas de calor e densidade kernel" href="heatmap-kernel.html" />
     <link rel="prev" title="Análise espacial, estatística e técnicas de interpolação" href="index.html" /> 
 </head>
@@ -40,12 +40,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -53,30 +53,31 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#contexto-e-motivacao">Contexto e motivação</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fundamentos-teoricos">Fundamentos teóricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contexto-e-motivacao">Contexto e motivação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fundamentos-teoricos">Fundamentos teóricos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#primeira-lei-da-geografia-e-suas-implicacoes-para-o-proagro">Primeira lei da geografia e suas implicações para o Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conceito-de-dependencia-espacial">Conceito de dependência espacial</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
-<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -85,15 +86,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
       <li class="breadcrumb-item active">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</li>
       <li class="wy-breadcrumbs-aside">
@@ -125,7 +125,7 @@
 <h2>Fundamentos teóricos<a class="headerlink" href="#fundamentos-teoricos" title="Link permanente para este cabeçalho"></a></h2>
 <section id="primeira-lei-da-geografia-e-suas-implicacoes-para-o-proagro">
 <h3>Primeira lei da geografia e suas implicações para o Proagro<a class="headerlink" href="#primeira-lei-da-geografia-e-suas-implicacoes-para-o-proagro" title="Link permanente para este cabeçalho"></a></h3>
-<p>A primeira lei da geografia, formulada por Waldo Tobler <span id="id1">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>, estabelece que “tudo está relacionado com tudo, mas coisas próximas estão mais relacionadas que coisas distantes”. Embora aparentemente simples, essa premissa possui implicações profundas para a análise de risco agrícola.</p>
+<p>A primeira lei da geografia, formulada por Waldo Tobler <span id="id1">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>, estabelece que “tudo está relacionado com tudo, mas coisas próximas estão mais relacionadas que coisas distantes”. Embora aparentemente simples, essa premissa possui implicações profundas para a análise de risco agrícola.</p>
 <p>No domínio agrícola e meteorológico, essa lei manifesta-se de diversas formas:</p>
 <ul class="simple">
 <li><p><strong>Fenômenos climáticos apresentam continuidade espacial natural</strong>: Secas, geadas, chuvas excessivas e vendavais constituem fenômenos regionais que afetam áreas contíguas, não se restringindo a municípios isolados</p></li>
@@ -134,6 +134,30 @@
 <li><p><strong>Ação de agentes econômicos possui dimensão territorial</strong>: Instituições financeiras, peritos agrônomos e cooperativas atuam em áreas geograficamente definidas</p></li>
 </ul>
 <p>Essas características determinam que valores de variáveis relacionadas ao risco agrícola tendam a ser similares em localizações próximas, estabelecendo uma tendência estatística mensurável.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diagrama conceitual da primeira lei da geografia (Tobler), mostrando o
+decaimento da influência/similaridade com a distância — um ponto central e anéis de
+proximidade cada vez menos correlacionados.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>traduz visualmente a ideia de que “coisas próximas são mais relacionadas que
+distantes”, base de toda a análise espacial discutida na seção.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“Tobler first law of geography illustration”; “lei de Tobler distância
+decaimento espacial”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wikimedia Commons, documentação GIS (QGIS), artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>média</p>
+</dd>
+</dl>
+</div>
 </section>
 <section id="conceito-de-dependencia-espacial">
 <h3>Conceito de dependência espacial<a class="headerlink" href="#conceito-de-dependencia-espacial" title="Link permanente para este cabeçalho"></a></h3>
@@ -144,6 +168,30 @@
 <li><p><strong>Negativa</strong>: Valores elevados tendem a situar-se próximos a valores reduzidos (ocorrência menos frequente, associada a fenômenos de competição)</p></li>
 <li><p><strong>Ausente (aleatória)</strong>: Ausência de padrão discernível, com valores elevados e reduzidos distribuídos aleatoriamente no território</p></li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Painel com três mapas/grades lado a lado ilustrando autocorrelação
+espacial <strong>positiva</strong> (valores similares agrupados), <strong>negativa</strong> (padrão tipo
+tabuleiro de xadrez) e <strong>ausente</strong> (distribuição aleatória).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>torna concreta a distinção entre as três formas de dependência espacial
+descritas na lista, antes de aplicá-las ao contexto do Proagro.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“positive negative spatial autocorrelation example”; “tipos de
+autocorrelação espacial mapa exemplo”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GIS (GeoDa/PySAL), Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <p>No contexto do Proagro, a presença de autocorrelação espacial positiva é esperada quando as perdas decorrem efetivamente de fenômenos naturais adversos. Considerem-se os seguintes cenários:</p>
 <ul class="simple">
 <li><p><strong>Padrão esperado (autocorrelação positiva)</strong>: Uma seca regional afeta municípios contíguos, resultando em COPs concentradas em área conectada, formando mancha contínua no mapa</p></li>
@@ -168,7 +216,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c1064f15d0>
+<jinja2.runtime.BlockReference object at 0x70ac95a84050>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

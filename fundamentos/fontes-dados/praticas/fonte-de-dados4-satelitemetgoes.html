@@ -6,29 +6,29 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aula prática 4c — dados do satélite GOES-19 (ABI, GLM e LST) &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/tutorial.css" />
+  <title>Aula prática 4c — dados do satélite GOES-19 (ABI, GLM e LST) &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/fundamentos/fontes-dados/praticas/fonte-de-dados4-satelitemetgoes.html" />
-      <script src="../../../../_static/jquery.js"></script>
-      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-      <script src="../../../../_static/doctools.js"></script>
-      <script src="../../../../_static/sphinx_highlight.js"></script>
-      <script src="../../../../_static/clipboard.min.js"></script>
-      <script src="../../../../_static/copybutton.js"></script>
-      <script src="../../../../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fundamentos/fontes-dados/praticas/fonte-de-dados4-satelitemetgoes.html" />
+      <script src="../../../_static/jquery.js"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+      <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/sphinx_highlight.js"></script>
+      <script src="../../../_static/clipboard.min.js"></script>
+      <script src="../../../_static/copybutton.js"></script>
+      <script src="../../../_static/translations.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../../../search.html" />
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../../search.html" />
     <link rel="next" title="Uma breve apresentação de sistemas e plataformas de alerta meteorológico" href="../../sistema-alertas/index.html" />
     <link rel="prev" title="Aula prática 4b — manipulando dados em grade com xarray e Cartopy" href="fonte-de-dados4-manipulandodadosgrade.html" /> 
 </head>
@@ -41,12 +41,12 @@
 
           
           
-          <a href="../../../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../../../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -54,42 +54,42 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../risco/index.html">O que é risco agrícola?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../eventos/index.html">Tipos de eventos adversos no campo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../adversos/adversos.html">Eventos climáticos adversos</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../estacoes.html">Estações meteorológicas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../gridded.html">Dados em grade</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../satelite-meteorologico.html">Satélites meteorológicos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../radar.html">Radares meteorológicos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../indicacao-dados.html">Indicação fontes de dados</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../exemplo-graus-dia-trigo.html">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
-<li class="toctree-l4 current"><a class="reference internal" href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../risco/index.html">O que é risco agrícola?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risco/importancia.html">Importância de monitorar o clima e os fenômenos meteorológicos para o crédito rural e Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risco/principais-elementos.html">Principais elementos climáticos que afetam a agricultura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../eventos/index.html">Tipos de eventos adversos no campo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risco/risco-climatico.html">Agrometeorologia dos cultivos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risco/mecanismos.html">Mecanismos fisiológicos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risco/enso.html">El Niño–Oscilação Sul: clima, vegetação e agricultura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../risco/zarc-simples.html">Instrumentos de gestão de risco climático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../adversos/adversos.html">Eventos climáticos adversos</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Fontes de informação meteorológica (informações granulares)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../estacoes.html">Estações meteorológicas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gridded.html">Dados em grade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../satelite-meteorologico.html">Satélites meteorológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../radar.html">Radares meteorológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../indicacao-dados.html">Indicação fontes de dados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../panorama-nacional.html">Panorama nacional de fontes de dados meteorológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../instituicoes-por-estado.html">Instituições de meteorologia, hidrologia e agrometeorologia por estado</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../plataformas-visualizacao.html">Plataformas de visualização de dados meteorológicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../exemplo-graus-dia-trigo.html">Exemplo aplicado: estádio fenológico do trigo por graus-dia</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Aulas práticas — fontes de dados meteorológicos</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#trilha-sugerida">Trilha sugerida</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sistema-alertas/index.html">Uma breve apresentação de sistemas e plataformas de alerta meteorológico</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html#perguntas-e-respostas-modulo-1">Perguntas e respostas — módulo 1</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -98,15 +98,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">GeoCreditoRural</a>
+          <a href="../../../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Fontes de informação meteorológica (informações granulares)</a></li>
           <li class="breadcrumb-item"><a href="index.html">Aulas práticas — fontes de dados meteorológicos</a></li>
@@ -252,7 +251,7 @@ canal e o sensor. A conversão segue o <a class="reference external" href="https
 <section id="plot-do-dado-na-grade-nativa">
 <h3><a class="toc-backref" href="#id12" role="doc-backlink">Plot do dado na grade nativa</a><a class="headerlink" href="#plot-do-dado-na-grade-nativa" title="Link permanente para este cabeçalho"></a></h3>
 <figure class="align-center" id="id1">
-<img alt="Disco GOES-19 na grade geoestacionária nativa." src="../../../../_images/cell014_out01.png" />
+<img alt="Disco GOES-19 na grade geoestacionária nativa." src="../../../_images/cell014_out01.png" />
 <figcaption>
 <p><span class="caption-number">Figura 25 - </span><span class="caption-text">Temperatura de brilho do canal IR 13 (10,3 µm) projetada na grade
 geoestacionária nativa do GOES-19. O disco terrestre aparece como
@@ -348,7 +347,7 @@ nativo:</p>
 <section id="plot-reprojetado-com-cartopy">
 <h3><a class="toc-backref" href="#id19" role="doc-backlink">Plot reprojetado com Cartopy</a><a class="headerlink" href="#plot-reprojetado-com-cartopy" title="Link permanente para este cabeçalho"></a></h3>
 <figure class="align-center" id="id2">
-<img alt="GOES-19 reprojetado para WGS84 (escala de cinza)." src="../../../../_images/cell027_out1.png" />
+<img alt="GOES-19 reprojetado para WGS84 (escala de cinza)." src="../../../_images/cell027_out1.png" />
 <figcaption>
 <p><span class="caption-number">Figura 26 - </span><span class="caption-text">Temperatura de brilho do canal 13 reprojetada para WGS84
 (escala invertida <code class="docutils literal notranslate"><span class="pre">gray_r</span></code>).</span><a class="headerlink" href="#id2" title="Link Permanente para essa imagem"></a></p>
@@ -357,7 +356,7 @@ nativo:</p>
 <p>Com a paleta padrão de cores frias do CPTEC para temperatura de
 brilho:</p>
 <figure class="align-center" id="id3">
-<img alt="GOES-19 reprojetado com paleta CPTEC para temperatura de brilho." src="../../../../_images/cell030_out1.png" />
+<img alt="GOES-19 reprojetado com paleta CPTEC para temperatura de brilho." src="../../../_images/cell030_out1.png" />
 <figcaption>
 <p><span class="caption-number">Figura 27 - </span><span class="caption-text">Mesma imagem com a paleta CPTEC realçando topos de nuvens frias.</span><a class="headerlink" href="#id3" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
@@ -377,7 +376,7 @@ detector óptico que registra clarões de raios:</p>
 </div>
 <p>Sobreposição das ocorrências aos topos de nuvens IR:</p>
 <figure class="align-center" id="id4">
-<img alt="Topos de nuvens IR com flashes GLM sobrepostos." src="../../../../_images/cell033_out11.png" />
+<img alt="Topos de nuvens IR com flashes GLM sobrepostos." src="../../../_images/cell033_out11.png" />
 <figcaption>
 <p><span class="caption-number">Figura 28 - </span><span class="caption-text">Imagem IR (canal 13) com <strong>flashes do GLM</strong> sobrepostos em
 amarelo. Útil para identificar célula convectiva ativa associada
@@ -400,7 +399,7 @@ máscara de qualidade (<code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 <figure class="align-center" id="id5">
-<img alt="LST GOES-19 com máscara de qualidade aplicada." src="../../../../_images/cell037_out2.png" />
+<img alt="LST GOES-19 com máscara de qualidade aplicada." src="../../../_images/cell037_out2.png" />
 <figcaption>
 <p><span class="caption-number">Figura 29 - </span><span class="caption-text">LST do GOES-19 após aplicação da máscara <code class="docutils literal notranslate"><span class="pre">DQF</span> <span class="pre">==</span> <span class="pre">0</span></code>.</span><a class="headerlink" href="#id5" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
@@ -450,7 +449,7 @@ de satélite (granizo, raios, ondas de calor).</p></li>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c100390310>
+<jinja2.runtime.BlockReference object at 0x70ac963d8ad0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

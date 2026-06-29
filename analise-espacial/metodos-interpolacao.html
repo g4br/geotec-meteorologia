@@ -6,29 +6,29 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Técnicas de interpolação espacial aplicadas ao risco agrícola &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Técnicas de interpolação espacial aplicadas ao risco agrícola &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/metodos-interpolacao.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/analise-espacial/metodos-interpolacao.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Densidade e autocorrelação espacial" href="autocorrelacao-espacial.html" />
     <link rel="prev" title="Quantificando autocorrelação espacial: O índice I de Moran" href="imoran.html" /> 
 </head>
@@ -41,12 +41,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -54,36 +54,110 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
-<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Técnicas de interpolação espacial aplicadas ao risco agrícola</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#o-desafio-da-estimativa-espacial-de-variaveis-climaticas">O desafio da estimativa espacial de variáveis climáticas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#as-tres-principais-tecnicas-de-interpolacao">As três principais técnicas de interpolação</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#comparacao-entre-os-tres-metodos">Comparação entre os três métodos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#incertezas-na-interpolacao-espacial">Incertezas na interpolação espacial</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#limitacoes-gerais-da-interpolacao">Limitações gerais da interpolação</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sintese-e-recomendacoes-praticas">Síntese e recomendações práticas</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#integracao-com-outros-modulos-e-analises">Integração com outros módulos e análises</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#conclusao-interpolacao-como-ferramenta-de-apoio-nao-substituto">Conclusão: interpolação como ferramenta de apoio, não substituto</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Técnicas de interpolação espacial aplicadas ao risco agrícola</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#o-desafio-da-estimativa-espacial-de-variaveis-climaticas">O desafio da estimativa espacial de variáveis climáticas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quando-um-dado-pontual-precisa-virar-superficie-continua">Quando um dado pontual precisa virar superfície contínua</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-que-e-interpolacao-espacial">O que É interpolação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-metafora-do-terreno">A metáfora do terreno</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-principio-fundamental-autocorrelacao-espacial">O princípio fundamental: autocorrelação espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#por-que-precisamos-de-interpolacao-no-proagro">Por que precisamos de interpolação no Proagro</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#as-tres-principais-tecnicas-de-interpolacao">As três principais técnicas de interpolação</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inverse-distance-weighting-idw-ponderacao-pela-distancia-inversa">Inverse distance weighting (IDW) — ponderação pela distância inversa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-conceito-intuitivo">O conceito intuitivo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#como-funciona">Como funciona</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-conceitual-no-proagro">Exemplo conceitual no Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vantagens-do-idw">Vantagens do IDW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-do-idw">Limitações do IDW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quando-usar-idw-no-proagro">Quando usar IDW no Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spline-superficies-suaves-e-minimizacao-de-curvatura">Spline — superfícies suaves e minimização de curvatura</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">O conceito intuitivo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Como funciona</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-matematica-simplificada">A matemática (simplificada)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Exemplo conceitual no Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vantagens-do-spline">Vantagens do spline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-do-spline">Limitações do spline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quando-usar-spline-no-proagro">Quando usar spline no Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#krigagem-kriging-o-metodo-geoestatistico-robusto">Krigagem (kriging) — O método geoestatístico robusto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">O conceito intuitivo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-logica-geoestatistica">A lógica geoestatística</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o-semivariograma-coracao-da-krigagem">O semivariograma: coração da krigagem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#como-a-krigagem-funciona-simplificado">Como a krigagem funciona (simplificado)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tipos-de-krigagem">Tipos de krigagem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Exemplo conceitual no Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vantagens-da-krigagem">Vantagens da krigagem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#limitacoes-da-krigagem">Limitações da krigagem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quando-usar-krigagem-no-proagro">Quando usar krigagem no Proagro</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comparacao-entre-os-tres-metodos">Comparação entre os três métodos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tabela-resumo-comparativa">Tabela resumo comparativa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exemplo-comparativo-mesma-regiao-tres-metodos">Exemplo comparativo: mesma região, três métodos</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#incertezas-na-interpolacao-espacial">Incertezas na interpolação espacial</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fatores-que-aumentam-ou-reduzem-a-incerteza">Fatores que aumentam ou reduzem a incerteza</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#densidade-e-proximidade-de-pontos-de-medicao">Densidade e proximidade de pontos de medição</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qualidade-da-distribuicao-espacial">Qualidade da distribuição espacial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qualidade-e-confiabilidade-dos-dados-observados">Qualidade e confiabilidade dos dados observados</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complexidade-do-relevo-e-heterogeneidade-geografica">Complexidade do relevo e heterogeneidade geográfica</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#natureza-do-fenomeno-meteorologico">Natureza do fenômeno meteorológico</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quantificando-e-reportando-incerteza">Quantificando e reportando incerteza</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mapa-de-incerteza-ferramenta-essencial">Mapa de incerteza: ferramenta essencial</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uso-de-intervalos-de-confianca-krigagem">Uso de intervalos de confiança (krigagem)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#triangulacao-com-multiplas-fontes">Triangulação com múltiplas fontes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#determinando-incerteza-aceitavel-para-decisao">Determinando incerteza aceitável para decisão</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reportando-limitacoes-com-transparencia">Reportando limitações com transparência</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#limitacoes-gerais-da-interpolacao">Limitações gerais da interpolação</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#extrapolacao-e-perigosa">Extrapolação é perigosa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#escolha-do-metodo-afeta-resultado">Escolha do método afeta resultado</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpolacao-nao-cria-informacao-nova">Interpolação não cria informação nova</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interpolacao-de-variaveis-derivadas-vs-interpolacao-direta">Interpolação de variáveis derivadas vs. interpolação direta</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dados-de-estacoes-privadas-cautela-necessaria">Dados de estações privadas: cautela necessária</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sintese-e-recomendacoes-praticas">Síntese e recomendações práticas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fluxograma-de-decisao-qual-metodo-usar">Fluxograma de decisão: qual método usar?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checklist-pre-interpolacao">Checklist pré-interpolação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#checklist-pos-interpolacao">Checklist pós-interpolação</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reportando-resultados-de-interpolacao">Reportando resultados de interpolação</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#integracao-com-outros-modulos-e-analises">Integração com outros módulos e análises</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#interpolacao-no-contexto-do-workflow-completo-do-proagro">Interpolação no contexto do workflow completo do Proagro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uso-combinado-interpolacao-produtos-em-grade-ndvi">Uso combinado: interpolação + produtos em grade + NDVI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analise-de-casos-individuais">Análise de casos individuais</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comparacao-com-zoneamento-agroclimatico-zarc">Comparação com zoneamento agroclimático (zarc)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusao-interpolacao-como-ferramenta-de-apoio-nao-substituto">Conclusão: interpolação como ferramenta de apoio, não substituto</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mensagens-chave">Mensagens-Chave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quando-interpolacao-e-ferramenta-adequada">Quando interpolação É ferramenta adequada</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quando-interpolacao-deve-ser-usada-com-extrema-cautela-ou-nao-usada">Quando interpolação deve ser usada com extrema cautela ou não usada</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#a-perspectiva-final">A perspectiva final</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -92,15 +166,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
       <li class="breadcrumb-item active">Técnicas de interpolação espacial aplicadas ao risco agrícola</li>
       <li class="wy-breadcrumbs-aside">
@@ -143,7 +216,7 @@
 </section>
 <section id="o-principio-fundamental-autocorrelacao-espacial">
 <h3>O princípio fundamental: autocorrelação espacial<a class="headerlink" href="#o-principio-fundamental-autocorrelacao-espacial" title="Link permanente para este cabeçalho"></a></h3>
-<p>Todas as técnicas de interpolação baseiam-se, implícita ou explicitamente, na <strong>primeira lei da geografia</strong>: coisas próximas são mais parecidas que coisas distantes <span id="id1">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
+<p>Todas as técnicas de interpolação baseiam-se, implícita ou explicitamente, na <strong>primeira lei da geografia</strong>: coisas próximas são mais parecidas que coisas distantes <span id="id1">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
 <p>Portanto:</p>
 <ul class="simple">
 <li><p>Pontos de medição <strong>mais próximos</strong> da localização de interesse têm <strong>maior influência</strong> na estimativa</p></li>
@@ -184,7 +257,7 @@
 </section>
 <section id="o-conceito-intuitivo">
 <h3>O conceito intuitivo<a class="headerlink" href="#o-conceito-intuitivo" title="Link permanente para este cabeçalho"></a></h3>
-<p>IDW é o método mais simples e intuitivo de interpolação <span id="id2">[<a class="reference internal" href="../../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. A lógica é direta:</p>
+<p>IDW é o método mais simples e intuitivo de interpolação <span id="id2">[<a class="reference internal" href="../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. A lógica é direta:</p>
 <blockquote>
 <div><p><em>“O valor em uma localização não medida é a média ponderada dos valores nos pontos medidos ao redor, onde o peso de cada ponto é inversamente proporcional à sua distância.”</em></p>
 </div></blockquote>
@@ -236,6 +309,30 @@
 \[ \begin{align}\begin{aligned}\hat{z} = \frac{(0.0016 \times 180) + (0.000625 \times 210) + (0.000178 \times 145)}{0.002403}\\\hat{z} \approx 187 \text{ mm}\end{aligned}\end{align} \]</div>
 <p><strong>Interpretação:</strong></p>
 <p>A gleba G teria recebido aproximadamente 187 mm em janeiro — valor <strong>intermediário</strong>, mais próximo da Estação A (a mais próxima geograficamente) mas também influenciado por B e C.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Superfície interpolada por IDW evidenciando o efeito “bull’s eye” —
+anéis concêntricos artificiais em torno de cada ponto de medição (idealmente
+comparando potências p diferentes).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>ilustra o comportamento característico do IDW descrito na seção, antecipando
+uma de suas principais limitações.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“inverse distance weighting bull’s eye interpolation surface”; “IDW
+efeito bull’s eye interpolação”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GIS (QGIS/ArcGIS), Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>média</p>
+</dd>
+</dl>
+</div>
 <p>Se a COP alega perda por seca severa, mas estimativa é ~187 mm e média histórica regional é ~150 mm, há <strong>inconsistência</strong> que justifica aprofundamento.</p>
 </section>
 <section id="vantagens-do-idw">
@@ -469,7 +566,7 @@
 </section>
 <section id="id6">
 <h3>O conceito intuitivo<a class="headerlink" href="#id6" title="Link permanente para este cabeçalho"></a></h3>
-<p>Krigagem é o método mais sofisticado de interpolação, baseado em <strong>geoestatística</strong> — o ramo da estatística que modela explicitamente a estrutura espacial de variáveis <span id="id7">[<a class="reference internal" href="../../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>.</p>
+<p>Krigagem é o método mais sofisticado de interpolação, baseado em <strong>geoestatística</strong> — o ramo da estatística que modela explicitamente a estrutura espacial de variáveis <span id="id7">[<a class="reference internal" href="../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>.</p>
 <p>A diferença fundamental em relação a IDW e Spline:</p>
 <blockquote>
 <div><p><strong>Krigagem não apenas estima valores, mas também quantifica a incerteza (variância) de cada estimativa.</strong></p>
@@ -492,6 +589,30 @@
 <section id="o-semivariograma-coracao-da-krigagem">
 <h3>O semivariograma: coração da krigagem<a class="headerlink" href="#o-semivariograma-coracao-da-krigagem" title="Link permanente para este cabeçalho"></a></h3>
 <p>O <strong>semivariograma</strong> <span class="math notranslate nohighlight">\(\gamma(h)\)</span> mede dissimilaridade entre valores separados por distância <span class="math notranslate nohighlight">\(h\)</span>:</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Esquema de um semivariograma experimental e seu modelo teórico ajustado,
+com os três componentes anotados — efeito pepita (nugget), patamar (sill) e alcance
+(range).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>dá suporte visual à fórmula e à interpretação dos componentes apresentados na
+seção, que são o coração da Krigagem.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“experimental semivariogram model nugget sill range”; “semivariograma
+experimental modelo esférico ajuste”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GIS (QGIS/SAGA/GRASS), Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <div class="math notranslate nohighlight">
 \[\gamma(h) = \frac{1}{2N(h)} \sum_{i=1}^{N(h)} [z(x_i) - z(x_i + h)]^2\]</div>
 <p>Onde <span class="math notranslate nohighlight">\(N(h)\)</span> é o número de pares de pontos separados por distância aproximadamente <span class="math notranslate nohighlight">\(h\)</span>.</p>
@@ -795,6 +916,30 @@ Coordenadas de 1500 glebas com operações de soja na região.</p>
 </div></blockquote>
 <p><strong>Interpretação:</strong></p>
 <p>Estimativas ainda concordam razoavelmente, mas <strong>krigagem revela alta incerteza</strong> (±19 mm). Isso <strong>alerta</strong> que para essa gleba, estimativa climática é menos confiável e deve ser triangulada com outras fontes.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Comparação visual dos três métodos sobre os mesmos pontos — superfícies
+interpoladas por IDW (com bull’s eye), Spline (suave) e Krigagem, esta acompanhada
+do mapa de variância/desvio-padrão da estimativa.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>sintetiza as diferenças de aparência e o diferencial de incerteza discutidos
+no exemplo comparativo e na tabela resumo.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“IDW spline kriging interpolation comparison surfaces”; “comparação IDW
+spline krigagem superfícies interpolação”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GIS (QGIS/ArcGIS), artigos abertos, Wikimedia Commons</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>média</p>
+</dd>
+</dl>
+</div>
 </section>
 </section>
 <section id="incertezas-na-interpolacao-espacial">
@@ -1419,7 +1564,7 @@ SE (distância 20-40 km)
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c10086a790>
+<jinja2.runtime.BlockReference object at 0x70ac96776ad0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

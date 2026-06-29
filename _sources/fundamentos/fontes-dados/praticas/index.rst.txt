@@ -1,0 +1,87 @@
+Aulas práticas — fontes de dados meteorológicos
+================================================
+
+As aulas práticas deste módulo replicam, em código Python, o conjunto de
+exercícios apresentados no Módulo 1 do curso *Fenômenos Meteorológicos
+Adversos na Agricultura — Geotec*. Cada página corresponde a um caderno
+Jupyter executado em aula, com o mesmo recorte de dados, as mesmas
+estações INMET, as mesmas COPs (Comunicações de Ocorrência de Perdas) do
+Sicor e os mesmos produtos de grade (MERGE/CPTEC, SAMeT/CPTEC) usados
+nos slides.
+
+.. note::
+
+   Os notebooks originais foram desenvolvidos para o Google Colab,
+   acessando os dados a partir do Google Drive
+   (``/content/drive/MyDrive/MaterialGeotec/basededados/``). Nesta
+   documentação trocamos esse caminho por uma variável ``DATA_DIR`` no
+   topo de cada exemplo — adapte para o seu ambiente local ou para o
+   pacote disponibilizado no Kaggle.
+
+Trilha sugerida
+---------------
+
+.. grid:: 2
+
+   .. grid-item-card:: 1. Catálogo de fontes
+      :link: fonte-de-dados-linksdasfontes
+      :link-type: doc
+
+      Mapa de portais públicos de dados meteorológicos: estações,
+      monitores de seca, centros regionais e nacionais, grades de
+      reanálise.
+
+   .. grid-item-card:: 2. Primeiros passos com Python e INMET
+      :link: fonte-de-dados1
+      :link-type: doc
+
+      Mistura de Bash e Python no notebook; download massivo de
+      CSVs horários do INMET (2014–2025); leitura com pandas.
+
+   .. grid-item-card:: 3. Sicor + INMET — plausibilidade espacial
+      :link: fonte-de-dados2
+      :link-type: doc
+
+      Limpeza das coordenadas do Sicor, mapa de COPs recorrentes
+      em Folium, busca das três estações INMET mais próximas via
+      Haversine, balanço hídrico por fase fenológica da soja.
+
+   .. grid-item-card:: 4. Chuva excessiva em trigo
+      :link: fonte-de-dados3
+      :link-type: doc
+
+      Variação do exercício anterior para trigo: percentual da
+      chuva do evento sobre a safra, GDD do trigo (Tb=5°C).
+
+   .. grid-item-card:: 5. Download dos dados de grade do CPTEC
+      :link: fonte-de-dados4-downloaddadoscptec
+      :link-type: doc
+
+      Loops em Bash e Python para baixar climatologia e dados
+      diários de MERGE (precipitação) e SAMeT (Tmin/Tmax) via FTP.
+
+   .. grid-item-card:: 6. Manipulando dados em grade (xarray + Cartopy)
+      :link: fonte-de-dados4-manipulandodadosgrade
+      :link-type: doc
+
+      Leitura de NetCDF/GRIB2, cálculo de anomalias por
+      ``dayofyear``, séries temporais em pontos, mapas com Cartopy.
+
+   .. grid-item-card:: 7. Satélite GOES-19 (ABI, GLM, LST)
+      :link: fonte-de-dados4-satelitemetgoes
+      :link-type: doc
+
+      Conversão radiância → temperatura de brilho, reprojeção da
+      grade geoestacionária para WGS84, raios (GLM) e LST.
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   fonte-de-dados-linksdasfontes
+   fonte-de-dados1
+   fonte-de-dados2
+   fonte-de-dados3
+   fonte-de-dados4-downloaddadoscptec
+   fonte-de-dados4-manipulandodadosgrade
+   fonte-de-dados4-satelitemetgoes

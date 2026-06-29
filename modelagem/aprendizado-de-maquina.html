@@ -6,28 +6,28 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aprendizado de máquina para previsão de rendimentos agrícolas &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Aprendizado de máquina para previsão de rendimentos agrícolas &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/modelagem/aprendizado-de-maquina.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/modelagem/aprendizado-de-maquina.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Previsão de rendimento com redes neurais — caso da soja" href="previsao-rendimento-rna.html" />
     <link rel="prev" title="Modelos clássicos para previsão de produtividade agrícola" href="modelos-classicos.html" /> 
 </head>
@@ -40,12 +40,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -53,34 +53,61 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Aprendizado de máquina para previsão de rendimentos agrícolas</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#contexto-e-relevancia">Contexto e relevância</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#taxonomia-de-modelos-de-aprendizado-de-maquina">Taxonomia de modelos de aprendizado de máquina</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dados-de-entrada-e-engenharia-de-caracteristicas">Dados de entrada e engenharia de características</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#metricas-de-desempenho-e-comparacao-de-modelos">Métricas de desempenho e comparação de modelos</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#interpretabilidade-e-ia-explicavel-xai">Interpretabilidade e IA explicável (XAI)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#desafios-e-limitacoes">Desafios e limitações</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#aplicacoes-no-contexto-do-proagro">Aplicações no contexto do Proagro</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#consideracoes-finais">Considerações finais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analise-espacial/index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modelagem de perdas e aplicações em decisão</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introducao.html">Introdução à modelagem de perdas agrícolas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modelos-classicos.html">Modelos clássicos para previsão de produtividade agrícola</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Aprendizado de máquina para previsão de rendimentos agrícolas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contexto-e-relevancia">Contexto e relevância</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#taxonomia-de-modelos-de-aprendizado-de-maquina">Taxonomia de modelos de aprendizado de máquina</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-baseados-em-ensembles-de-arvores">Modelos baseados em ensembles de árvores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-de-aprendizado-profundo-deep-learning">Modelos de aprendizado profundo (deep learning)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-hibridos-e-de-ensemble">Modelos híbridos e de ensemble</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="previsao-rendimento-rna.html">Previsão de rendimento com redes neurais — caso da soja</a></li>
-<li class="toctree-l3"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dados-de-entrada-e-engenharia-de-caracteristicas">Dados de entrada e engenharia de características</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sensoriamento-remoto">Sensoriamento remoto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dados-climaticos-e-meteorologicos">Dados climáticos e meteorológicos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#solo-e-praticas-de-manejo">Solo e práticas de manejo</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metricas-de-desempenho-e-comparacao-de-modelos">Métricas de desempenho e comparação de modelos</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#metricas-de-acuracia">Métricas de acurácia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#desempenho-comparativo">Desempenho comparativo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generalizacao-e-transferibilidade">Generalização e transferibilidade</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#interpretabilidade-e-ia-explicavel-xai">Interpretabilidade e IA explicável (XAI)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tecnicas-de-explicabilidade">Técnicas de explicabilidade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modelos-intrinsecamente-interpretaveis">Modelos intrinsecamente interpretáveis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#desafios-e-limitacoes">Desafios e limitações</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#generalizacao-entre-regioes-e-anos">Generalização entre regiões e anos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#quantificacao-de-incertezas">Quantificação de incertezas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sobreajuste-e-robustez">Sobreajuste e robustez</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integracao-de-dados-de-manejo">Integração de dados de manejo</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#aplicacoes-no-contexto-do-proagro">Aplicações no contexto do Proagro</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#escala-de-analise">Escala de análise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#balanco-entre-acuracia-e-interpretabilidade">Balanço entre acurácia e interpretabilidade</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#complementaridade-com-outras-abordagens">Complementaridade com outras abordagens</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#consideracoes-finais">Considerações finais</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="previsao-rendimento-rna.html">Previsão de rendimento com redes neurais — caso da soja</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recorrencia.html">Análise de recorrência</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-4">Perguntas e respostas — módulo 4</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -89,15 +116,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Modelagem de perdas e aplicações em decisão</a></li>
       <li class="breadcrumb-item active">Aprendizado de máquina para previsão de rendimentos agrícolas</li>
       <li class="wy-breadcrumbs-aside">
@@ -166,9 +192,9 @@
 <section id="contexto-e-relevancia">
 <h2><a class="toc-backref" href="#id18" role="doc-backlink">Contexto e relevância</a><a class="headerlink" href="#contexto-e-relevancia" title="Link permanente para este cabeçalho"></a></h2>
 <p>A previsão acurada de produtividade agrícola é essencial para a segurança alimentar, a gestão de recursos e o planejamento agrícola. No contexto do Proagro, modelos de previsão de rendimento permitem estabelecer expectativas de produtividade que servem como referência para avaliar a magnitude de perdas alegadas em comunicações de perdas.</p>
-<p>Revisões sistemáticas recentes da literatura científica indicam que modelos de IA — incluindo ensembles de árvores de decisão (Random Forest, XGBoost), arquiteturas de aprendizado profundo (CNN, RNN/LSTM/GRU, transformers) e abordagens híbridas — superam consistentemente modelos estatísticos tradicionais tanto em acurácia quanto em escalabilidade, especialmente quando utilizam dados de alta resolução provenientes de múltiplas fontes <span id="id1">[<a class="reference internal" href="../../referencias.html#id285" title="M. Ashfaq, I. Khan, R. Afzal, D. Shah, S. Ali, and M. Tahir. Enhanced wheat yield prediction through integrated climate and satellite data using advanced AI techniques. Scientific Reports, 2025. doi:10.1038/s41598-025-02700-w.">101</a>, <a class="reference internal" href="../../referencias.html#id284" title="Saeed Khaki, Lizhi Wang, and Sotirios V. Archontoulis. A CNN-RNN framework for crop yield prediction. Frontiers in Plant Science, 10:1750, 2019. doi:10.3389/fpls.2019.01750.">100</a>, <a class="reference internal" href="../../referencias.html#id282" title="S. Shawon, F. Ema, A. Mahi, F. Niha, and H. Zubair. Crop yield prediction using machine learning: an extensive and systematic literature review. Smart Agricultural Technology, 8:100718, 2024. doi:10.1016/j.atech.2024.100718.">99</a>, <a class="reference internal" href="../../referencias.html#id281" title="Thomas van Klompenburg, Ayalew Kassahun, and Cagatay Catal. Crop yield prediction using machine learning: a systematic literature review. Computers and Electronics in Agriculture, 177:105709, 2020. doi:10.1016/j.compag.2020.105709.">98</a>]</span>.</p>
-<p>Métricas de desempenho como R², RMSE (raiz do erro quadrático médio) e MAE (erro absoluto médio) indicam que modelos de aprendizado profundo e híbridos, particularmente aqueles que combinam características espaciais e temporais, alcançam a maior acurácia preditiva para culturas importantes como milho, trigo, arroz e soja <span id="id2">[<a class="reference internal" href="../../referencias.html#id288" title="Peyman Abbaszadeh, Keyhan Gavahi, Atieh Alipour, Proloy Deb, and Hamid Moradkhani. Bayesian multi-modeling of deep neural nets for probabilistic crop yield prediction. Agricultural and Forest Meteorology, 314:108773, 2022. doi:10.1016/j.agrformet.2021.108773.">105</a>, <a class="reference internal" href="../../referencias.html#id289" title="H. Fu, J. Lu, J. Li, W. Zou, X. Tang, X. Ning, and Y. Sun. Winter wheat yield prediction using satellite remote sensing data and deep learning models. Agronomy, 15(1):205, 2025. doi:10.3390/agronomy15010205.">106</a>, <a class="reference internal" href="../../referencias.html#id283" title="Saeed Khaki and Lizhi Wang. Crop yield prediction using deep neural networks. Frontiers in Plant Science, 10:621, 2019. doi:10.3389/fpls.2019.00621.">103</a>, <a class="reference internal" href="../../referencias.html#id286" title="S. Nejad, D. Abbasi-Moghadam, A. Sharifi, N. Farmonov, K. Amankulova, and M. László. Multispectral crop yield prediction using 3D-convolutional neural networks and attention convolutional LSTM approaches. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 16:254–266, 2023. doi:10.1109/jstars.2022.3223423.">102</a>, <a class="reference internal" href="../../referencias.html#id287" title="Jie Sun, Liping Di, Ziheng Sun, Yonglin Shen, and Zulong Lai. County-level soybean yield prediction using deep CNN-LSTM model. Sensors, 19(20):4363, 2019. doi:10.3390/s19204363.">104</a>]</span>.</p>
-<p>Contudo, desafios significativos permanecem em relação à interpretabilidade dos modelos, à quantificação de incertezas e à capacidade de generalização para novas regiões e anos <span id="id3">[<a class="reference internal" href="../../referencias.html#id290" title="Tianfang Hu, Xiangtian Zhang, Gil Bohrer, Yanlan Liu, Yuyu Zhou, J. Martin, Y. Li, and Kaiguang Zhao. Crop yield prediction via explainable AI and interpretable machine learning: dangers of black box models for evaluating climate change impacts on crop yield. Agricultural and Forest Meteorology, 336:109458, 2023. doi:10.1016/j.agrformet.2023.109458.">107</a>, <a class="reference internal" href="../../referencias.html#id291" title="Antonio Morales and Francisco J. Villalobos. Using machine learning for crop yield prediction in the past or the future. Frontiers in Plant Science, 14:1128388, 2023. doi:10.3389/fpls.2023.1128388.">108</a>, <a class="reference internal" href="../../referencias.html#id292" title="Dilli Paudel, Allard de Wit, Hendrik Boogaard, Diego Marcos, Sjoukje Osinga, and Ioannis N. Athanasiadis. Interpretability of deep learning models for crop yield forecasting. Computers and Electronics in Agriculture, 206:107663, 2023. doi:10.1016/j.compag.2023.107663.">109</a>]</span>.</p>
+<p>Revisões sistemáticas recentes da literatura científica indicam que modelos de IA — incluindo ensembles de árvores de decisão (Random Forest, XGBoost), arquiteturas de aprendizado profundo (CNN, RNN/LSTM/GRU, transformers) e abordagens híbridas — superam consistentemente modelos estatísticos tradicionais tanto em acurácia quanto em escalabilidade, especialmente quando utilizam dados de alta resolução provenientes de múltiplas fontes <span id="id1">[<a class="reference internal" href="../referencias.html#id285" title="M. Ashfaq, I. Khan, R. Afzal, D. Shah, S. Ali, and M. Tahir. Enhanced wheat yield prediction through integrated climate and satellite data using advanced AI techniques. Scientific Reports, 2025. doi:10.1038/s41598-025-02700-w.">99</a>, <a class="reference internal" href="../referencias.html#id284" title="Saeed Khaki, Lizhi Wang, and Sotirios V. Archontoulis. A CNN-RNN framework for crop yield prediction. Frontiers in Plant Science, 10:1750, 2019. doi:10.3389/fpls.2019.01750.">98</a>, <a class="reference internal" href="../referencias.html#id282" title="S. Shawon, F. Ema, A. Mahi, F. Niha, and H. Zubair. Crop yield prediction using machine learning: an extensive and systematic literature review. Smart Agricultural Technology, 8:100718, 2024. doi:10.1016/j.atech.2024.100718.">97</a>, <a class="reference internal" href="../referencias.html#id281" title="Thomas van Klompenburg, Ayalew Kassahun, and Cagatay Catal. Crop yield prediction using machine learning: a systematic literature review. Computers and Electronics in Agriculture, 177:105709, 2020. doi:10.1016/j.compag.2020.105709.">96</a>]</span>.</p>
+<p>Métricas de desempenho como R², RMSE (raiz do erro quadrático médio) e MAE (erro absoluto médio) indicam que modelos de aprendizado profundo e híbridos, particularmente aqueles que combinam características espaciais e temporais, alcançam a maior acurácia preditiva para culturas importantes como milho, trigo, arroz e soja <span id="id2">[<a class="reference internal" href="../referencias.html#id288" title="Peyman Abbaszadeh, Keyhan Gavahi, Atieh Alipour, Proloy Deb, and Hamid Moradkhani. Bayesian multi-modeling of deep neural nets for probabilistic crop yield prediction. Agricultural and Forest Meteorology, 314:108773, 2022. doi:10.1016/j.agrformet.2021.108773.">103</a>, <a class="reference internal" href="../referencias.html#id289" title="H. Fu, J. Lu, J. Li, W. Zou, X. Tang, X. Ning, and Y. Sun. Winter wheat yield prediction using satellite remote sensing data and deep learning models. Agronomy, 15(1):205, 2025. doi:10.3390/agronomy15010205.">104</a>, <a class="reference internal" href="../referencias.html#id283" title="Saeed Khaki and Lizhi Wang. Crop yield prediction using deep neural networks. Frontiers in Plant Science, 10:621, 2019. doi:10.3389/fpls.2019.00621.">101</a>, <a class="reference internal" href="../referencias.html#id286" title="S. Nejad, D. Abbasi-Moghadam, A. Sharifi, N. Farmonov, K. Amankulova, and M. László. Multispectral crop yield prediction using 3D-convolutional neural networks and attention convolutional LSTM approaches. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 16:254–266, 2023. doi:10.1109/jstars.2022.3223423.">100</a>, <a class="reference internal" href="../referencias.html#id287" title="Jie Sun, Liping Di, Ziheng Sun, Yonglin Shen, and Zulong Lai. County-level soybean yield prediction using deep CNN-LSTM model. Sensors, 19(20):4363, 2019. doi:10.3390/s19204363.">102</a>]</span>.</p>
+<p>Contudo, desafios significativos permanecem em relação à interpretabilidade dos modelos, à quantificação de incertezas e à capacidade de generalização para novas regiões e anos <span id="id3">[<a class="reference internal" href="../referencias.html#id290" title="Tianfang Hu, Xiangtian Zhang, Gil Bohrer, Yanlan Liu, Yuyu Zhou, J. Martin, Y. Li, and Kaiguang Zhao. Crop yield prediction via explainable AI and interpretable machine learning: dangers of black box models for evaluating climate change impacts on crop yield. Agricultural and Forest Meteorology, 336:109458, 2023. doi:10.1016/j.agrformet.2023.109458.">105</a>, <a class="reference internal" href="../referencias.html#id291" title="Antonio Morales and Francisco J. Villalobos. Using machine learning for crop yield prediction in the past or the future. Frontiers in Plant Science, 14:1128388, 2023. doi:10.3389/fpls.2023.1128388.">106</a>, <a class="reference internal" href="../referencias.html#id292" title="Dilli Paudel, Allard de Wit, Hendrik Boogaard, Diego Marcos, Sjoukje Osinga, and Ioannis N. Athanasiadis. Interpretability of deep learning models for crop yield forecasting. Computers and Electronics in Agriculture, 206:107663, 2023. doi:10.1016/j.compag.2023.107663.">107</a>]</span>.</p>
 </section>
 <section id="taxonomia-de-modelos-de-aprendizado-de-maquina">
 <h2><a class="toc-backref" href="#id19" role="doc-backlink">Taxonomia de modelos de aprendizado de máquina</a><a class="headerlink" href="#taxonomia-de-modelos-de-aprendizado-de-maquina" title="Link permanente para este cabeçalho"></a></h2>
@@ -178,7 +204,7 @@
 <p>Os métodos de ensemble baseados em árvores de decisão — como Random Forest, XGBoost, Gradient Boosting e CatBoost — são amplamente utilizados em previsão de produtividade agrícola devido à sua capacidade de lidar com relações não-lineares, dados heterogêneos e análise de importância de variáveis.</p>
 <p><strong>Random Forest</strong> constrói múltiplas árvores de decisão, cada uma treinada em subconjuntos aleatórios dos dados de treinamento, e combina suas previsões por média (regressão) ou votação (classificação). Essa estratégia reduz o risco de sobreajuste e produz estimativas robustas mesmo com dados ruidosos.</p>
 <p><strong>Gradient Boosting</strong> e suas variantes otimizadas (XGBoost, LightGBM, CatBoost) constroem árvores de decisão sequencialmente, onde cada nova árvore foca em corrigir os erros residuais das árvores anteriores. Esses algoritmos frequentemente alcançam desempenho superior ao Random Forest em competições de ciência de dados, embora requeiram ajuste mais cuidadoso de hiperparâmetros.</p>
-<p>Estudos recentes demonstram que esses métodos são particularmente adequados para dados tabulares e mistos, oferecendo um balanço favorável entre acurácia e interpretabilidade <span id="id4">[<a class="reference internal" href="../../referencias.html#id285" title="M. Ashfaq, I. Khan, R. Afzal, D. Shah, S. Ali, and M. Tahir. Enhanced wheat yield prediction through integrated climate and satellite data using advanced AI techniques. Scientific Reports, 2025. doi:10.1038/s41598-025-02700-w.">101</a>, <a class="reference internal" href="../../referencias.html#id293" title="A. Badshah, B. Alkazemi, F. Din, K. Zamli, and M. Haris. Crop classification and yield prediction using robust machine learning models for agricultural sustainability. IEEE Access, 12:162799–162813, 2024. doi:10.1109/access.2024.3486653.">110</a>, <a class="reference internal" href="../../referencias.html#id294" title="N. Kim, K. Ha, N. Park, J. Cho, S. Hong, and Y. Lee. A comparison between major artificial intelligence models for crop yield prediction: case study of the midwestern united states, 2006–2015. ISPRS International Journal of Geo-Information, 8(5):240, 2019. doi:10.3390/ijgi8050240.">111</a>, <a class="reference internal" href="../../referencias.html#id296" title="M. Kuradusenge, E. Hitimana, D. Hanyurwimfura, P. Rukundo, K. Mtonga, A. Mukasine, C. Uwitonze, J. Ngabonziza, and A. Uwamahoro. Crop yield prediction using machine learning models: case of irish potato and maize. Agriculture, 13(1):225, 2023. doi:10.3390/agriculture13010225.">113</a>, <a class="reference internal" href="../../referencias.html#id295" title="P. Sharma, P. Dadheech, N. Aneja, and S. Aneja. Predicting agriculture yields based on machine learning using regression and deep learning. IEEE Access, 11:111255–111264, 2023. doi:10.1109/access.2023.3321861.">112</a>]</span>.</p>
+<p>Estudos recentes demonstram que esses métodos são particularmente adequados para dados tabulares e mistos, oferecendo um balanço favorável entre acurácia e interpretabilidade <span id="id4">[<a class="reference internal" href="../referencias.html#id285" title="M. Ashfaq, I. Khan, R. Afzal, D. Shah, S. Ali, and M. Tahir. Enhanced wheat yield prediction through integrated climate and satellite data using advanced AI techniques. Scientific Reports, 2025. doi:10.1038/s41598-025-02700-w.">99</a>, <a class="reference internal" href="../referencias.html#id293" title="A. Badshah, B. Alkazemi, F. Din, K. Zamli, and M. Haris. Crop classification and yield prediction using robust machine learning models for agricultural sustainability. IEEE Access, 12:162799–162813, 2024. doi:10.1109/access.2024.3486653.">108</a>, <a class="reference internal" href="../referencias.html#id294" title="N. Kim, K. Ha, N. Park, J. Cho, S. Hong, and Y. Lee. A comparison between major artificial intelligence models for crop yield prediction: case study of the midwestern united states, 2006–2015. ISPRS International Journal of Geo-Information, 8(5):240, 2019. doi:10.3390/ijgi8050240.">109</a>, <a class="reference internal" href="../referencias.html#id296" title="M. Kuradusenge, E. Hitimana, D. Hanyurwimfura, P. Rukundo, K. Mtonga, A. Mukasine, C. Uwitonze, J. Ngabonziza, and A. Uwamahoro. Crop yield prediction using machine learning models: case of irish potato and maize. Agriculture, 13(1):225, 2023. doi:10.3390/agriculture13010225.">111</a>, <a class="reference internal" href="../referencias.html#id295" title="P. Sharma, P. Dadheech, N. Aneja, and S. Aneja. Predicting agriculture yields based on machine learning using regression and deep learning. IEEE Access, 11:111255–111264, 2023. doi:10.1109/access.2023.3321861.">110</a>]</span>.</p>
 <p>As principais vantagens dos ensembles de árvores incluem:</p>
 <ul class="simple">
 <li><p>Capacidade de capturar relações não-lineares entre preditores e produtividade</p></li>
@@ -192,9 +218,53 @@
 <section id="modelos-de-aprendizado-profundo-deep-learning">
 <h3><a class="toc-backref" href="#id21" role="doc-backlink">Modelos de aprendizado profundo (deep learning)</a><a class="headerlink" href="#modelos-de-aprendizado-profundo-deep-learning" title="Link permanente para este cabeçalho"></a></h3>
 <p>Arquiteturas de aprendizado profundo — incluindo redes neurais convolucionais (CNNs), redes recorrentes (RNNs, LSTM, GRU) e modelos híbridos CNN-LSTM — destacam-se pela capacidade de capturar dependências espaciais e temporais em dados de sensoriamento remoto e séries temporais climáticas.</p>
-<p><strong>Redes Neurais Convolucionais (CNNs)</strong> são especialmente eficazes para processar dados espacialmente estruturados, como imagens de satélite. As camadas convolucionais extraem automaticamente padrões espaciais hierárquicos — bordas, texturas, formas — que são relevantes para caracterizar o estado da vegetação e estimar produtividade. Estudos demonstram que CNNs podem processar diretamente imagens multiespectrais de plataformas como MODIS, Sentinel-2 e Landsat, extraindo características relevantes sem necessidade de cálculo prévio de índices de vegetação <span id="id5">[<a class="reference internal" href="../../referencias.html#id289" title="H. Fu, J. Lu, J. Li, W. Zou, X. Tang, X. Ning, and Y. Sun. Winter wheat yield prediction using satellite remote sensing data and deep learning models. Agronomy, 15(1):205, 2025. doi:10.3390/agronomy15010205.">106</a>, <a class="reference internal" href="../../referencias.html#id297" title="Petteri Nevavuori, Nathaniel Narra, and Tarmo Lipping. Crop yield prediction with deep convolutional neural networks. Computers and Electronics in Agriculture, 163:104859, 2019. doi:10.1016/j.compag.2019.104859.">114</a>]</span>.</p>
+<p><strong>Redes Neurais Convolucionais (CNNs)</strong> são especialmente eficazes para processar dados espacialmente estruturados, como imagens de satélite. As camadas convolucionais extraem automaticamente padrões espaciais hierárquicos — bordas, texturas, formas — que são relevantes para caracterizar o estado da vegetação e estimar produtividade. Estudos demonstram que CNNs podem processar diretamente imagens multiespectrais de plataformas como MODIS, Sentinel-2 e Landsat, extraindo características relevantes sem necessidade de cálculo prévio de índices de vegetação <span id="id5">[<a class="reference internal" href="../referencias.html#id289" title="H. Fu, J. Lu, J. Li, W. Zou, X. Tang, X. Ning, and Y. Sun. Winter wheat yield prediction using satellite remote sensing data and deep learning models. Agronomy, 15(1):205, 2025. doi:10.3390/agronomy15010205.">104</a>, <a class="reference internal" href="../referencias.html#id297" title="Petteri Nevavuori, Nathaniel Narra, and Tarmo Lipping. Crop yield prediction with deep convolutional neural networks. Computers and Electronics in Agriculture, 163:104859, 2019. doi:10.1016/j.compag.2019.104859.">112</a>]</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Esquema de arquitetura de uma rede neural convolucional (CNN), com
+camadas de convolução, pooling e camadas densas até a saída.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>ilustra a estrutura das CNNs descrita no parágrafo, úteis para processar
+imagens de satélite.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“convolutional neural network architecture diagram”; “arquitetura rede
+neural convolucional esquema”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wikimedia Commons, documentação Keras/TensorFlow</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <p><strong>Redes Recorrentes (RNNs, LSTM, GRU)</strong> são projetadas para processar dados sequenciais, capturando dependências temporais que são fundamentais em aplicações agrícolas. A variante LSTM (Long Short-Term Memory) é particularmente eficaz para séries temporais longas, pois utiliza mecanismos de “portas” que controlam o fluxo de informação e permitem que a rede “lembre” padrões relevantes ao longo de muitos passos temporais. Essa característica é valiosa para modelar a evolução fenológica das culturas ao longo do ciclo de crescimento.</p>
-<p><strong>Modelos híbridos CNN-LSTM</strong> combinam as capacidades de ambas as arquiteturas: a CNN extrai características espaciais de cada imagem na série temporal, e a LSTM modela a evolução dessas características ao longo do tempo. Essa combinação tem demonstrado desempenho superior em previsão de produtividade de soja e outras culturas, alcançando valores de R² superiores a 0,90 em condições bem calibradas <span id="id6">[<a class="reference internal" href="../../referencias.html#id284" title="Saeed Khaki, Lizhi Wang, and Sotirios V. Archontoulis. A CNN-RNN framework for crop yield prediction. Frontiers in Plant Science, 10:1750, 2019. doi:10.3389/fpls.2019.01750.">100</a>, <a class="reference internal" href="../../referencias.html#id287" title="Jie Sun, Liping Di, Ziheng Sun, Yonglin Shen, and Zulong Lai. County-level soybean yield prediction using deep CNN-LSTM model. Sensors, 19(20):4363, 2019. doi:10.3390/s19204363.">104</a>]</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diagrama de uma célula LSTM com suas portas (entrada, esquecimento,
+saída) e o fluxo do estado da célula ao longo do tempo.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>torna concreto o mecanismo de “portas” das redes LSTM descrito no parágrafo.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“LSTM cell diagram gates”; “célula LSTM portas esquema”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wikimedia Commons, documentação Keras/TensorFlow</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
+<p><strong>Modelos híbridos CNN-LSTM</strong> combinam as capacidades de ambas as arquiteturas: a CNN extrai características espaciais de cada imagem na série temporal, e a LSTM modela a evolução dessas características ao longo do tempo. Essa combinação tem demonstrado desempenho superior em previsão de produtividade de soja e outras culturas, alcançando valores de R² superiores a 0,90 em condições bem calibradas <span id="id6">[<a class="reference internal" href="../referencias.html#id284" title="Saeed Khaki, Lizhi Wang, and Sotirios V. Archontoulis. A CNN-RNN framework for crop yield prediction. Frontiers in Plant Science, 10:1750, 2019. doi:10.3389/fpls.2019.01750.">98</a>, <a class="reference internal" href="../referencias.html#id287" title="Jie Sun, Liping Di, Ziheng Sun, Yonglin Shen, and Zulong Lai. County-level soybean yield prediction using deep CNN-LSTM model. Sensors, 19(20):4363, 2019. doi:10.3390/s19204363.">102</a>]</span>.</p>
 <p><strong>Modelos baseados em atenção (Transformers)</strong> representam a fronteira mais recente em aprendizado profundo. Diferentemente das RNNs, que processam sequências de forma recorrente, os transformers utilizam mecanismos de atenção para ponderar a relevância de cada elemento da sequência em relação aos demais, permitindo capturar dependências de longo alcance de forma mais eficiente. Aplicações em previsão agrícola ainda são incipientes, mas resultados preliminares são promissores.</p>
 <p>As principais vantagens do aprendizado profundo incluem:</p>
 <ul class="simple">
@@ -215,8 +285,8 @@
 <h3><a class="toc-backref" href="#id22" role="doc-backlink">Modelos híbridos e de ensemble</a><a class="headerlink" href="#modelos-hibridos-e-de-ensemble" title="Link permanente para este cabeçalho"></a></h3>
 <p>Abordagens híbridas e de ensemble combinam múltiplos modelos ou integram modelos de IA com simuladores de crescimento de culturas, buscando melhorar acurácia e robustez.</p>
 <p><strong>Stacked ensembles</strong> utilizam as previsões de múltiplos modelos base (por exemplo, Random Forest, XGBoost, redes neurais) como entrada para um meta-modelo que aprende a combinar essas previsões de forma ótima. Essa estratégia frequentemente supera o desempenho de qualquer modelo individual.</p>
-<p><strong>Bayesian Model Averaging</strong> pondera as previsões de diferentes modelos de acordo com sua probabilidade posterior, fornecendo não apenas uma previsão pontual mas também uma medida de incerteza. Abbaszadeh et al. <span id="id7">[<a class="reference internal" href="../../referencias.html#id288" title="Peyman Abbaszadeh, Keyhan Gavahi, Atieh Alipour, Proloy Deb, and Hamid Moradkhani. Bayesian multi-modeling of deep neural nets for probabilistic crop yield prediction. Agricultural and Forest Meteorology, 314:108773, 2022. doi:10.1016/j.agrformet.2021.108773.">105</a>]</span> demonstraram que essa abordagem melhora tanto a acurácia quanto a quantificação de incerteza em previsão de produtividade.</p>
-<p><strong>Integração com modelos de simulação</strong> combina a capacidade preditiva do ML com o conhecimento mecanístico incorporado em simuladores como DSSAT ou APSIM <span id="id8">[<a class="reference internal" href="../../referencias.html#id267" title="APSIM Initiative. APSIM – agricultural production systems simulator. https://www.apsim.info/, 2024. Acesso em 2026.">95</a>, <a class="reference internal" href="../../referencias.html#id266" title="DSSAT Foundation. DSSAT – decision support system for agrotechnology transfer. https://dssat.net/, 2024. Acesso em 2026.">94</a>]</span>. Shahhosseini et al. <span id="id9">[<a class="reference internal" href="../../referencias.html#id303" title="Mohsen Shahhosseini, Guiping Hu, Sotirios V. Archontoulis, and Isaiah Huber. Coupling machine learning and crop modeling improves crop yield prediction in the US corn belt. Scientific Reports, 11:1606, 2021. doi:10.1038/s41598-020-80820-1.">115</a>]</span> demonstraram que acoplar modelos de ML com saídas de simuladores de crescimento melhora a previsão de produtividade de milho no cinturão agrícola dos Estados Unidos. Nessa abordagem, o simulador fornece estimativas baseadas em processos biofísicos, e o modelo de ML ajusta essas estimativas com base em padrões observados nos dados históricos.</p>
+<p><strong>Bayesian Model Averaging</strong> pondera as previsões de diferentes modelos de acordo com sua probabilidade posterior, fornecendo não apenas uma previsão pontual mas também uma medida de incerteza. Abbaszadeh et al. <span id="id7">[<a class="reference internal" href="../referencias.html#id288" title="Peyman Abbaszadeh, Keyhan Gavahi, Atieh Alipour, Proloy Deb, and Hamid Moradkhani. Bayesian multi-modeling of deep neural nets for probabilistic crop yield prediction. Agricultural and Forest Meteorology, 314:108773, 2022. doi:10.1016/j.agrformet.2021.108773.">103</a>]</span> demonstraram que essa abordagem melhora tanto a acurácia quanto a quantificação de incerteza em previsão de produtividade.</p>
+<p><strong>Integração com modelos de simulação</strong> combina a capacidade preditiva do ML com o conhecimento mecanístico incorporado em simuladores como DSSAT ou APSIM <span id="id8">[<a class="reference internal" href="../referencias.html#id267" title="APSIM Initiative. APSIM – agricultural production systems simulator. https://www.apsim.info/, 2024. Acesso em 2026.">93</a>, <a class="reference internal" href="../referencias.html#id266" title="DSSAT Foundation. DSSAT – decision support system for agrotechnology transfer. https://dssat.net/, 2024. Acesso em 2026.">92</a>]</span>. Shahhosseini et al. <span id="id9">[<a class="reference internal" href="../referencias.html#id303" title="Mohsen Shahhosseini, Guiping Hu, Sotirios V. Archontoulis, and Isaiah Huber. Coupling machine learning and crop modeling improves crop yield prediction in the US corn belt. Scientific Reports, 11:1606, 2021. doi:10.1038/s41598-020-80820-1.">113</a>]</span> demonstraram que acoplar modelos de ML com saídas de simuladores de crescimento melhora a previsão de produtividade de milho no cinturão agrícola dos Estados Unidos. Nessa abordagem, o simulador fornece estimativas baseadas em processos biofísicos, e o modelo de ML ajusta essas estimativas com base em padrões observados nos dados históricos.</p>
 <p>Essas abordagens híbridas são particularmente promissoras para ambientes heterogêneos ou com escassez de dados, onde modelos puramente orientados por dados podem ter dificuldade de generalização.</p>
 </section>
 </section>
@@ -230,7 +300,7 @@
 <p><strong>MODIS (Moderate Resolution Imaging Spectroradiometer)</strong> oferece cobertura global diária com resolução espacial de 250 m a 1 km, sendo adequado para análises em escala regional ou municipal. Produtos derivados incluem índices de vegetação (NDVI, EVI), temperatura de superfície e refletância de superfície.</p>
 <p><strong>Sentinel-2</strong> fornece imagens multiespectrais com resolução de 10-20 m e revisita de 5 dias, permitindo análises em escala de talhão ou gleba individual. A alta resolução espacial e temporal torna o Sentinel-2 particularmente adequado para aplicações no contexto do Proagro.</p>
 <p><strong>Landsat</strong> oferece séries temporais históricas longas (desde 1972) com resolução de 30 m, sendo valioso para análises de tendências de longo prazo e calibração de modelos com dados retrospectivos.</p>
-<p><strong>Imagens de UAV (veículos aéreos não tripulados)</strong> permitem aquisição de dados com resolução centimétrica, adequados para aplicações de agricultura de precisão em escala de campo individual. Fei et al. <span id="id10">[<a class="reference internal" href="../../referencias.html#id298" title="S. Fei, M. Hassan, Y. Xiao, X. Su, Z. Chen, Q. Cheng, F. Duan, and R. Chen. UAV-based multi-sensor data fusion and machine learning algorithm for yield prediction in wheat. Precision Agriculture, 24:187–212, 2022. doi:10.1007/s11119-022-09938-8.">116</a>]</span> demonstraram que a fusão de dados multi-sensor de UAV com algoritmos de ML alcança alta acurácia na previsão de produtividade de trigo.</p>
+<p><strong>Imagens de UAV (veículos aéreos não tripulados)</strong> permitem aquisição de dados com resolução centimétrica, adequados para aplicações de agricultura de precisão em escala de campo individual. Fei et al. <span id="id10">[<a class="reference internal" href="../referencias.html#id298" title="S. Fei, M. Hassan, Y. Xiao, X. Su, Z. Chen, Q. Cheng, F. Duan, and R. Chen. UAV-based multi-sensor data fusion and machine learning algorithm for yield prediction in wheat. Precision Agriculture, 24:187–212, 2022. doi:10.1007/s11119-022-09938-8.">114</a>]</span> demonstraram que a fusão de dados multi-sensor de UAV com algoritmos de ML alcança alta acurácia na previsão de produtividade de trigo.</p>
 <p>Os <strong>índices de vegetação</strong> derivados dessas imagens são amplamente utilizados como características de entrada:</p>
 <ul class="simple">
 <li><p><strong>NDVI (Normalized Difference Vegetation Index):</strong> índice mais difundido, sensível à biomassa verde e atividade fotossintética</p></li>
@@ -238,7 +308,7 @@
 <li><p><strong>LAI (Leaf Area Index):</strong> estimativa da área foliar por unidade de área de solo, relacionado à capacidade fotossintética</p></li>
 <li><p><strong>GNDVI (Green Normalized Difference Vegetation Index):</strong> utiliza a banda verde em vez do vermelho, mais sensível a variações de clorofila</p></li>
 </ul>
-<p>A literatura demonstra que a integração de índices de vegetação derivados de sensoriamento remoto melhora consistentemente o desempenho dos modelos de previsão <span id="id11">[<a class="reference internal" href="../../referencias.html#id300" title="M. Aslan, K. Sabanci, and B. Aslan. Artificial intelligence techniques in crop yield estimation based on Sentinel-2 data: a comprehensive survey. Sustainability, 16(18):8277, 2024. doi:10.3390/su16188277.">118</a>, <a class="reference internal" href="../../referencias.html#id289" title="H. Fu, J. Lu, J. Li, W. Zou, X. Tang, X. Ning, and Y. Sun. Winter wheat yield prediction using satellite remote sensing data and deep learning models. Agronomy, 15(1):205, 2025. doi:10.3390/agronomy15010205.">106</a>, <a class="reference internal" href="../../referencias.html#id299" title="Patryk Hara, Magdalena Piekutowska, and Gniewko Niedbała. Selection of independent variables for crop yield prediction using artificial neural network models with remote sensing data. Land, 10(6):609, 2021. doi:10.3390/land10060609.">117</a>, <a class="reference internal" href="../../referencias.html#id286" title="S. Nejad, D. Abbasi-Moghadam, A. Sharifi, N. Farmonov, K. Amankulova, and M. László. Multispectral crop yield prediction using 3D-convolutional neural networks and attention convolutional LSTM approaches. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 16:254–266, 2023. doi:10.1109/jstars.2022.3223423.">102</a>, <a class="reference internal" href="../../referencias.html#id287" title="Jie Sun, Liping Di, Ziheng Sun, Yonglin Shen, and Zulong Lai. County-level soybean yield prediction using deep CNN-LSTM model. Sensors, 19(20):4363, 2019. doi:10.3390/s19204363.">104</a>]</span>.</p>
+<p>A literatura demonstra que a integração de índices de vegetação derivados de sensoriamento remoto melhora consistentemente o desempenho dos modelos de previsão <span id="id11">[<a class="reference internal" href="../referencias.html#id300" title="M. Aslan, K. Sabanci, and B. Aslan. Artificial intelligence techniques in crop yield estimation based on Sentinel-2 data: a comprehensive survey. Sustainability, 16(18):8277, 2024. doi:10.3390/su16188277.">116</a>, <a class="reference internal" href="../referencias.html#id289" title="H. Fu, J. Lu, J. Li, W. Zou, X. Tang, X. Ning, and Y. Sun. Winter wheat yield prediction using satellite remote sensing data and deep learning models. Agronomy, 15(1):205, 2025. doi:10.3390/agronomy15010205.">104</a>, <a class="reference internal" href="../referencias.html#id299" title="Patryk Hara, Magdalena Piekutowska, and Gniewko Niedbała. Selection of independent variables for crop yield prediction using artificial neural network models with remote sensing data. Land, 10(6):609, 2021. doi:10.3390/land10060609.">115</a>, <a class="reference internal" href="../referencias.html#id286" title="S. Nejad, D. Abbasi-Moghadam, A. Sharifi, N. Farmonov, K. Amankulova, and M. László. Multispectral crop yield prediction using 3D-convolutional neural networks and attention convolutional LSTM approaches. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 16:254–266, 2023. doi:10.1109/jstars.2022.3223423.">100</a>, <a class="reference internal" href="../referencias.html#id287" title="Jie Sun, Liping Di, Ziheng Sun, Yonglin Shen, and Zulong Lai. County-level soybean yield prediction using deep CNN-LSTM model. Sensors, 19(20):4363, 2019. doi:10.3390/s19204363.">102</a>]</span>.</p>
 </section>
 <section id="dados-climaticos-e-meteorologicos">
 <h3><a class="toc-backref" href="#id25" role="doc-backlink">Dados climáticos e meteorológicos</a><a class="headerlink" href="#dados-climaticos-e-meteorologicos" title="Link permanente para este cabeçalho"></a></h3>
@@ -251,14 +321,14 @@
 <li><p><strong>Radiação solar:</strong> controlando taxa fotossintética e acúmulo de biomassa</p></li>
 <li><p><strong>Umidade relativa do ar:</strong> afetando demanda evaporativa e incidência de doenças</p></li>
 </ul>
-<p>A combinação de dados de sensoriamento remoto com variáveis climáticas consistentemente melhora a acurácia preditiva dos modelos, pois captura tanto o estado observado da vegetação quanto as condições ambientais que explicam esse estado <span id="id12">[<a class="reference internal" href="../../referencias.html#id285" title="M. Ashfaq, I. Khan, R. Afzal, D. Shah, S. Ali, and M. Tahir. Enhanced wheat yield prediction through integrated climate and satellite data using advanced AI techniques. Scientific Reports, 2025. doi:10.1038/s41598-025-02700-w.">101</a>, <a class="reference internal" href="../../referencias.html#id301" title="M. Jabed and M. Murad. Crop yield prediction in agriculture: a comprehensive review of machine learning and deep learning approaches, with insights for future research and sustainability. Heliyon, 10:e40836, 2024. doi:10.1016/j.heliyon.2024.e40836.">119</a>, <a class="reference internal" href="../../referencias.html#id283" title="Saeed Khaki and Lizhi Wang. Crop yield prediction using deep neural networks. Frontiers in Plant Science, 10:621, 2019. doi:10.3389/fpls.2019.00621.">103</a>, <a class="reference internal" href="../../referencias.html#id295" title="P. Sharma, P. Dadheech, N. Aneja, and S. Aneja. Predicting agriculture yields based on machine learning using regression and deep learning. IEEE Access, 11:111255–111264, 2023. doi:10.1109/access.2023.3321861.">112</a>, <a class="reference internal" href="../../referencias.html#id281" title="Thomas van Klompenburg, Ayalew Kassahun, and Cagatay Catal. Crop yield prediction using machine learning: a systematic literature review. Computers and Electronics in Agriculture, 177:105709, 2020. doi:10.1016/j.compag.2020.105709.">98</a>]</span>.</p>
+<p>A combinação de dados de sensoriamento remoto com variáveis climáticas consistentemente melhora a acurácia preditiva dos modelos, pois captura tanto o estado observado da vegetação quanto as condições ambientais que explicam esse estado <span id="id12">[<a class="reference internal" href="../referencias.html#id285" title="M. Ashfaq, I. Khan, R. Afzal, D. Shah, S. Ali, and M. Tahir. Enhanced wheat yield prediction through integrated climate and satellite data using advanced AI techniques. Scientific Reports, 2025. doi:10.1038/s41598-025-02700-w.">99</a>, <a class="reference internal" href="../referencias.html#id301" title="M. Jabed and M. Murad. Crop yield prediction in agriculture: a comprehensive review of machine learning and deep learning approaches, with insights for future research and sustainability. Heliyon, 10:e40836, 2024. doi:10.1016/j.heliyon.2024.e40836.">117</a>, <a class="reference internal" href="../referencias.html#id283" title="Saeed Khaki and Lizhi Wang. Crop yield prediction using deep neural networks. Frontiers in Plant Science, 10:621, 2019. doi:10.3389/fpls.2019.00621.">101</a>, <a class="reference internal" href="../referencias.html#id295" title="P. Sharma, P. Dadheech, N. Aneja, and S. Aneja. Predicting agriculture yields based on machine learning using regression and deep learning. IEEE Access, 11:111255–111264, 2023. doi:10.1109/access.2023.3321861.">110</a>, <a class="reference internal" href="../referencias.html#id281" title="Thomas van Klompenburg, Ayalew Kassahun, and Cagatay Catal. Crop yield prediction using machine learning: a systematic literature review. Computers and Electronics in Agriculture, 177:105709, 2020. doi:10.1016/j.compag.2020.105709.">96</a>]</span>.</p>
 </section>
 <section id="solo-e-praticas-de-manejo">
 <h3><a class="toc-backref" href="#id26" role="doc-backlink">Solo e práticas de manejo</a><a class="headerlink" href="#solo-e-praticas-de-manejo" title="Link permanente para este cabeçalho"></a></h3>
 <p>Informações sobre características do solo e práticas de manejo são crescentemente integradas aos modelos de previsão, especialmente em abordagens híbridas.</p>
 <p><strong>Características do solo</strong> relevantes incluem textura, profundidade efetiva, capacidade de retenção de água, teores de matéria orgânica e nutrientes. Essas variáveis modulam a resposta da cultura às condições climáticas — por exemplo, solos arenosos com baixa capacidade de retenção amplificam o impacto de períodos secos.</p>
 <p><strong>Práticas de manejo</strong> como irrigação, fertilização, densidade de plantio e cultivar utilizada afetam diretamente a produtividade potencial e a sensibilidade a estresses. A integração dessas informações permite que os modelos ajustem suas previsões para diferentes sistemas de produção.</p>
-<p>Estudos demonstram que a inclusão de dados de solo e manejo melhora particularmente a acurácia em modelos híbridos que combinam ML com simuladores de crescimento <span id="id13">[<a class="reference internal" href="../../referencias.html#id302" title="Mosleh Hmoud Al-Adhaileh and Theyazn H. H. Aldhyani. Artificial intelligence framework for modeling and predicting crop yield to enhance food security in saudi arabia. PeerJ Computer Science, 8:e1104, 2022. doi:10.7717/peerj-cs.1104.">120</a>, <a class="reference internal" href="../../referencias.html#id293" title="A. Badshah, B. Alkazemi, F. Din, K. Zamli, and M. Haris. Crop classification and yield prediction using robust machine learning models for agricultural sustainability. IEEE Access, 12:162799–162813, 2024. doi:10.1109/access.2024.3486653.">110</a>, <a class="reference internal" href="../../referencias.html#id299" title="Patryk Hara, Magdalena Piekutowska, and Gniewko Niedbała. Selection of independent variables for crop yield prediction using artificial neural network models with remote sensing data. Land, 10(6):609, 2021. doi:10.3390/land10060609.">117</a>, <a class="reference internal" href="../../referencias.html#id303" title="Mohsen Shahhosseini, Guiping Hu, Sotirios V. Archontoulis, and Isaiah Huber. Coupling machine learning and crop modeling improves crop yield prediction in the US corn belt. Scientific Reports, 11:1606, 2021. doi:10.1038/s41598-020-80820-1.">115</a>]</span>.</p>
+<p>Estudos demonstram que a inclusão de dados de solo e manejo melhora particularmente a acurácia em modelos híbridos que combinam ML com simuladores de crescimento <span id="id13">[<a class="reference internal" href="../referencias.html#id302" title="Mosleh Hmoud Al-Adhaileh and Theyazn H. H. Aldhyani. Artificial intelligence framework for modeling and predicting crop yield to enhance food security in saudi arabia. PeerJ Computer Science, 8:e1104, 2022. doi:10.7717/peerj-cs.1104.">118</a>, <a class="reference internal" href="../referencias.html#id293" title="A. Badshah, B. Alkazemi, F. Din, K. Zamli, and M. Haris. Crop classification and yield prediction using robust machine learning models for agricultural sustainability. IEEE Access, 12:162799–162813, 2024. doi:10.1109/access.2024.3486653.">108</a>, <a class="reference internal" href="../referencias.html#id299" title="Patryk Hara, Magdalena Piekutowska, and Gniewko Niedbała. Selection of independent variables for crop yield prediction using artificial neural network models with remote sensing data. Land, 10(6):609, 2021. doi:10.3390/land10060609.">115</a>, <a class="reference internal" href="../referencias.html#id303" title="Mohsen Shahhosseini, Guiping Hu, Sotirios V. Archontoulis, and Isaiah Huber. Coupling machine learning and crop modeling improves crop yield prediction in the US corn belt. Scientific Reports, 11:1606, 2021. doi:10.1038/s41598-020-80820-1.">113</a>]</span>.</p>
 </section>
 </section>
 <section id="metricas-de-desempenho-e-comparacao-de-modelos">
@@ -289,6 +359,29 @@
 <section id="generalizacao-e-transferibilidade">
 <h3><a class="toc-backref" href="#id30" role="doc-backlink">Generalização e transferibilidade</a><a class="headerlink" href="#generalizacao-e-transferibilidade" title="Link permanente para este cabeçalho"></a></h3>
 <p>Um desafio crítico em modelos de ML é a capacidade de generalização — o desempenho do modelo quando aplicado a dados não vistos durante o treinamento.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Ilustração da partição treino/validação/teste ou de validação cruzada
+k-fold, mostrando como os dados são divididos para avaliar o desempenho fora da amostra.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>dá forma visual ao conceito de generalização e avaliação fora da amostra
+tratado nesta subseção.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“k-fold cross validation diagram train test split”; “validação cruzada
+k-fold treino teste esquema”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação scikit-learn, Wikimedia Commons</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <p>Modelos treinados com dados de múltiplos anos e regiões generalizam melhor do que aqueles treinados em contextos restritos. No entanto, o desempenho pode degradar significativamente quando:</p>
 <ul class="simple">
 <li><p>O modelo é aplicado a regiões geograficamente distantes das utilizadas no treinamento</p></li>
@@ -309,16 +402,38 @@
 <section id="tecnicas-de-explicabilidade">
 <h3><a class="toc-backref" href="#id32" role="doc-backlink">Técnicas de explicabilidade</a><a class="headerlink" href="#tecnicas-de-explicabilidade" title="Link permanente para este cabeçalho"></a></h3>
 <p><strong>SHAP (SHapley Additive exPlanations)</strong> quantifica a contribuição de cada variável de entrada para a previsão do modelo em cada caso individual. Os valores SHAP têm fundamentação na teoria dos jogos cooperativos e fornecem explicações consistentes e localmente precisas. Essa técnica permite identificar quais variáveis foram mais importantes para determinada previsão, facilitando a verificação de coerência agronômica.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Exemplo de gráfico de valores SHAP (summary plot) ordenando as variáveis
+pela contribuição à previsão do modelo.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>ilustra como o SHAP comunica a importância das variáveis descrita no parágrafo.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“SHAP summary plot feature importance example”; “gráfico SHAP importância
+variáveis exemplo”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação da biblioteca SHAP, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <p><strong>LIME (Local Interpretable Model-agnostic Explanations)</strong> aproxima o comportamento de um modelo complexo por um modelo linear simples na vizinhança de cada previsão individual. Essa aproximação local permite interpretar as relações capturadas pelo modelo em termos compreensíveis.</p>
 <p><strong>Importância de variáveis</strong> em ensembles de árvores pode ser calculada diretamente a partir da estrutura do modelo, indicando quais variáveis foram mais utilizadas nas divisões das árvores. Essa métrica global complementa as explicações locais fornecidas por SHAP e LIME.</p>
-<p>A adoção dessas técnicas é crescente na literatura de previsão de produtividade agrícola <span id="id14">[<a class="reference internal" href="../../referencias.html#id293" title="A. Badshah, B. Alkazemi, F. Din, K. Zamli, and M. Haris. Crop classification and yield prediction using robust machine learning models for agricultural sustainability. IEEE Access, 12:162799–162813, 2024. doi:10.1109/access.2024.3486653.">110</a>, <a class="reference internal" href="../../referencias.html#id304" title="A. Joshi, B. Pradhan, S. Chakraborty, R. Varatharajoo, A. Alamri, S. Gite, and C. Lee. An explainable Bi-LSTM model for winter wheat yield prediction. Frontiers in Plant Science, 15:1491493, 2025. doi:10.3389/fpls.2024.1491493.">123</a>, <a class="reference internal" href="../../referencias.html#id305" title="R. Mohan, P. Rayanoothala, and R. Sree. Next-gen agriculture: integrating AI and XAI for precision crop yield predictions. Frontiers in Plant Science, 15:1451607, 2025. doi:10.3389/fpls.2024.1451607.">122</a>, <a class="reference internal" href="../../referencias.html#id307" title="H. Pant, G. Joshi, B. Rawat, H. Goyal, Y. Joshi, and C. Bohra. Comparative study of crop yield prediction using explainable AI and interpretable machine learning techniques. In 2025 Fifth International Conference on Advances in Electrical, Computing, Communication and Sustainable Technologies (ICAECT), 1–7. 2025. doi:10.1109/icaect63952.2025.10958878.">121</a>, <a class="reference internal" href="../../referencias.html#id292" title="Dilli Paudel, Allard de Wit, Hendrik Boogaard, Diego Marcos, Sjoukje Osinga, and Ioannis N. Athanasiadis. Interpretability of deep learning models for crop yield forecasting. Computers and Electronics in Agriculture, 206:107663, 2023. doi:10.1016/j.compag.2023.107663.">109</a>]</span>.</p>
+<p>A adoção dessas técnicas é crescente na literatura de previsão de produtividade agrícola <span id="id14">[<a class="reference internal" href="../referencias.html#id293" title="A. Badshah, B. Alkazemi, F. Din, K. Zamli, and M. Haris. Crop classification and yield prediction using robust machine learning models for agricultural sustainability. IEEE Access, 12:162799–162813, 2024. doi:10.1109/access.2024.3486653.">108</a>, <a class="reference internal" href="../referencias.html#id304" title="A. Joshi, B. Pradhan, S. Chakraborty, R. Varatharajoo, A. Alamri, S. Gite, and C. Lee. An explainable Bi-LSTM model for winter wheat yield prediction. Frontiers in Plant Science, 15:1491493, 2025. doi:10.3389/fpls.2024.1491493.">121</a>, <a class="reference internal" href="../referencias.html#id305" title="R. Mohan, P. Rayanoothala, and R. Sree. Next-gen agriculture: integrating AI and XAI for precision crop yield predictions. Frontiers in Plant Science, 15:1451607, 2025. doi:10.3389/fpls.2024.1451607.">120</a>, <a class="reference internal" href="../referencias.html#id307" title="H. Pant, G. Joshi, B. Rawat, H. Goyal, Y. Joshi, and C. Bohra. Comparative study of crop yield prediction using explainable AI and interpretable machine learning techniques. In 2025 Fifth International Conference on Advances in Electrical, Computing, Communication and Sustainable Technologies (ICAECT), 1–7. 2025. doi:10.1109/icaect63952.2025.10958878.">119</a>, <a class="reference internal" href="../referencias.html#id292" title="Dilli Paudel, Allard de Wit, Hendrik Boogaard, Diego Marcos, Sjoukje Osinga, and Ioannis N. Athanasiadis. Interpretability of deep learning models for crop yield forecasting. Computers and Electronics in Agriculture, 206:107663, 2023. doi:10.1016/j.compag.2023.107663.">107</a>]</span>.</p>
 </section>
 <section id="modelos-intrinsecamente-interpretaveis">
 <h3><a class="toc-backref" href="#id33" role="doc-backlink">Modelos intrinsecamente interpretáveis</a><a class="headerlink" href="#modelos-intrinsecamente-interpretaveis" title="Link permanente para este cabeçalho"></a></h3>
 <p>Uma alternativa ao uso de técnicas de explicabilidade post-hoc é a adoção de modelos que são intrinsecamente interpretáveis.</p>
 <p><strong>Modelos bayesianos</strong> fornecem não apenas previsões pontuais, mas também distribuições de probabilidade que quantificam a incerteza. Os parâmetros do modelo têm interpretação probabilística, e a incorporação de conhecimento prévio (priors) permite integrar expertise agronômica na estrutura do modelo.</p>
-<p><strong>Ensembles interpretáveis</strong> combinam a robustez dos métodos de ensemble com a transparência de modelos mais simples. Hu et al. <span id="id15">[<a class="reference internal" href="../../referencias.html#id290" title="Tianfang Hu, Xiangtian Zhang, Gil Bohrer, Yanlan Liu, Yuyu Zhou, J. Martin, Y. Li, and Kaiguang Zhao. Crop yield prediction via explainable AI and interpretable machine learning: dangers of black box models for evaluating climate change impacts on crop yield. Agricultural and Forest Meteorology, 336:109458, 2023. doi:10.1016/j.agrformet.2023.109458.">107</a>]</span> demonstraram que modelos interpretáveis de ML podem superar modelos de caixa-preta em cenários onde a extrapolação para condições não observadas é necessária.</p>
-<p>A literatura sugere que, em alguns cenários, modelos bayesianos e interpretáveis oferecem tanto alta acurácia quanto insights mecanísticos, superando modelos de caixa-preta em compreensão e capacidade de extrapolação <span id="id16">[<a class="reference internal" href="../../referencias.html#id288" title="Peyman Abbaszadeh, Keyhan Gavahi, Atieh Alipour, Proloy Deb, and Hamid Moradkhani. Bayesian multi-modeling of deep neural nets for probabilistic crop yield prediction. Agricultural and Forest Meteorology, 314:108773, 2022. doi:10.1016/j.agrformet.2021.108773.">105</a>, <a class="reference internal" href="../../referencias.html#id290" title="Tianfang Hu, Xiangtian Zhang, Gil Bohrer, Yanlan Liu, Yuyu Zhou, J. Martin, Y. Li, and Kaiguang Zhao. Crop yield prediction via explainable AI and interpretable machine learning: dangers of black box models for evaluating climate change impacts on crop yield. Agricultural and Forest Meteorology, 336:109458, 2023. doi:10.1016/j.agrformet.2023.109458.">107</a>, <a class="reference internal" href="../../referencias.html#id304" title="A. Joshi, B. Pradhan, S. Chakraborty, R. Varatharajoo, A. Alamri, S. Gite, and C. Lee. An explainable Bi-LSTM model for winter wheat yield prediction. Frontiers in Plant Science, 15:1491493, 2025. doi:10.3389/fpls.2024.1491493.">123</a>, <a class="reference internal" href="../../referencias.html#id291" title="Antonio Morales and Francisco J. Villalobos. Using machine learning for crop yield prediction in the past or the future. Frontiers in Plant Science, 14:1128388, 2023. doi:10.3389/fpls.2023.1128388.">108</a>]</span>.</p>
+<p><strong>Ensembles interpretáveis</strong> combinam a robustez dos métodos de ensemble com a transparência de modelos mais simples. Hu et al. <span id="id15">[<a class="reference internal" href="../referencias.html#id290" title="Tianfang Hu, Xiangtian Zhang, Gil Bohrer, Yanlan Liu, Yuyu Zhou, J. Martin, Y. Li, and Kaiguang Zhao. Crop yield prediction via explainable AI and interpretable machine learning: dangers of black box models for evaluating climate change impacts on crop yield. Agricultural and Forest Meteorology, 336:109458, 2023. doi:10.1016/j.agrformet.2023.109458.">105</a>]</span> demonstraram que modelos interpretáveis de ML podem superar modelos de caixa-preta em cenários onde a extrapolação para condições não observadas é necessária.</p>
+<p>A literatura sugere que, em alguns cenários, modelos bayesianos e interpretáveis oferecem tanto alta acurácia quanto insights mecanísticos, superando modelos de caixa-preta em compreensão e capacidade de extrapolação <span id="id16">[<a class="reference internal" href="../referencias.html#id288" title="Peyman Abbaszadeh, Keyhan Gavahi, Atieh Alipour, Proloy Deb, and Hamid Moradkhani. Bayesian multi-modeling of deep neural nets for probabilistic crop yield prediction. Agricultural and Forest Meteorology, 314:108773, 2022. doi:10.1016/j.agrformet.2021.108773.">103</a>, <a class="reference internal" href="../referencias.html#id290" title="Tianfang Hu, Xiangtian Zhang, Gil Bohrer, Yanlan Liu, Yuyu Zhou, J. Martin, Y. Li, and Kaiguang Zhao. Crop yield prediction via explainable AI and interpretable machine learning: dangers of black box models for evaluating climate change impacts on crop yield. Agricultural and Forest Meteorology, 336:109458, 2023. doi:10.1016/j.agrformet.2023.109458.">105</a>, <a class="reference internal" href="../referencias.html#id304" title="A. Joshi, B. Pradhan, S. Chakraborty, R. Varatharajoo, A. Alamri, S. Gite, and C. Lee. An explainable Bi-LSTM model for winter wheat yield prediction. Frontiers in Plant Science, 15:1491493, 2025. doi:10.3389/fpls.2024.1491493.">121</a>, <a class="reference internal" href="../referencias.html#id291" title="Antonio Morales and Francisco J. Villalobos. Using machine learning for crop yield prediction in the past or the future. Frontiers in Plant Science, 14:1128388, 2023. doi:10.3389/fpls.2023.1128388.">106</a>]</span>.</p>
 </section>
 </section>
 <section id="desafios-e-limitacoes">
@@ -382,7 +497,7 @@
 <h3><a class="toc-backref" href="#id42" role="doc-backlink">Complementaridade com outras abordagens</a><a class="headerlink" href="#complementaridade-com-outras-abordagens" title="Link permanente para este cabeçalho"></a></h3>
 <p>Modelos de ML não devem substituir, mas complementar outras abordagens:</p>
 <ul class="simple">
-<li><p><strong>Modelos mecanísticos (DSSAT, AquaCrop)</strong> <span id="id17">[<a class="reference internal" href="../../referencias.html#id266" title="DSSAT Foundation. DSSAT – decision support system for agrotechnology transfer. https://dssat.net/, 2024. Acesso em 2026.">94</a>, <a class="reference internal" href="../../referencias.html#id268" title="FAO. AquaCrop – the crop water productivity model. https://www.fao.org/aquacrop/en/, 2024. Acesso em 2026.">96</a>]</span> fornecem fundamentação biofísica e permitem simulação de cenários hipotéticos</p></li>
+<li><p><strong>Modelos mecanísticos (DSSAT, AquaCrop)</strong> <span id="id17">[<a class="reference internal" href="../referencias.html#id266" title="DSSAT Foundation. DSSAT – decision support system for agrotechnology transfer. https://dssat.net/, 2024. Acesso em 2026.">92</a>, <a class="reference internal" href="../referencias.html#id268" title="FAO. AquaCrop – the crop water productivity model. https://www.fao.org/aquacrop/en/, 2024. Acesso em 2026.">94</a>]</span> fornecem fundamentação biofísica e permitem simulação de cenários hipotéticos</p></li>
 <li><p><strong>Índices climáticos (SPI, SPEI)</strong> oferecem caracterização padronizada das condições climáticas</p></li>
 <li><p><strong>Avaliação de campo</strong> permanece essencial para validação e casos complexos</p></li>
 </ul>
@@ -418,7 +533,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c1032bf150>
+<jinja2.runtime.BlockReference object at 0x70ac962e3410>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

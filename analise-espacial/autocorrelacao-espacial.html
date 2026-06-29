@@ -6,28 +6,28 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Densidade e autocorrelação espacial &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Densidade e autocorrelação espacial &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/autocorrelacao-espacial.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/analise-espacial/autocorrelacao-espacial.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Interpolação espacial" href="interpolacao-espacial.html" />
     <link rel="prev" title="Técnicas de interpolação espacial aplicadas ao risco agrícola" href="metodos-interpolacao.html" /> 
 </head>
@@ -40,12 +40,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -53,33 +53,30 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
-<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
-<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Densidade e autocorrelação espacial</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#densidade-de-pontos-kde">Densidade de pontos: KDE</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#i-de-moran-global-existe-padrao">I de Moran global: existe padrão?</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lisa-onde-estao-os-clusters">LISA: onde estão os clusters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#getis-ord-gi-hotspots-e-coldspots">Getis-Ord Gi*: hotspots e coldspots</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#duas-armadilhas-a-evitar">Duas armadilhas a evitar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Densidade e autocorrelação espacial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#densidade-de-pontos-kde">Densidade de pontos: KDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-de-moran-global-existe-padrao">I de Moran global: existe padrão?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lisa-onde-estao-os-clusters">LISA: onde estão os clusters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getis-ord-gi-hotspots-e-coldspots">Getis-Ord Gi*: hotspots e coldspots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#duas-armadilhas-a-evitar">Duas armadilhas a evitar</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
-<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interpolacao-espacial.html">Interpolação espacial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -88,15 +85,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
       <li class="breadcrumb-item active">Densidade e autocorrelação espacial</li>
       <li class="wy-breadcrumbs-aside">
@@ -144,7 +140,7 @@ densidade: onde há muitas COPs próximas, a superfície é alta; onde são espa
 mostra cada ponto; grande demais, borra tudo e esconde os padrões. Comparar a densidade de
 fenômenos diferentes (seca × chuva excessiva) revela geografias de risco distintas.</p>
 <figure class="align-center" id="fig-fenomenos-kde">
-<a class="reference internal image-reference" href="../../_images/kde_cops.png"><img alt="../../_images/kde_cops.png" src="../../_images/kde_cops.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="../_images/kde_cops.png"><img alt="../_images/kde_cops.png" src="../_images/kde_cops.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Figura 31 - </span><span class="caption-text">Mapa de densidade (KDE) de COPs — exemplo <strong>ilustrativo</strong> com dados sintéticos. Os
@@ -157,10 +153,10 @@ manchas quentes correspondem às concentrações que o KDE realça.</span><a cla
 <h2>I de Moran global: existe padrão?<a class="headerlink" href="#i-de-moran-global-existe-padrao" title="Link permanente para este cabeçalho"></a></h2>
 <p>O KDE mostra <em>onde</em> há concentração, mas não diz se ela é estatisticamente significativa.
 Para isso, passa-se de pontos para áreas (ex.: contagem de COPs por município) e
-aplica-se o <strong>I de Moran global</strong> <span id="id1">[<a class="reference internal" href="../../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, que mede a autocorrelação espacial — o quanto valores
+aplica-se o <strong>I de Moran global</strong> <span id="id1">[<a class="reference internal" href="../referencias.html#id248" title="P. A. P. Moran. Notes on continuous stochastic phenomena. Biometrika, 37(1–2):17–23, 1950. doi:10.2307/2332142.">67</a>]</span>, que mede a autocorrelação espacial — o quanto valores
 parecidos tendem a estar perto uns dos outros. É a tradução estatística da Lei de Tobler:
 <em>“tudo está relacionado com tudo, mas coisas próximas estão mais relacionadas que coisas
-distantes”</em> <span id="id2">[<a class="reference internal" href="../../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
+distantes”</em> <span id="id2">[<a class="reference internal" href="../referencias.html#id246" title="W. R. Tobler. A computer movie simulating urban growth in the Detroit region. Economic Geography, 46(sup1):234–240, 1970. doi:10.2307/143141.">66</a>]</span>.</p>
 <p>O cálculo exige uma <strong>matriz de pesos espaciais</strong>, que define quem é vizinho de quem. O
 critério Queen considera vizinhos os municípios que compartilham qualquer fronteira ou
 vértice:</p>
@@ -180,6 +176,30 @@ COPs tendem a ter vizinhos também com muitas COPs. A significância vem de uma
 <strong>permutação de Monte Carlo</strong> — os valores são embaralhados centenas de vezes no espaço
 para construir a distribuição esperada sob a hipótese de aleatoriedade, e o I observado é
 comparado a ela.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Diagrama de dispersão de Moran (Moran scatterplot) esquemático, com os
+quatro quadrantes (Alto-Alto, Baixo-Baixo, Alto-Baixo, Baixo-Alto) e a reta de
+regressão cuja inclinação corresponde ao I de Moran.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>dá uma imagem mental do que o I de Moran mede, complementando o cálculo
+apresentado no código.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“Moran scatterplot quadrants diagram”; “diagrama de dispersão de Moran
+quadrantes”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GIS (GeoDa/PySAL), Wikimedia Commons</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Municípios sem vizinhos (<em>islands</em>) precisam ser tratados antes do cálculo (<code class="docutils literal notranslate"><span class="pre">w.islands</span></code>),
@@ -189,7 +209,7 @@ senão distorcem a matriz de pesos.</p>
 <section id="lisa-onde-estao-os-clusters">
 <h2>LISA: onde estão os clusters<a class="headerlink" href="#lisa-onde-estao-os-clusters" title="Link permanente para este cabeçalho"></a></h2>
 <p>O I global resume tudo em <strong>um único número</strong> — diz que há padrão, mas não onde. Os
-<strong>LISA</strong> (<em>Local Indicators of Spatial Association</em>, ou I de Moran local) <span id="id3">[<a class="reference internal" href="../../referencias.html#id247" title="Luc Anselin. Local indicators of spatial association—LISA. Geographical Analysis, 27(2):93–115, 1995. doi:10.1111/j.1538-4632.1995.tb00338.x.">68</a>]</span> abrem esse número
+<strong>LISA</strong> (<em>Local Indicators of Spatial Association</em>, ou I de Moran local) <span id="id3">[<a class="reference internal" href="../referencias.html#id247" title="Luc Anselin. Local indicators of spatial association—LISA. Geographical Analysis, 27(2):93–115, 1995. doi:10.1111/j.1538-4632.1995.tb00338.x.">68</a>]</span> abrem esse número
 por município, classificando cada um em quatro tipos de cluster:</p>
 <ul class="simple">
 <li><p><strong>Alto-Alto (AA)</strong>: muitas COPs cercado de vizinhos com muitas COPs — o núcleo de um
@@ -209,10 +229,32 @@ vizinhança).</p></li>
 </div>
 <p>Os clusters Alto-Alto significativos são exatamente as regiões que merecem priorização na
 fiscalização — concentrações de COPs que não se explicam pelo acaso.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Mapa de clusters LISA (mapa coroplético) com as categorias coloridas —
+Alto-Alto, Baixo-Baixo, Alto-Baixo, Baixo-Alto e não significativo.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>ilustra como a LISA “abre” o I global em um mapa acionável, localizando os
+hotspots e outliers descritos na lista de tipos de cluster.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“LISA cluster map example”; “mapa de clusters LISA exemplo”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GeoDa/PySAL, Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 </section>
 <section id="getis-ord-gi-hotspots-e-coldspots">
 <h2>Getis-Ord Gi*: hotspots e coldspots<a class="headerlink" href="#getis-ord-gi-hotspots-e-coldspots" title="Link permanente para este cabeçalho"></a></h2>
-<p>O <strong>Gi*</strong> é complementar ao LISA <span id="id4">[<a class="reference internal" href="../../referencias.html#id273" title="Arthur Getis and J. Keith Ord. The analysis of spatial association by use of distance statistics. Geographical Analysis, 24(3):189–206, 1992. doi:10.1111/j.1538-4632.1992.tb00261.x.">75</a>]</span>: em vez de classificar em quadrantes, ele produz um
+<p>O <strong>Gi*</strong> é complementar ao LISA <span id="id4">[<a class="reference internal" href="../referencias.html#id273" title="Arthur Getis and J. Keith Ord. The analysis of spatial association by use of distance statistics. Geographical Analysis, 24(3):189–206, 1992. doi:10.1111/j.1538-4632.1992.tb00261.x.">75</a>]</span>: em vez de classificar em quadrantes, ele produz um
 escore z que mede a intensidade de <em>hotspots</em> (agrupamentos de valores altos) e
 <em>coldspots</em> (de valores baixos). Escores z altos e positivos marcam <em>hotspots</em> robustos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">esda.getisord</span><span class="w"> </span><span class="kn">import</span> <span class="n">G_Local</span>
@@ -226,10 +268,33 @@ escore z que mede a intensidade de <em>hotspots</em> (agrupamentos de valores al
 <h2>Duas armadilhas a evitar<a class="headerlink" href="#duas-armadilhas-a-evitar" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>MAUP — o problema da unidade de área modificável.</strong> Os resultados mudam conforme a
 unidade espacial escolhida. Contar COPs por município ou por uma grade regular pode dar
-valores de Moran e mapas de cluster diferentes para os <em>mesmos</em> dados <span id="id5">[<a class="reference internal" href="../../referencias.html#id249" title="S. Openshaw. The modifiable areal unit problem. Technical Report 38, Geo Books, 1984.">69</a>]</span>. Não existe escala
+valores de Moran e mapas de cluster diferentes para os <em>mesmos</em> dados <span id="id5">[<a class="reference internal" href="../referencias.html#id249" title="S. Openshaw. The modifiable areal unit problem. Technical Report 38, Geo Books, 1984.">69</a>]</span>. Não existe escala
 “certa” única — por isso é bom comparar mais de uma e desconfiar de conclusões que só
 aparecem em uma escala específica.</p>
-<p><strong>Falácia ecológica</strong> <span id="id6">[<a class="reference internal" href="../../referencias.html#id311" title="W. S. Robinson. Ecological correlations and the behavior of individuals. American Sociological Review, 15(3):351–357, 1950. doi:10.2307/2087176.">70</a>]</span>. Um padrão observado no agregado (ex.: municípios com mais COPs
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Ilustração do MAUP — os mesmos pontos agregados por diferentes grades
+ou unidades de área (zonas e escalas distintas) produzindo resultados diferentes.</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>torna visual o problema da unidade de área modificável discutido no parágrafo,
+mostrando por que a escolha da escala muda o resultado.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“modifiable areal unit problem MAUP illustration”; “MAUP problema
+unidade de área modificável exemplo”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>Wikimedia Commons, documentação GIS, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>média</p>
+</dd>
+</dl>
+</div>
+<p><strong>Falácia ecológica</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id311" title="W. S. Robinson. Ecological correlations and the behavior of individuals. American Sociological Review, 15(3):351–357, 1950. doi:10.2307/2087176.">70</a>]</span>. Um padrão observado no agregado (ex.: municípios com mais COPs
 tendem a ter certa característica) <strong>não</strong> pode ser transferido automaticamente para o
 indivíduo (uma gleba específica daquele município). Conclusões sobre áreas não são
 conclusões sobre as glebas dentro delas — confundir os dois níveis leva a erro de
@@ -252,7 +317,7 @@ interpretação e, no limite, a injustiça na análise de um caso concreto.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c10637ac10>
+<jinja2.runtime.BlockReference object at 0x70ac96d7c890>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

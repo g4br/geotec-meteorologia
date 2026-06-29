@@ -1,0 +1,234 @@
+Aula prática 1 — download e leitura dos dados do INMET
+=======================================================
+
+Esta primeira aula prática introduz o ambiente de trabalho (Python +
+Bash no mesmo notebook), faz o **download massivo dos dados horários do
+INMET (2014–2025)** contornando a proteção anti-bot do servidor, e
+mostra como ler um CSV padronizado em ``pandas``.
+
+.. contents:: Nesta aula
+   :local:
+   :depth: 2
+
+Objetivo
+--------
+
+Ao final você será capaz de:
+
+* alternar comandos Python e Bash dentro do mesmo Jupyter Notebook;
+* baixar os dados históricos do INMET ano a ano e organizá-los em
+  pastas;
+* ler um CSV horário do INMET com o cabeçalho correto (8 linhas de
+  metadados, ``;`` como separador, ``,`` como decimal, encoding
+  ``latin1``, ``-9999`` como ``NaN``);
+* extrair as colunas de interesse (temperatura, precipitação) e
+  recortar uma janela temporal.
+
+Pré-requisitos
+--------------
+
+* Python 3 com ``pandas``, ``matplotlib`` e ``glob``.
+* Ambiente em que comandos Bash (``!``) sejam aceitos — Jupyter
+  Notebook, JupyterLab, Google Colab ou Kaggle.
+* ~25 GB de espaço em disco para armazenar todos os anos.
+
+Bash dentro do Python
+---------------------
+
+No Jupyter, qualquer linha iniciada por ``!`` é enviada ao shell. O
+notebook usa cinco comandos do dia a dia:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 15 85
+
+   * - Comando
+     - Função
+   * - ``!ls``
+     - Lista o conteúdo da pasta atual.
+   * - ``!cd``
+     - Muda de diretório (em Colab use ``%cd``; ``!cd`` muda apenas
+       para a linha do shell e o efeito não persiste).
+   * - ``!mkdir`` / ``!rm`` / ``!mv``
+     - Cria, remove e move arquivos/diretórios.
+   * - ``!wget`` / ``!curl``
+     - Baixa arquivos da internet.
+   * - ``!sed`` / ``!grep`` / ``!cut`` / ``!paste``
+     - Pequenas transformações de texto via linha de comando.
+
+Para blocos com muitas linhas Bash, a célula pode começar com a
+*shebang* ``%%bash`` em vez de prefixar cada linha:
+
+.. code-block:: bash
+   :caption: Mesma sintaxe Bash, mas executando a célula inteira no shell.
+
+   %%bash
+   echo "Vários comandos sem ! em cada linha"
+   for ((i=1; i<=5; i++)); do
+       echo "iteração $i"
+   done
+
+Download dos CSVs do INMET (2014–2025)
+--------------------------------------
+
+Os dados estão disponíveis em
+https://portal.inmet.gov.br/dadoshistoricos, um arquivo ZIP por ano.
+O servidor bloqueia clientes que não pareçam navegadores comuns —
+respondendo *HTTP 403*. A solução usada na aula combina três truques:
+
+1. ``-A`` define um ``User-Agent`` de Firefox.
+2. ``-e`` define o ``Referer`` apontando para a própria página de
+   download.
+3. ``-L`` segue redirecionamentos.
+
+.. code-block:: bash
+   :caption: Loop em Bash que baixa e descompacta os ZIPs de 2014 a 2025.
+
+   %%bash
+   for ((ano=2014; ano<=2025; ano++)); do
+       curl -L \
+           -A "Mozilla/5.0 (X11; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0" \
+           -e "https://portal.inmet.gov.br/dadoshistoricos" \
+           -o $ano.zip \
+           "https://portal.inmet.gov.br/uploads/dadoshistoricos/$ano.zip"
+       unzip $ano.zip
+   done
+
+Normalização dos nomes de arquivo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Os arquivos descompactados vêm com acentos e espaços que dificultam a
+indexação por glob. O utilitário ``detox`` reescreve cada nome para
+ASCII seguro:
+
+.. code-block:: bash
+
+   apt install detox
+   detox *.CSV
+
+Em seguida o notebook reorganiza tudo em uma pasta por ano:
+
+.. code-block:: bash
+
+   %%bash
+   for ((ano=2014; ano<=2025; ano++)); do
+       mkdir -p $ano
+       mv *$ano*.CSV $ano
+   done
+
+Resultado final: árvore ``2014/``, ``2015/``, …, ``2025/``, cada uma
+contendo aproximadamente 560 CSVs (um por estação automática).
+
+Leitura do CSV do INMET em pandas
+---------------------------------
+
+O cabeçalho do INMET tem 8 linhas de metadados antes da tabela. Os
+parâmetros corretos para ``read_csv`` são:
+
+.. code-block:: python
+   :caption: Parâmetros canônicos para abrir um CSV horário do INMET.
+
+   import glob
+   import pandas as pd
+
+   arquivos = glob.glob('*/*A806*')  # exemplo: Florianópolis (SC) — estação A806
+   print(arquivos)
+
+   df = pd.read_csv(
+       arquivos[0],
+       encoding='latin1',
+       sep=';',
+       decimal=',',
+       skiprows=8,
+   )
+
+Os nomes de coluna originais vêm em português e com unidades:
+
+.. code-block:: python
+
+   df.columns
+   # Index(['DATA (YYYY-MM-DD)', 'HORA (UTC)',
+   #        'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)',
+   #        'PRESSAO ATMOSFERICA AO NIVEL DA ESTACAO, HORARIA (mB)',
+   #        ...
+   #        'VENTO, VELOCIDADE HORARIA (m/s)', 'Unnamed: 19'], dtype='object')
+
+Construindo o índice temporal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As colunas de data e hora chegam separadas. Para virar uma série
+temporal indexada por ``DatetimeIndex``, basta concatená-las:
+
+.. code-block:: python
+
+   df['datetime'] = pd.to_datetime(df['DATA (YYYY-MM-DD)'] + ' ' + df['HORA (UTC)'])
+   df.set_index('datetime', inplace=True)
+
+Recorte de colunas de interesse e janela temporal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Para o restante da aula trabalhamos apenas com temperatura máxima e
+precipitação acumulada, em um recorte de março de 2014:
+
+.. code-block:: python
+
+   colunas = [
+       'DATA (YYYY-MM-DD)', 'HORA (UTC)',
+       'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)',
+       'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)',
+   ]
+
+   df_interesse = df[colunas].copy()
+   df_interesse = df_interesse.loc['2014-03-01':'2014-03-31']
+
+   df_interesse.rename(columns={
+       'TEMPERATURA MÁXIMA NA HORA ANT. (AUT) (°C)': 'tmax',
+       'PRECIPITAÇÃO TOTAL, HORÁRIO (mm)': 'prec',
+   }, inplace=True)
+
+Substituição do código de ausência
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O INMET codifica valores ausentes como ``-9999``. Sem tratamento,
+qualquer cálculo (média, soma, mínimo) será arruinado por esses
+valores. A normalização é uma linha:
+
+.. code-block:: python
+
+   df_interesse.where(df_interesse != -9999, pd.NA, inplace=True)
+
+Visualizações rápidas
+---------------------
+
+Para validar o recorte, dois gráficos simples:
+
+.. code-block:: python
+
+   import matplotlib.pyplot as plt
+
+   df_interesse['tmax'].plot(title='Tmax horária — A806/Florianópolis — março/2014')
+   plt.show()
+
+   df_interesse['prec'].plot(title='Precipitação horária — A806/Florianópolis — março/2014')
+   plt.show()
+
+Discussão
+---------
+
+O notebook estabelece a **disciplina mínima** para trabalhar com dados
+do INMET no restante do curso:
+
+* sempre pular as 8 linhas de cabeçalho;
+* sempre trocar ``-9999`` por ``NaN``;
+* sempre indexar pelo *datetime* — sem isso, agregações horárias →
+  diárias (``resample('D')``) e cortes ``df.loc[d1:d2]`` não funcionam.
+
+O mesmo padrão de leitura ressurge nas próximas aulas, encapsulado em
+uma função reutilizável (ver :doc:`fonte-de-dados2`).
+
+Próximos passos
+---------------
+
+* :doc:`fonte-de-dados2` — usar a base do Sicor, encontrar as estações
+  INMET mais próximas e calcular GDD da soja.
+* :doc:`../estacoes` — características das redes INMET, CEMADEN e ANA.

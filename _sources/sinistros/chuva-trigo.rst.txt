@@ -1,0 +1,50 @@
+Caso 2 — chuva excessiva em trigo
+=================================
+
+O trigo é cultura de inverno, e o excesso de chuva — sobretudo perto da colheita — degrada
+a qualidade dos grãos e favorece doenças :cite:`alves-2006` (ver :doc:`../fundamentos/risco/risco-climatico`).
+Este caso espelha o anterior, mas com a **lógica invertida**: uma COP por chuva excessiva
+é plausível quando a precipitação observada ficou **acima** da climatologia (anomalia
+positiva). É implausível quando *não* houve excesso.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Foto de espigas de trigo com grãos germinados na própria espiga
+      (germinação pré-colheita) ou lavoura acamada após chuvas intensas perto da colheita.
+   :Função: ilustra concretamente o dano por excesso de chuva no trigo descrito na
+      abertura do caso.
+   :Busca sugerida: "wheat pre-harvest sprouting in head"; "trigo germinado na espiga
+      chuva colheita"
+   :Fonte provável: Embrapa, USDA, Wikimedia Commons
+   :Facilidade: média
+
+Lógica invertida do flag
+------------------------
+
+O sinal da comparação inverte em relação à seca: agora a suspeita recai sobre anomalias
+**não positivas** (``<= 0``) — declarou-se excesso de chuva, mas choveu o normal ou menos:
+
+.. literalinclude:: ../code/flag_chuva_trigo.py
+   :language: python
+
+Fallback hierárquico INMET → MERGE
+----------------------------------
+
+Este caso introduz um refinamento importante para a qualidade do dado. A estação INMET, por
+ser uma medida direta no solo, é preferível para a precipitação pontual; a grade MERGE
+entra como **alternativa** quando não há estação com cobertura temporal suficiente na
+janela. A estratégia é hierárquica e **explícita** (sem troca silenciosa de fonte): tenta-se
+primeiro a estação mais próxima com cobertura acima de um limiar; só então recorre-se ao
+MERGE no centroide da COP, registrando qual fonte foi usada em cada caso.
+
+Essa rastreabilidade da fonte é parte da auditabilidade: ao priorizar uma COP, sabe-se se a
+anomalia veio de uma estação próxima (mais confiável) ou de uma estimativa em grade.
+
+Leitura
+-------
+
+Como na seca, ``flag_chuva_implausivel`` apenas ordena a investigação: marca as COPs em que
+a chuva excessiva declarada não aparece nos dados. Comparar MERGE e INMET decêndio a
+decêndio, para o caso selecionado, ajuda a separar divergência de dado de incompatibilidade
+real — e a decisão final continua sendo do perito.

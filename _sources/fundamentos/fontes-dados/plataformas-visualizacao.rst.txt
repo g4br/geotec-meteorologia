@@ -1,0 +1,2007 @@
+Plataformas de visualização de dados meteorológicos
+====================================================
+
+Levantamento de **plataformas de visualização** — viewers, mapas interativos e dashboards web —
+de dados meteorológicos, hidrológicos e agrometeorológicos usáveis no Brasil, do nível estadual
+ao global. Organizado por tipo de plataforma (G1–G6).
+
+Este documento complementa :doc:`panorama-nacional` (fontes de dados brutos) e
+:doc:`instituicoes-por-estado` (instituições). O foco aqui é **onde e como visualizar** os dados
+de forma interativa — não os dados em si.
+
+.. note::
+
+   URLs e descrições confirmadas por acesso/busca (junho/2026). Campos não confirmados em
+   fonte primária estão marcados ``[verificar]``. Plataformas *JS-heavy* (Simepar, SIGMA, INMET)
+   foram verificadas por busca — funcionam no navegador mesmo que WebFetch não extraia
+   conteúdo dinâmico.
+
+**Ficha por plataforma:** operador/instituição · tipo · o que visualiza · cobertura ·
+acesso (gratuito/login/pago) · URL.
+
+G1 — viewers de satélite
+---------------------------
+
+Plataformas de visualização de imagens de satélite meteorológico (geoestacionário/polar) utilizáveis para o Brasil, incluindo nível global. Fichas intermediárias verificadas via WebSearch/WebFetch em 2026-06-28. Itens não confirmados marcados com **[verificar]**.
+
+CIRA SLIDER
+~~~~~~~~~~~
+
+Visualizador interativo full-resolution ("Satellite Loop Interactive Data Explorer in Real-time") desenvolvido pelo CIRA/RAMMB. Permite ver todos os canais do ABI/AHI, comparar loops lado a lado e compartilhar o estado via URL.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - CIRA SLIDER (e SLIDER-Archive para acervo)
+   * - Operador/Instituição
+     - CIRA + RAMMB (NOAA/NESDIS), Colorado State University (CSU)
+   * - Tipo
+     - Viewer de satélite (geoestacionário, tempo real e arquivo)
+   * - O que visualiza
+     - 16 bandas do ABI (GOES-East/West) e do AHI (Himawari); GeoColor e produtos value-added; setores Full Disk, CONUS, mesoescala; inclui produtos GLM (raios)
+   * - Cobertura geográfica
+     - Global via múltiplos geoestacionários; setor GOES-East cobre a América do Sul/Brasil
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://slider.cira.colostate.edu/ — arquivo: https://slider-archive.cira.colostate.edu/
+
+NASA worldview / GIBS
+~~~~~~~~~~~~~~~~~~~~~
+
+Visualizador global da NASA Earthdata que consome o serviço GIBS (Global Imagery Browse Services). Permite navegar, comparar, animar e baixar mais de 1.200 produtos, muitos disponíveis em até ~3 h da observação.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - NASA Worldview (frontend) / GIBS (backend de imagens)
+   * - Operador/Instituição
+     - NASA Earthdata (EOSDIS)
+   * - Tipo
+     - Viewer global de satélite (sobretudo polar: Aqua, Terra, VIIRS; também camadas geoestacionárias e produtos derivados)
+   * - O que visualiza
+     - +1.200 camadas: true color, combinações de bandas, detecções de incêndios ativos, aerossóis, temperatura, neve/gelo, overlays de costas/fronteiras/estradas
+   * - Cobertura geográfica
+     - Global (cobre o Brasil)
+   * - Acesso
+     - Gratuito, sem login; GIBS com API aberta (WMTS/WMS)
+   * - URL
+     - https://worldview.earthdata.nasa.gov/ — docs GIBS: https://nasa-gibs.github.io/gibs-api-docs/
+
+NOAA STAR GOES image viewer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Visualizador oficial do NOAA/NESDIS/STAR com imagens GOES por setor e banda, incluindo loops e produtos compostos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - GOES Imagery Viewer (NOAA STAR)
+   * - Operador/Instituição
+     - NOAA / NESDIS / STAR (Center for Satellite Applications and Research)
+   * - Tipo
+     - Viewer de satélite geoestacionário (tempo quase real)
+   * - O que visualiza
+     - GOES-East (GOES-19) e GOES-West; setores Full Disk, CONUS e mesoescala; bandas individuais do ABI + GeoColor e produtos RGB/derivados
+   * - Cobertura geográfica
+     - Hemisfério Ocidental; Full Disk do GOES-East cobre a América do Sul/Brasil
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://www.star.nesdis.noaa.gov/goes/index.php
+
+RAMMB / CSU — RAMSDIS online
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Galeria/loops de imagens GOES e regionais mantida pelo RAMMB/CIRA (complementar ao SLIDER), com setores pré-definidos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - RAMMB RAMSDIS Online
+   * - Operador/Instituição
+     - RAMMB (NOAA/NESDIS) + CIRA, Colorado State University
+   * - Tipo
+     - Viewer/galeria de loops de satélite geoestacionário
+   * - O que visualiza
+     - Imagens GOES-East/West por banda e setor, produtos GeoColor e regionais; loops prontos
+   * - Cobertura geográfica
+     - Hemisfério Ocidental, incluindo setores que alcançam a América do Sul **[verificar setores específicos do Brasil]**
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://rammb.cira.colostate.edu/ramsdis/online/
+
+EUMETView
+~~~~~~~~~
+
+Aplicação Web Map Service da EUMETSAT para visualizar, animar e interagir com imagens de satélite, com customização de basemap e camadas.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - EUMETView
+   * - Operador/Instituição
+     - EUMETSAT
+   * - Tipo
+     - Viewer de satélite (WMS) — geoestacionário e polar
+   * - O que visualiza
+     - Imagens Meteosat (disco 0°) e Copernicus Sentinel-3; camadas RGB, IR, VIS, vapor d'água e produtos derivados; criação de imagens/animações e embed
+   * - Cobertura geográfica
+     - Cobertura europeia/africana/atlântica do Meteosat 0°; **[verificar]** alcance sobre a costa leste do Brasil (limbo do disco)
+   * - Acesso
+     - Gratuito, sem login para a interface de visualização
+   * - URL
+     - https://view.eumetsat.int/
+
+Zoom earth
+~~~~~~~~~~
+
+Mapa interativo que agrega imagens ao vivo de múltiplos geoestacionários e produtos polares, com rastreamento de tempestades/furacões.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Zoom Earth
+   * - Operador/Instituição
+     - Zoom Earth (privado/independente; usa dados públicos)
+   * - Tipo
+     - Viewer global de satélite + mapa meteorológico
+   * - O que visualiza
+     - Imagens ao vivo de NOAA GOES, EUMETSAT Meteosat e JMA Himawari; HD 2x/dia de Aqua/Terra (NASA); sobreposições de vento, precipitação e trajetória de ciclones
+   * - Cobertura geográfica
+     - Global (cobre o Brasil via GOES-East)
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://zoom.earth/
+
+CPTEC/INPE — DSAT (satélite GOES-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Aplicação da DISSM/INPE para visualização interativa de satélites geoestacionários, atualizada para o GOES-19 (operacional desde 07/04/2025, sucedendo o GOES-16).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - DSAT — GOES-19 (CPTEC/INPE); portal satelite.cptec.inpe.br
+   * - Operador/Instituição
+     - DISSM / CPTEC / INPE
+   * - Tipo
+     - Viewer de satélite geoestacionário (tempo quase real e acervo)
+   * - O que visualiza
+     - Imagens e produtos do GOES/ABI (GOES-Leste/GOES-19): canais, diferentes resoluções espaciais e intervalos temporais; produtos ambientais/meteorológicos
+   * - Cobertura geográfica
+     - América do Sul e Brasil (full-disk GOES a cada 10 min)
+   * - Acesso
+     - Gratuito, público, sem login
+   * - URL
+     - https://www.cptec.inpe.br/dsat/ — portal: https://satelite.cptec.inpe.br/ — acervo: https://satelite.cptec.inpe.br/acervo/
+
+SIGMA — CPTEC/INPE
+~~~~~~~~~~~~~~~~~~~~
+
+Sistema integrado de monitoramento ambiental/meteorológico em tempo quase real para o território brasileiro.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - SIGMA (Sistema de Informações Geográficas para Monitoramento Ambiental)
+   * - Operador/Instituição
+     - DISSM / CPTEC / INPE
+   * - Tipo
+     - Viewer/portal integrado (satélite + produtos derivados)
+   * - O que visualiza
+     - Estimativa de precipitação por satélite, descargas elétricas/raios, monitoramento de queimadas e camadas geográficas (rodovias, hidrografia, aeroportos, grades) **[verificar se inclui imagem de satélite "crua" além de produtos derivados]**
+   * - Cobertura geográfica
+     - Brasil
+   * - Acesso
+     - Gratuito, público
+   * - URL
+     - https://sigma.cptec.inpe.br/ — precipitação: https://sigma.cptec.inpe.br/prec_sat/ — raios: https://sigma.cptec.inpe.br/raio/ **[verificar]**
+
+INMET — imagens de satélite (GOES-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Portal do INMET com imagens GOES por região do Brasil e produtos derivados.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - INMET :: Imagens de Satélite
+   * - Operador/Instituição
+     - INMET (Instituto Nacional de Meteorologia)
+   * - Tipo
+     - Viewer/galeria de satélite geoestacionário
+   * - O que visualiza
+     - Imagens GOES-19 por região (ex.: Centro-Oeste e demais regiões); produtos como "Topo de Nuvens" (IR termal, sistemas convectivos), atualização a cada ~10–15 min **[verificar lista completa de canais/produtos]**
+   * - Cobertura geográfica
+     - Brasil (por regiões)
+   * - Acesso
+     - Gratuito, público
+   * - URL
+     - https://satelite.inmet.gov.br/ — produtos: https://portal.inmet.gov.br/servicos/produtos-de-imagens-de-satélite
+
+Climatempo — mapas de satélite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Mapas de satélite ao vivo para o público em portal comercial brasileiro.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Climatempo — Mapas de Satélite
+   * - Operador/Instituição
+     - Climatempo (empresa privada)
+   * - Tipo
+     - Viewer de satélite geoestacionário (mapa simplificado)
+   * - O que visualiza
+     - Satélite visível (canal 2 do GOES-16/19) e infravermelho (canal 13); útil para nuvens, tempestades, frentes e ciclones **[verificar se já migrou rótulo de GOES-16 para GOES-19]**
+   * - Cobertura geográfica
+     - Brasil / América do Sul
+   * - Acesso
+     - Gratuito (com publicidade); recursos avançados/sem anúncios podem exigir conta/assinatura **[verificar]**
+   * - URL
+     - https://www.climatempo.com.br/mapas/satelite/infravermelha — visível: https://www.climatempo.com.br/mapas/satelite/visivel
+
+NOAA nowcoast — satélite
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Serviço de mapas time-enabled (WMS/REST) da NOAA com mosaicos de satélite geoestacionário.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - nowCOAST (camadas de satélite)
+   * - Operador/Instituição
+     - NOAA / National Ocean Service
+   * - Tipo
+     - Map service de satélite (visualizável + WMS/ArcGIS REST)
+   * - O que visualiza
+     - Imagens compostas visível, vapor d'água, IR de onda curta e IR de onda longa de vários geoestacionários
+   * - Cobertura geográfica
+     - Global/hemisférica (composição de geoestacionários; cobre o Brasil) **[verificar extensão exata da camada]**
+   * - Acesso
+     - Gratuito, sem login; serviços abertos
+   * - URL
+     - https://nowcoast.noaa.gov/
+
+NESDIS / OSPO — earth in real-time
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Portais de imagens em tempo real do NOAA/NESDIS (incluindo OSPO Geostationary Satellite Server e o mapa "Earth Real-Time").
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - NESDIS "Earth in Real-Time" / OSPO Geostationary Satellite Server
+   * - Operador/Instituição
+     - NOAA / NESDIS / OSPO
+   * - Tipo
+     - Viewer/galeria de satélite geoestacionário
+   * - O que visualiza
+     - Imagens ao vivo de satélites NOAA (GOES) e redistribuição de JMA Himawari; setores full-disk, regionais e por banda; mapa interativo dos EUA
+   * - Cobertura geográfica
+     - Global via múltiplos satélites; GOES-East cobre o Brasil
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://www.nesdis.noaa.gov/imagery/satellite-maps/earth-real-time — OSPO: https://www.ospo.noaa.gov/products/imagery/fulldisk.html
+
+Himawari / JMA (referência)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Visualizadores do satélite Himawari (geoestacionário sobre o Pacífico Oeste) — referência metodológica; **não cobre o Brasil**.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - JMA Himawari Real-Time Image / NICT Himawari Real-time Web
+   * - Operador/Instituição
+     - Japan Meteorological Agency (JMA) / NICT
+   * - Tipo
+     - Viewer de satélite geoestacionário (tempo real)
+   * - O que visualiza
+     - Bandas do AHI (Himawari-9), setores e áreas-alvo; animações de até 24 h; True Color/IR
+   * - Cobertura geográfica
+     - Pacífico Oeste, Ásia-Oceania (**não cobre o Brasil** — uso só como referência)
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://www.data.jma.go.jp/mscweb/data/himawari/sat_img.php — NICT: https://himawari8.nict.go.jp/
+
+URLs consultadas
+----------------
+
+- https://slider.cira.colostate.edu/
+- https://slider-archive.cira.colostate.edu/
+- https://rammb.cira.colostate.edu/ramsdis/online/index.asp
+- https://www.earthdata.nasa.gov/data/tools/worldview
+- https://worldview.earthdata.nasa.gov/
+- https://nasa-gibs.github.io/gibs-api-docs/
+- https://www.star.nesdis.noaa.gov/goes/index.php
+- https://view.eumetsat.int/
+- https://www.eumetsat.int/eumetview
+- https://zoom.earth/
+- https://www.cptec.inpe.br/dsat/
+- https://satelite.cptec.inpe.br/
+- https://satelite.cptec.inpe.br/acervo/
+- https://sigma.cptec.inpe.br/
+- https://sigma.cptec.inpe.br/prec_sat/
+- https://satelite.inmet.gov.br/
+- https://portal.inmet.gov.br/servicos/produtos-de-imagens-de-satélite
+- https://www.climatempo.com.br/mapas/satelite/infravermelha
+- https://www.climatempo.com.br/mapas/satelite/visivel
+- https://nowcoast.noaa.gov/arcgis/rest/services/nowcoast/sat_meteo_imagery_time/MapServer/info/iteminfo
+- https://www.nesdis.noaa.gov/imagery/satellite-maps/earth-real-time
+- https://www.ospo.noaa.gov/products/imagery/fulldisk.html
+- https://www.data.jma.go.jp/mscweb/data/himawari/sat_img.php
+- https://himawari8.nict.go.jp/
+
+G2 — mapas interativos e de modelos
+-------------------------------------
+
+Levantamento (G2) de plataformas de visualização do tipo **mapas interativos multi-camada** e **viewers de modelos de previsão** (incluindo modelos globais GFS/ECMWF/ICON). Dados confirmados por verificação web (WebSearch/WebFetch) em junho de 2026. Marcações ``[verificar]`` indicam pontos não confirmados diretamente nesta rodada.
+
+Windy (windy.com)
+~~~~~~~~~~~~~~~~~
+
+Plataforma de mapa de vento e previsão interativa, uma das mais populares mundialmente. Animação de partículas de vento, dezenas de camadas e comparação de modelos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Windy
+   * - Operador/Instituição
+     - Windyty, S.E. (empresa tcheca, fundada por Ivo Lukačovič, 2014; Praga). Detém participação majoritária na meteoblue AG
+   * - Tipo
+     - Mapa interativo multi-camada + viewer de modelos
+   * - O que visualiza
+     - Vento, rajadas, temperatura, chuva/trovoadas, nuvens, pressão, ondas/swell, CAPE, qualidade do ar, radar, satélite, etc. Modelos: globais **ECMWF, GFS, ICON**; locais NEMS, AROME, UKV, ICON-EU, ICON-D2, NAM, HRRR, ACCESS
+   * - Cobertura geográfica
+     - Global (modelos globais) + regionais
+   * - Acesso
+     - Freemium — todos modelos/camadas grátis; Premium (assinatura ~US$18,99/ano ou compra única ~US$29,99/1 ano) dá atualização 4x/dia e passos horários
+   * - URL
+     - https://www.windy.com
+
+Ventusky (ventusky.com)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Mapa meteorológico interativo animado, desenvolvido na República Tcheca (InMeteo).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Ventusky
+   * - Operador/Instituição
+     - InMeteo, s.r.o. (República Tcheca) ``[verificar]`` (não confirmado nesta rodada; descrição do site confirmada)
+   * - Tipo
+     - Mapa interativo multi-camada + viewer de modelos
+   * - O que visualiza
+     - Temperatura, sensação térmica, precipitação, radar, satélite, vento, rajadas, nuvens, pressão, CAPE, neve, umidade, mar, qualidade do ar, monitoramento global de incêndios. Modelos: **ECMWF, GFS, ICON, GEM**
+   * - Cobertura geográfica
+     - Global
+   * - Acesso
+     - Freemium — versão gratuita; "myVentusky" (login) e assinatura Premium
+   * - URL
+     - https://www.ventusky.com
+
+Meteoblue (mapas) (meteoblue.com)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Serviço suíço com mapas de previsão, radar/satélite ao vivo e meteogramas MultiModel/Ensemble.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - meteoblue (mapas / weather maps)
+   * - Operador/Instituição
+     - meteoblue AG (Basileia, Suíça; spin-off da Universidade de Basileia). Controle majoritário da Windyty, S.E.
+   * - Tipo
+     - Mapa interativo multi-camada + meteogramas MultiModel/Ensemble
+   * - O que visualiza
+     - Radar de chuva/satélite ao vivo (chuva, neve, granizo, raios), cobertura de nuvens; meteogramas MultiModel combinando **NEMS, ECMWF, GFS**; modelo próprio. Banco de >6 milhões de localidades
+   * - Cobertura geográfica
+     - Global (mundial)
+   * - Acesso
+     - Freemium — versão gratuita; assinatura anual sem anúncios e recursos estendidos
+   * - URL
+     - https://www.meteoblue.com/en/weather/maps
+
+Earth (earth.nullschool.net)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Visualização global animada de vento/clima/oceano em globo 3D com múltiplas projeções. Projeto de código aberto.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - earth (nullschool)
+   * - Operador/Instituição
+     - Cameron Beccario (projeto individual; baseado no "wind map" da Hint.fm)
+   * - Tipo
+     - Mapa/globo interativo de visualização (não é viewer de cartas de modelo tradicional)
+   * - O que visualiza
+     - Vento, temperatura, umidade, precipitação; correntes e ondas oceânicas; química atmosférica (CO, NO₂, SO₂), material particulado; TSM e anomalias; probabilidade de aurora. Projeções selecionáveis (ortográfica, equirretangular, etc.)
+   * - Cobertura geográfica
+     - Global
+   * - Acesso
+     - Gratuito (web e app; doações via Ko-fi)
+   * - Fonte de dados
+     - Principalmente servidores da NOAA (ex.: GFS) ``[verificar]`` (modelo exato por camada não detalhado)
+   * - URL
+     - https://earth.nullschool.net
+
+NOAA nowcoast (nowcoast.noaa.gov)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Portal de webmapping GIS da NOAA para observações costeiras/marinhas em tempo real, previsões e avisos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - nowCOAST
+   * - Operador/Instituição
+     - NOAA (National Ocean Service / Office of Coast Survey), EUA
+   * - Tipo
+     - Portal de webmapping interativo multi-camada (GIS)
+   * - O que visualiza
+     - Observações de superfície (vento, temperatura, pressão, TSM, altura de onda); alertas/avisos do NWS; radar, satélite, densidade de raios; análises de TSM e previsões de modelos oceânicos da NOAA; previsões de inundação composta (maré+ressaca+fluvial, 48h); batimetria BlueTopo. Animação: observações das últimas 4h e previsões até 7 dias
+   * - Cobertura geográfica
+     - EUA e águas costeiras/marinhas (Atlântico Oeste, Golfo do México, Grandes Lagos)
+   * - Acesso
+     - Gratuito. Duas versões: público geral e "mariner" (com cartas náuticas raster/ENC e dados offshore)
+   * - URL
+     - https://nowcoast.noaa.gov/
+
+WunderMap — weather underground (wunderground.com/wundermap)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Mapa interativo de radar e clima com rede de estações pessoais (PWS).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - WunderMap
+   * - Operador/Instituição
+     - Weather Underground (The Weather Company / IBM) ``[verificar]`` (propriedade corporativa atual não confirmada nesta rodada)
+   * - Tipo
+     - Mapa interativo multi-camada
+   * - O que visualiza
+     - Radar, satélite, alertas de tempo severo, rede de estações meteorológicas pessoais (PWS / Sensor Network)
+   * - Cobertura geográfica
+     - Global, com forte densidade nos EUA ``[verificar]`` (extensão exata não confirmada)
+   * - Acesso
+     - Gratuito (com login opcional/cidades favoritas); possível tier premium sem anúncios ``[verificar]``
+   * - URL
+     - https://www.wunderground.com/wundermap
+
+Tempo.com / meteored (tempo.com)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Portal e visor de mapas do grupo Meteored, com observações WMO/METAR e modelos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - tempo.com / Meteored (theweather.com / tiempo.com) — mesma empresa
+   * - Operador/Instituição
+     - Meteored (Sociedad de Servicios Meteorológicos, Espanha)
+   * - Tipo
+     - Mapa interativo multi-camada + previsão por modelo
+   * - O que visualiza
+     - Radar de chuva em tempo real, satélite, vento, temperatura, qualidade do ar, rastreamento de furacões; camadas de observação de estações WMO e METAR; previsão baseada principalmente no modelo **ECMWF**
+   * - Cobertura geográfica
+     - Global; >40.000 cidades no Brasil, >6 milhões no mundo
+   * - Acesso
+     - Gratuito (versão web; app com opções)
+   * - URL
+     - https://www.tempo.com (BR) / https://www.meteored.com
+
+Climatempo (mapas) (climatempo.com.br)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Portal brasileiro com mapas meteorológicos (radar, satélite, previsão).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Climatempo — Mapas Meteorológicos
+   * - Operador/Instituição
+     - Climatempo (empresa privada brasileira) ``[verificar]`` (vínculos societários atuais não confirmados)
+   * - Tipo
+     - Mapa interativo multi-camada
+   * - O que visualiza
+     - Mapas de satélite (infravermelho ao vivo), radar, previsão; informações em tempo real. Modelos numéricos específicos ``[verificar]`` (não detalhados na fonte)
+   * - Cobertura geográfica
+     - Brasil (foco)
+   * - Acesso
+     - Gratuito (web), com produtos/serviços pagos ``[verificar]``
+   * - URL
+     - https://www.climatempo.com.br/mapas
+
+Pivotal weather (pivotalweather.com)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Viewer de cartas de modelos numéricos, popular entre entusiastas e meteorologistas (foco EUA).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Pivotal Weather
+   * - Operador/Instituição
+     - Pivotal Weather, LLC (EUA) ``[verificar]`` (razão social não confirmada nesta rodada)
+   * - Tipo
+     - Viewer de modelos (cartas de NWP)
+   * - O que visualiza
+     - Saídas de modelos: **GFS, ECMWF (Euro)**, NAM, NAM 3km, HRRR e outros; campos de precipitação, temperatura, vento, índices de tempo severo
+   * - Cobertura geográfica
+     - Global (modelos globais) com forte detalhe nos EUA
+   * - Acesso
+     - Freemium — imagens gratuitas; assinatura paga (inclui conta comercial obrigatória para uso comercial)
+   * - URL
+     - https://www.pivotalweather.com / https://home.pivotalweather.com
+
+Tropical tidbits (tropicaltidbits.com)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Viewer gráfico de modelos numéricos com forte foco em ciclones tropicais.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Tropical Tidbits
+   * - Operador/Instituição
+     - Levi Cowan (projeto individual; desde 2012)
+   * - Tipo
+     - Viewer de modelos (cartas de NWP) + análises
+   * - O que visualiza
+     - Modelos globais **ECMWF IFS, AIFS, GFS, ICON, CMC (GEM), JMA**; ensembles; mesoescala EUA (NAM, HRRR); modelos de furacão (HAFS, HWRF, HMON). Variáveis: precipitação, temperatura, vento, umidade, dinâmica em vários níveis, termodinâmica, satélite, sondagens e cortes verticais
+   * - Cobertura geográfica
+     - Global, com domínios regionais EUA, bacias tropicais e hemisférios
+   * - Acesso
+     - Gratuito (imagens livres para compartilhar com atribuição)
+   * - URL
+     - https://www.tropicaltidbits.com
+
+Meteologix / kachelmann (meteologix.com)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Portais do Grupo Kachelmann (Meteologix AG) com cartas de modelos e conteúdo exclusivo.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Meteologix (e weather.us; Kachelmann Wetter)
+   * - Operador/Instituição
+     - Meteologix AG / Kachelmann GmbH (Grupo Kachelmann, Suíça/Alemanha)
+   * - Tipo
+     - Viewer de modelos (cartas de NWP) + mapas e ensembles
+   * - O que visualiza
+     - ~30 modelos: globais **ECMWF, ICON, GFS, UKMO, GEM, ACCESS-G**; locais HRRR, NAM, ICON-D2, EURO4, Swiss HD; modelo próprio SuperHD/SwissHD 1x1 km. Cartas de modelo, ensembles, satélite global, análise global de raios
+   * - Cobertura geográfica
+     - Global + regionais (forte na Europa/Suíça)
+   * - Acesso
+     - Freemium — portais majoritariamente gratuitos; conteúdo Premium e API paga
+   * - URL
+     - https://meteologix.com (PT/ES: https://meteologix.com/es)
+
+URLs consultadas
+----------------
+
+- https://www.windy.com
+- https://www.windy.com/subscription
+- https://www.windy.com (ver também: portal oficial acima)
+- https://en.wikipedia.org/wiki/Ivo_Luka%C4%8Dovi%C4%8D
+- https://www.windy.com/articles/33666 (aquisição meteoblue)
+- https://www.ventusky.com
+- https://www.meteoblue.com/en/weather/maps/index
+- https://content.meteoblue.com/en/private-customers/website-help/forecast/multimodel-ensemble
+- https://earth.nullschool.net
+- https://nowcoast.noaa.gov/
+- https://new.nowcoast.noaa.gov/
+- https://oceanservice.noaa.gov/facts/nowcoast.html
+- https://www.wunderground.com/wundermap
+- https://www.tempo.com / https://www.meteored.com
+- https://www.tiempo.com/mapas-meteorologicos/
+- https://www.tiempo.com/noticias/actualidad/el-visor-de-mapas-de-meteored-ahora-muestra-datos-de-observacion-meteorologica-de-la-omm-y-estaciones-metar.html
+- https://www.theweather.com/
+- https://www.climatempo.com.br/mapas
+- https://www.climatempo.com.br/mapas/satelite/infravermelha
+- https://www.pivotalweather.com/model.php
+- https://home.pivotalweather.com/subscriptions
+- https://www.tropicaltidbits.com/analysis/models/
+- https://meteologix.com/es/model-charts
+- https://www.business.meteologix.com/en/wettervorhersage
+
+G3 — viewers de radar
+-----------------------
+
+Plataformas de visualização (viewers) de radar meteorológico, com foco no Brasil e nas globais relevantes. Cada ficha foi verificada via WebSearch/WebFetch. Itens não confirmados estão marcados com **[verificar]**.
+
+REDEMET (DECEA)
+~~~~~~~~~~~~~~~
+
+Portal oficial de meteorologia aeronáutica do Comando da Aeronáutica (COMAER). Disponibiliza produtos de radar georreferenciados, organizados em camadas junto com satélite, modelagem numérica e plotagem SIGMET. Produtos de radar incluem MaxCAPPI (MAXDISPLAY) e CAPPI em vários níveis (3.100 m/FL100, 5.500 m/FL180, 7.300 m/FL240, 10.400 m/FL340), expressos em refletividade (dBZ).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - REDEMET
+   * - Operador/Instituição
+     - DECEA / Comando da Aeronáutica (COMAER)
+   * - Tipo
+     - Viewer de radar (portal de meteorologia aeronáutica)
+   * - O que visualiza
+     - Refletividade (dBZ), CAPPI multinível, MaxCAPPI/MAXDISPLAY, mosaico georreferenciado, animação
+   * - Cobertura geográfica
+     - Brasil (rede nacional de radares)
+   * - Acesso
+     - Gratuito/público (web); há também API REDEMET com cadastro de chave **[verificar]**
+   * - URL
+     - https://redemet.decea.mil.br/
+
+RainViewer
+~~~~~~~~~~
+
+Serviço independente de visualização de radar global, com mapa de refletividade em alta resolução (detalhe de ~100 m), animação de precipitação, nowcast de 2 horas (atualização a cada 10 min) e totais de chuva acumulada. Agrega dados brutos de radares profissionais de mais de 90 países.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - RainViewer
+   * - Operador/Instituição
+     - RainViewer (empresa/equipe independente)
+   * - Tipo
+     - Viewer de radar (web + app)
+   * - O que visualiza
+     - Refletividade, animação de precipitação, nowcast 2h, acumulados de chuva
+   * - Cobertura geográfica
+     - Global (90+ países)
+   * - Acesso
+     - Freemium: gratuito (básico) / planos Essential e Pro (pagos)
+   * - URL
+     - https://www.rainviewer.com
+
+MyRadar
+~~~~~~~
+
+Aplicativo de radar meteorológico animado centrado na localização do usuário, com diversas camadas sobrepostas (ventos, frentes, furacões, terremotos, incêndios, aviação). Núcleo de radar e overlays básicos gratuitos (com anúncios); recursos avançados em assinatura paga.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - MyRadar
+   * - Operador/Instituição
+     - ACME AtronOmatic (MyRadar)
+   * - Tipo
+     - Viewer de radar (app móvel, web e desktop)
+   * - O que visualiza
+     - Radar animado de precipitação + camadas (ventos, frentes, furacões, sismos, incêndios, aviação)
+   * - Cobertura geográfica
+     - EUA com detalhe; restante do mundo navegável (global)
+   * - Acesso
+     - Freemium: gratuito com anúncios / recursos premium pagos
+   * - URL
+     - https://myradar.com/
+
+Windy (camada radar / radar+)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Plataforma global de previsão e visualização meteorológica. A camada de radar (Radar+) combina imagem de radar Doppler com satélite numa única visualização; integra-se ao Hurricane Tracker e oferece arquivo histórico de 365 dias no plano Premium.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - Windy (camada Radar/Radar+)
+   * - Operador/Instituição
+     - Windy.com (Windyty, s.r.o.)
+   * - Tipo
+     - Viewer de radar (camada dentro do mapa Windy)
+   * - O que visualiza
+     - Radar Doppler + satélite combinados (Radar+), animação; histórico 365 dias (Premium)
+   * - Cobertura geográfica
+     - Doppler em grandes partes de Europa, Américas, Ásia e Austrália; satélite global
+   * - Acesso
+     - Gratuito / Premium (pago, p/ histórico e recursos extras)
+   * - URL
+     - https://www.windy.com/-Weather-radar-radar
+
+SIMEPAR (radar)
+~~~~~~~~~~~~~~~
+
+Serviço estadual do Paraná. Opera três radares (Teixeira Soares, Cascavel e Curitiba) cujo mosaico cobre todo o estado e áreas vizinhas. Permite acompanhar posição, deslocamento e intensidade das áreas de chuva em tempo real e fazer previsões de curtíssimo prazo (nowcasting).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - SIMEPAR — Radar
+   * - Operador/Instituição
+     - SIMEPAR (Sistema Meteorológico do Paraná)
+   * - Tipo
+     - Viewer de radar (web)
+   * - O que visualiza
+     - Mosaico de refletividade, animação (sequência de imagens), escala de intensidade de chuva
+   * - Cobertura geográfica
+     - Paraná e regiões vizinhas
+   * - Acesso
+     - Gratuito/público
+   * - URL
+     - https://www.simepar.br/simepar/radar_msc
+
+IPMet/Unesp
+~~~~~~~~~~~
+
+Centro de Meteorologia da UNESP em Bauru. Disponibiliza imagens de radar em tempo real dos radares de Bauru e Presidente Prudente, em unidades de refletividade (dBZ), com produtos como imagem de radar, radar animado, radar por cidades e GIS local.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - IPMet/Unesp — Radar
+   * - Operador/Instituição
+     - IPMet — Centro de Meteorologia da UNESP (Bauru)
+   * - Tipo
+     - Viewer de radar (web)
+   * - O que visualiza
+     - Refletividade (dBZ), imagem de radar, radar animado, radar por cidades, GIS local
+   * - Cobertura geográfica
+     - Interior de São Paulo (radares de Bauru e Presidente Prudente)
+   * - Acesso
+     - Gratuito/público
+   * - URL
+     - https://www.ipmetradar.com.br/
+
+INEA-RJ (radar)
+~~~~~~~~~~~~~~~
+
+Instituto Estadual do Ambiente (RJ). Mantém rede de radares para monitorar a chuva em todo o território estadual e bacias compartilhadas. A cada 5 minutos gera nova imagem inserida em animação visível online, dentro do portal de monitoramento hidrometeorológico.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - INEA-RJ — Monitoramento hidrometeorológico (radar)
+   * - Operador/Instituição
+     - INEA — Instituto Estadual do Ambiente (RJ)
+   * - Tipo
+     - Viewer de radar (web)
+   * - O que visualiza
+     - Imagens de radar de precipitação, animação (atualização a cada 5 min)
+   * - Cobertura geográfica
+     - Estado do Rio de Janeiro e bacias compartilhadas
+   * - Acesso
+     - Gratuito/público
+   * - URL
+     - http://www.inea.rj.gov.br/ar-agua-e-solo/monitoramento-hidrometeorologico/
+
+SAISP / cepram (defesa civil SP)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sistema de Alerta a Inundações de São Paulo, operado pela Fundação Centro Tecnológico de Hidráulica (FCTH). O radar (Salesópolis, alcance 240 km, atualização a cada 5 min) gera o produto Radar CAPPI Precipitação, acessível como figura estática, sequência e animação. O CePRAM (Centro Paulista de Radares e Alertas Meteorológicos) integra o esforço estadual de defesa civil. **[verificar]** relação operacional exata CePRAM × SAISP e URL própria do CePRAM.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - SAISP (Radar) / CePRAM
+   * - Operador/Instituição
+     - FCTH (SAISP); Defesa Civil SP / CePRAM
+   * - Tipo
+     - Viewer de radar (web)
+   * - O que visualiza
+     - Radar CAPPI Precipitação; figura estática, sequência e animação
+   * - Cobertura geográfica
+     - São Paulo (radar de Salesópolis, alcance 240 km)
+   * - Acesso
+     - Gratuito/público **[verificar]** se há produtos restritos
+   * - URL
+     - https://www.saisp.br/site/radar.html
+
+Cemaden (radares meteorológicos)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Centro Nacional de Monitoramento e Alertas de Desastres Naturais. Rede de radares dual-polarização (instalados em Natal-RN, Petrolina-PE, Salvador-BA, Jaraguari-MS, São Francisco-MG, Maceió-AL, Santa Teresa-ES, Três Marias-MG, Almenara-MG) com dados exibidos em tempo real no Mapa Interativo, que associa refletividade à taxa de precipitação estimada.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - Cemaden — Mapa Interativo (radares)
+   * - Operador/Instituição
+     - Cemaden (MCTI)
+   * - Tipo
+     - Viewer de radar (mapa interativo web)
+   * - O que visualiza
+     - Refletividade associada à taxa de precipitação estimada, em tempo real
+   * - Cobertura geográfica
+     - Brasil (municípios vulneráveis; ~9 radares dual-pol regionais)
+   * - Acesso
+     - Gratuito/público
+   * - URL
+     - https://mapainterativo.cemaden.gov.br/
+
+Climatempo (radar)
+~~~~~~~~~~~~~~~~~~
+
+Empresa privada de meteorologia. Disponibiliza visualização de radar (ex.: radar de Sumaré, atualização a cada ~2 min) mostrando localização, deslocamento e intensidade da precipitação via refletividade, com escala de cores de azul (fraca) a rosa (extrema). **[verificar]** se o viewer de radar é totalmente gratuito ou possui recursos sob login/assinatura.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - Climatempo — Radar
+   * - Operador/Instituição
+     - Climatempo (empresa privada)
+   * - Tipo
+     - Viewer de radar (web)
+   * - O que visualiza
+     - Refletividade/intensidade de precipitação, animação (atualização ~2 min)
+   * - Cobertura geográfica
+     - Brasil; produto destacado p/ Rio de Janeiro (radar de Sumaré / Alerta Rio) **[verificar]** abrangência nacional
+   * - Acesso
+     - Gratuito com possíveis recursos pagos **[verificar]**
+   * - URL
+     - https://www.climatempo.com.br/alerta-rio/radar
+
+INMET (radar) — complementar
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Identificado durante a verificação: o Instituto Nacional de Meteorologia também disponibiliza produto de radar público. Incluído como referência complementar (não estava na lista original). **[verificar]** detalhes de produtos e cobertura.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Plataforma
+     - INMET — Radar
+   * - Operador/Instituição
+     - INMET (Ministério da Agricultura)
+   * - Tipo
+     - Viewer de radar (web)
+   * - O que visualiza
+     - Refletividade/precipitação **[verificar]** produtos específicos
+   * - Cobertura geográfica
+     - Brasil **[verificar]**
+   * - Acesso
+     - Gratuito/público
+   * - URL
+     - https://portal.inmet.gov.br/produtos/radar
+
+URLs consultadas
+----------------
+
+- https://redemet.decea.mil.br/
+- https://ajuda.decea.mil.br/base-de-conhecimento/api-redemet-produtos-radar/
+- https://ajuda.decea.mil.br/base-de-conhecimento/o-que-e-a-redemet/
+- https://www.rainviewer.com
+- https://www.rainviewer.com/sources.html
+- https://myradar.com/
+- https://www.windy.com/-Weather-radar-radar
+- https://www.windy.com/articles/36164
+- https://www.simepar.br/simepar/radar_msc
+- https://www.ipmetradar.com.br/
+- https://www.ipmetradar.com.br/2imagemRadar.php
+- http://www.inea.rj.gov.br/ar-agua-e-solo/monitoramento-hidrometeorologico/
+- https://www.saisp.br/site/radar.html
+- https://www.spsemprealerta.sp.gov.br/
+- https://mapainterativo.cemaden.gov.br/
+- http://www2.cemaden.gov.br/radares-meteorologicos-2/
+- https://www.climatempo.com.br/alerta-rio/radar
+- https://portal.inmet.gov.br/produtos/radar
+
+G4 — monitores de seca e clima
+--------------------------------
+
+Plataformas de visualização para monitoramento de seca/clima e índices, incluindo escopo regional (América do Sul, Brasil) e global. Fichas intermediárias confirmadas via WebSearch; itens não confirmados estão marcados com [verificar].
+
+SISSA — sistema de información sobre sequías para el sur de sudamérica
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Instituição virtual operada no âmbito do Centro Regional do Clima para o sul da América do Sul (CRC-SAS). Desenvolvimento conjunto de serviços meteorológicos/hidrológicos da Argentina, Bolívia, Brasil, Chile, Paraguai e Uruguai. O portal reúne mapas, índices e gráficos para caracterizar o estado atual e a possível evolução da seca na região (com seção específica de índices de seca e módulo agrícola).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - SISSA
+   * - Operador/Instituição
+     - CRC-SAS (serviços meteorológicos/hidrológicos de AR, BO, BR, CL, PY, UY)
+   * - Tipo
+     - Monitor de seca (estado atual + previsão)
+   * - O que visualiza
+     - Índices de seca (SPI/SPEI [verificar quais escalas]), categorias/estado da seca, anomalias, mapas, gráficos; ferramentas de avaliação de cenários futuros
+   * - Cobertura geográfica
+     - Sul da América do Sul (Cuenca del Plata e países membros)
+   * - Acesso
+     - Gratuito (web pública)
+   * - URL
+     - https://sissa.crc-sas.org/monitoreo/estado-actual-de-la-sequia/
+
+Monitor de secas do Brasil
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Processo de monitoramento contínuo do grau de severidade da seca no Brasil, com coordenação técnico-operacional da ANA e participação de INMET, CEMADEN, FUNCEME e órgãos estaduais. Integra dados hidrometeorológicos e impactos para gerar mapa mensal classificado.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Monitor de Secas do Brasil
+   * - Operador/Instituição
+     - ANA (coordenação) + INMET, CEMADEN, FUNCEME e parceiros estaduais
+   * - Tipo
+     - Monitor de seca (operacional, mapa mensal)
+   * - O que visualiza
+     - Categorias de seca em 5 graus (S0 a S4); seca de curto (C) e longo (L) prazo; índices meteorológicos, agrícolas e hidrológicos (SPI, SSI, entre outros)
+   * - Cobertura geográfica
+     - Brasil (cobertura nacional; iniciou no Nordeste e expandiu)
+   * - Acesso
+     - Gratuito (web pública)
+   * - URL
+     - https://monitordesecas.ana.gov.br/
+
+US drought monitor (USDM)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Mapa-síntese da seca nos EUA, atualizado toda quinta-feira, produzido por abordagem de "convergência de evidências" (dados climáticos, hidrológicos, observações de campo e especialistas locais).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - U.S. Drought Monitor
+   * - Operador/Instituição
+     - National Drought Mitigation Center (Univ. de Nebraska-Lincoln), USDA e NOAA
+   * - Tipo
+     - Monitor de seca (mapa semanal)
+   * - O que visualiza
+     - Categorias de seca: D0 (anormalmente seco), D1 (moderada), D2 (severa), D3 (extrema), D4 (excepcional); estatísticas e séries; usa múltiplos indicadores
+   * - Cobertura geográfica
+     - Estados Unidos (mais territórios)
+   * - Acesso
+     - Gratuito (dados em diversos formatos para download)
+   * - URL
+     - https://droughtmonitor.unl.edu/
+
+Global drought observatory (GDO / EDO — copernicus / JRC)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Observatórios Europeu e Global de Seca, parte do Copernicus Emergency Management Service, implementados pelo Joint Research Centre (JRC) da Comissão Europeia. Fornecem monitoramento, previsão e alerta antecipado de seca.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Global Drought Observatory (GDO) / European Drought Observatory (EDO)
+   * - Operador/Instituição
+     - Copernicus EMS / JRC (Comissão Europeia)
+   * - Tipo
+     - Monitor de seca + previsão/alerta
+   * - O que visualiza
+     - Indicadores de seca: SPI, SPEI, anomalias de umidade do solo, fAPAR, Combined Drought Indicator, índices derivados de satélite/modelos hidrometeorológicos; mapas, ferramentas de análise e relatórios
+   * - Cobertura geográfica
+     - Global (GDO) e Europa (EDO)
+   * - Acesso
+     - Gratuito (web pública)
+   * - URL
+     - https://drought.emergency.copernicus.eu/ (GDO: https://drought.emergency.copernicus.eu/gdo/)
+
+IRI maproom / IRI-LDEO climate data library (columbia university)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Repositório e ferramenta de análise online de dados climáticos da IRI/Lamont-Doherty (Columbia). O "Maproom" reúne mapas que monitoram condições climáticas e societais; inclui seção de seca (SPI observado e previsões probabilísticas de SPI desenvolvidas com NOAA ESRL/CPC).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - IRI Maproom (IRI/LDEO Climate Data Library)
+   * - Operador/Instituição
+     - International Research Institute for Climate and Society (IRI), Columbia University
+   * - Tipo
+     - Monitor de clima/seca + previsões sazonais
+   * - O que visualiza
+     - SPI observado e previsão probabilística de SPI (vários períodos de acumulação); previsões sazonais de clima; anomalias; mapas manipuláveis ligados aos dados originais
+   * - Cobertura geográfica
+     - Global (mapas regionais, p.ex. América do Norte/Global Drought)
+   * - Acesso
+     - Gratuito (navegador padrão; download de dados)
+   * - URL
+     - https://iridl.ldeo.columbia.edu/ (seca: https://iridl.ldeo.columbia.edu/maproom/Global/Drought/)
+
+NOAA climate prediction center (CPC) — mapas de seca e clima
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Centro de previsão climática do NWS/NOAA. Produz mapas e prognósticos de temperatura, precipitação e seca (6-10 dias, 8-14 dias, 3-4 semanas, mensal e sazonal).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - NOAA Climate Prediction Center (mapas/outlooks)
+   * - Operador/Instituição
+     - NOAA / National Weather Service (NWS)
+   * - Tipo
+     - Prognóstico de clima e seca (outlooks)
+   * - O que visualiza
+     - Seasonal (3-Month) e Monthly Drought Outlook (seca vai persistir/desenvolver/melhorar/encerrar); outlooks de temperatura e precipitação; informação de seca e umidade do solo
+   * - Cobertura geográfica
+     - Estados Unidos (CPC também produz produtos globais) [verificar abrangência dos outlooks de seca: nacional]
+   * - Acesso
+     - Gratuito (web pública)
+   * - URL
+     - https://www.cpc.ncep.noaa.gov/products/Drought/ (Seasonal Drought Outlook: https://www.cpc.ncep.noaa.gov/products/expert_assessment/sdo_summary.php)
+
+INMET / CPTEC-INPE — prognóstico climático e SPI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+INMET, CPTEC/INPE e FUNCEME divulgam conjuntamente prognósticos climáticos sazonais (trimestrais) por boletins oficiais. O CPTEC/INPE disponibiliza monitoramento de SPI para condições de seca e excesso de chuva.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - INMET (prognóstico climático) + CPTEC/INPE (prognósticos e SPI)
+   * - Operador/Instituição
+     - INMET, CPTEC/INPE, FUNCEME
+   * - Tipo
+     - Prognóstico climático sazonal + monitoramento de seca (SPI)
+   * - O que visualiza
+     - Prognóstico climático trimestral (anomalias de chuva/temperatura); SPI em várias escalas de intensidade; previsão numérica de tempo e clima
+   * - Cobertura geográfica
+     - Brasil (e América do Sul para alguns produtos CPTEC)
+   * - Acesso
+     - Gratuito (web pública)
+   * - URL
+     - INMET prognóstico: https://portal.inmet.gov.br/servicos/progn%C3%B3stico-clim%C3%A1tico-do-cptec-inmet-funceme — CPTEC SPI: https://clima1.cptec.inpe.br/spi/pt — CPTEC clima: https://clima.cptec.inpe.br/
+
+SPEI global drought monitor (CSIC / spei.csic.es)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Monitor global de seca baseado no índice SPEI (combina precipitação e evapotranspiração), mantido pelo Conselho Superior de Investigações Científicas da Espanha (CSIC). Também referenciado no UNESCO Digital Innovation Hub (SPEI Platform).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - SPEI Global Drought Monitor / SPEI database
+   * - Operador/Instituição
+     - CSIC (Spanish National Research Council); também listado no UNESCO Digital Innovation Hub
+   * - Tipo
+     - Monitor de seca (índice SPEI, quase tempo real)
+   * - O que visualiza
+     - SPEI em escalas de 1 a 48 meses; mapas mensais; modos de análise (mundo, célula única, região); download de séries em CSV
+   * - Cobertura geográfica
+     - Global (resolução ~1° no monitor near-real-time; base de dados ~0,5°, 1901–presente)
+   * - Acesso
+     - Gratuito (web pública; download CSV)
+   * - URL
+     - Monitor: https://spei.csic.es/map/ — Base/índice: https://spei.csic.es/ — Plataforma UNESCO: https://www.unesco.org/en/unesco-digital-innovation-hub/spei-global-drought-monitor/spei-platform
+
+Itens [verificar]
+-----------------
+
+- **SISSA**: confirmar quais índices/escalas exatas (SPI, SPEI, outros) constam no painel "estado actual".
+- **NOAA CPC**: confirmar abrangência exata dos outlooks de seca (nacional EUA vs. produtos globais).
+
+URLs consultadas
+----------------
+
+- https://sissa.crc-sas.org/
+- https://sissa.crc-sas.org/monitoreo/estado-actual-de-la-sequia/
+- https://sissa.crc-sas.org/monitoreo/indices-de-sequia/
+- https://monitordesecas.ana.gov.br/
+- https://monitordesecas.ana.gov.br/o-monitor-de-secas
+- https://monitordesecas.ana.gov.br/tabela-de-classificacao
+- https://www.gov.br/ana/pt-br/assuntos/monitoramento-e-eventos-criticos/eventos-criticos/monitor-de-secas
+- https://droughtmonitor.unl.edu/
+- https://droughtmonitor.unl.edu/About/WhatistheUSDM.aspx
+- https://droughtmonitor.unl.edu/About/AbouttheData/DroughtClassification.aspx
+- https://drought.emergency.copernicus.eu/
+- https://drought.emergency.copernicus.eu/gdo/php/index.php?id=1010
+- https://joint-research-centre.ec.europa.eu/european-and-global-drought-observatories_en
+- https://iridl.ldeo.columbia.edu/
+- https://iridl.ldeo.columbia.edu/maproom/Global/Drought/N_America/index.html
+- https://www.cpc.ncep.noaa.gov/products/Drought/
+- https://www.cpc.ncep.noaa.gov/products/expert_assessment/sdo_summary.php
+- https://www.cpc.ncep.noaa.gov/products/expert_assessment/mdo_summary.php
+- https://portal.inmet.gov.br/servicos/progn%C3%B3stico-clim%C3%A1tico-do-cptec-inmet-funceme
+- https://clima1.cptec.inpe.br/spi/pt
+- https://clima.cptec.inpe.br/
+- https://spei.csic.es/
+- https://spei.csic.es/map/
+- https://www.unesco.org/en/unesco-digital-innovation-hub/spei-global-drought-monitor/spei-platform
+
+G5 — viewers de redes de estações/PCD
+-----------------------------------------
+
+Plataformas de visualização de redes de estações meteorológicas / Plataformas de Coleta de Dados (PCD), com dados observados em mapa. Foco Brasil + globais.
+
+INMET mapas
+~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - INMET Mapas (Mapa de Estações)
+   * - Operador/Instituição
+     - Instituto Nacional de Meteorologia (INMET) — Brasil
+   * - Tipo
+     - Viewer interativo de rede de estações (automáticas e convencionais)
+   * - O que visualiza
+     - Dados observados em tempo real por estação: precipitação (mm), temperatura (°C), umidade relativa (%), velocidade e direção do vento (m/s). Filtros por entidade, região, tipo de estação e tipo de dado. Também camadas de satélite, radar, previsão 7 dias, agrometeorologia e alertas
+   * - Cobertura geográfica
+     - Brasil (mais de 400 estações INMET; permite ver redes de outras entidades)
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://mapas.inmet.gov.br/
+
+INMET tempo (tabela de estações)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - INMET :: Tempo — Tabela de Dados das Estações (TabelaEstacoes)
+   * - Operador/Instituição
+     - Instituto Nacional de Meteorologia (INMET) — Brasil
+   * - Tipo
+     - Viewer tabular de dados observados por estação (PCD/automáticas e convencionais)
+   * - O que visualiza
+     - Tabela de dados horários observados por estação (precipitação, temperatura, umidade, vento, pressão etc). Seleção por tipo de estação (convencional/automática), UF e município. Dados brutos, sem processo de consistência
+   * - Cobertura geográfica
+     - Brasil (mais de 400 estações)
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://tempo.inmet.gov.br/TabelaEstacoes (ex.: /A001)
+
+Funceme PCD
+~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - PCD Funceme (Plataformas de Coleta de Dados)
+   * - Operador/Instituição
+     - Fundação Cearense de Meteorologia e Recursos Hídricos (Funceme) — Ceará
+   * - Tipo
+     - Viewer de rede de PCD (estações automáticas)
+   * - O que visualiza
+     - Dados observados das estações automáticas: temperatura do ar, umidade relativa, pressão atmosférica, velocidade/direção do vento, precipitação, radiação solar, temperatura e umidade do solo, fluxo de calor do solo. Rede de ~76 PCD (meteorológicas, agrometeorológicas, hidrometeorológicas, agrohidrometeorológicas), transmissão via satélites SCD/ARGOS e modem
+   * - Cobertura geográfica
+     - Estado do Ceará
+   * - Acesso
+     - Gratuito (público) [verificar se há login para download]
+   * - URL
+     - https://pcd.funceme.br/
+
+Sigma meteorologia — estações
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - SigmaWeb — Estações Meteorológicas (stations.php)
+   * - Operador/Instituição
+     - Sigma Meteorologia (empresa privada) — Brasil
+   * - Tipo
+     - Viewer de estações meteorológicas
+   * - O que visualiza
+     - Estações meteorológicas (dados observados) [verificar variáveis — conteúdo bloqueado por paywall]
+   * - Cobertura geográfica
+     - Brasil [verificar]
+   * - Acesso
+     - Pago / login — "Conteúdo exclusivo para assinantes"
+   * - URL
+     - https://sigmameteorologia.com/sigmaweb/stations.php
+
+Simepar (estações)
+~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - SIMEPAR — Mapa / Dados das Estações
+   * - Operador/Instituição
+     - SIMEPAR — Sistema de Tecnologia e Monitoramento Ambiental do Paraná (entidade privada de interesse público, ligada à SEDEST)
+   * - Tipo
+     - Viewer de rede própria de estações + mapa de monitoramento
+   * - O que visualiza
+     - Dados em tempo real de estações e radares: temperatura e umidade do ar, pressão atmosférica, direção/velocidade do vento, radiação solar, localização e intensidade de chuva, descargas atmosféricas (raios). Rede própria de ~92 estações (50 meteorológicas, 57 hidrológicas, 15 pluviométricas) + ~42 unidades de clientes; 3 radares
+   * - Cobertura geográfica
+     - Estado do Paraná (399 municípios)
+   * - Acesso
+     - Gratuito, sem login (acesso ao mapa e dados das estações)
+   * - URL
+     - https://www.simepar.br/simepar (mapa: /page_map_view/...; dados: /dados_estacoes/...)
+
+CEMADEN — mapa interativo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Mapa Interativo CEMADEN
+   * - Operador/Instituição
+     - Centro Nacional de Monitoramento e Alerta de Desastres Naturais (CEMADEN) — Brasil
+   * - Tipo
+     - Viewer de rede observacional de risco de desastres (PCD, pluviômetros, estações hidrológicas/geotécnicas)
+   * - O que visualiza
+     - Dados observados, sobretudo precipitação: pluviômetros automáticos, estações hidrológicas, estações Acqua, estações geotécnicas e radares meteorológicos (9+). Camadas de limites estaduais e municípios monitorados. Dados em UTC
+   * - Cobertura geográfica
+     - Brasil (municípios monitorados em vários estados)
+   * - Acesso
+     - Gratuito; download pluviométrico sem login; dados geotécnicos/Acqua/hidrológicos exigem nome+e-mail
+   * - URL
+     - https://mapainterativo.cemaden.gov.br/
+
+AESA-PB
+~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - AESA — Estações Meteorológicas / GeoPortal (SIGAESA-WEB)
+   * - Operador/Instituição
+     - Agência Executiva de Gestão das Águas do Estado da Paraíba (AESA)
+   * - Tipo
+     - Viewer de rede de estações telemétricas (PCD) + portal geográfico
+   * - O que visualiza
+     - Dados agrometeorológicos em tempo real (atualização a cada 10 min): precipitação, temperatura do ar e do solo, umidade do ar e do solo, direção/velocidade do vento, radiação solar. Integrado ao sistema nacional de monitoramento de risco. SIGAESA-WEB com camadas georreferenciadas
+   * - Cobertura geográfica
+     - Estado da Paraíba
+   * - Acesso
+     - Gratuito (público)
+   * - URL
+     - https://www.aesa.pb.gov.br/estacoes-meteorologicas/ ; GeoPortal: https://geoportal.aesa.pb.gov.br/sigaesa-web/
+
+APAC-PE
+~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - APAC — Monitoramento (mapa em tempo real)
+   * - Operador/Instituição
+     - Agência Pernambucana de Águas e Clima (APAC)
+   * - Tipo
+     - Viewer de monitoramento hidrometeorológico via PCD (fluviométricas e pluviométricas)
+   * - O que visualiza
+     - Dados em tempo real de estações fluviométricas e pluviométricas via PCD; rede de ~352 pluviômetros (convencionais e automáticos). Mapa com dados em tempo real de todo o estado
+   * - Cobertura geográfica
+     - Estado de Pernambuco
+   * - Acesso
+     - Gratuito (público)
+   * - URL
+     - https://www.apac.pe.gov.br/monitoramento ; http://www.sirh.srh.pe.gov.br/apac/
+
+IAT-PR
+~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - IAT — Sistema de Informações Hidrológicas (SIH) / aplicativo geo de monitoramento
+   * - Operador/Instituição
+     - Instituto Água e Terra (IAT) — Paraná
+   * - Tipo
+     - Viewer de rede de estações telemétricas (PCD hidrológicas) — mapa interativo
+   * - O que visualiza
+     - Estações telemétricas no mapa: precipitação e nível dos rios (cotas), com medição a cada 15 min e transmissão horária; estatística por bacia hidrográfica. Rede de ~300 estações (16 bacias)
+   * - Cobertura geográfica
+     - Estado do Paraná
+   * - Acesso
+     - Gratuito (público)
+   * - URL
+     - https://www.iat.pr.gov.br/Pagina/Sistema-de-Informacoes-Hidrologicas ; https://www.iat.pr.gov.br/Pagina/Monitoramento-de-Eventos-Hidrologicos-Criticos
+
+Epagri/Ciram-SC
+~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - EPAGRI/CIRAM — AgroConnect / Tempo e Clima
+   * - Operador/Instituição
+     - Centro de Informações de Recursos Ambientais e de Hidrometeorologia de Santa Catarina (EPAGRI/CIRAM)
+   * - Tipo
+     - Viewer de rede de estações meteorológicas (observações em tempo real, via AgroConnect)
+   * - O que visualiza
+     - Observações em tempo real das estações meteorológicas (plataforma AgroConnect); mapas meteorológicos, monitoramento e mapas de precipitação atualizados diariamente [verificar lista exata de variáveis]
+   * - Cobertura geográfica
+     - Estado de Santa Catarina
+   * - Acesso
+     - Gratuito (público) [verificar login no AgroConnect]
+   * - URL
+     - https://ciram.epagri.sc.gov.br/ ; AgroConnect: https://ciram.epagri.sc.gov.br/agroconnect/
+
+Weather underground — wundermap / PWS network
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - WunderMap / PWS Network
+   * - Operador/Instituição
+     - Weather Underground (The Weather Company / IBM)
+   * - Tipo
+     - Viewer global de rede de estações pessoais (PWS) + estações oficiais
+   * - O que visualiza
+     - Observações de mais de 250.000 estações pessoais (PWS) e estações do NWS sobre base Mapbox: temperatura, vento, chuva, etc.; atualização tão frequente quanto a cada 2,5 s; camadas de radar NEXRAD, satélite, precipitação. WunderStation para análise/comparação de séries
+   * - Cobertura geográfica
+     - Global
+   * - Acesso
+     - Gratuito; visualização sem login (login p/ contribuir estação/recursos)
+   * - URL
+     - https://www.wunderground.com/wundermap ; rede: https://www.wunderground.com/pws/overview
+
+Windy — stations
+~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Windy.com — camada Weather Stations / Windy Stations
+   * - Operador/Instituição
+     - Windy.com (Windyty, s.r.o.)
+   * - Tipo
+     - Viewer global de estações (profissionais/aeroportuárias + pessoais) sobre mapa animado
+   * - O que visualiza
+     - Observações de estações no mapa: METAR/TAF de aeroportos (geralmente horário) e pequenas estações pessoais (geralmente a cada ~5 min). Variáveis observadas de vento, temperatura, etc.; integra LIVE/METAR/TAF/NOTAM
+   * - Cobertura geográfica
+     - Global
+   * - Acesso
+     - Gratuito; visualização sem login (registro p/ adicionar estação própria via stations.windy.com)
+   * - URL
+     - https://www.windy.com/ (camada Weather Stations) ; https://stations.windy.com/
+
+OGIMET
+~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - OGIMET
+   * - Operador/Instituição
+     - OGIMET (serviço independente; usa dados públicos, principalmente NOAA)
+   * - Tipo
+     - Serviço de informação meteorológica observacional — consulta + mapas
+   * - O que visualiza
+     - Dados observados de estações: SYNOP (e SYNOP-SHIP), METAR/TAF, sondagens (TEMP/PILOT), CLIMAT, GSOD. Relatórios brutos por estação/período, resumos diários, displays gráficos sobre áreas geográficas, mapas interativos com navegação espaço-temporal, satélite (Meteosat) + METAR
+   * - Cobertura geográfica
+     - Global (GSOD desde 1929; ampla cobertura desde 1971)
+   * - Acesso
+     - Gratuito, sem login
+   * - URL
+     - https://www.ogimet.com/
+
+MADIS
+~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - MADIS — Meteorological Assimilation Data Ingest System (NCEP)
+   * - Operador/Instituição
+     - NOAA / NCEP (NWS) — EUA
+   * - Tipo
+     - Base e sistema de entrega de observações + displays gráficos (incl. surface/mesonet)
+   * - O que visualiza
+     - Observações integradas (formato comum, com flags de controle de qualidade) de fontes NOAA e não-NOAA: mesonet, METAR/ASOS, SAO canadenses, marítimas (navios, boias, C-MAN), radiossondas, aeronaves (ACARS), ventos GOES. Displays gráficos de superfície/metadata/aircraft/CAP (públicos e restritos)
+   * - Cobertura geográfica
+     - Global (foco EUA / América do Norte)
+   * - Acesso
+     - Gratuito; displays públicos sem login (parte dos dados é restrita por nível de acesso)
+   * - URL
+     - https://madis-data.ncep.noaa.gov/ ; https://madis-data.ncep.noaa.gov/MadisSurface/
+
+Meteostat
+~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Plataforma
+     - Meteostat (web app, API, biblioteca Python, diretório de estações)
+   * - Operador/Instituição
+     - Meteostat (plataforma aberta)
+   * - Tipo
+     - Plataforma/diretório de estações com visualização de séries (foco em dados históricos)
+   * - O que visualiza
+     - Acesso a séries temporais de >40.000 estações globais: temperatura, precipitação, vento etc. Web app para visualizar/explorar; diretório aberto de estações (metadados); ênfase em dados históricos/climáticos [verificar visualização de mapa de rede no web app]
+   * - Cobertura geográfica
+     - Global (>40.000 estações)
+   * - Acesso
+     - Gratuito; sem necessidade de cadastro para download
+   * - URL
+     - https://meteostat.net/ ; dev: https://dev.meteostat.net/
+
+URLs consultadas
+----------------
+
+- https://mapas.inmet.gov.br/
+- https://tempo.inmet.gov.br/TabelaEstacoes
+- https://portal.inmet.gov.br/servicos/estações-automáticas
+- https://pcd.funceme.br/
+- http://www3.funceme.br/funceme2.5/index.php/instituicao/monitoramento
+- https://www.funceme.br/?page_id=3681
+- https://sigmameteorologia.com/sigmaweb/stations.php
+- https://www.simepar.br/simepar
+- https://www.simepar.br/simepar/page_map_view/MAPA_SIMEPAR_PREVISAO_MUNICIPIOS
+- https://www.simepar.br/simepar/dados_estacoes/25264916
+- https://mapainterativo.cemaden.gov.br/
+- https://www.aesa.pb.gov.br/estacoes-meteorologicas/
+- https://geoportal.aesa.pb.gov.br/sigaesa-web/
+- https://www.apac.pe.gov.br/monitoramento
+- http://www.sirh.srh.pe.gov.br/apac/
+- https://www.iat.pr.gov.br/Pagina/Sistema-de-Informacoes-Hidrologicas
+- https://www.iat.pr.gov.br/Pagina/Monitoramento-de-Eventos-Hidrologicos-Criticos
+- https://ciram.epagri.sc.gov.br/
+- https://ciram.epagri.sc.gov.br/agroconnect/
+- https://www.wunderground.com/wundermap
+- https://www.wunderground.com/pws/overview
+- https://www.windy.com/
+- https://stations.windy.com/
+- https://www.ogimet.com/
+- https://madis-data.ncep.noaa.gov/
+- https://madis-data.ncep.noaa.gov/MadisSurface/
+- https://meteostat.net/
+- https://dev.meteostat.net/
+
+G6 — dashboards agrometeorológicos
+-------------------------------------
+
+Levantamento de plataformas de visualização / dashboards agrometeorológicos, com foco no Brasil mais referências internacionais relevantes. Cada ficha foi confirmada via WebSearch/WebFetch; campos não confirmados em fonte primária estão marcados como [verificar].
+
+AgroConnect — Epagri/CIRAM
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sistema de monitoramento e disseminação de alertas e avisos agrometeorológicos desenvolvido pela Epagri (Empresa de Pesquisa Agropecuária e Extensão Rural de Santa Catarina) através do CIRAM (Centro de Informações de Recursos Ambientais e de Hidrometeorologia). Voltado para a agricultura familiar, emite avisos fitossanitários para culturas como banana (Sigatoka-negra), maçã (sarna, podridões), soja (ferrugem asiática) e tomate (requeima). Baseado em rede de mais de 300 estações meteorológicas/agrometeorológicas/marégrafos em SC.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - AgroConnect
+   * - Operador/Instituição
+     - Epagri / CIRAM (Santa Catarina)
+   * - Tipo
+     - Dashboard agro (alertas e avisos agrometeorológicos)
+   * - O que visualiza
+     - Alertas fitossanitários por cultura, dados meteorológicos/agrometeorológicos em tempo quase real, índices/condições de risco de doenças
+   * - Cobertura geográfica
+     - Santa Catarina (Brasil)
+   * - Acesso
+     - Gratuito
+   * - URL
+     - https://ciram.epagri.sc.gov.br/agroconnect/
+
+Agritempo — sistema de monitoramento agrometeorológico
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sistema web mantido pela Embrapa (Embrapa Agricultura Digital / Informática Agropecuária) em parceria com o Cepagri/Unicamp. Operando desde 2003, disponibiliza gratuitamente boletins e mapas agrometeorológicos para todo o território nacional. Calcula balanço hídrico do solo (método Penman-Monteith), estiagem agrícola, e gera cerca de 900 mapas diários a partir de ~1.643 estações. Alimenta a Rede Nacional de Agrometeorologia (RNA) do MAPA. Possui também aplicativo móvel (Agritempo App).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - Agritempo (web + app)
+   * - Operador/Instituição
+     - Embrapa + Cepagri/Unicamp
+   * - Tipo
+     - Dashboard agro (monitoramento agrometeorológico)
+   * - O que visualiza
+     - Balanço hídrico, precipitação acumulada, estiagem agrícola, necessidade de irrigação, condições de manejo de solo e aplicação de defensivos, mapas e boletins
+   * - Cobertura geográfica
+     - Brasil (todos os municípios)
+   * - Acesso
+     - Gratuito
+   * - URL
+     - https://www.agritempo.gov.br/
+
+Embrapa satveg — sistema de análise temporal da vegetação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ferramenta web da Embrapa Agricultura Digital para observação de séries históricas de índices vegetativos derivados de imagens de satélite. Disponibiliza os índices NDVI e EVI obtidos dos sensores MODIS (Terra/Aqua, dados desde 2000, 250 m) e MSI (Sentinel-2, dados desde 2018, 10 m). Interface sobre Google Maps, com ferramentas de filtragem de séries temporais e carregamento de arquivos vetoriais. Existe também API (AgroAPI/Embrapa).
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - SATVeg
+   * - Operador/Instituição
+     - Embrapa (Agricultura Digital)
+   * - Tipo
+     - Dashboard agro (análise temporal de vegetação por satélite)
+   * - O que visualiza
+     - NDVI e EVI (perfis temporais de índices de vegetação), variação de biomassa
+   * - Cobertura geográfica
+     - América do Sul
+   * - Acesso
+     - Gratuito (web); API via AgroAPI [verificar condições/login]
+   * - URL
+     - https://www.satveg.cnptia.embrapa.br/
+
+SISDAGRO — sistema de suporte à decisão na agropecuária (INMET)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sistema do INMET (em cooperação com SIMEPAR, IAPAR/IDR-Paraná e apoio de Embrapa, Fundação ABC e ESALQ, sob acordo com o IICA) para apoio à decisão no setor agrícola. Disponibiliza quatro ferramentas: balanço hídrico e perda de produtividade por deficiência hídrica (sequeiro/irrigado) para ~11 cultivos (algodão, arroz, aveia, café, cana, citros, feijão, girassol, milho, soja, trigo), índice de vegetação via satélite, e graus-dia. Oferece balanço hídrico climatológico em escalas mensal e decendial.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - SISDAGRO (INMET-Agro)
+   * - Operador/Instituição
+     - INMET (com SIMEPAR, IAPAR/IDR-PR, IICA)
+   * - Tipo
+     - Dashboard agro (suporte à decisão agropecuária)
+   * - O que visualiza
+     - Balanço hídrico, perda de produtividade por déficit hídrico, índice de vegetação, graus-dia, balanço hídrico climatológico
+   * - Cobertura geográfica
+     - Brasil
+   * - Acesso
+     - Gratuito
+   * - URL
+     - https://sisdagro.inmet.gov.br/
+
+ZARC — plantio certo (Embrapa/MAPA)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ferramenta de consulta ao Zoneamento Agrícola de Risco Climático (ZARC), desenvolvido pela Embrapa em parceria com o MAPA. Disponível em versão app (Android, gratuito no Google Play) e versão web. O usuário seleciona município, tipo de solo, cultura e ciclo e recebe as melhores janelas de semeadura segundo diferentes níveis de risco (20%, 30%, 40%) de perdas por eventos climáticos adversos, cobrindo 43 culturas e todos os municípios. Os dados também podem ser acessados pelo Painel de Indicação de Riscos no site do MAPA.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - ZARC — Plantio Certo (app + web)
+   * - Operador/Instituição
+     - Embrapa + MAPA
+   * - Tipo
+     - Dashboard agro (zoneamento de risco climático)
+   * - O que visualiza
+     - Zoneamento agrícola de risco climático, janelas de semeadura por nível de risco (20/30/40%), cultivares indicadas, condições meteorológicas para a cultura
+   * - Cobertura geográfica
+     - Brasil (todos os municípios; 43 culturas)
+   * - Acesso
+     - Gratuito
+   * - URL
+     - App: https://play.google.com/store/apps/details?id=embrapa.br.zonamento — Web: https://www.embrapa.br/busca-de-solucoes-tecnologicas/-/produto-servico/13109/zarc-plantio-certo-web [verificar URL pública direta do app web]
+
+Cemaden — painel de alertas / Cemaden educação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O CEMADEN (Centro Nacional de Monitoramento e Alertas de Desastres Naturais, vinculado ao MCTI) opera o Painel de Alertas, dashboard interativo que exibe alertas de risco geo-hidrológico em mapa ou tabela, filtráveis por estado/município, baseado em rede de pluviômetros automáticos (>1.295 municípios monitorados). O Cemaden Educação (desde 2014) é o programa educacional e disponibiliza mapas interativos. Foco em desastres naturais (chuva extrema, deslizamentos), com componente climático relevante para o agro embora não seja dashboard estritamente agro. [verificar] existência de produto específico "agro-climático" dedicado.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - Painel de Alertas Cemaden / Cemaden Educação
+   * - Operador/Instituição
+     - CEMADEN / MCTI
+   * - Tipo
+     - Dashboard de alertas de desastres (climático/hidrológico; agro indireto) [verificar foco agro]
+   * - O que visualiza
+     - Alertas geo-hidrológicos de risco, chuva acumulada, mapas interativos de risco; conteúdo educacional
+   * - Cobertura geográfica
+     - Brasil (municípios monitorados)
+   * - Acesso
+     - Gratuito
+   * - URL
+     - Painel: https://painelalertas.cemaden.gov.br/ — Educação: https://educacao.cemaden.gov.br/
+
+Climatempo agro / SOMAR (agrosomar / agroclima)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Plataforma comercial do Grupo Climatempo, que adquiriu 100% da Somar Meteorologia em março de 2021, formando a maior empresa de meteorologia do Hemisfério Sul. Oferece previsões meteorológicas específicas por talhão/cultura, boletins semanais de monitoramento agro-climático (percentuais de plantio, colheita e desenvolvimento vegetativo de soja, milho, arroz, café, algodão, pastagens, trigo, cana, feijão, citros). Canal de conteúdo público: Agroclima Climatempo. Serviços profissionais/B2B são pagos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - Climatempo Agro / AgroSOMAR (Agroclima)
+   * - Operador/Instituição
+     - Grupo Climatempo (incorporou Somar Meteorologia) — privado
+   * - Tipo
+     - Dashboard/serviço agro-climático comercial
+   * - O que visualiza
+     - Previsões meteorológicas por talhão/cultura, boletins de monitoramento agro-climático, estágios de plantio/colheita/desenvolvimento, índices climáticos
+   * - Cobertura geográfica
+     - Brasil e América Latina
+   * - Acesso
+     - Misto: conteúdo aberto (Agroclima) + serviços pagos/B2B (login)
+   * - URL
+     - https://agroclima.climatempo.com.br/ — http://www.somarmeteorologia.com.br/
+
+Climate fieldview (bayer) — referência internacional
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Plataforma comercial de agricultura digital da Climate/Bayer (lançada nos EUA em 2015, presente em EUA, Canadá, Brasil e Europa). Integra hardware (FieldView Drive, conectado a máquinas) e app para coletar e visualizar dados de plantio, pulverização e colheita. Oferece mapas de produtividade, imagens de satélite com índice vegetativo, notificações de variação no desenvolvimento, e prescrições variáveis de sementes/fertilizantes. Líder de mercado entre plataformas digitais no Brasil (>28 milhões de ha monitorados). Incluída como referência internacional.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - Climate FieldView
+   * - Operador/Instituição
+     - Climate / Bayer — privado
+   * - Tipo
+     - Dashboard agro (agricultura digital / gestão de talhão)
+   * - O que visualiza
+     - Mapas de produtividade, índice vegetativo por satélite (NDVI etc.), prescrições variáveis, dados de plantio/pulverização/colheita, alertas de variação
+   * - Cobertura geográfica
+     - Internacional (EUA, Canadá, Brasil, Europa)
+   * - Acesso
+     - Pago (planos; requer login/hardware) — plano básico [verificar gratuidade parcial]
+   * - URL
+     - https://www.agro.bayer.com.br/climate-fieldview — https://climate.com/
+
+NASA POWER — data access viewer (DAV/DAVe) — referência internacional
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Projeto NASA POWER (Prediction Of Worldwide Energy Resources), criado para apoiar energia renovável, edificações sustentáveis e agroclimatologia. O Data Access Viewer (DAV), e sua versão "enhanced" (DAVe), é aplicação web interativa de mapeamento que dá acesso ao catálogo de dados solares e meteorológicos da NASA. Permite selecionar a comunidade "agroclimatology", visualizar, analisar, recortar (por parâmetro/área) e baixar mais de mil parâmetros. Dados globais, gratuitos. Incluída como referência internacional/fonte de dados agro.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Plataforma
+     - NASA POWER — Data Access Viewer (DAV/DAVe)
+   * - Operador/Instituição
+     - NASA (Langley Research Center)
+   * - Tipo
+     - Dashboard/visualizador de dados agroclimatológicos
+   * - O que visualiza
+     - Parâmetros solares e meteorológicos (radiação, temperatura, precipitação, vento etc.) para comunidade agroclimatology; séries temporais e mapas
+   * - Cobertura geográfica
+     - Global
+   * - Acesso
+     - Gratuito
+   * - URL
+     - https://power.larc.nasa.gov/data-access-viewer/
+
+URLs consultadas
+----------------
+
+- https://ciram.epagri.sc.gov.br/agroconnect/
+- https://ciram.epagri.sc.gov.br/index.php/solucoes/monitoramento/
+- https://www.agritempo.gov.br/
+- https://www.embrapa.br/busca-de-solucoes-tecnologicas/-/produto-servico/10651/agritempo---sistema-de-monitoramento-agrometeorologico
+- https://www.satveg.cnptia.embrapa.br/
+- https://www.satveg.cnptia.embrapa.br/ (URL atual verificada)
+- https://www.agroapi.cnptia.embrapa.br/store/apis/info?name=SATVeg&version=v1&provider=agroapi
+- https://sisdagro.inmet.gov.br/
+- https://portal.inmet.gov.br/servicos/sisdagro
+- https://www.embrapa.br/busca-de-solucoes-tecnologicas/-/produto-servico/6516/aplicativo-zarc---plantio-certo
+- https://www.embrapa.br/busca-de-solucoes-tecnologicas/-/produto-servico/13109/zarc-plantio-certo-web
+- https://play.google.com/store/apps/details?id=embrapa.br.zonamento
+- https://painelalertas.cemaden.gov.br/
+- https://educacao.cemaden.gov.br/
+- https://www.gov.br/cemaden/pt-br
+- https://agroclima.climatempo.com.br/
+- http://www.somarmeteorologia.com.br/conteudo/BR/agro/bloco1.php
+- https://www.climatempo.com.br/noticia/2021/03/29/climatempo-e-somar-criam-maior-empresa-de-meteorologia-do-hs-8779
+- https://www.agro.bayer.com.br/climate-fieldview
+- https://climate.com/
+- https://power.larc.nasa.gov/data-access-viewer/
+- https://www.earthdata.nasa.gov/data/tools/power-dav
+
+Síntese e recomendações de uso
+---------------------------------
+
+Qual plataforma para quê
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Necessidade
+     - Plataformas recomendadas
+   * - Ver nuvens/tempestades em tempo quase real (satélite)
+     - CIRA SLIDER, NASA Worldview, Zoom Earth; no Brasil: CPTEC/INPE (DSAT), INMET Satélite
+   * - Acompanhar chuva agora (radar)
+     - REDEMET (nacional), Simepar/IPMet/Inea (estaduais), RainViewer (global)
+   * - Ver previsão de modelos (GFS/ECMWF) em mapa
+     - Windy, Ventusky, Tropical Tidbits, Pivotal Weather, earth.nullschool
+   * - Monitorar seca / situação hídrica
+     - Monitor de Secas do Brasil (ANA), SISSA/CRC-SAS (Sul da Am. do Sul), GDO (global)
+   * - Consultar estações observadas (PCD) em mapa
+     - INMET Mapas, CEMADEN Mapa Interativo, Funceme PCD, redes estaduais (AESA, Apac, IAT, Simepar)
+   * - Apoio agroclimático / alertas agro
+     - AgroConnect (Epagri), Agritempo, SATVeg (NDVI), SISDAGRO (INMET), ZARC Plantio Certo
+
+Observações transversais
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **Federais BR de referência:** INMET (Mapas/Satélite/Tempo), CPTEC/INPE (SIGMA, DSAT), REDEMET (radar),
+
+CEMADEN (mapa interativo), ANA (Monitor de Secas) — todas gratuitas.
+
+- **Globais abertas e robustas:** NASA Worldview, CIRA SLIDER, Windy, Ventusky, earth.nullschool, GDO.
+- **Privadas/comerciais:** Wunderground/WunderMap, Climatempo, SOMAR, Meteologix, sigmameteorologia,
+
+Climate FieldView — gratuitas em parte, com recursos sob assinatura.
+
+- **Fontes subjacentes:** estas plataformas *consomem* os dados descritos em ``panorama-nacional``
+
+(GOES, MERGE, ERA5, INMET, etc.) — visualização e dado bruto são camadas distintas.
+
+Nota de validação
+-------------------
+
+**Cobertura confirmada.** 67 plataformas em 6 grupos; os ~11 exemplos citados pelo solicitante estão
+todos incluídos. Operador, tipo, o que visualiza e URL confirmados por acesso ou busca (junho/2026).
+
+**Marcas ``[verificar]`` (nível de campo).** Concentram-se em detalhes granulares — modelo numérico
+exato por camada, lista completa de canais/produtos, condições de login/assinatura, e abrangência
+geográfica precisa de algumas camadas. Não são plataformas inventadas: existem e estão confirmadas;
+apenas um campo específico ficou sem confirmação primária.
+
+**Acesso instável na verificação (não é defeito da plataforma):**
+
+- **Simepar** retornou HTTP 403 e **SIGMA/INMET** são *JS-heavy* (WebFetch não extrai conteúdo dinâmico)
+
+— dados confirmados por busca; o site funciona no navegador.
+
+- **sigmameteorologia** tem conteúdo sob paywall ("exclusivo para assinantes") — variáveis/cobertura
+
+marcadas ``[verificar]``.
+
+- **GOES-16 → GOES-19:** alguns viewers podem ainda exibir rótulo GOES-16; o GOES-East operacional é o
+
+GOES-19 (desde abr/2025).
+
+**Plataformas privadas:** o modelo de acesso (gratuito vs. assinatura) pode mudar; confirmar no site
+antes de depender de um recurso específico.
+
+*Documento gerado com assistência de IA (pesquisa, verificação e redação), sob revisão humana.
+Plataformas e URLs confirmadas quando acessível; campos não confirmados marcados ``[verificar]``.
+Total: 67 plataformas, 6 grupos.*

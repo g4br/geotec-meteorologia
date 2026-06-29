@@ -1,0 +1,114 @@
+Estações meteorológicas
+=======================
+
+INMET - instituto nacional de meteorologia
+------------------------------------------
+
+O Instituto Nacional de Meteorologia (INMET) é o órgão oficial brasileiro responsável pelo monitoramento meteorológico e climático no país, constituindo a principal fonte de dados meteorológicos confiáveis e padronizados para aplicações agrícolas, científicas e operacionais. Como membro da Organização Mundial de Meteorologia (OMM), o INMET mantém padrões internacionais de qualidade e metodologia na coleta e disseminação de dados meteorológicos :cite:`inmet:normais`.
+
+A rede INMET opera mais de 500 estações meteorológicas automáticas distribuídas pelo território brasileiro (e mais de 700 estações no total, somadas as convencionais), proporcionando cobertura nacional para monitoramento de variáveis atmosféricas. Esta densidade de estações, é muito baixa considerando as dimensões do território nacional, e apresenta lacunas em algumas regiões, especialmente em áreas remotas da Amazônia, interior do Nordeste, e regiões do sudoeste do Rio Grande do Sul. Além da baixa densidade, existem inconsistências relevantes no banco de dados, sobretudo em relação à continuidade temporal das séries históricas, com frequentes lacunas e interrupções na coleta de dados em várias estações ao longo dos anos.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Foto de uma estação meteorológica automática do INMET no campo,
+      mostrando o conjunto de sensores, o painel solar e o cercado de proteção.
+   :Função: dá concretude ao que é uma "estação automática" descrita no texto, ajudando
+      o leitor leigo a visualizar a fonte do dado.
+   :Busca sugerida: "INMET automatic weather station photo"; "estação meteorológica
+      automática INMET foto"
+   :Fonte provável: INMET, Wikimedia Commons
+   :Facilidade: alta
+
+A distribuição espacial das estações segue recomendações da OMM, que orienta que cada estação represente "o estado da atmosfera de uma vasta região". No entanto, a cobertura atual pode ser insuficiente para capturar adequadamente a variabilidade climática em todas as regiões brasileiras :cite:`vianna:2021`.
+
+O INMET disponibiliza os dados históricos das estações automáticas em arquivos CSV
+anuais, um por estação, no `Portal de dados históricos do INMET
+<https://portal.inmet.gov.br/dadoshistoricos>`_. Cada arquivo tem oito linhas de
+cabeçalho com os metadados da estação (código, latitude, longitude, altitude) e, em
+seguida, os dados horários separados por ``;`` e com vírgula decimal. O trecho abaixo lê
+um desses arquivos no padrão do material:
+
+.. code-block:: python
+
+   import pandas as pd
+
+   # Nomes das 19 colunas dos arquivos horários do INMET (na ordem do CSV).
+   COLUNAS = [
+       'DATA', 'HORA',
+       'PREC',      # precipitação total horária (mm)
+       'PATM',      # pressão atmosférica na estação (mB)
+       'PATM_MAX', 'PATM_MIN',
+       'RAD',       # radiação global (kJ/m²)
+       'TEMP',      # temperatura do ar - bulbo seco (°C)
+       'TD',        # temperatura do ponto de orvalho (°C)
+       'TMAX', 'TMIN',
+       'TD_MAX', 'TD_MIN',
+       'UR_MAX', 'UR_MIN',
+       'UR',        # umidade relativa horária (%)
+       'VENTO_DIR', 'VENTO_RAJ', 'VENTO_VEL',
+   ]
+
+   # As 8 primeiras linhas são metadados; o dado começa depois (skiprows=8).
+   caminho_csv = 'INMET_S_SC_A806_FLORIANOPOLIS_01-01-2024_A_31-12-2024.CSV'
+   df_estacao = pd.read_csv(caminho_csv, encoding='latin1', sep=';',
+                            decimal=',', skiprows=8)
+
+   # Remove a última coluna vazia (o CSV termina com ';') e nomeia as colunas.
+   df_estacao = df_estacao.loc[:, ~df_estacao.columns.str.startswith('Unnamed')]
+   df_estacao.columns = COLUNAS[:len(df_estacao.columns)]
+
+   # Índice temporal a partir de DATA + HORA.
+   df_estacao.index = pd.to_datetime(df_estacao['DATA'].str.replace('/', '-') + ' '
+                                     + df_estacao['HORA'].str.replace(' UTC', ''))
+
+Para localizar a estação mais próxima de uma gleba, calcula-se a distância pela fórmula de
+Haversine entre a coordenada da gleba e a de cada estação, escolhendo a(s) de menor
+distância.
+
+Cemaden - centro nacional de monitoramento e alertas de desastres naturais
+--------------------------------------------------------------------------
+
+O Centro Nacional de Monitoramento e Alertas de Desastres Naturais (CEMADEN) é uma unidade de pesquisa do Ministério da Ciência, Tecnologia e Inovações, criado em 2011 com foco específico no monitoramento de eventos meteorológicos extremos e na emissão de alertas antecipados para desastres naturais. A espinha dorsal da rede CEMADEN consiste em pluviômetros automáticos de alta resolução temporal. E diferentemente do INMET, que possui uma abordagem ampla de monitoramento meteorológico, o CEMADEN concentra seus esforços na detecção e prevenção de eventos críticos como chuvas intensas, deslizamentos de encostas e secas prolongadas :cite:`alvala:2019`.
+
+O CEMADEN monitora 1.295 municípios em todo território brasileiro (março de 2026), priorizando aqueles com histórico de desastres naturais ou em situação de vulnerabilidade. Esta cobertura representa cerca de 23% dos municípios brasileiros (`CEMADEN <https://www.gov.br/cemaden/pt-br/assuntos/noticias-cemaden/cemaden-expande-rede-de-monitoramento-e-passa-a-monitorar-1-295-municipios>`_).
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Foto de um pluviômetro automático do CEMADEN instalado em área urbana
+      ou de risco.
+   :Função: ilustra o principal instrumento da rede CEMADEN mencionado no parágrafo.
+   :Busca sugerida: "CEMADEN pluviômetro automático foto"; "automatic rain gauge CEMADEN"
+   :Fonte provável: CEMADEN, Wikimedia Commons
+   :Facilidade: alta
+
+Os dados dos pluviômetros do CEMADEN são obtidos na `plataforma de dados abertos do
+CEMADEN <https://www.cemaden.gov.br/mapainterativo/>`_, em arquivos CSV com estrutura
+própria (código da estação, município, data/hora e acumulado de chuva). A leitura segue a
+mesma lógica do exemplo do INMET — ``pandas.read_csv`` com o separador e a codificação do
+arquivo —, ajustando os nomes de coluna ao formato do CEMADEN.
+
+ANA - agência nacional de águas
+-------------------------------
+A Agência Nacional de Águas e Saneamento Básico (ANA), criada em 2000, é uma autarquia federal responsável pela implementação da Política Nacional de Recursos Hídricos e pela coordenação do Sistema Nacional de Gerenciamento de Recursos Hídricos. Diferentemente do INMET e CEMADEN, que possuem foco meteorológico e de desastres naturais respectivamente, a ANA concentra seus esforços no monitoramento quantitativo e qualitativo dos recursos hídricos brasileiros através da Rede Hidrometeorológica Nacional (RHN).
+
+A ANA gerencia diretamente cerca de 4.800 estações de monitoramento — aproximadamente 2.700 pluviométricas (chuva) e 2.000 fluviométricas (rios) — distribuídas em todo território brasileiro, representando uma das maiores redes de monitoramento hidrológico do mundo (ver `portal HidroWeb da ANA <https://www.snirh.gov.br/hidroweb/>`_).
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Foto de uma estação fluviométrica com régua linimétrica à margem de um
+      rio (medição de nível).
+   :Função: mostra como é uma estação de medição de rios da rede da ANA, complementando a
+      descrição das estações fluviométricas.
+   :Busca sugerida: "estação fluviométrica régua linimétrica rio"; "river gauging station
+      staff gauge"
+   :Fonte provável: ANA, SGB/CPRM, Wikimedia Commons
+   :Facilidade: média
+
+As séries da Rede Hidrometeorológica Nacional da ANA — incluindo os postos
+pluviométricos — são acessadas pelo portal `HidroWeb
+<https://www.snirh.gov.br/hidroweb/>`_, que permite baixar as séries por estação. Assim
+como nas demais fontes, os arquivos baixados são lidos com ``pandas`` e alinhados pela
+data antes de cruzar com a localização da gleba.

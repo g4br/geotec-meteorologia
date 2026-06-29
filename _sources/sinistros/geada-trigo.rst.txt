@@ -1,0 +1,49 @@
+Caso 3 — geada em trigo
+=======================
+
+A geada é um risco crítico para o trigo, sobretudo nas fases de espigamento e floração
+:cite:`bueno2024geadas,mantovanelli2025geadas` (ver :doc:`../fundamentos/risco/risco-climatico`). Aqui a variável muda: em vez de chuva
+(MERGE), usa-se a **temperatura mínima** (TMIN) da grade SAMeT e das estações INMET. Uma
+COP por geada é plausível quando, na janela do evento, a TMIN ficou suficientemente baixa.
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Foto de lavoura de trigo com geada — cristais de gelo sobre as folhas
+      ao amanhecer ou plantas com tecido queimado/esbranquiçado após a geada.
+   :Função: dá imagem concreta ao fenômeno (geada no trigo) antes do raciocínio físico
+      sobre temperatura mínima.
+   :Busca sugerida: "frost damage wheat crop field"; "geada em lavoura de trigo dano"
+   :Fonte provável: Embrapa, INMET, Wikimedia Commons
+   :Facilidade: alta
+
+Raciocínio físico
+-----------------
+
+A geada agrícola exige temperaturas próximas ou abaixo de 0 °C junto ao solo :cite:`sentelhas:1995`. Isso permite
+um **descarte físico** direto: se a TMIN absoluta observada na janela do evento foi
+claramente alta (por exemplo, acima de 4 °C), a geada é fisicamente implausível —
+independentemente de qualquer anomalia. O caso combina, então, dois critérios: a anomalia
+de TMIN (esfriou menos que o normal?) e o valor **absoluto** de TMIN (esfriou o bastante
+para gear?).
+
+Raciocínio do flag
+------------------
+
+.. literalinclude:: ../code/flag_geada_trigo.py
+   :language: python
+
+No material completo, esses critérios de grade são ainda **corroborados pelas estações
+INMET** mais próximas (a menor TMIN observada nas estações) e consolidados em um escore de
+plausibilidade de 0 a 100, que combina várias dimensões — anomalia, valor absoluto na
+grade e corroboração das estações. O escore é uma forma de **ordenar** os casos por grau de
+suspeita, do mais ao menos implausível.
+
+Leitura
+-------
+
+O descarte físico torna este caso particularmente robusto: uma geada declarada em uma
+janela com TMIN bem acima de zero é uma das incompatibilidades mais claras. Ainda assim,
+vale o mesmo princípio dos casos anteriores — o flag e o escore **priorizam** a análise; a
+confirmação de dano (que depende de fase fenológica, duração e intensidade da geada) é
+pericial e humana.

@@ -1,0 +1,1336 @@
+Instituições de meteorologia, hidrologia e agrometeorologia por estado
+==================================================================================
+
+Mapeamento, para as 27 unidades federativas, das instituições que atuam com
+meteorologia (M), hidrologia (H) e/ou agrometeorologia (A): órgãos estaduais,
+defesa civil, recursos hídricos, grupos universitários e institutos/empresas agro.
+UFs sem órgão próprio têm a cobertura federal (INMET, CPTEC/INPE, CEMADEN, ANA,
+CENSIPAM) registrada explicitamente.
+
+**Legenda de atuação:** M = meteorologia/clima · H = hidrologia/recursos hídricos ·
+A = agrometeorologia.
+
+.. note::
+
+   URLs confirmadas em fonte oficial quando acessível (junho/2026). Pontos não
+   plenamente confirmados estão marcados ``[verificar]``. As fontes de dados em si
+   (federais e produtos) estão em :doc:`panorama-nacional`.
+
+*Para cada UF: órgão estadual de meteorologia/clima, defesa civil/monitoramento, recursos hídricos,
+grupos universitários e instituto/empresa agro. Etiqueta de atuação M / H / A. UFs sem órgão próprio
+têm a cobertura federal (INMET, CPTEC/INPE, CEMADEN, ANA, CENSIPAM) registrada explicitamente.*
+
+**Panorama institucional (resumo).** Apenas alguns estados mantêm **órgão estadual de meteorologia
+próprio e consolidado**: PR (Simepar), SC (Epagri/CIRAM), CE (Funceme), PE (Apac), MS (Cemtec), GO
+(Simehgo), AP (NHMET/IEPA). A maioria das demais UFs cobre meteorologia operacional via **Defesa Civil
+estadual + cobertura federal** (INMET/CPTEC/CEMADEN), mantendo órgãos próprios sobretudo em
+**recursos hídricos** (institutos/secretarias estaduais) e **agro** (Emater e congêneres). A Região
+Norte é a de menor capacidade estadual instalada; a Sul e o CE/PB/PE concentram as estruturas mais
+completas.
+
+Região Norte — AC, AP, AM, PA, RO, RR, TO
+-----------------------------------------
+
+Levantamento por UF (AC, AP, AM, PA, RO, RR, TO) das instituições que atuam com **meteorologia (M)**, **hidrologia (H)** e/ou **agrometeorologia (A)**. Itens não confirmados em fonte oficial direta estão marcados ``[verificar]``.
+
+Etiqueta de atuação: **M** = meteorologia · **H** = hidrologia · **A** = agrometeorologia (combináveis, ex.: M+H).
+
+Cobertura federal de referência (toda a região): **INMET** (https://portal.inmet.gov.br/), **CPTEC/INPE** (https://www.cptec.inpe.br/), **Cemaden/MCTI** (https://www.gov.br/cemaden/pt-br), **ANA — Agência Nacional de Águas e Saneamento Básico** (https://www.gov.br/ana/) e **CENSIPAM/SIPAM** (https://www.sipam.gov.br/) na Amazônia.
+
+AC — acre
+~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - Centro Integrado de Inteligência, Geoprocessamento e Monitoramento Ambiental (Sema/AC)
+     - CIGMA
+     - M+H
+     - estadual
+     - https://sema.ac.gov.br/cigma/
+   * - Secretaria de Estado do Meio Ambiente — Divisão de Gestão de Recursos Hídricos / Sala de Situação
+     - SEMA (AC)
+     - H
+     - estadual
+     - https://sema.ac.gov.br/departamentos-e-divisoes/recursos-hidricos/
+   * - Instituto de Meio Ambiente do Acre (outorga e monitoramento de recursos hídricos)
+     - IMAC
+     - H
+     - estadual
+     - http://www.imac.ac.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil do Acre
+     - CEPDEC/AC
+     - M+H
+     - defesa civil
+     - https://defesacivil.ac.gov.br/
+   * - UFAC — PPG em Geografia (grupos: Gestão de Riscos de Desastres; Hidrologia, Meio Ambiente e Geografia dos Riscos; GEODINÂMICA)
+     - UFAC
+     - M+H
+     - universidade
+     - https://posgeoufac.com/grupos-de-pesquisa/
+   * - Empresa de Assistência Técnica e Extensão Rural do Acre
+     - EMATER-AC
+     - A ``[verificar]``
+     - agro
+     - ``[verificar]``
+   * - Secretaria de Extensão Agroflorestal e Produção Familiar
+     - SEAPROF
+     - A ``[verificar]``
+     - agro
+     - ``[verificar]``
+
+**Notas:** O Acre **não possui órgão estadual próprio dedicado exclusivamente à meteorologia**. O monitoramento meteorológico/hidrometeorológico estadual é exercido de forma integrada pelo CIGMA (Sema/AC) e sua Sala de Situação, em articulação com a Defesa Civil (CEPDEC), apoiados em rede de ~32 PCDs em parceria com a ANA. Cobertura federal de meteorologia: INMET, via Serviço de Meteorologia do Acre (SEINMET-AC); previsão numérica pelo CPTEC/INPE; hidrologia federal pela ANA. As atuações em agrometeorologia da EMATER-AC e da SEAPROF não puderam ser confirmadas em fonte oficial direta (domínio emater.acre.gov.br sem resposta DNS; sem domínio próprio localizado da SEAPROF) — ``[verificar]``.
+
+AP — amapá
+~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - Núcleo de Hidrometeorologia e Energias Renováveis (IEPA)
+     - NHMET/IEPA
+     - M+H
+     - estadual
+     - http://www.iepa.ap.gov.br/meteorologia/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil do Amapá
+     - CEDEC/AP
+     - M
+     - defesa civil
+     - http://defesacivil.ap.gov.br/
+   * - Secretaria de Estado do Meio Ambiente
+     - SEMA-AP
+     - H
+     - estadual
+     - https://sema.portal.ap.gov.br/
+   * - Universidade Federal do Amapá (Ciências Ambientais / projeto REMETAP)
+     - UNIFAP
+     - M+H+A
+     - universidade
+     - https://www.unifap.br/
+   * - Empresa Brasileira de Pesquisa Agropecuária — Amapá
+     - Embrapa Amapá
+     - A
+     - agro
+     - https://www.embrapa.br/amapa
+   * - Instituto de Desenvolvimento Rural do Amapá
+     - RURAP
+     - A
+     - agro/estadual
+     - https://rurap.portal.ap.gov.br/
+
+**Notas:** O Amapá **possui órgão estadual próprio de meteorologia/hidrologia** — o NHMET/IEPA, consolidado pela Rede Amapaense de Meteorologia e Recursos Hídricos (REMETAP), que emitiu o primeiro boletim de previsão de tempo de um núcleo estadual de meteorologia na Amazônia. Cobertura federal complementar: INMET e CPTEC/INPE; gestão/monitoramento hidrológico nacional pela ANA (Progestão, articulada com a SEMA-AP via CERH/AP). Não há Cemaden estadual próprio — monitoramento de desastres federal pelo Cemaden/MCTI ``[verificar atuação direta no AP]``. Laboratório/instituto agrometeorológico dedicado no IFAP não confirmado ``[verificar]``.
+
+AM — amazonas
+~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - Secretaria Executiva de Defesa Civil do Estado do Amazonas
+     - Defesa Civil-AM
+     - M+H
+     - defesa civil
+     - https://www.defesacivil.am.gov.br/
+   * - Secretaria de Estado do Meio Ambiente (gestão de recursos hídricos / PERH)
+     - SEMA-AM
+     - H
+     - estadual
+     - https://www.sema.am.gov.br/
+   * - Instituto de Proteção Ambiental do Amazonas (Gerência de Recursos Hídricos — GERH)
+     - IPAAM
+     - H
+     - estadual
+     - https://www.ipaam.am.gov.br/
+   * - Centro Gestor e Operacional do Sistema de Proteção da Amazônia (Centro Regional de Manaus)
+     - CENSIPAM/SIPAM
+     - M+H
+     - federal (Ministério da Defesa, atuação regional)
+     - https://www.sipam.gov.br/
+   * - Plataforma de Meteorologia do Censipam (boletins, estações, previsão)
+     - PANORAMA-SIPAM
+     - M+H
+     - federal (base em Manaus)
+     - https://panorama.sipam.gov.br/
+   * - UFAM — Centro de Ciências do Ambiente / Lab. de Agroclimatologia e Sensoriamento Remoto
+     - UFAM/CCA
+     - M+H+A
+     - universidade
+     - https://www.ufam.edu.br/
+   * - INPA — PPG em Clima e Ambiente / Coord. de Dinâmica Ambiental
+     - INPA/CLIAMB
+     - M+H
+     - universidade (instituto federal de pesquisa, Manaus)
+     - https://www.gov.br/inpa/pt-br/posgrad/ppgcliamb/apresentacao-cliamb
+   * - Instituto de Desenvolvimento Agropecuário e Florestal Sustentável do Amazonas (ATER oficial)
+     - IDAM
+     - A
+     - agro
+     - https://www.idam.am.gov.br/
+   * - Embrapa Amazônia Ocidental — Estação Agroclimatológica / Lab. de Agroclimatologia (Manaus)
+     - Embrapa AO
+     - A+M
+     - agro
+     - https://www.embrapa.br/amazonia-ocidental
+   * - Centro Nacional de Monitoramento e Alertas de Desastres Naturais
+     - CEMADEN
+     - M+H
+     - federal (atuação no estado)
+     - https://www.gov.br/cemaden/pt-br
+
+**Notas:** O Amazonas **não possui órgão estadual de meteorologia próprio dedicado** — cobertura meteorológica/climática oficial em nível federal por INMET e CPTEC/INPE, com forte atuação regional do CENSIPAM/SIPAM (Centro Regional de Manaus), que opera radares, estações e o sistema hidrometeorológico SipamHidro. Hidrologia articulada com a ANA (Progestão, Qualiágua). Cemaden/MCTI é o órgão de alerta de desastres (Manaus entre os municípios mais alertados do país). Laboratório/grupo específico de meteorologia na UEA/IFAM não localizado com página própria (UEA participa do PPG-CLIAMB junto ao INPA) ``[verificar]``.
+
+PA — pará
+~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - Secretaria de Estado de Meio Ambiente, Clima e Sustentabilidade (Diretoria de Recursos Hídricos / SEIRH)
+     - SEMAS-PA
+     - H+M
+     - estadual (recursos hídricos / clima)
+     - https://www.semas.pa.gov.br/
+   * - Coordenadoria Estadual de Defesa Civil do Pará (vinculada ao Corpo de Bombeiros Militar)
+     - CEDEC-PA
+     - M+H
+     - defesa civil
+     - https://defesacivil.pa.gov.br/
+   * - Faculdade de Meteorologia — Universidade Federal do Pará
+     - FAMET/UFPA
+     - M+H+A
+     - universidade
+     - https://www.famet.ufpa.br/
+   * - Universidade Federal Rural da Amazônia (estação meteorológica / agrometeorologia e climatologia)
+     - UFRA
+     - M+A
+     - universidade
+     - https://novo.ufra.edu.br/
+   * - Museu Paraense Emílio Goeldi — Coord. de Ciências da Terra e Ecologia (climatologia / Estação Ferreira Penna)
+     - MPEG
+     - M
+     - universidade (instituto de pesquisa MCTI)
+     - https://www.museu-goeldi.br/
+   * - Embrapa Amazônia Oriental — Laboratório de Agrometeorologia
+     - Embrapa
+     - A+M
+     - agro
+     - https://www.embrapa.br/amazonia-oriental
+   * - Empresa de Assistência Técnica e Extensão Rural do Pará
+     - EMATER-PA
+     - A
+     - agro
+     - https://www.emater.pa.gov.br/
+
+**Notas:** O Pará **não possui sistema/órgão estadual autônomo de meteorologia** (não há equivalente a um SIMEPAR) — o monitoramento climático/meteorológico estadual é exercido via SEMAS-PA (clima/recursos hídricos) e Defesa Civil, apoiados por INMET/CPTEC/Cemaden. Cobertura federal: INMET 2º DISME (Belém, abrange PA, AP e MA); CPTEC/INPE; Cemaden/MCTI; ANA. URL exata do Laboratório de Agrometeorologia da Embrapa dentro do portal ``[verificar]``.
+
+RO — rondônia
+~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - SEDAM — Coordenadoria de Geociências (Sala de Situação / monitoramento hidrometeorológico, boletins climáticos)
+     - COGEO/SEDAM
+     - M+H
+     - estadual
+     - https://www.sedam.ro.gov.br/cogeo
+   * - SEDAM — Coordenadoria de Recursos Hídricos (órgão gestor de recursos hídricos, Sala de Situação)
+     - COREH/SEDAM
+     - H
+     - estadual
+     - https://rondonia.ro.gov.br/sedam/coreh/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil (ligada ao CBMRO; monitora rios, Sistema Defesa Civil Alerta, PCDs/Cemaden)
+     - CEPDEC-RO / CBMRO
+     - M+H
+     - defesa civil
+     - https://www.cbm.ro.gov.br
+   * - UFRO/UNIR — grupos de pesquisa em bioclimatologia/mudanças climáticas (ex.: BIOCLAM; DGP/CNPq)
+     - UNIR
+     - M+A
+     - universidade
+     - https://propesq.unir.br/pagina/exibir/1387
+   * - Instituto Federal de Rondônia — estações meteorológicas e monitoramento climático (ex.: campus Vilhena)
+     - IFRO
+     - M+A
+     - universidade
+     - https://portal.ifro.edu.br
+   * - Entidade Autárquica de Assistência Técnica e Extensão Rural de RO — rede de +100 pluviômetros, plataforma digital de chuvas, Monitor de Secas
+     - EMATER-RO
+     - M+A
+     - agro
+     - http://www.emater.ro.gov.br
+   * - Embrapa Rondônia — pesquisa agropecuária (apoio a clima/zoneamento; rede Agritempo)
+     - Embrapa Rondônia
+     - A
+     - agro
+     - https://www.embrapa.br/web/rondonia
+
+**Notas:** Rondônia **não possui órgão estadual de meteorologia autônomo** — a função meteorológica/climática estadual é exercida pela COGEO/SEDAM somada à cobertura federal de INMET/CPTEC. Cemaden/MCTI (PCDs em parceria com a Defesa Civil) e ANA (Progestão, suporte à COREH). Embrapa Rondônia se apoia no sistema Agritempo (Embrapa/Unicamp), sem grupo próprio de agrometeorologia detalhado no portal.
+
+RR — roraima
+~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - Fundação Estadual do Meio Ambiente e Recursos Hídricos (emite Boletim Hidrometeorológico; monitora nível do Rio Branco)
+     - FEMARH-RR
+     - M+H
+     - estadual (recursos hídricos)
+     - https://femarh.rr.gov.br/
+   * - Coordenadoria Estadual de Defesa Civil (vinculada ao Corpo de Bombeiros Militar de RR)
+     - CEDEC/CBMRR
+     - M+H
+     - defesa civil
+     - https://cbm.rr.gov.br/
+   * - Embrapa Roraima (pesquisa agropecuária; dados climáticos/zoneamento via rede Embrapa)
+     - Embrapa RR
+     - A
+     - agro
+     - https://www.embrapa.br/web/roraima
+   * - Secretaria de Estado da Agricultura, Desenvolvimento e Inovação
+     - SEADI-RR
+     - A ``[verificar]``
+     - agro/estadual
+     - https://seadi.rr.gov.br/
+   * - Universidade Federal de Roraima (meteorologia/climatologia/agrometeorologia em Agronomia)
+     - UFRR
+     - M+A
+     - universidade
+     - https://ufrr.br/
+   * - Universidade Estadual de Roraima (climatologia em Eng. Florestal; projetos com dados meteorológicos)
+     - UERR
+     - M+A
+     - universidade
+     - https://uerr.edu.br/
+   * - Instituto Federal de Roraima (atuação específica em meteorologia não confirmada)
+     - IFRR
+     - M+A ``[verificar]``
+     - universidade
+     - https://www.ifrr.edu.br/
+
+**Notas:** Roraima **não possui órgão estadual exclusivo de meteorologia/clima** — previsão e clima cobertos por INMET e CPTEC/INPE, enquanto a FEMARH-RR consolida boletins hidrometeorológicos estaduais. Não há Cemaden estadual próprio (monitoramento de desastres federal pelo Cemaden/MCTI); gestão de recursos hídricos com apoio da ANA (Progestão). Grupos/laboratórios universitários específicos de agrometeorologia (UFRR/UERR/IFRR) não confirmados nominalmente ``[verificar]``.
+
+TO — tocantins
+~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo (estadual/universidade/agro/defesa civil)
+     - URL
+   * - Núcleo Estadual de Meteorologia e Recursos Hídricos (UNITINS) — SIMETO
+     - NEMET/RH (SIMETO)
+     - M+H+A
+     - estadual (operado pela UNITINS; centro estadual de tempo/clima/recursos hídricos do PMTCRH/MCTI)
+     - https://simeto.unitins.br/
+   * - Secretaria do Meio Ambiente e Recursos Hídricos
+     - SEMARH-TO
+     - H
+     - estadual
+     - https://www.to.gov.br/semarh/
+   * - Sistema Estadual de Informações sobre Recursos Hídricos do Tocantins
+     - SEIRH
+     - H
+     - estadual
+     - https://seirh.semarh.to.gov.br/
+   * - Instituto Natureza do Tocantins (gestão ambiental; monitoramento de bacias e cartas climáticas)
+     - NATURATINS
+     - H
+     - estadual
+     - https://www.to.gov.br/naturatins/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil (Corpo de Bombeiros Militar do TO)
+     - DEFESACIVIL-TO
+     - M+H
+     - defesa civil
+     - https://www.to.gov.br/defesacivil/
+   * - Laboratório de Meteorologia e Climatologia (UFT, Campus Palmas)
+     - LabMet/UFT
+     - M+A
+     - universidade
+     - https://www.uft.edu.br/campus/palmas/laboratorios/laboratorio-de-meteorologia-e-climatologia
+   * - Portal Clima no Tocantins — Secretaria da Agricultura, Pecuária e Aquicultura
+     - SEAGRO
+     - M+A
+     - estadual/agro
+     - https://www.to.gov.br/seagro/clima-no-tocantins/2nyf7l695u5u
+   * - Instituto de Desenvolvimento Rural do Estado do Tocantins (ATER)
+     - RURALTINS
+     - A
+     - agro
+     - https://www.to.gov.br/ruraltins/
+   * - Embrapa Pesca e Aquicultura (Palmas/TO; Cerrado/Matopiba)
+     - Embrapa
+     - A
+     - agro (federal)
+     - https://www.embrapa.br/pesca-e-aquicultura
+
+**Notas:** O TO **não possui órgão estadual autônomo de meteorologia** — a função de centro estadual é exercida pelo NEMET/RH da UNITINS (SIMETO), parceria com o MCTI (PMTCRH), que emite previsão de tempo (7 dias) e clima (3 meses). Não há Cemaden estadual próprio; alertas de desastres federais via Cemaden/MCTI (cobrindo Palmas, Araguaína, Gurupi, Talismã). Cobertura federal complementar: INMET — 10º DISME (Goiânia, abrange GO e TO); CPTEC/INPE; ANA (bacia Tocantins-Araguaia). Grafia exata "NEMET/RH" vs "Nemet/RH" ``[verificar]``.
+
+Região Nordeste — AL, BA, CE, MA, PB, PE, PI, RN, SE
+----------------------------------------------------
+
+Instituições que atuam com **Meteorologia (M)**, **Hidrologia (H)** e/ou **Agrometeorologia (A)** nos 9 estados do Nordeste do Brasil (AL, BA, CE, MA, PB, PE, PI, RN, SE).
+
+Etiquetas de atuação: **M** = Meteorologia/Clima · **H** = Hidrologia/Recursos Hídricos · **A** = Agrometeorologia/Agro.
+Itens não confirmados em fonte oficial direta estão marcados com **[verificar]**.
+
+Notas gerais:
+
+- O **Cemaden** é órgão **federal** (vinculado ao MCTI); não existe "Cemaden estadual". Estados integram-se à rede federal via suas Defesas Civis.
+- A sigla **UFCG/UACA** é da Paraíba (incluída em PB).
+
+AL — alagoas
+~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Laboratório de Análise e Processamento de Imagens de Satélites (Instituto de Ciências Atmosféricas / UFAL)
+     - LAPIS / ICAT-UFAL
+     - M / H / A
+     - Universidade (grupo de pesquisa)
+     - https://icat.ufal.br/
+   * - Secretaria de Estado do Meio Ambiente e dos Recursos Hídricos
+     - SEMARH-AL
+     - H
+     - Recursos hídricos (secretaria; emite alerta hidrológico)
+     - https://www.semarh.al.gov.br/
+   * - Coordenadoria Estadual de Defesa Civil de Alagoas
+     - CEDEC-AL
+     - M / H
+     - Defesa civil
+     - https://defesacivil.al.gov.br/
+   * - Instituto de Inovação para o Desenvolvimento Rural Sustentável de Alagoas
+     - EMATER-AL
+     - A
+     - Agro (extensão rural, autarquia da SEAGRI)
+     - https://www.emater.al.gov.br/
+   * - Secretaria de Estado da Agricultura, Pecuária e Pesca
+     - SEAGRI-AL
+     - A
+     - Agro (secretaria)
+     - https://www.agricultura.al.gov.br/
+
+.. note::
+
+   Não há agência estadual dedicada de meteorologia/clima. O protagonismo técnico em meteorologia/agrometeorologia está no **LAPIS/ICAT-UFAL** (universidade federal).
+
+BA — Bahia
+~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Instituto do Meio Ambiente e Recursos Hídricos (Sala de Situação e Coord. de Estudos Climáticos – Cocep)
+     - INEMA
+     - M / H
+     - Órgão estadual / recursos hídricos (monitoramento hidrometeorológico)
+     - http://www.inema.ba.gov.br/
+   * - Superintendência de Proteção e Defesa Civil
+     - SUDEC-BA
+     - M / H
+     - Defesa civil
+     - http://www.defesacivil.ba.gov.br/
+   * - Superintendência Baiana de Assistência Técnica e Extensão Rural (sucessora da EBDA)
+     - BAHIATER
+     - A
+     - Agro (extensão rural, vinc. SDR)
+     - http://www.bahiater.sdr.ba.gov.br/
+   * - Centro de Ciências Agrárias, Ambientais e Biológicas / UFRB
+     - CCAAB-UFRB
+     - A
+     - Universidade (agrometeorologia/ciências agrárias)
+     - https://www.ufrb.edu.br/ccaab/
+   * - Instituto de Geociências – Geografia (climatologia; grupos GEOCLIMA/COLAPSO) / UFBA
+     - UFBA-IGEO
+     - M
+     - Universidade (climatologia geográfica)
+     - https://igeo.ufba.br/
+   * - Centro de Monitoramento de Alerta e Alarme da Defesa Civil de Salvador (Cemadec/Codesal)
+     - CEMADEC
+     - M / H
+     - Defesa civil **municipal** (Salvador) — não estadual
+     - https://codesal.salvador.ba.gov.br/
+
+.. note::
+
+   O "Cemadec" é o centro de monitoramento da Defesa Civil **municipal** de Salvador, não órgão estadual. O órgão estadual de defesa civil é a **SUDEC**. Não há agência estadual exclusiva de meteorologia: a função climática/hidrometeorológica concentra-se no **INEMA** (Sala de Situação/Cocep).
+
+CE — ceará
+~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Fundação Cearense de Meteorologia e Recursos Hídricos
+     - FUNCEME
+     - M / H / A
+     - Órgão estadual (fundação de pesquisa)
+     - http://www.funceme.br/
+   * - Companhia de Gestão dos Recursos Hídricos do Ceará
+     - COGERH
+     - H
+     - Recursos hídricos (soc. economia mista)
+     - https://www.cogerh.com.br/
+   * - Secretaria dos Recursos Hídricos
+     - SRH-CE
+     - H
+     - Recursos hídricos (secretaria)
+     - https://www.srh.ce.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil
+     - CEDEC-CE
+     - M / H
+     - Defesa civil (monitoramento meteorológico e de reservatórios)
+     - https://www.defesacivil.ce.gov.br/
+   * - Empresa de Assistência Técnica e Extensão Rural do Ceará
+     - EMATERCE
+     - A
+     - Agro (extensão rural, vinc. SDA)
+     - https://www.ematerce.ce.gov.br/
+   * - Universidade Federal do Ceará – Meteorologia (Campus Iracema/Labomar)
+     - UFC
+     - M
+     - Universidade
+     - https://www.ufc.br/ — **[verificar]** (graduação em Meteorologia em implantação; ainda sem departamento próprio)
+
+.. note::
+
+   Estado **mais completo** do Nordeste e único com órgão estadual robusto e específico de meteorologia + recursos hídricos (**FUNCEME**, M/H/A), além de COGERH, SRH, CEDEC e EMATERCE.
+
+MA — maranhão
+~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Núcleo Geoambiental – Universidade Estadual do Maranhão
+     - NUGEO/UEMA
+     - M / H
+     - Universidade (laboratórios de Meteorologia e Recursos Hídricos; previsão diária; rede de PCDs)
+     - https://www.nugeo.uema.br/
+   * - Secretaria de Estado do Meio Ambiente e Recursos Naturais
+     - SEMA-MA
+     - H
+     - Órgão estadual / recursos hídricos (Superintendência de Recursos Hídricos)
+     - https://www.sema.ma.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil do Maranhão
+     - CEPDEC-MA
+     - M / H
+     - Defesa civil (ligada ao Corpo de Bombeiros Militar)
+     - https://www.defesacivil.ma.gov.br/
+   * - Agência Estadual de Pesquisa Agropecuária e Extensão Rural
+     - AGERP-MA
+     - A
+     - Agro (pesquisa e extensão rural)
+     - https://agerp.ma.gov.br/
+   * - Universidade Federal do Maranhão (climatologia/geografia)
+     - UFMA
+     - M
+     - Universidade
+     - **[verificar]** — laboratório/grupo dedicado não confirmado em fonte oficial
+
+.. note::
+
+   Não há órgão estadual autônomo de meteorologia. O papel meteorológico/hidrológico concentra-se no **NUGEO/UEMA** (único núcleo geoambiental do estado) e na **SEMA** (recursos hídricos).
+
+PB — paraíba
+~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Agência Executiva de Gestão das Águas do Estado da Paraíba
+     - AESA-PB
+     - M / H
+     - Órgão estadual / recursos hídricos (Submanagement de Meteorologia; boletins PBCLIMA; reservatórios)
+     - https://www.aesa.pb.gov.br/
+   * - Gerência Executiva Estadual de Proteção e Defesa Civil da Paraíba
+     - Defesa Civil-PB
+     - M / H
+     - Defesa civil
+     - http://www.defesacivil.pb.gov.br/
+   * - Unidade Acadêmica de Ciências Atmosféricas – UFCG (Campina Grande)
+     - UACA/UFCG
+     - M / A
+     - Universidade (graduação e pós em Meteorologia)
+     - http://www.dca.ufcg.edu.br/
+   * - Laboratório de Climatologia Geográfica / Grupo GEOFISA – UFPB
+     - CLIMAGEO/UFPB
+     - M / A
+     - Universidade (climatologia geográfica, eventos extremos)
+     - https://www.ufpb.br/climageo
+   * - Empresa Paraibana de Pesquisa, Extensão Rural e Regularização Fundiária
+     - EMPAER-PB
+     - A
+     - Agro (unificou Emater/Emepa/Interpa)
+     - https://empaer.pb.gov.br/
+
+.. note::
+
+   Estado bem servido. A **AESA** concentra meteorologia + hidrologia; a **UFCG/UACA** é um dos principais polos de Meteorologia do Brasil.
+
+PE — pernambuco
+~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Agência Pernambucana de Águas e Clima
+     - APAC-PE
+     - M / H
+     - Órgão estadual / recursos hídricos (monitoramento hidrometeorológico, previsão de tempo e clima)
+     - https://www.apac.pe.gov.br/
+   * - Secretaria Executiva de Defesa Civil de Pernambuco
+     - SEDEC-PE
+     - M / H
+     - Defesa civil
+     - https://www.defesacivil.pe.gov.br/
+   * - Departamento de Ciências Geográficas / PPGEO – UFPE (climatologia)
+     - UFPE
+     - M
+     - Universidade (climatologia na pós em Geografia)
+     - https://www.ufpe.br/
+   * - Universidade Federal Rural de Pernambuco (agrometeorologia)
+     - UFRPE
+     - A
+     - Universidade
+     - https://www.ufrpe.br/
+   * - Instituto Agronômico de Pernambuco
+     - IPA-PE
+     - A / M
+     - Agro (dados pluviométricos/climáticos, pesquisa em clima)
+     - https://site.ipa.br/
+
+.. note::
+
+   O **Lamepe** (Lab. de Meteorologia de PE) não foi confirmado como instituição autônoma ativa — suas funções migraram para a **APAC** (tratar como histórico, **[verificar]**). A meteorologia acadêmica em PE é via climatologia geográfica (UFPE) e agrometeorologia (UFRPE), sem departamento de Ciências Atmosféricas próprio.
+
+PI — piauí
+~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Secretaria de Estado do Meio Ambiente e Recursos Hídricos
+     - SEMARH-PI
+     - M / H
+     - Órgão estadual / recursos hídricos (Rede de Monitoramento Meteorológico; monitoramento de chuvas)
+     - https://www.semarh.pi.gov.br/
+   * - Secretaria de Estado da Defesa Civil
+     - SEDEC-PI
+     - M / H
+     - Defesa civil (rede de pluviômetros integrada ao Cemaden)
+     - https://www.pi.gov.br/orgao/secretaria-de-estado-da-defesa-civil-sedec/
+   * - Universidade Federal do Piauí (Agrometeorologia/Climatologia, Campus Bom Jesus – Agronomia)
+     - UFPI
+     - M / A
+     - Universidade
+     - https://www.ufpi.br/ — grupo dedicado **[verificar]**
+   * - Instituto de Assistência Técnica e Extensão Rural do Piauí (absorvido pela SADA)
+     - EMATER-PI / SADA
+     - A
+     - Agro
+     - https://www.pi.gov.br/orgao/secretaria-de-estado-da-assistencia-tecnica-e-defesa-agropecuaria-sada/ — EMATER-PI extinta, serviços passaram à SADA
+
+.. note::
+
+   Não há instituto estadual dedicado de meteorologia — o serviço recai sobre a **SEMARH-PI** e o monitoramento de risco sobre a **SEDEC**. A EMATER-PI foi extinta (absorvida pela SADA).
+
+RN — rio grande do Norte
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Empresa de Pesquisa Agropecuária do RN (Núcleo de Meteorologia)
+     - EMPARN
+     - M / A
+     - Agro / órgão estadual (previsão, mapas, rede pluviométrica)
+     - https://meteorologia.emparn.rn.gov.br/
+   * - Instituto de Gestão das Águas do Estado do RN
+     - IGARN
+     - H
+     - Recursos hídricos (outorga, licenciamento hídrico)
+     - http://www.igarn.rn.gov.br/
+   * - Secretaria de Estado do Meio Ambiente e dos Recursos Hídricos
+     - SEMARH-RN
+     - H
+     - Órgão estadual / recursos hídricos
+     - URL própria **[verificar]** (confirmado via PROGESTÃO/ANA: https://progestao.ana.gov.br/panorama-dos-estados/rn)
+   * - Universidade Federal do RN – Meteorologia + Pós em Ciências Climáticas
+     - UFRN (PPGCC)
+     - M
+     - Universidade
+     - https://posgraduacao.ufrn.br/ppgcc
+   * - Universidade Federal Rural do Semi-Árido – Lab. de Instrumentação, Meteorologia e Climatologia
+     - UFERSA (LABIMC)
+     - M / A
+     - Universidade
+     - https://labimc.ufersa.edu.br/
+   * - Defesa Civil estadual do RN
+     - —
+     - M / H
+     - Defesa civil
+     - **[verificar]** — portal estadual oficial dedicado não localizado
+
+.. note::
+
+   Estado **bem estruturado**: a **EMPARN** é referência regional de meteorologia/agrometeorologia, com UFRN e UFERSA na academia e IGARN/SEMARH em recursos hídricos.
+
+SE — sergipe
+~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Secretaria de Estado do Meio Ambiente, Sustentabilidade e Ações Climáticas (sucessora da SEMARH-SE)
+     - SEMAC-SE
+     - M / H
+     - Órgão estadual / recursos hídricos
+     - https://www.se.gov.br/semac — continuidade do Centro de Meteorologia após reestruturação **[verificar]**
+   * - Superintendência Especial de Proteção e Defesa Civil
+     - SUPDEC-SE
+     - M / H
+     - Defesa civil (rede de ~50 estações; integração Inmet/Cemaden/Cenad)
+     - https://defesacivil.se.gov.br/
+   * - Companhia de Desenvolvimento de Recursos Hídricos e Irrigação de Sergipe
+     - COHIDRO / CODERSE
+     - H
+     - Recursos hídricos / agro (perímetros irrigados, poços, barragens)
+     - https://cohidro.se.gov.br/
+   * - Universidade Federal de Sergipe – Climatologia (DGEO) e Recursos Hídricos (PRORH)
+     - UFS
+     - M / A
+     - Universidade
+     - https://dageo.ufs.br/ — grupo formal de agrometeorologia **[verificar]**
+   * - Empresa de Desenvolvimento Agropecuário de Sergipe
+     - EMDAGRO
+     - A
+     - Agro (pesquisa e extensão rural)
+     - https://emdagro.se.gov.br/ — atuação meteorológica própria **[verificar]**
+
+.. note::
+
+   Estado **carente** em instituições próprias de meteorologia: sem órgão/empresa estadual dedicado. O monitoramento operacional concentra-se na Defesa Civil (**SUPDEC**) e na **SEMAC**; a academia (UFS) atua de forma difusa pela Geografia/Climatologia.
+
+Síntese — robustez institucional por UF
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Nível
+     - UFs
+   * - **Forte** (órgão estadual dedicado)
+     - CE (FUNCEME), PB (AESA + UFCG), PE (APAC), RN (EMPARN)
+   * - **Intermediário**
+     - BA (INEMA, sem agência de meteorologia), PI (SEMARH+SEDEC)
+   * - **Fraco / poucas instituições próprias**
+     - AL (depende do LAPIS/UFAL), MA (depende do NUGEO/UEMA), SE (depende de SUPDEC/SEMAC)
+
+Região centro-oeste — DF, GO, MT, MS
+------------------------------------
+
+Instituições que atuam com **M** (meteorologia/clima), **H** (hidrologia/recursos hídricos) e/ou **A** (agrometeorologia).
+UFs cobertas (4): DF, GO, MT, MS.
+
+Etiquetas: **M** = meteorologia/clima · **H** = hidrologia/recursos hídricos · **A** = agrometeorologia/agro com dado climático.
+Verificação: URLs confirmados via WebSearch em fontes oficiais (jun/2026). Itens não plenamente confirmados marcados com **[verificar]**.
+
+DF — distrito federal
+~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Agência Reguladora de Águas, Energia e Saneamento do DF — Centro de Operação das Águas (COA) e SIRH
+     - ADASA
+     - H (M)
+     - Recursos hídricos / regulação
+     - https://www.adasa.df.gov.br/ ``[verificar — domínio retornou 404 na verificação; confirmar URL atual]``
+   * - Defesa Civil do Distrito Federal
+     - DC-DF
+     - M / H
+     - Defesa Civil / sala de situação
+     - https://www.defesacivil.df.gov.br/
+   * - Empresa de Assistência Técnica e Extensão Rural do DF
+     - Emater-DF
+     - A
+     - Extensão rural / agro (cotações + clima)
+     - https://www.emater.df.gov.br/
+   * - Universidade de Brasília — Instituto de Geociências (climatologia/geociências)
+     - IG/UnB
+     - M / A
+     - Universidade / pesquisa
+     - https://igd.unb.br/
+   * - Instituto Nacional de Meteorologia (sede nacional em Brasília — federal)
+     - INMET
+     - M / A
+     - Federal (não estadual)
+     - https://portal.inmet.gov.br/
+
+Obs.: o DF **não possui centro estadual próprio de meteorologia**; o monitoramento meteorológico apoia-se no INMET (sede em Brasília) e no Cemaden nacional. Hidrologia é coberta pela ADASA (COA). [verificar grupo específico de meteorologia/climatologia na UnB além do IG]
+
+GO — goiás
+~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Sistema/Centro de Informações Meteorológicas e Hidrológicas de Goiás (vinculado à SEMAD)
+     - SIMEHGO / CIMEHGO
+     - M / H
+     - Órgão estadual de meteorologia e hidrologia
+     - https://cimehgo.meioambiente.go.gov.br/
+   * - Secretaria de Estado de Meio Ambiente e Desenvolvimento Sustentável — Superintendência de Recursos Hídricos (SRH)
+     - SEMAD
+     - H
+     - Recursos hídricos
+     - https://goias.gov.br/meioambiente/
+   * - Defesa Civil de Goiás (CBMGO / Codec — sala de situação)
+     - DC-GO / Codec
+     - M / H
+     - Defesa Civil
+     - https://goias.gov.br/administracao/defesa-civil/
+   * - Agência Goiana de Assistência Técnica, Extensão Rural e Pesquisa Agropecuária
+     - Emater Goiás
+     - A
+     - Extensão rural / agro
+     - https://goias.gov.br/emater/
+   * - UFG — Laboratório de Análise da Atmosfera e da Paisagem (IESA), abordagem CLIMAGEO
+     - LAP/IESA-UFG
+     - M / A
+     - Universidade / pesquisa (climatologia geográfica)
+     - https://lap.iesa.ufg.br/
+
+MT — Mato Grosso
+~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Secretaria de Estado de Meio Ambiente — Recursos Hídricos / Sala de Monitoramento Hidrológico
+     - SEMA-MT
+     - H
+     - Recursos hídricos
+     - http://www.sema.mt.gov.br/site/index.php/unidades-administrativas/recursos-hidricos
+   * - Defesa Civil de Mato Grosso — Monitoramento Climático e Sala de Situação
+     - DC-MT
+     - M / H
+     - Defesa Civil
+     - https://www.defesacivil.mt.gov.br/
+   * - Empresa Mato-grossense de Pesquisa, Assistência e Extensão Rural
+     - Empaer-MT
+     - A
+     - Pesquisa agropecuária / extensão rural
+     - https://portal.mt.gov.br/app/catalog/orgao/empresa-matogrossense-de-pesquisa-assistencia-e-extensao-rural
+   * - UFMT — Programa de Pós-Graduação em Física Ambiental
+     - PPGFA/UFMT
+     - M / A
+     - Universidade / pesquisa (física ambiental, micrometeorologia)
+     - https://www.ufmt.br/curso/ppgfa/
+
+Obs.: MT **não possui centro estadual dedicado de meteorologia** equivalente a Cemtec/Simehgo; o monitoramento meteorológico/de tempo é exercido pela Defesa Civil (Monitoramento Climático) e a hidrologia pela SEMA-MT. [verificar existência de núcleo hidrometeorológico próprio na SEMA-MT]
+
+MS — Mato Grosso do Sul
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Centro de Monitoramento de Tempo, do Clima e dos Recursos Hídricos de MS (vinculado à SEMADESC)
+     - CEMTEC-MS
+     - M / H / A
+     - Órgão estadual de meteorologia/clima/recursos hídricos
+     - https://www.cemtec.ms.gov.br/
+   * - Instituto de Meio Ambiente de Mato Grosso do Sul — Gerência de Recursos Hídricos
+     - IMASUL
+     - H
+     - Recursos hídricos
+     - https://www.imasul.ms.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil de MS
+     - DC-MS
+     - M / H
+     - Defesa Civil
+     - https://www.defesacivil.ms.gov.br/
+   * - Agência de Desenvolvimento Agrário e Extensão Rural (sucessora da Empaer-MS; CEPAER)
+     - AGRAER
+     - A
+     - Extensão rural / pesquisa agropecuária
+     - https://www.agraer.ms.gov.br/
+   * - UFMS — Pós-Graduação em Tecnologias Ambientais (FAENG)
+     - UFMS/FAENG
+     - M / A
+     - Universidade / pesquisa
+     - https://faeng.ufms.br/pos-graduacao/mestrado/tecnologias-ambientais/
+
+Obs.: o CEMTEC-MS é o caso mais consolidado da região — centro estadual que integra tempo, clima **e** recursos hídricos, com rede própria de estações (também opera estação no Pantanal).
+
+Notas de verificação
+~~~~~~~~~~~~~~~~~~~~
+
+- **Confirmados em fonte oficial:** CEMTEC-MS, IMASUL, Defesa Civil MS, AGRAER (MS); SIMEHGO/CIMEHGO, SEMAD, Emater Goiás, Defesa Civil GO, LAP/IESA-UFG (GO); SEMA-MT, Defesa Civil MT, Empaer-MT, PPGFA-UFMT (MT); ADASA, Defesa Civil DF, Emater-DF, IG/UnB (DF).
+- **[verificar]:** grupo de meteorologia/climatologia específico na UnB além do IG; núcleo hidrometeorológico próprio na SEMA-MT; escopo agroclimático formal do programa Tecnologias Ambientais da UFMS.
+
+Região sudeste — ES, MG, RJ, SP
+-------------------------------
+
+Levantamento com verificação web (WebSearch) em fontes oficiais. Data: 2026-06-28.
+
+**Legenda de atuação:** M = Meteorologia/Clima/Monitoramento atmosférico · H = Hidrologia/Recursos Hídricos · A = Agrometeorologia.
+**Tipo:** Órgão estadual · Autarquia · Universidade/Grupo de pesquisa · Empresa pública/pesquisa agro · Órgão federal · Defesa Civil.
+``[verificar]`` = ponto não plenamente confirmado em fonte oficial.
+
+ES — espírito santo
+~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Instituto Capixaba de Pesquisa, Assistência Técnica e Extensão Rural — Coordenação de Meteorologia
+     - Incaper
+     - M, A
+     - Empresa pública de pesquisa/extensão agro (órgão estadual de referência em meteorologia)
+     - https://meteorologia.incaper.es.gov.br/
+   * - Agência Estadual de Recursos Hídricos
+     - Agerh
+     - H
+     - Autarquia estadual (vinculada à Seama) — monitoramento hidrológico
+     - https://agerh.es.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil do ES (no CBMES)
+     - CEPDEC/ES
+     - M, H
+     - Defesa Civil estadual (sistema de alertas "Alerta!")
+     - https://defesacivil.es.gov.br/ · https://alerta.es.gov.br/
+   * - Universidade Federal do Espírito Santo — Depto. de Engenharia Rural (CCAE, Campus Alegre) / Projeto AGROMET
+     - UFES
+     - A, M
+     - Universidade/Grupo de pesquisa (boletim agrometeorológico de Alegre)
+     - https://engenhariarural.alegre.ufes.br/ · https://blog.ufes.br/agromet/
+
+Observação ES: o Incaper opera o Sistema de Informações Agrometeorológicas (SIAG) e é a referência estadual em previsão; encaminha avisos de tempo severo à Defesa Civil. UFES com programas de pós em Oceanografia Ambiental e Eng. Agrícola (foco oceanográfico/agromet) ``[verificar]`` amplitude.
+
+MG — Minas Gerais
+~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Sistema de Meteorologia e Recursos Hídricos de Minas Gerais (operado pelo Igam)
+     - SIMGE
+     - M, H
+     - Órgão estadual / centro de monitoramento hidrometeorológico
+     - https://simge.mg.gov.br/
+   * - Instituto Mineiro de Gestão das Águas
+     - Igam
+     - H, M
+     - Autarquia estadual (Sisema) — gestão de recursos hídricos; mantém o SIMGE e o portal Infohidro
+     - https://igam.mg.gov.br/ · https://portalinfohidro.igam.mg.gov.br/
+   * - Coordenadoria Estadual de Defesa Civil de MG
+     - Cedec/MG
+     - M, H
+     - Defesa Civil estadual (Gabinete Militar; sistema/app "Emergência MG")
+     - https://www.defesacivil.mg.gov.br/ · https://www.sistema.defesacivil.mg.gov.br/
+   * - Empresa de Assistência Técnica e Extensão Rural de MG
+     - Emater-MG
+     - A
+     - Empresa pública estadual (extensão rural; orientação agroclimática)
+     - https://www.emater.mg.gov.br/
+   * - Empresa de Pesquisa Agropecuária de Minas Gerais
+     - Epamig
+     - A
+     - Empresa pública estadual de pesquisa agropecuária
+     - https://www.epamig.br/
+   * - Universidade Federal de Viçosa — Depto. de Eng. Agrícola (DEA) / Pós-Graduação em Meteorologia Aplicada
+     - UFV
+     - A, M, H
+     - Universidade/Grupo de pesquisa (Agrometeorologia, Climatologia, Micrometeorologia; GPRH em recursos hídricos)
+     - https://posmet.ufv.br/ · https://dea.ufv.br/
+
+Observação MG: o SIMGE (1997) integra dados de rede própria, ANA, CEMIG, COPASA, INMET e CPTEC/INPE — a CEMIG participa historicamente da operação ``[verificar]`` papel atual. Há também grupos de climatologia geográfica na UFMG ``[verificar]``.
+
+RJ — rio de janeiro
+~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Instituto Estadual do Ambiente — monitoramento hidrometeorológico
+     - Inea
+     - H, M
+     - Autarquia estadual (vinculada à Seas) — recursos hídricos, rede de estações e radares, boletins hidrometeorológicos
+     - https://www.inea.rj.gov.br/ar-agua-e-solo/monitoramento-hidrometeorologico/
+   * - Secretaria de Estado de Defesa Civil do RJ
+     - SEDEC-RJ
+     - M, H
+     - Defesa Civil estadual
+     - https://www.defesacivil.rj.gov.br/
+   * - Sistema Alerta Rio (Fundação GEO-Rio / Prefeitura do Rio)
+     - Alerta Rio
+     - M, H
+     - Centro municipal de monitoramento de chuvas e deslizamentos (referência regional)
+     - https://alertario.rio.rj.gov.br/ · https://www.sistema-alerta-rio.com.br/
+   * - Empresa de Assistência Técnica e Extensão Rural do RJ
+     - Emater-Rio
+     - A
+     - Empresa pública estadual (extensão rural; vinculada à SEDIPAF)
+     - https://www.emater.rj.gov.br/ · https://www.rj.gov.br/emater/
+   * - Universidade Federal do Rio de Janeiro — Depto. de Meteorologia (IGEO/CCMN); LMA e LAMMA
+     - UFRJ
+     - M, H
+     - Universidade/Grupo de pesquisa (1º curso de Meteorologia do Brasil, 1964; modelagem atmosférica/marinha)
+     - https://meteorologia.igeo.ufrj.br/ · https://igeo.ufrj.br/departamentos/meteorologia/ · https://lma.ufrj.br/
+
+Observação RJ: a Pesagro-Rio (pesquisa agropecuária estadual) foi reestruturada/incorporada à estrutura estadual ``[verificar]`` situação atual — atualmente as ações de extensão concentram-se na Emater-Rio. O Alerta Rio é municipal mas é a principal referência operacional de meteorologia na capital. Há também a UENF (Norte Fluminense) com pesquisa em clima/agro ``[verificar]``.
+
+SP — São Paulo
+~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Agência de Águas do Estado de São Paulo (sucessora do DAEE, extinto em 2024)
+     - SP Águas
+     - H
+     - Agência reguladora estadual de recursos hídricos
+     - https://www.spaguas.sp.gov.br/ · https://www.daee.sp.gov.br/
+   * - Centro Integrado de Informações Agrometeorológicas (no Instituto Agronômico)
+     - CIIAGRO / IAC
+     - A, M
+     - Instituto estadual de pesquisa agro (APTA/Secr. Agricultura) — rede de estações e zoneamento agroclimático
+     - https://www.iac.sp.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil de SP
+     - Defesa Civil SP
+     - M, H
+     - Defesa Civil estadual (CePRAM — radares; "SP Sempre Alerta")
+     - https://www.defesacivil.sp.gov.br/ · https://www.spsemprealerta.sp.gov.br/
+   * - Sistema de Alerta a Inundações de São Paulo (DAEE/SP, operado pela FCTH)
+     - SAISP / FCTH
+     - H, M
+     - Sistema estadual de alerta a inundações; Fundação Centro Tecnológico de Hidráulica (radar Ponte Nova, rede telemétrica Alto-Tietê)
+     - https://www.saisp.br/ · https://www.fcth.br/
+   * - USP — Instituto de Astronomia, Geofísica e Ciências Atmosféricas, Depto. de Ciências Atmosféricas
+     - USP/IAG
+     - M, H
+     - Universidade/Grupo de pesquisa (Meteorologia, Hidrometeorologia, sensoriamento de tempestades)
+     - https://www.iag.usp.br/atmosfericas
+   * - USP/ESALQ — Depto. de Engenharia de Biossistemas, Lab. de Agrometeorologia (LEB)
+     - ESALQ/LEB
+     - A, M
+     - Universidade/Grupo de pesquisa (agrometeorologia; série meteorológica centenária de Piracicaba)
+     - http://www.leb.esalq.usp.br/
+   * - Unicamp — Centro de Pesquisas Meteorológicas e Climáticas Aplicadas à Agricultura
+     - Cepagri
+     - A, M
+     - Universidade/Grupo de pesquisa (co-criador do Agritempo; zoneamento, monitoramento por satélite)
+     - https://cepagri.unicamp.br/
+   * - Unesp — Instituto de Pesquisas Meteorológicas / Centro de Meteorologia de Bauru
+     - IPMet/Unesp
+     - M, H
+     - Universidade/Grupo de pesquisa (radares de Bauru e Pres. Prudente; monitoramento de chuva em tempo real)
+     - https://www.ipmetradar.com.br/ · http://www.ipmet.unesp.br/
+
+Observação SP: o DAEE foi extinto em 23/09/2024 e suas funções de recursos hídricos passaram à SP Águas — mas o SAISP segue referenciado ao DAEE/operado pela FCTH ``[verificar]`` titularidade pós-extinção. Há ainda o Centro de Gerenciamento de Emergências (CGE) municipal de SP (https://www.cgesp.org) e o CEPRAM/Centro Paulista de Radares ligado à Defesa Civil.
+
+Instituições federais transversais (atuam nas 4 UFs)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Centro Nacional de Monitoramento e Alertas de Desastres Naturais (sede em São José dos Campos/SP)
+     - Cemaden
+     - M, H
+     - Órgão federal (MCTI) — sala de situação 24/7, alertas de desastres
+     - https://www.gov.br/cemaden/pt-br · http://www2.cemaden.gov.br/
+   * - Instituto Nacional de Meteorologia
+     - INMET
+     - M, A
+     - Órgão federal (MAPA) — rede de estações, previsão, agrometeorologia
+     - https://portal.inmet.gov.br/
+   * - Agência Nacional de Águas e Saneamento Básico
+     - ANA
+     - H
+     - Agência federal — monitoramento hidrológico nacional
+     - https://www.gov.br/ana/
+   * - CPTEC/INPE — Centro de Previsão de Tempo e Estudos Climáticos
+     - CPTEC/INPE
+     - M
+     - Órgão federal (MCTI; Cachoeira Paulista/SP) — previsão numérica
+     - https://www.cptec.inpe.br/
+
+Região Sul — PR, RS, SC
+-----------------------
+
+Instituições que atuam com **Meteorologia (M)**, **Hidrologia (H)** e/ou **Agrometeorologia (A)** nos 3 estados da região Sul. Todas as URLs foram confirmadas via WebSearch em fonte oficial (junho/2026), salvo marcação ``[verificar]``.
+
+Legenda da etiqueta de atuação: **M** = meteorologia/clima; **H** = hidrologia/recursos hídricos; **A** = agrometeorologia.
+
+PR — Paraná
+~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Sistema de Tecnologia e Monitoramento Ambiental do Paraná
+     - SIMEPAR
+     - M, H
+     - Órgão estadual de meteorologia / centro de monitoramento (vinculado à SEDEST)
+     - https://www.simepar.br/simepar
+   * - Instituto Água e Terra (ex-Águas Paraná / IAP / Mineropar)
+     - IAT
+     - H
+     - Órgão estadual de recursos hídricos e monitoramento hidrológico
+     - https://www.iat.pr.gov.br/
+   * - Coordenadoria Estadual de Proteção e Defesa Civil do Paraná
+     - CEPDEC
+     - M, H
+     - Defesa Civil estadual / Centro de Gerenciamento de Risco e Desastres
+     - https://www.defesacivil.pr.gov.br/
+   * - Instituto de Desenvolvimento Rural do Paraná – IAPAR-EMATER
+     - IDR-Paraná
+     - A, M
+     - Instituto agro estadual (rede agrometeorológica, boletim, atlas climático)
+     - https://www.idrparana.pr.gov.br/Pagina/Agrometeorologia-e-Clima
+   * - Laboratório de Climatologia – Depto. de Geografia, UFPR
+     - LABOCLIMA/UFPR
+     - M, A
+     - Grupo universitário (climatologia geográfica)
+     - https://terra.ufpr.br/laboclima/
+
+RS — rio grande do Sul
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Sala de Situação – Depto. de Recursos Hídricos e Saneamento, SEMA-RS
+     - SEMA-RS / DRHS
+     - M, H
+     - Órgão estadual de recursos hídricos / sala de situação (monitoramento hidrometeorológico)
+     - https://www.sema.rs.gov.br/sala-de-situacao
+   * - Centro de Monitoramento da Defesa Civil do RS (assumiu boletins/alertas da Sala de Situação em fev/2025)
+     - DC-RS
+     - M, H
+     - Defesa Civil estadual / centro de monitoramento
+     - https://www.defesacivil.rs.gov.br/
+   * - Agrometeorologia – Secretaria da Agricultura, Pecuária, Produção Sustentável e Irrigação
+     - SEAPI-RS
+     - A, M
+     - Boletins agrometeorológicos estaduais (com Emater/RS-Ascar e Irga)
+     - https://www.agricultura.rs.gov.br/agrometeorologia
+   * - Empresa de Assistência Técnica e Extensão Rural do RS / Ascar
+     - Emater/RS-Ascar
+     - A, M
+     - Instituto agro estadual (previsão e boletins agroclimáticos)
+     - https://www.emater.tche.br/ ``[verificar]``
+   * - Centro Estadual de Pesquisas em Sensoriamento Remoto e Meteorologia, UFRGS
+     - CEPSRM/UFRGS
+     - M, H, A
+     - Grupo universitário (meteorologia, agrometeorologia, recursos hídricos, sens. remoto)
+     - https://www.ufrgs.br/cepsrm/
+   * - Faculdade de Meteorologia, UFPel
+     - UFPel
+     - M, A
+     - Grupo universitário (graduação e mestrado em Meteorologia; agrometeorologia FAEM)
+     - https://wp.ufpel.edu.br/meteorologia/
+   * - Curso e Pós-Graduação em Meteorologia (PPGMET), UFSM
+     - UFSM
+     - M, H, A
+     - Grupo universitário (meteorologia, hidrometeorologia, agrometeorologia)
+     - https://www.ufsm.br/cursos/pos-graduacao/santa-maria/ppgmet
+   * - Laboratório de Estudos dos Oceanos e Clima / Cartografia e Climatologia, FURG
+     - LEOC / LaCCa-FURG
+     - M, H
+     - Grupo universitário (interação oceano-atmosfera, climatologia, eventos extremos)
+     - https://www.furg.br/
+
+SC — santa catarina
+~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+
+   * - Instituição
+     - Sigla
+     - Atuação (M/H/A)
+     - Tipo
+     - URL
+   * - Centro de Informações de Recursos Ambientais e de Hidrometeorologia de Santa Catarina (Epagri)
+     - Epagri/CIRAM
+     - M, H, A
+     - Órgão estadual de hidrometeorologia (vinculado à Epagri)
+     - https://ciram.epagri.sc.gov.br/
+   * - Secretaria de Estado da Proteção e Defesa Civil de SC – Monitoramento
+     - DC-SC
+     - M, H
+     - Defesa Civil estadual / centro de monitoramento (rede hidrometeorológica)
+     - https://monitoramento.defesacivil.sc.gov.br/
+   * - Águas SC – Sistema de Informações de Recursos Hídricos de SC (SDS)
+     - Águas SC / SIRHESC
+     - H
+     - Órgão estadual de recursos hídricos
+     - https://www.aguas.sc.gov.br/
+   * - Empresa de Pesquisa Agropecuária e Extensão Rural de SC
+     - Epagri
+     - A, M
+     - Instituto/empresa agro estadual (dado climático; opera o CIRAM)
+     - https://www.epagri.sc.gov.br/ ``[verificar]``
+   * - Curso de Graduação em Meteorologia / Laboratório de Clima e Meteorologia (Depto. Física), UFSC
+     - LABMET/UFSC
+     - M, A
+     - Grupo universitário (meteorologia)
+     - https://meteorologia.grad.ufsc.br/
+   * - Laboratório de Climatologia Aplicada (Depto. Geociências), UFSC
+     - LabClima/UFSC
+     - M
+     - Grupo universitário (climatologia geográfica, desastres)
+     - http://www.labclima.ufsc.br/
+
+Observações de verificação
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- **PR — SIMEPAR**: associação civil de interesse público sem fins lucrativos, vinculada à SEDEST; opera ~50 estações hidrometeorológicas e o portal ParanaClima. Confirmado em fonte oficial.
+- **PR — IAT**: resulta da fusão (2019) de Águas Paraná (AGUASPARANÁ), IAP e Mineropar; opera ~456 estações pluviométricas e ~168 fluviométricas. É o atual órgão estadual de recursos hídricos.
+- **RS — mudança institucional relevante (fev/2025)**: com o encerramento do contrato de serviço, a **Sala de Situação da SEMA-RS** deixou de produzir os boletins operacionais, que passaram ao **Centro de Monitoramento da Defesa Civil do RS**. O portal/marca Sala de Situação permanece sob o DRHS/SEMA. Ambos foram mantidos no levantamento por ainda figurarem como referência hidrometeorológica.
+- **RS — FEPAGRO** (Fundação Estadual de Pesquisa Agropecuária), antigo braço de pesquisa agro/met, foi **extinta/incorporada** (2017); funções agrometeorológicas estaduais hoje se distribuem entre SEAPI-RS e Emater/RS-Ascar.
+- **RS — Emater/RS-Ascar**: confirmada a atuação (previsões e boletins agroclimáticos integrados com SEAPI), mas a URL oficial (``emater.tche.br``) não foi confirmada diretamente nesta sessão — marcada ``[verificar]``.
+- **SC — Epagri/CIRAM** é o caso mais completo da região: concentra M+H+A num único órgão. URL raiz da Epagri (``epagri.sc.gov.br``) marcada ``[verificar]`` (confirmado apenas o subdomínio CIRAM).
+- **SC — Defesa Civil**: rede hidrometeorológica expandida de 42 para 172 estações (dados a cada 15 s); atua em estreita integração com Águas SC/SDS.
+- **Universidades**: UFPel e UFSM mantêm os únicos cursos de graduação plenos em Meteorologia da região Sul (UFSC tem graduação em Meteorologia mais recente). Demais grupos (UFPR-LABOCLIMA, UFRGS-CEPSRM, FURG, UFSC-LabClima) atuam via climatologia/sensoriamento remoto/oceanografia.
+- **Nº de UFs cobertas: 3** (PR, RS, SC). Cobertura completa da região Sul.

@@ -1,0 +1,32 @@
+Instrumentos de gestão de risco climático
+=========================================
+
+Zoneamento agrícola de risco climático (ZARC)
+---------------------------------------------
+
+O ZARC é um instrumento fundamental da política agrícola brasileira que identifica riscos climáticos para diferentes culturas, indicando os melhores períodos de plantio para cada município :cite:`comas2023microclima,mapa2023zoneamento`.
+
+**Características do ZARC:**
+
+- Analisa parâmetros de clima, solo e ciclos de cultivares :cite:`mapa2023zoneamento`
+- Considera riscos de deficiência hídrica, geadas, pragas e doenças :cite:`dias2018ecofisiologia`
+- Abrange mais de 40 culturas em todo o território nacional :cite:`comas2023microclima`
+- É requisito para acesso ao crédito rural e seguro agrícola :cite:`mapa2023zoneamento`
+
+.. admonition:: 🖼️ Imagem sugerida (IMG-TODO)
+   :class: tip
+
+   :Imagem ideal: Mapa do Zoneamento Agrícola de Risco Climático (ZARC) indicando janelas
+      de plantio/risco por município para uma cultura.
+   :Função: mostra concretamente o produto final do ZARC descrito na seção.
+   :Busca sugerida: "ZARC zoneamento agrícola risco climático mapa"; "agricultural climate
+      risk zoning map Brazil"
+   :Fonte provável: MAPA, Embrapa
+   :Facilidade: alta
+
+Sistemas de monitoramento
+-------------------------
+
+**Agritempo**: Sistema de monitoramento agrometeorológico que fornece informações diárias gratuitas para todos os municípios brasileiros, sendo alimentado por dados de 1.643 estações meteorológicas :cite:`costa2023monitoramento`.
+
+**AGROMET e SISDAGRO**: Plataformas do INMET que fornecem informações meteorológicas aplicadas à agricultura, incluindo previsão de chuva, temperatura e umidade para até 7 dias :cite:`inmet2022plataformas`.

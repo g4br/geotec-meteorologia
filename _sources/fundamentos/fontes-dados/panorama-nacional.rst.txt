@@ -1,0 +1,1703 @@
+Panorama nacional de fontes de dados meteorológicos
+===================================================
+
+Levantamento sistemático das fontes de dados meteorológicos, hidrológicos e
+agrometeorológicos utilizáveis no Brasil — federais, estaduais e produtos
+internacionais —, cada uma com ficha técnica (instituição, variáveis, cobertura,
+resolução, período, frequência, formato, acesso, URL e licença). Este panorama
+**complementa** as páginas :doc:`estacoes`, :doc:`gridded`,
+:doc:`satelite-meteorologico`, :doc:`radar` e :doc:`indicacao-dados`, reunindo num
+só lugar também reanálises globais, modelos de previsão, descargas atmosféricas,
+hidrologia e agrometeorologia aplicada.
+
+.. note::
+
+   Fontes e URLs confirmadas em portal oficial quando acessível (junho/2026). Campos
+   não confirmados em fonte primária estão marcados ``[verificar]``. O recorte
+   institucional por estado está em :doc:`instituicoes-por-estado`.
+
+*Cada ficha traz: instituição · variáveis · cobertura · resolução · período · frequência · formato ·
+tipo de acesso · URL oficial · licença/custo.*
+
+Lote A1 — fontes brasileiras de dados meteorológicos por ESTAÇÕES / REDES PONTUAIS
+----------------------------------------------------------------------------------
+
+Fichas técnicas das redes de medição pontual (estações automáticas, convencionais e pluviômetros).
+Números e URLs confirmados em fonte oficial via WebSearch/WebFetch em 2026-06-28. Itens não confirmados em fonte oficial estão marcados com **[verificar]**.
+
+1. INMET — BDMEP (banco de dados meteorológicos)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O BDMEP reúne as séries históricas diárias digitalizadas das estações da rede do INMET (predominantemente convencionais, e também automáticas), voltado a ensino e pesquisa. Acesso por seleção de estação + período.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - Instituto Nacional de Meteorologia (INMET) — Ministério da Agricultura e Pecuária
+   * - **Variáveis medidas**
+     - Temperatura (máx/mín/inst.), umidade relativa, pressão atmosférica, precipitação, vento (direção/velocidade/rajada), insolação, radiação, evaporação, ponto de orvalho
+   * - **Cobertura espacial**
+     - Rede INMET com mais de 700 estações no território nacional; 411 estações usadas para gerar as Normais Climatológicas [INMET administra "mais de 400/700" estações — split exato automáticas vs. convencionais: **[verificar]**]
+   * - **Resolução/densidade**
+     - Distribuição nacional, densidade variável por região **[verificar]**
+   * - **Período da série**
+     - Séries históricas que remontam, em estações antigas, ao início do séc. XX; varia por estação **[verificar]**
+   * - **Frequência**
+     - Diária (dados consolidados do BDMEP). Convencionais: 3 observações/dia
+   * - **Formato de saída**
+     - CSV / TXT (download da seleção)
+   * - **Tipo de acesso**
+     - Portal web com seleção interativa de estação e período (requer cadastro/login no novo BDMEP)
+   * - **URL oficial**
+     - https://bdmep.inmet.gov.br/ — info: https://portal.inmet.gov.br/servicos/bdmep-dados-hist%C3%B3ricos
+   * - **Licença/custo**
+     - Gratuito, dados públicos (dados governamentais abertos)
+
+2. ANA — rede hidrometeorológica nacional (RHN) / HidroWeb / SNIRH
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Banco de dados hidrometeorológico do país, acessível pelo Portal HidroWeb, integrante do SNIRH. Reúne dados de chuva, nível, vazão, climatologia, qualidade da água e sedimentos.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - Agência Nacional de Águas e Saneamento Básico (ANA); operação em parceria com SGB/CPRM e entidades estaduais
+   * - **Variáveis medidas**
+     - Precipitação (pluviométricas); nível fluvial e vazão (fluviométricas); além de climatologia, qualidade da água e sedimentos
+   * - **Cobertura espacial**
+     - RHN com mais de 23.000 estações cadastradas (públicas e privadas). ANA gerencia diretamente 4.841 estações: 2.717 pluviométricas + 2.024 fluviométricas
+   * - **Resolução/densidade**
+     - Cobertura nacional por bacias hidrográficas; densidade variável por UF (há dataset de estações por UF nos Dados Abertos ANA)
+   * - **Período da série**
+     - Séries longas, muitas com início entre décadas de 1920–1970, variando por estação **[verificar período inicial exato]**
+   * - **Frequência**
+     - Pluviométrica: diária (e horária em PCDs telemétricas); fluviométrica: leituras diárias de régua / registro telemétrico **[verificar granularidade telemétrica]**
+   * - **Formato de saída**
+     - CSV, MDB/Access (Hidro), e via API/serviços do SNIRH; Dados Abertos em CSV/GeoJSON
+   * - **Tipo de acesso**
+     - Portal HidroWeb (download por estação), API HidroWeb/SNIRH, e Portal de Dados Abertos da ANA
+   * - **URL oficial**
+     - https://www.snirh.gov.br/hidroweb/ — Dados Abertos: https://dadosabertos.ana.gov.br/
+   * - **Licença/custo**
+     - Gratuito, dados públicos abertos
+
+3. CEMADEN — rede de pluviômetros automáticos e PCDs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Rede de monitoramento de chuva voltada a alertas de desastres naturais (deslizamentos/inundações), concentrada em áreas de risco municipais. Inclui pluviômetros automáticos, estações hidrológicas e PCDs.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - Centro Nacional de Monitoramento e Alertas de Desastres Naturais (CEMADEN) — MCTI
+   * - **Variáveis medidas**
+     - Precipitação acumulada (mm) nos pluviômetros automáticos; estações hidrológicas medem nível/chuva; estações meteorológicas (PCDs) com variáveis adicionais **[verificar conjunto completo das PCDs]**
+   * - **Cobertura espacial**
+     - 1.295 municípios monitorados (mar/2026; ampliados de 1.133); meta de 2.095 municípios suscetíveis. Nº total de pluviômetros automáticos instalados: **[verificar]** (ordem de milhares; ~1.150 pluviômetros semiautomáticos doados em +300 municípios)
+   * - **Resolução/densidade**
+     - Instalação próxima a áreas de risco; prioridade a 821 municípios de gestão de risco
+   * - **Período da série**
+     - A partir de ~2011/2014 (início da operação do CEMADEN); varia por estação **[verificar]**
+   * - **Frequência**
+     - Sub-horária: transmissão de acumulado de chuva a cada 10 minutos
+   * - **Formato de saída**
+     - CSV (download de série histórica mensal por estação)
+   * - **Tipo de acesso**
+     - Mapa Interativo (download por UF/município, mês e ano); portal web
+   * - **URL oficial**
+     - http://www2.cemaden.gov.br/mapainterativo/ (mapa) — http://www2.cemaden.gov.br/pluviometros-automatico/
+   * - **Licença/custo**
+     - Gratuito, dados públicos
+
+4. INMET — estações automáticas (rede PCD/SONABRA) e dados históricos horários
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Rede de estações meteorológicas automáticas (PCDs do sistema SONABRA) com dados horários. O portal "Dados Históricos" disponibiliza pacotes anuais (desde 2000) e o portal Tempo mostra os últimos 90 dias.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - INMET — Coordenação de Planejamento e Operação da Rede Meteorológica (COPREM)
+   * - **Variáveis medidas**
+     - Temperatura (inst./máx/mín), umidade relativa (inst./máx/mín), pressão atmosférica (inst./máx/mín), precipitação, vento (direção/velocidade/rajada), radiação global, ponto de orvalho
+   * - **Cobertura espacial**
+     - Rede de estações automáticas distribuída nacionalmente (parte das +700 estações INMET); nº exato de automáticas: **[verificar — catálogo em CSV em portal.inmet.gov.br/paginas/catalogoaut]**
+   * - **Resolução/densidade**
+     - Cobertura nacional, densidade variável por região **[verificar]**
+   * - **Período da série**
+     - Pacotes anuais a partir de 2000 (Dados Históricos); tempo real: últimos 90 dias no portal Tempo
+   * - **Frequência**
+     - Horária (estações automáticas)
+   * - **Formato de saída**
+     - CSV (dentro de ZIP anual, 1 CSV por estação; metadados nas primeiras linhas: região, UF, nome, código WMO, coordenadas, altitude, data de fundação)
+   * - **Tipo de acesso**
+     - Download HTTP de pacotes anuais (padrão ``https://portal.inmet.gov.br/uploads/dadoshistoricos/{ano}.zip``); portal Tempo para tempo real
+   * - **URL oficial**
+     - https://portal.inmet.gov.br/dadoshistoricos — tempo real: https://tempo.inmet.gov.br/TabelaEstacoes/
+   * - **Licença/custo**
+     - Gratuito, dados públicos abertos
+
+5. visão geral — redes estaduais agregadas (panorama)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Além das redes federais (INMET, ANA, CEMADEN), o Brasil possui um conjunto extenso de redes estaduais e regionais que densificam a malha de medição pontual: institutos e fundações estaduais de meteorologia e recursos hídricos (p.ex. INEMA/SEMARH, IAC/CIIAGRO em SP, SIMEPAR no PR, Defesa Civil estaduais, FUNCEME no CE, AESA na PB, INEMA na BA, entre outras), além de centros universitários e redes de defesa civil municipais. Essas redes operam estações automáticas e convencionais, pluviômetros e PCDs com variáveis e frequências próprias, frequentemente alimentando também a RHN/ANA e o CEMADEN como entidades parceiras. A cobertura, formatos e políticas de acesso são heterogêneos (portais próprios, APIs, download ou solicitação), e o detalhamento por estado/instituição será tratado em parte específica do levantamento.
+
+URLs oficiais consultadas
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- INMET — BDMEP: https://bdmep.inmet.gov.br/
+- INMET — BDMEP (info): https://portal.inmet.gov.br/servicos/bdmep-dados-hist%C3%B3ricos
+- INMET — Estações Automáticas (serviço): https://portal.inmet.gov.br/servicos/esta%C3%A7%C3%B5es-autom%C3%A1ticas
+- INMET — Estações Convencionais: https://portal.inmet.gov.br/servicos/esta%C3%A7%C3%B5es-convencionais
+- INMET — Catálogo de Estações Automáticas: https://portal.inmet.gov.br/paginas/catalogoaut
+- INMET — Catálogo de Estações Convencionais: https://portal.inmet.gov.br/paginas/catalogoman
+- INMET — Dados Históricos: https://portal.inmet.gov.br/dadoshistoricos
+- INMET — Tabela de Estações (tempo real): https://tempo.inmet.gov.br/TabelaEstacoes/
+- INMET — Sobre meteorologia/rede: https://portal.inmet.gov.br/sobre-meteorologia
+- ANA — Portal HidroWeb: https://www.snirh.gov.br/hidroweb/
+- ANA — Dados Abertos (estações por UF): https://dadosabertos.ana.gov.br/
+- ANA/SNIRH — Metadados RHN: https://metadados.snirh.gov.br/geonetwork/srv/api/records/f85dbf06-a869-414c-afc5-bb01869e9156
+- SGB/CPRM — RHN: https://www.sgb.gov.br/publique///Apresentacao/Rede-Hidrometeorologica-Nacional---RHN-304.html
+- CEMADEN — Pluviômetros Automáticos: http://www2.cemaden.gov.br/pluviometros-automatico/
+- CEMADEN — Projeto Pluviômetros Automáticos: http://www2.cemaden.gov.br/pluviometrosautomaticos/
+- CEMADEN — Mapa Interativo: https://mapainterativo.cemaden.gov.br/
+- CEMADEN — Estações hidrológicas: http://www2.cemaden.gov.br/estacoes-hidrologicas/
+- CEMADEN — Notícia expansão 1.295 municípios: https://www.gov.br/cemaden/pt-br/assuntos/noticias-cemaden/cemaden-expande-rede-de-monitoramento-e-passa-a-monitorar-1-295-municipios
+
+Lote A2 — produtos de dados meteorológicos em grade (nacionais) e reanálises / produtos globais usáveis no Brasil
+-----------------------------------------------------------------------------------------------------------------
+
+Fichas técnicas verificadas em fontes oficiais (WebSearch/WebFetch) em 2026-06-28. Campos não confirmados na fonte oficial estão marcados como **[verificar]**.
+
+Total: **11 produtos** — 3 nacionais (MERGE, SAMeT, BR-DWGD) + 8 globais (ERA5, ERA5-Land, AgERA5, NASA POWER, IMERG/GPM, MERRA-2, CHIRPS, TerraClimate).
+
+Parte 1 — produtos nacionais (Brasil)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+MERGE (CPTEC/INPE)
+~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - CPTEC/INPE — Centro de Previsão de Tempo e Estudos Climáticos / Instituto Nacional de Pesquisas Espaciais (contato técnico: J. R. Rozante)
+   * - **Variáveis**
+     - Precipitação (combinação de pluviômetros/estações + estimativa por satélite). Derivados: climatologia, anomalias, dias sem chuva; índices SPI/SPEI/PET em atualização
+   * - **Cobertura espacial (extensão)**
+     - América do Sul, com foco no Brasil. Limites lat/lon exatos **[verificar]**
+   * - **Resolução espacial**
+     - 0,1° (~10 km), herdada do IMERG-GPM (versão original Rozante et al. 2010 usava 0,25° com TRMM 3B42RT). README oficial afirma que a resolução não mudou na atualização; valor numérico não impresso no README **[verificar nominal]**
+   * - **Período / série temporal**
+     - 01/01/1998 até o presente. Histórico consolidado disponível: 1998–2024. Confirmado no README oficial (26/05/2025)
+   * - **Frequência temporal**
+     - Diária (produto principal) + climatologia; dados horários existem, em atualização
+   * - **Formato**
+     - GRIB2 (diários); NetCDF (climatologia)
+   * - **Tipo de acesso**
+     - FTP/HTTP (download direto) + serviço STAC (data.inpe.br)
+   * - **URL oficial**
+     - https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/DAILY/ — Portal STAC: https://data.inpe.br/dados/merge/ — README: https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/MERGE_READ-ME.pdf
+   * - **Licença / custo**
+     - Acesso aberto e gratuito (dados públicos INPE). Licença formal não declarada no README **[verificar]**
+
+Referências: :cite:`rozante:2010,rozante:2024` (atualização para IMERG-GPM V07B).
+
+SAMeT (CPTEC/INPE)
+~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - CPTEC/INPE
+   * - **Variáveis**
+     - Temperatura do ar máxima (Tmax), mínima (Tmin) e média (Tmed). Método: observações de T a 2 m + reanálise ERA5, com correção por lapse rate
+   * - **Cobertura espacial (extensão)**
+     - América do Sul
+   * - **Resolução espacial**
+     - 5 km (~0,05°). Confirmado no README oficial
+   * - **Período / série temporal**
+     - Série diária inicia em 2000 e vai até o presente (regenerada conforme disponibilidade do ERA5, defasagem ~5 dias); climatologia 2000–2020. Data exata de início da série diária **[verificar]**
+   * - **Frequência temporal**
+     - Diária + produtos climatológicos
+   * - **Formato**
+     - NetCDF
+   * - **Tipo de acesso**
+     - FTP/HTTP (download direto) + STAC (data.inpe.br)
+   * - **URL oficial**
+     - https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/DAILY — STAC: https://data.inpe.br/stac/browser/collections/samet_daily-1 — README: https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/Read-me.pdf
+   * - **Licença / custo**
+     - Acesso aberto e gratuito (dados públicos INPE). Licença formal não declarada **[verificar]**
+
+Referência: :cite:`rozante:2022`.
+
+BR-DWGD (xavier et al. 2016 / 2022)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - A. C. Xavier e colaboradores — UFES (Universidade Federal do Espírito Santo)
+   * - **Variáveis**
+     - Precipitação (pr); Tmax; Tmin; radiação solar (Rs); umidade relativa (RH); vento a 2 m (u2); evapotranspiração de referência (ETo). Sem Tmédia nativa
+   * - **Cobertura espacial (extensão)**
+     - Território brasileiro: 33,85°S–5,35°N; 73,85°W–34,85°W
+   * - **Resolução espacial**
+     - 0,1° × 0,1° (versão 2022; original Xavier et al. 2016 era 0,25°)
+   * - **Período / série temporal**
+     - Inicia em 01/01/1961. Paper 2022 cobre 1961–2020; site indica extensão até dez/2025 — verificar data-fim no download **[verificar]**
+   * - **Frequência temporal**
+     - Diária (também coleção mensal no Google Earth Engine)
+   * - **Formato**
+     - NetCDF (ZIP e não compactado), particionado em intervalos de ~20 anos
+   * - **Tipo de acesso**
+     - Download direto (Google Drive, Dropbox); GitHub (códigos Python); Google Earth Engine
+   * - **URL oficial**
+     - https://sites.google.com/site/alexandrecandidoxavierufes/brazilian-daily-weather-gridded-data — GitHub: https://github.com/AlexandreCandidoXavier/BR-DWGD
+   * - **Licença / custo**
+     - Gratuito / acesso aberto. Licença formal não declarada explicitamente **[verificar]**
+
+Referências: :cite:`xavier:2022,xavier:2016`.
+
+Parte 2 — reanálises / produtos globais
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ERA5 (ECMWF / copernicus)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - ECMWF via Copernicus Climate Change Service (C3S) / Copernicus Climate Data Store (CDS)
+   * - **Variáveis**
+     - Atmosféricas, de superfície terrestre e de ondas oceânicas (T 2m, precipitação total, vento, pressão, radiação, umidade, solo, ondas, etc.) — "single levels"
+   * - **Cobertura espacial (extensão)**
+     - Global
+   * - **Resolução espacial**
+     - 0,25° × 0,25° (~31 km) atmosfera; 0,5° × 0,5° ondas oceânicas
+   * - **Período / série temporal**
+     - 1940 até o presente (atualização diária, latência ~5 dias)
+   * - **Frequência temporal**
+     - Horária
+   * - **Formato**
+     - GRIB (conversível para NetCDF na requisição via CDS)
+   * - **Tipo de acesso**
+     - Copernicus Climate Data Store — formulário web + CDS API (programático)
+   * - **URL oficial**
+     - https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels
+   * - **Licença / custo**
+     - CC-BY (Copernicus) — gratuito. DOI: 10.24381/cds.adbb2d47
+
+ERA5-Land (ECMWF / copernicus)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - ECMWF via Copernicus Climate Change Service (C3S) / CDS
+   * - **Variáveis**
+     - Superfície terrestre: T 2m, umidade, precipitação, evaporação, escoamento, neve, radiação; umidade/temperatura do solo em 4 camadas (0–7, 7–28, 28–100, 100–289 cm)
+   * - **Cobertura espacial (extensão)**
+     - Global (apenas pontos de terra)
+   * - **Resolução espacial**
+     - 0,1° × 0,1° (nativa ~9 km)
+   * - **Período / série temporal**
+     - Janeiro de 1950 até o presente (atualização diária)
+   * - **Frequência temporal**
+     - Horária
+   * - **Formato**
+     - GRIB (conversível para NetCDF via CDS)
+   * - **Tipo de acesso**
+     - Copernicus Climate Data Store — formulário web + CDS API
+   * - **URL oficial**
+     - https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land
+   * - **Licença / custo**
+     - CC-BY (Copernicus) — gratuito
+
+AgERA5 (copernicus — indicadores agrometeorológicos)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - Copernicus Climate Change Service (C3S) / ECMWF — via CDS
+   * - **Variáveis**
+     - ~15 indicadores agroclimáticos diários derivados do ERA5: T do ar (2m: média/máx/mín e por períodos do dia), precipitação, vento (10m), umidade relativa, radiação solar/onda curta, profundidade de neve, evapotranspiração de referência, pressão de vapor
+   * - **Cobertura espacial (extensão)**
+     - Global
+   * - **Resolução espacial**
+     - 0,1° × 0,1° (downscaling topográfico via regressão treinada no HRES ECMWF)
+   * - **Período / série temporal**
+     - 1979 até o presente. Versão atual v2.0 (publicada 15/05/2025)
+   * - **Frequência temporal**
+     - Diária (agregada ao fuso local; atualização diária)
+   * - **Formato**
+     - NetCDF-4 (CF Convention v1.7)
+   * - **Tipo de acesso**
+     - Copernicus Climate Data Store — formulário web + CDS API; ferramenta R ``ag5Tools``
+   * - **URL oficial**
+     - https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators
+   * - **Licença / custo**
+     - CC-BY (Copernicus) — gratuito
+
+NASA POWER
+~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - NASA Langley Research Center (LaRC) — POWER Project. Meteorologia derivada de MERRA-2; solar de GEWEX SRB e CERES/FLASHFlux
+   * - **Variáveis**
+     - Parâmetros agroclimáticos, meteorológicos (T, umidade, precipitação, vento, pressão) e de radiação solar — orientados a energia renovável, agricultura e edificações
+   * - **Cobertura espacial (extensão)**
+     - Global
+   * - **Resolução espacial**
+     - 0,5° × 0,625° (meteorologia); 1° × 1° (parâmetros solares)
+   * - **Período / série temporal**
+     - Meteorologia: 1981 até o ano anterior (fonte MERRA-2). Solar: 1984 ao presente (~quase tempo real via FLASHFlux)
+   * - **Frequência temporal**
+     - Horária, diária, mensal e climatologia
+   * - **Formato**
+     - CSV, JSON, NetCDF, ASCII (via API); GeoTIFF em alguns serviços
+   * - **Tipo de acesso**
+     - API REST pública (sem login) + portal/Data Access Viewer. Possui rate limiting (HTTP 429)
+   * - **URL oficial**
+     - https://power.larc.nasa.gov/ — Docs API: https://power.larc.nasa.gov/docs/services/api/
+   * - **Licença / custo**
+     - Gratuito; dados abertos NASA (domínio público). Texto de licença formal não destacado na página **[verificar]**
+
+IMERG / GPM (NASA / JAXA)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - NASA (Goddard Space Flight Center) + JAXA. Distribuição: NASA GES DISC / PPS
+   * - **Variáveis**
+     - Precipitação (taxa e acumulado; estimativa multi-satélite combinada micro-ondas + IR)
+   * - **Cobertura espacial (extensão)**
+     - 60°N–60°S (com IR); V07 adiciona micro-ondas em altas latitudes até os polos
+   * - **Resolução espacial**
+     - 0,1° × 0,1° (~10 km no Equador)
+   * - **Período / série temporal**
+     - Junho/2000 ao presente (era TRMM 2000–2014 + era GPM 2014–presente)
+   * - **Frequência temporal**
+     - 30 min, diária e mensal. Três runs: Early (~4 h), Late (~12–14 h), Final (~2,5–3,5 meses, calibrado com pluviômetros GPCC)
+   * - **Formato**
+     - HDF5 (nativo), NetCDF, GeoTIFF
+   * - **Tipo de acesso**
+     - Download via GES DISC / Earthdata (login Earthdata); PPS FTP; Giovanni; OPeNDAP; AWS Open Data
+   * - **URL oficial**
+     - https://gpm.nasa.gov/data/imerg — GES DISC: https://disc.gsfc.nasa.gov/
+   * - **Licença / custo**
+     - Gratuito; dados abertos NASA (requer registro Earthdata). Licença formal explícita não citada **[verificar]**
+
+MERRA-2 (NASA GMAO)
+~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - NASA Global Modeling and Assimilation Office (GMAO), GSFC. Modelo GEOS-5 (v5.12.4). Arquivo: GES DISC
+   * - **Variáveis**
+     - Reanálise atmosférica completa — T, vento, umidade, pressão, fluxos de superfície, radiação, aerossóis, precipitação; níveis de modelo/pressão
+   * - **Cobertura espacial (extensão)**
+     - Global
+   * - **Resolução espacial**
+     - 0,5° × 0,625° (grade 361 × 576); 72 níveis de modelo ou 42 de pressão (nativa ~50 km)
+   * - **Período / série temporal**
+     - 01/01/1980 ao presente
+   * - **Frequência temporal**
+     - Horária, 3-horária e mensal (instantâneas e médias temporais)
+   * - **Formato**
+     - NetCDF-4
+   * - **Tipo de acesso**
+     - Download via GES DISC / Earthdata (login Earthdata); OPeNDAP; Giovanni
+   * - **URL oficial**
+     - https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/ — Catálogo: https://disc.gsfc.nasa.gov/datasets?project=MERRA-2
+   * - **Licença / custo**
+     - Gratuito; dados abertos NASA (requer registro Earthdata). Licença formal explícita não citada **[verificar]**
+
+CHIRPS (climate hazards center, UCSB)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - Climate Hazards Center (CHC), University of California, Santa Barbara (UCSB), em colaboração com USGS/EROS
+   * - **Variáveis**
+     - Precipitação (acumulado de chuva, mm)
+   * - **Cobertura espacial (extensão)**
+     - 50°S–50°N, todas as longitudes (quase-global); recortes regionais disponíveis
+   * - **Resolução espacial**
+     - 0,05° (~5 km) e 0,25° (~25 km) — subpastas ``p05/`` e ``p25/``
+   * - **Período / série temporal**
+     - 1981 até quase-presente
+   * - **Frequência temporal**
+     - Diária, pentadal (5 d), dekadal (10 d), mensal, bimestral, trimestral e anual
+   * - **Formato**
+     - GeoTIFF, NetCDF e COG. BIL apenas legado — não consta no diretório atual **[verificar BIL]**
+   * - **Tipo de acesso**
+     - Data portal HTTP/diretório (data.chc.ucsb.edu); Google Earth Engine; ClimateSERV; USGS Early Warning
+   * - **URL oficial**
+     - https://www.chc.ucsb.edu/data/chirps — Portal: https://data.chc.ucsb.edu/products/CHIRPS-2.0/
+   * - **Licença / custo**
+     - Domínio público (copyright renunciado); gratuito
+
+Nota de versão: CHIRPS v3 disponível; produção da v2.0 será encerrada após dez/2026.
+
+TerraClimate (university of idaho)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - **Instituição**
+     - Climatology Lab, University of Idaho (Abatzoglou et al. 2018, Scientific Data)
+   * - **Variáveis**
+     - Precipitação; Tmax; Tmin; pressão de vapor; radiação solar de onda curta; vento. Derivadas: PET (Penman-Monteith ASCE, corrigida p/ CO2), AET, runoff, déficit hídrico climático (CWD), umidade do solo, SWE (neve), PDSI, VPD
+   * - **Cobertura espacial (extensão)**
+     - Global — superfícies terrestres
+   * - **Resolução espacial**
+     - ~4 km (1/24°)
+   * - **Período / série temporal**
+     - 1958 ao presente (artigo original 1958–2015; estendida — atualmente até ~2024/2025)
+   * - **Frequência temporal**
+     - Mensal
+   * - **Formato**
+     - NetCDF (NETCDF4, desde ago/2019)
+   * - **Tipo de acesso**
+     - Servidor THREDDS (OPeNDAP/NCSS); download direto NetCDF; scripts wget; Google Earth Engine; Microsoft Planetary Computer; ClimateEngine.org
+   * - **URL oficial**
+     - https://www.climatologylab.org/terraclimate.html
+   * - **Licença / custo**
+     - Domínio público — Creative Commons CC0; gratuito
+
+Referência: :cite:`abatzoglou:2018`.
+
+URLs oficiais consultadas
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Nacionais (CPTEC/INPE, UFES)**
+
+- https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/DAILY/
+- https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/CLIMATOLOGY/
+- https://ftp.cptec.inpe.br/modelos/tempo/MERGE/GPM/MERGE_READ-ME.pdf
+- https://data.inpe.br/dados/merge/
+- https://doi.org/10.1175/2010WAF2222325.1
+- https://doi.org/10.3390/rs16244722 (Rozante 2024)
+- https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/DAILY
+- https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/CLIMATOLOGY/
+- https://ftp.cptec.inpe.br/modelos/tempo/SAMeT/Read-me.pdf
+- https://data.inpe.br/stac/browser/collections/samet_daily-1
+- https://doi.org/10.1002/joc.7356 (Rozante et al. 2022, SAMeT)
+- https://sites.google.com/site/alexandrecandidoxavierufes/brazilian-daily-weather-gridded-data
+- https://github.com/AlexandreCandidoXavier/BR-DWGD
+- https://gee-community-catalog.org/projects/br_dwgd/
+- https://doi.org/10.1002/joc.7731 (Xavier et al. 2022, BR-DWGD)
+- https://doi.org/10.1002/joc.4518 (Xavier et al. 2016)
+
+**Globais (Copernicus / NASA / UCSB / U. Idaho)**
+
+- https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels
+- https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land
+- https://cds.climate.copernicus.eu/datasets/sis-agrometeorological-indicators
+- https://power.larc.nasa.gov/
+- https://power.larc.nasa.gov/docs/services/api/
+- https://gpm.nasa.gov/data/imerg
+- https://gpm.nasa.gov/data
+- https://disc.gsfc.nasa.gov/
+- https://gmao.gsfc.nasa.gov/reanalysis/MERRA-2/
+- https://disc.gsfc.nasa.gov/datasets?project=MERRA-2
+- https://www.chc.ucsb.edu/data/chirps
+- https://data.chc.ucsb.edu/products/CHIRPS-2.0/
+- https://www.climatologylab.org/terraclimate.html
+- https://www.nature.com/articles/sdata2017191 (Abatzoglou et al. 2018)
+
+Lote A3 — fontes de satélite, radar e descargas atmosféricas (Brasil)
+---------------------------------------------------------------------
+
+Fichas técnicas verificadas em fontes oficiais (WebSearch/WebFetch, jun/2026). Campos não confirmados em fonte oficial estão marcados com **[verificar]**.
+
+SATÉLITE
+~~~~~~~~
+
+1. GOES-16 / GOES-19 (ABI + GLM) — NOAA/NASA via AWS S3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Série GOES-R (geoestacionária). Em 04/04/2025 o GOES-19 foi declarado o GOES-East operacional; a distribuição de dados do GOES-16 foi encerrada após a transição. GOES-18 é o GOES-West operacional.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - NOAA / NASA (NESDIS); distribuição via NOAA Open Data Dissemination (NODD) no AWS
+   * - Variáveis/produtos
+     - ABI: radiâncias L1b, Cloud & Moisture Imagery (CMIP/MCMIP, L2), produtos derivados (temperatura de topo de nuvem, fogo/incêndios, vento, etc.); GLM: descargas totais (events/groups/flashes, L2)
+   * - Cobertura
+     - Disco completo das Américas e oceanos adjacentes (GOES-East centrado ~75°W cobre todo o Brasil)
+   * - Resolução espacial
+     - ABI: 0,5 km (banda 2 visível), 1 km (visível/NIR), 2 km (IR); GLM: ~10 km (near-uniform)
+   * - Resolução temporal
+     - Full Disk 10 min (Mode 6), CONUS 5 min, Mesoescala 1 min; GLM contínuo (refresh < 20 s)
+   * - Período
+     - GOES-16 ABI: início 2018 a 2025 (arquivo no AWS); GOES-19: desde 2025
+   * - Frequência
+     - Tempo real (feed contínuo)
+   * - Formato
+     - netCDF4
+   * - Tipo de acesso
+     - Bucket público AWS S3 (``s3://noaa-goes16``, ``s3://noaa-goes19``); sem credenciais
+   * - URL oficial
+     - https://registry.opendata.aws/noaa-goes/ ; https://www.goes-r.gov/spacesegment/glm.html
+   * - Licença/custo
+     - Domínio público (dados NOAA); gratuito (custos AWS apenas se sair da região)
+
+2. meteosat (SEVIRI / MTG-FCI) — EUMETSAT
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Cobertura do Brasil é marginal/oblíqua (satélite a 0°, sobre a África); útil de forma limitada para a borda leste/Atlântico.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - EUMETSAT
+   * - Variáveis/produtos
+     - MSG/SEVIRI L1.5 (12 canais); MTG-I/FCI L1c (16 canais), produtos L2 (ASR etc.)
+   * - Cobertura
+     - Disco completo centrado em 0° (Europa, África, Atlântico); Brasil apenas na borda oeste do disco — alta obliquidade
+   * - Resolução espacial
+     - SEVIRI 3 km no SSP (1 km HRV); FCI 1–2 km no SSP (canal-dependente)
+   * - Resolução temporal
+     - SEVIRI 15 min (full disk), 5 min rapid scan (Europa); FCI 10 min full disk
+   * - Período
+     - MSG/SEVIRI desde 2004; MTG-I1 em operação (lançado 2022)
+   * - Frequência
+     - Tempo quase real (NRT)
+   * - Formato
+     - netCDF / nativo; customização via Data Tailor
+   * - Tipo de acesso
+     - EUMETSAT Data Store (API/EUMDAC CLI+Python), EUMETCast, EUMETView
+   * - URL oficial
+     - https://data.eumetsat.int/ ; https://user.eumetsat.int/
+   * - Licença/custo
+     - Gratuito mediante registro (EO Portal)
+
+3. MODIS (terra/aqua) e VIIRS (Suomi-NPP/NOAA-20) — NASA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - NASA (LP DAAC / Earthdata)
+   * - Variáveis/produtos
+     - MODIS: NDVI/EVI (MOD13/MYD13), LST/Emissividade (MOD11/MYD11), reflectância (MOD09); VIIRS: NDVI (VNP13), LST (VNP21), reflectância (VNP09)
+   * - Cobertura
+     - Global (inclui todo o Brasil)
+   * - Resolução espacial
+     - MODIS NDVI: 250 m / 500 m / 1 km; MODIS LST: 1 km (e 6 km / 0,05° CMG); VIIRS NDVI/LST: 500 m / 1 km
+   * - Resolução temporal
+     - NDVI: composições 16 dias (e diário); LST: diário, 8 dias, mensal
+   * - Período
+     - MODIS Terra desde 2000, Aqua desde 2002 (Coleção 6.1); VIIRS desde 2012 (Coleção 2)
+   * - Frequência
+     - Diária (revisita ~1–2 dias); produtos compostos liberados conforme cadência
+   * - Formato
+     - HDF-EOS / netCDF / Cloud-Optimized (GeoTIFF via AppEEARS)
+   * - Tipo de acesso
+     - Earthdata Search / portal LP DAAC, AppEEARS, APIs (CMR), AWS (LP DAAC Cloud)
+   * - URL oficial
+     - https://www.earthdata.nasa.gov/ ; https://lpdaac.usgs.gov/
+   * - Licença/custo
+     - Domínio público; gratuito com login Earthdata
+
+4. sentinel-2 / sentinel-3 — ESA/Copernicus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - ESA / Comissão Europeia (programa Copernicus)
+   * - Variáveis/produtos
+     - Sentinel-2 MSI: reflectância L1C/L2A (13 bandas), NDVI/índices agro; Sentinel-3 OLCI/SLSTR/SYN: reflectância, NDVI/OGVI, LST/temperatura de superfície marítima
+   * - Cobertura
+     - Global (inclui Brasil)
+   * - Resolução espacial
+     - Sentinel-2: 10 m / 20 m / 60 m (por banda); Sentinel-3 OLCI: 300 m; SLSTR: 500 m (VIS/NIR) e 1 km (TIR)
+   * - Resolução temporal
+     - Sentinel-2: revisita ~5 dias no equador (constelação); Sentinel-3: ~1–2 dias
+   * - Período
+     - Sentinel-2A desde 2015 (2B 2017, 2C 2024); Sentinel-3A desde 2016 (3B 2018)
+   * - Frequência
+     - Aquisição sistemática contínua
+   * - Formato
+     - SAFE / JPEG2000 (S2); netCDF (S3); GeoTIFF via APIs
+   * - Tipo de acesso
+     - Copernicus Data Space Ecosystem: Copernicus Browser, APIs (OData, STAC, Sentinel Hub, openEO)
+   * - URL oficial
+     - https://dataspace.copernicus.eu/
+   * - Licença/custo
+     - Gratuito e aberto (licença Copernicus) mediante registro
+
+RADAR
+~~~~~
+
+5. REDEMET — DECEA / comando da aeronáutica
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - DECEA — Departamento de Controle do Espaço Aéreo (Comando da Aeronáutica / COMAER)
+   * - Variáveis/produtos
+     - Imagens de eco de radar meteorológico (ex.: MAXCAPPI / CAPPI); além de METAR, TAF, satélite, SIGWX, etc.
+   * - Cobertura
+     - Rede nacional de radares (radares COMAER + parceiros), com foco em navegação aérea
+   * - Resolução espacial
+     - Produtos de imagem georreferenciada **[verificar]** (alcance típico de radar até ~400 km)
+   * - Resolução temporal
+     - Atualização da ordem de minutos **[verificar]** valor exato por produto
+   * - Período
+     - Operacional (histórico via portal) **[verificar]** profundidade de arquivo
+   * - Frequência
+     - Tempo quase real
+   * - Formato
+     - Imagem (PNG) georreferenciada via API/portal
+   * - Tipo de acesso
+     - API-REDEMET (REST, requer chave de API gratuita); portal web e autoatendimento
+   * - URL oficial
+     - https://redemet.decea.mil.br/ ; https://ajuda.decea.mil.br/base-de-conhecimento/api-redemet-produtos-radar/
+   * - Licença/custo
+     - Gratuito mediante cadastro/chave de API
+
+6. radares CEMADEN e radares estaduais (simepar, ipmet)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - CEMADEN/MCTI (rede federal); Simepar (PR); IPMet/UNESP (Bauru, SP)
+   * - Variáveis/produtos
+     - Refletividade, produtos de precipitação, CAPPI/mosaico; CEMADEN com radares dupla polarização
+   * - Cobertura
+     - CEMADEN: 9 radares dupla-pol (Natal-RN, Petrolina-PE, Salvador-BA, Jaraguari-MS, São Francisco-MG, Maceió-AL, Santa Teresa-ES, Três Marias-MG, Almenara-MG), raio até 400 km; Simepar: radar banda S em Teixeira Soares (PR), alcance até 480 km (PR, SC, sul-SP, norte-RS); IPMet: radares banda S em Bauru e Presidente Prudente (SP)
+   * - Resolução espacial
+     - Dependente do radar/produto **[verificar]** valores específicos
+   * - Resolução temporal
+     - Simepar: ~10 min; CEMADEN/IPMet **[verificar]**
+   * - Período
+     - CEMADEN: radares instalados a partir de ~2014; Simepar: radar desde out/1998; IPMet: desde décadas (operacional)
+   * - Frequência
+     - Tempo real
+   * - Formato
+     - Imagem/mosaico web; dados brutos sob demanda (CEMADEN) **[verificar]** formato
+   * - Tipo de acesso
+     - CEMADEN: Mapa Interativo (visualização) + dados brutos por solicitação (radar@cemaden.gov.br); Simepar: portal web; IPMet: portal web (ipmetradar.com.br)
+   * - URL oficial
+     - http://www2.cemaden.gov.br/radares-meteorologicos-2/ ; https://mapainterativo.cemaden.gov.br/ ; https://www.simepar.br/ ; https://www.ipmetradar.com.br/
+   * - Licença/custo
+     - CEMADEN: gratuito (dados brutos por solicitação); Simepar/IPMet: visualização gratuita, dados sob solicitação/condições **[verificar]** licença formal
+
+DESCARGAS ATMOSFÉRICAS (RAIOS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+7. brasildat — ELAT/INPE (e parceiros, incl. climatempo/earth networks)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - ELAT/INPE (operação científica), em parceria com diversas instituições; rede integrada à tecnologia Earth Networks/Climatempo **[verificar]** detalhe do arranjo atual
+   * - Variáveis/produtos
+     - Descargas nuvem-solo e nuvem-nuvem (intra/inter-nuvem): tipo, polaridade, intensidade (pico de corrente), localização e horário; correção por modelo de eficiência de detecção do ELAT
+   * - Cobertura
+     - Grande parte do território brasileiro (terceira maior rede do mundo, maior dos Trópicos)
+   * - Resolução espacial
+     - Precisão de localização **[verificar]** valor oficial (ordem de centenas de metros a km)
+   * - Resolução temporal
+     - Detecção em tempo real (eventos individuais)
+   * - Período
+     - Rede operacional desde ~final dos anos 2000 **[verificar]** ano oficial de início
+   * - Frequência
+     - Contínua / tempo real
+   * - Formato
+     - Dados de descargas (mapas/animações no portal; dados tabulares) **[verificar]** formato de distribuição
+   * - Tipo de acesso
+     - Portal ELAT (visualização); dados científicos via INPE/ELAT **[verificar]** política de acesso (uso restrito/comercial)
+   * - URL oficial
+     - https://www.inpe.br/elat/ ; https://inpe301.webnode.com.br/elat/brasildat/
+   * - Licença/custo
+     - Visualização gratuita; uso de dados **[verificar]** (provável restrição/custo para dados brutos)
+
+8. RINDAT — rede integrada nacional de detecção de descargas atmosféricas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - Consórcio: CEMIG, SIMEPAR, FURNAS e INPE (origem RIDAT 1994; RINDAT a partir de 2003 com inclusão do INPE)
+   * - Variáveis/produtos
+     - Descargas nuvem-solo em tempo real: momento, ponto de impacto, intensidade e polaridade
+   * - Cobertura
+     - Parte do território brasileiro (regiões Sudeste/Sul e adjacências); citada como uma das maiores redes do mundo em área
+   * - Resolução espacial
+     - Sensores VLF/LF detectam 100–300 kHz; precisão de localização **[verificar]**
+   * - Resolução temporal
+     - Tempo real
+   * - Período
+     - Desde 1994 (RIDAT) / 2003 (RINDAT)
+   * - Frequência
+     - Contínua
+   * - Formato
+     - Relatórios/produtos para previsão e setor elétrico **[verificar]** formato de dados
+   * - Tipo de acesso
+     - Portal RINDAT; acesso a dados predominantemente restrito a consorciados/clientes **[verificar]**
+   * - URL oficial
+     - https://www.rindat.com.br/ ; https://www.inpe.br/webelat/rindat/
+   * - Licença/custo
+     - Restrito/comercial **[verificar]**
+
+9. STARNET e GLM
+~~~~~~~~~~~~~~~~
+
+**STARNET (Sferics Timing And Ranging NETwork) — USP/IAG + parceiros (CPTEC-INPE host)**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - USP/IAG (Carlos Morales) e parceiros; sensores hospedados por instituições incl. CPTEC-INPE
+   * - Variáveis/produtos
+     - Localização de sferics (descargas) por VLF; long-range lightning
+   * - Cobertura
+     - América do Sul e Atlântico (rede de antenas VLF em Brasil, Argentina, Guadalupe, Cabo Verde — ~11 antenas)
+   * - Resolução espacial
+     - Precisão de localização 2–10 km na América do Sul; ~20 km no Atlântico
+   * - Resolução temporal
+     - Tempo real (opera 7–15 kHz; ~130 sferics/s detectados)
+   * - Período
+     - Brasil/Caribe desde 2006 (África desde 2003); teste EUA 1993–1998 — **[verificar]** status operacional atual
+   * - Frequência
+     - Contínua
+   * - Formato
+     - Dados de localização de sferics (arquivos texto) — arquivo também no NSF NCAR EOL/GHRC NASA
+   * - Tipo de acesso
+     - Distribuição via USP; arquivo em GHRC/NASA e NCAR EOL
+   * - URL oficial
+     - https://ghrc.nsstc.nasa.gov/home/content/sferics-timing-and-ranging-network-starnet ; https://data.eol.ucar.edu/dataset/553.005
+   * - Licença/custo
+     - Arquivos de pesquisa gratuitos (com agradecimento exigido); operação atual **[verificar]**
+
+**GLM (Geostationary Lightning Mapper) — a bordo dos GOES (NOAA/NASA)**
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - NOAA/NASA (instrumento da série GOES-R)
+   * - Variáveis/produtos
+     - Descargas totais (in-cloud, nuvem-nuvem, nuvem-solo): events, groups, flashes (L2); produtos griddados
+   * - Cobertura
+     - Américas e oceanos adjacentes (GOES-East/GOES-19 cobre o Brasil)
+   * - Resolução espacial
+     - ~10 km (near-uniform; ~8 km nadir)
+   * - Resolução temporal
+     - Contínua, frame ~2 ms; refresh < 20 s
+   * - Período
+     - GOES-16 GLM 2018–2025; GOES-19 desde 2025
+   * - Frequência
+     - Tempo real
+   * - Formato
+     - netCDF4
+   * - Tipo de acesso
+     - Bucket AWS S3 (``s3://noaa-goes19``, antes ``noaa-goes16``)
+   * - URL oficial
+     - https://www.goes-r.gov/spacesegment/glm.html ; https://registry.opendata.aws/noaa-goes/
+   * - Licença/custo
+     - Domínio público; gratuito
+
+10. ELAT/INPE — grupo (laboratório) de eletricidade atmosférica
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Detalhe
+   * - Instituição/Operadora
+     - INPE — ELAT (criado em 1995)
+   * - Variáveis/produtos
+     - Mapa animado de raios em tempo real (intervalos de 15/30/45/60 min); sistema de previsão de raios (até 24 h de antecedência, ~85% de probabilidade de acerto); rankings/estatísticas de incidência por município; operação da BrasilDAT
+   * - Cobertura
+     - Brasil
+   * - Resolução espacial
+     - Dependente da rede BrasilDAT **[verificar]**
+   * - Resolução temporal
+     - Monitoramento em janelas de 15 min; previsão com 24 h de antecedência
+   * - Período
+     - Serviços operacionais (ELAT desde 1995)
+   * - Frequência
+     - Atualização a cada ~15 min (monitoramento)
+   * - Formato
+     - Mapas/animações web; relatórios e estatísticas
+   * - Tipo de acesso
+     - Portal web ELAT (visualização pública); CPTEC/DISSM raios; dados brutos **[verificar]** política
+   * - URL oficial
+     - https://www.inpe.br/elat/ ; https://sigma.cptec.inpe.br/raio/ ; http://www.inpe.br/webelat/homepage/
+   * - Licença/custo
+     - Visualização gratuita; dados brutos **[verificar]**
+
+URLs consultadas
+~~~~~~~~~~~~~~~~
+
+- https://registry.opendata.aws/noaa-goes/
+- https://aws.amazon.com/marketplace/pp/prodview-ngejrbcumyjtu
+- https://www.goes-r.gov/spacesegment/glm.html
+- https://data.eumetsat.int/extended?query=seviri
+- https://user.eumetsat.int/resources/user-guides/mtg-in-operations
+- https://user.eumetsat.int/resources/user-guides/msg-high-rate-seviri-level-1-5-data-guide
+- https://www.earthdata.nasa.gov/data/catalog/lpcloud-mod11a2-061
+- https://lpdaac.usgs.gov/
+- https://www.sciencedirect.com/science/article/pii/S0034425723005151 (continuidade MODIS C6.1 ↔ VIIRS C2)
+- https://dataspace.copernicus.eu/data-collections/copernicus-sentinel-missions/sentinel-2
+- https://dataspace.copernicus.eu/news/2025-5-21-sentinel-3-syn-level-2-data-available-visualization-copernicus-browser-and-api
+- https://redemet.decea.mil.br/
+- https://ajuda.decea.mil.br/base-de-conhecimento/api-redemet-produtos-radar/
+- http://www2.cemaden.gov.br/radares-meteorologicos-2/
+- https://mapainterativo.cemaden.gov.br/
+- https://www.simepar.br/simepar/radar_msc
+- https://www.ipmetradar.com.br/
+- https://www.inpe.br/elat/
+- https://inpe301.webnode.com.br/elat/brasildat/
+- https://www.rindat.com.br/
+- https://www.inpe.br/webelat/rindat/
+- https://ghrc.nsstc.nasa.gov/home/content/sferics-timing-and-ranging-network-starnet
+- https://data.eol.ucar.edu/dataset/553.005
+- https://sigma.cptec.inpe.br/raio/
+
+Lote A4 — modelos de previsão numérica e fontes hidrológicas (Brasil)
+---------------------------------------------------------------------
+
+Fichas técnicas de fontes oficiais de previsão numérica de tempo/clima e de dados hidrológicos relevantes ao Brasil. Confirmação via WebSearch/WebFetch em fontes oficiais (junho/2026). Campos não confirmados em fonte oficial estão marcados como **[verificar]**.
+
+MODELOS DE PREVISÃO NUMÉRICA
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. CPTEC/INPE — modelos BAM, eta, WRF, BRAMS e MONAN
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+O Centro de Previsão de Tempo e Estudos Climáticos (CPTEC), da Divisão de Modelagem Numérica do Sistema Terrestre (DIMNT) do INPE, opera o conjunto de modelos numéricos do Brasil. MONAN (Model for Ocean-laNd-Atmosphere predictioN) é o novo modelo unificado que substituirá gradualmente BAM/BRAMS.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - CPTEC/INPE (DIMNT) — Ministério da Ciência, Tecnologia e Inovação
+   * - Variáveis/produtos
+     - Previsão de tempo: precipitação, temperatura, vento, pressão, umidade, nebulosidade; limiares de precipitação (10/25/50/75/100/150 mm); produtos multimodelo; previsão sub-sazonal (anomalia semanal de precipitação - BAM); modelo de ondas WW3
+   * - Modelos
+     - **BAM** (global atmosférico); **Eta** (regional); **WRF** (regional); **BRAMS** (regional); **MONAN** (novo, unificado); **BESM** (sistema terrestre/sazonal); **WW3** (ondas)
+   * - Cobertura
+     - BAM/MONAN: global; Eta/WRF/BRAMS: América do Sul/Brasil (regional)
+   * - Resolução espacial
+     - BAM ~20 km (global) [verificar]; Eta ~7 km; WRF ~8 km; BRAMS ~8 km; MONAN ~3 km em simulações específicas [verificar]
+   * - Resolução temporal
+     - Saídas horárias a 3-horárias conforme modelo [verificar]
+   * - Período/horizonte
+     - Curto/médio prazo (até ~7-15 dias, varia por modelo); BAM sub-sazonal (semanas) [verificar]
+   * - Frequência de atualização
+     - Rodadas operacionais diárias (00/12 UTC; alguns 06/18 UTC) [verificar]
+   * - Formato
+     - GRIB/NetCDF (dados); produtos gráficos (PNG) em portal
+   * - Tipo de acesso
+     - Portal web (gráficos), FTP/object storage (s3.cptec.inpe.br); dados brutos sob solicitação [verificar]
+   * - URL oficial
+     - http://www3.cptec.inpe.br/dimnt/modelos-numericos/ ; https://previsaonumerica.cptec.inpe.br/ ; https://www.cptec.inpe.br/
+   * - Licença/custo
+     - Acesso público gratuito; uso institucional/pesquisa [verificar termos]
+
+2. GFS — global forecast system (NOAA/NCEP)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - NOAA / NCEP (National Centers for Environmental Prediction), EUA
+   * - Variáveis/produtos
+     - Variáveis atmosféricas completas (precipitação, vento, temperatura, geopotencial, umidade, etc.); análise GDAS
+   * - Cobertura
+     - Global
+   * - Resolução espacial
+     - 0,25° x 0,25° (~28 km) base; degrada a ~70 km além de 1 semana; também disponível em 0,5° e 1,0°
+   * - Resolução temporal
+     - Horária até 120 h; depois de 3 em 3 h até 384 h (16 dias); ~127 níveis verticais
+   * - Período/horizonte
+     - Até 384 h (16 dias)
+   * - Frequência de atualização
+     - 4x/dia (00, 06, 12, 18 UTC)
+   * - Formato
+     - GRIB2
+   * - Tipo de acesso
+     - NOMADS (https://nomads.ncep.noaa.gov/), FTP/HTTP; AWS Open Data (registry.opendata.aws/noaa-gfs-bdp-pds/); NCEI; UCAR
+   * - URL oficial
+     - https://www.nco.ncep.noaa.gov/pmb/products/gfs/ ; https://nomads.ncep.noaa.gov/
+   * - Licença/custo
+     - Domínio público (U.S. Government), gratuito
+
+3. ECMWF / IFS — open data (IFS e AIFS)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - ECMWF (European Centre for Medium-Range Weather Forecasts)
+   * - Variáveis/produtos
+     - Subconjunto aberto do catálogo em tempo real dos modelos IFS (físico) e AIFS (IA); variáveis atmosféricas de superfície e níveis de pressão
+   * - Cobertura
+     - Global
+   * - Resolução espacial
+     - 0,25° (~25 km) no subconjunto aberto; extensão para 9 km (com latência de ~2 h) prevista para 2026
+   * - Resolução temporal
+     - Passos de previsão variáveis (horário a 3/6 h conforme produto) [verificar]
+   * - Período/horizonte
+     - Médio prazo (até ~10-15 dias) [verificar para subconjunto aberto]
+   * - Frequência de atualização
+     - 4 ciclos/dia (00, 06, 12, 18 UTC); retém ~12 rodadas (≈2-3 dias)
+   * - Formato
+     - GRIB2
+   * - Tipo de acesso
+     - Portal/Open Data ECMWF; espelhado em AWS, Azure e GCP; cliente ``ecmwf-opendata``
+   * - URL oficial
+     - https://www.ecmwf.int/en/forecasts/datasets/open-data ; https://www.ecmwf.int/en/forecasts/access-forecasts/access-real-time-open-data
+   * - Licença/custo
+     - Creative Commons CC-BY-4.0 (atribuição) + ECMWF Terms of Use; gratuito. Catálogo completo/9 km e demais produtos: comercial/licenciado
+
+4. previsão climática sazonal — CPTEC/INPE e INMET (prognóstico conjunto)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - CPTEC/INPE, INMET (e FUNCEME); prognóstico conjunto INMET/INPE
+   * - Variáveis/produtos
+     - Previsão climática sazonal (trimestral) de precipitação e temperatura por tercis (abaixo/dentro/acima da normal); notas técnicas e boletins; considera El Niño/La Niña, ZCIT
+   * - Cobertura
+     - Brasil / América do Sul
+   * - Resolução espacial
+     - Regiões/macro-regiões e grade do modelo (BESM/BAM sazonal) [verificar grade]
+   * - Resolução temporal
+     - Sazonal (média trimestral)
+   * - Período/horizonte
+     - Trimestral móvel (3 meses à frente)
+   * - Frequência de atualização
+     - Mensal (boletins/notas técnicas)
+   * - Formato
+     - PDF (notas técnicas/boletins), figuras; produtos numéricos via FTP/portal
+   * - Tipo de acesso
+     - Portal web e FTP (CPTEC: ftp.cptec.inpe.br/clima/; sazonal.cptec.inpe.br; INMET: portal.inmet.gov.br)
+   * - URL oficial
+     - https://clima.cptec.inpe.br/ ; https://sazonal.cptec.inpe.br/ ; https://portal.inmet.gov.br/servicos/prognóstico-climático-do-cptec-inmet-funceme
+   * - Licença/custo
+     - Acesso público gratuito
+
+HIDROLOGIA
+~~~~~~~~~~
+
+5. ANA — SNIRH / HidroWeb (séries fluviométricas) e sala de situação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - ANA (Agência Nacional de Águas e Saneamento Básico); rede operada em parte pelo SGB/CPRM
+   * - Variáveis/produtos
+     - Séries históricas fluviométricas (cota/nível, vazão/descarga líquida) e pluviométricas; qualidade da água; sedimentos; climatologia; dados de reservatórios (SAR). Sala de Situação: monitoramento em tempo real de cheias e secas
+   * - Cobertura
+     - Brasil — Rede Hidrometeorológica Nacional (RHN); >23.000 estações na base Hidro; ~4.841 estações geridas diretamente pela ANA
+   * - Resolução espacial
+     - Pontual (por estação)
+   * - Resolução temporal
+     - Histórica: diária/sub-diária; tempo real: horária (estações telemétricas)
+   * - Período/horizonte
+     - Séries históricas (observacional, longo prazo); monitoramento em tempo real
+   * - Frequência de atualização
+     - Convencional: variável; telemétrica/tempo real: horária
+   * - Formato
+     - CSV/TXT, MDB/Access (Sistema Hidro), portal web; app móvel HidroWeb
+   * - Tipo de acesso
+     - Portal HidroWeb; API/serviços do SNIRH; download de séries; app mobile
+   * - URL oficial
+     - https://www.snirh.gov.br/hidroweb/ ; https://www.snirh.gov.br/hidroweb/serieshistoricas ; https://www.snirh.gov.br/
+   * - Licença/custo
+     - Dados públicos gratuitos
+
+6. ANA / SGB — sistema de alerta de eventos críticos (SACE) — previsão de cheias
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Obs.: o SACE é a plataforma desenvolvida e operada pelo **SGB (CPRM)**, em conjunto com a ANA, para os Sistemas de Alerta Hidrológico (SAHs). Ver também ficha 8.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - SGB/CPRM (operação da plataforma) em parceria com ANA
+   * - Variáveis/produtos
+     - Boletins de monitoramento e alerta; previsão de níveis/vazões de rios (volume e tendência); níveis observados; chuva acumulada; mapas de risco municipais
+   * - Cobertura
+     - Bacias monitoradas no Brasil — 17 Sistemas de Alerta de cheias (Amazonas, Paraguai, Doce, Caí, Taquari, Uruguai, São Francisco, etc.)
+   * - Resolução espacial
+     - Pontual (estações) / por bacia / por município
+   * - Resolução temporal
+     - Dados recebidos a cada 1 hora (telemetria satélite/GSM)
+   * - Período/horizonte
+     - Curto prazo (previsão de cheia conforme tempo de propagação da bacia)
+   * - Frequência de atualização
+     - Horária (dados); boletins periódicos/sob evento
+   * - Formato
+     - Portal web; boletins em PDF
+   * - Tipo de acesso
+     - Portal web (sgb.gov.br/sace)
+   * - URL oficial
+     - https://www.sgb.gov.br/sace/ ; https://www.sgb.gov.br/sace/index_bacias_monitoradas.php
+   * - Licença/custo
+     - Público gratuito
+
+7. ONS — dados hidrológicos / vazões e previsão de afluências (PMO)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - ONS (Operador Nacional do Sistema Elétrico)
+   * - Variáveis/produtos
+     - Vazões naturais (diárias/semanais/mensais); previsão de vazões e geração de cenários de afluência (ENA); relatório de vazão média diária; relatório anual de avaliação de previsões; histórico de vazões para os reservatórios do SIN
+   * - Cobertura
+     - Reservatórios/bacias do Sistema Interligado Nacional (SIN) — Brasil
+   * - Resolução espacial
+     - Por aproveitamento/reservatório e bacia
+   * - Resolução temporal
+     - Diária, semanal e mensal
+   * - Período/horizonte
+     - Histórico + previsão (diária/semanal/mensal); cenários para o PMO e revisões
+   * - Frequência de atualização
+     - Diária/semanal/mensal (conforme produto e revisões do PMO)
+   * - Formato
+     - Portal web, planilhas/CSV; documentos normativos (PDF) [verificar formatos de download]
+   * - Tipo de acesso
+     - Portal web ONS (Resultados da Operação / Histórico da Operação); Portal de Dados Abertos ONS [verificar]
+   * - URL oficial
+     - https://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/dados_hidrologicos_vazoes.aspx
+   * - Licença/custo
+     - Público gratuito
+
+8. CPRM / SGB — serviço geológico do Brasil: rede de alerta hidrológico e monitoramento de rios
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - SGB — Serviço Geológico do Brasil (ex-CPRM), Ministério de Minas e Energia
+   * - Variáveis/produtos
+     - Monitoramento automático de chuva e níveis de rios; previsão de níveis; boletins e alertas hidrológicos (SACE/SAHs); mapas de risco municipais; HidroSat (estações virtuais)
+   * - Cobertura
+     - 17 Sistemas de Alerta Hidrológico em bacias do Brasil; opera estações da RHN (de responsabilidade da ANA)
+   * - Resolução espacial
+     - Pontual (estações hidrometeorológicas) / por bacia
+   * - Resolução temporal
+     - Dados a cada 1 hora (telemetria satélite/GSM); pluviômetros automáticos em alta frequência
+   * - Período/horizonte
+     - Tempo real + previsão de curto prazo (cheias)
+   * - Frequência de atualização
+     - Horária; boletins sob demanda/evento
+   * - Formato
+     - Portal web; boletins PDF
+   * - Tipo de acesso
+     - Portal web (SACE); RIGeo (repositório institucional)
+   * - URL oficial
+     - https://www.sgb.gov.br/sace/ ; https://www.sgb.gov.br/ ; https://cprm.gov.br/
+   * - Licença/custo
+     - Público gratuito
+
+9. SNIRH / sistemas estaduais de recursos hídricos (visão geral)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Descrição
+   * - Instituição
+     - ANA (coordenação SNIRH) + órgãos gestores estaduais de recursos hídricos
+   * - Variáveis/produtos
+     - Conjunto de sistemas do SNIRH: **HidroWeb** (dados hidrológicos), **Sistema Hidro** e **SIADH** (gestão/análise de dados), **Monitoramento Hidrológico**, **SAR** (reservatórios), **Portal da Qualidade das Águas**, **HidroSat**, **SISPREC** (eventos críticos - Paraíba do Sul), **Atlas Brasil**, **Portal de Metadados**, Painéis de indicadores
+   * - Cobertura
+     - Nacional; integra dados estaduais; sistemas estaduais específicos por UF [verificar por estado]
+   * - Resolução espacial
+     - Pontual/estação; bacias; municípios
+   * - Resolução temporal
+     - Variável por sistema (histórico a tempo real)
+   * - Período/horizonte
+     - Observacional histórico + tempo real + planejamento
+   * - Frequência de atualização
+     - Variável por sistema
+   * - Formato
+     - Portais web, CSV/TXT, instaladores de software, serviços geoespaciais (metadados/WMS)
+   * - Tipo de acesso
+     - Portais web; downloads; API/serviços; alguns restritos a gestores (ex.: SISPREC)
+   * - URL oficial
+     - https://www.snirh.gov.br/ ; https://www.snirh.gov.br/portal/snirh-1/sistemas
+   * - Licença/custo
+     - Maioria pública gratuita; alguns sistemas com acesso restrito a gestores/comitês
+
+URLs consultadas (oficiais)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- CPTEC/INPE — Modelos Numéricos: http://www3.cptec.inpe.br/dimnt/modelos-numericos/
+- CPTEC/INPE — Previsão Numérica: https://previsaonumerica.cptec.inpe.br/
+- CPTEC/INPE — Homepage / produtos: https://www.cptec.inpe.br/ ; https://s3.cptec.inpe.br/grafico/Modelos/web/index.html
+- NOAA/NCEP GFS: https://www.nco.ncep.noaa.gov/pmb/products/gfs/ ; https://nomads.ncep.noaa.gov/
+- GFS AWS Open Data: https://registry.opendata.aws/noaa-gfs-bdp-pds/
+- ECMWF Open Data: https://www.ecmwf.int/en/forecasts/datasets/open-data ; https://www.ecmwf.int/en/forecasts/access-forecasts/access-real-time-open-data
+- ECMWF (catálogo aberto, notícia 2025): https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwf-makes-its-entire-real-time-catalogue-open-all
+- CPTEC clima/sazonal: https://clima.cptec.inpe.br/ ; https://sazonal.cptec.inpe.br/ ; https://ftp.cptec.inpe.br/clima/nota_tecnica/
+- INMET prognóstico climático: https://portal.inmet.gov.br/servicos/prognóstico-climático-do-cptec-inmet-funceme
+- ANA SNIRH / HidroWeb: https://www.snirh.gov.br/ ; https://www.snirh.gov.br/hidroweb/ ; https://www.snirh.gov.br/hidroweb/serieshistoricas
+- SNIRH sistemas: https://www.snirh.gov.br/portal/snirh-1/sistemas
+- SGB/CPRM SACE: https://www.sgb.gov.br/sace/ ; https://www.sgb.gov.br/sace/index_bacias_monitoradas.php ; https://www.sgb.gov.br/ ; https://cprm.gov.br/
+- MME — alerta hidrológico São Francisco: https://www.gov.br/mme/pt-br/assuntos/noticias/servico-geologico-lanca-novo-sistema-de-alerta-hidrologico-no-rio-sao-francisco
+- ONS dados hidrológicos/vazões: https://www.ons.org.br/Paginas/resultados-da-operacao/historico-da-operacao/dados_hidrologicos_vazoes.aspx
+
+A5 — agrometeorologia aplicada no Brasil (fichas técnicas)
+----------------------------------------------------------
+
+Lote A5. Fichas de fontes/sistemas de agrometeorologia aplicada no Brasil, confirmadas em fontes oficiais (WebSearch/WebFetch, jun/2026). Itens não confirmados em fonte oficial marcados como ``[verificar]``.
+
+1. agritempo — sistema de monitoramento agrometeorológico
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Embrapa Agricultura Digital (ex-Informática Agropecuária) + Cepagri/Unicamp (mantenedores)
+   * - Produtos/variáveis
+     - Boletins e mapas de: precipitação acumulada, estiagem agrícola, balanço hídrico, evapotranspiração, temperaturas, necessidade de irrigação, condições de manejo de solo e aplicação de defensivos, condições para colheita, risco de geada; índice SPI (multiescala); previsão de tempo até 96–120 h
+   * - Cobertura
+     - Brasil (todos os municípios); rede de ~1.643 estações meteorológicas
+   * - Resolução
+     - Municipal / por estação (rede); grade de mapas [verificar]
+   * - Período
+     - Operacional desde 2003
+   * - Frequência
+     - Diária (tempo real)
+   * - Formato/saída
+     - Mapas e boletins web; tabelas/dados
+   * - Tipo de acesso
+     - Portal web; API (Agritempo v2) [verificar nível de abertura]
+   * - URL oficial
+     - https://www.agritempo.gov.br/
+   * - Licença/custo
+     - Gratuito; "todos os direitos reservados"; cadastro voluntário
+
+2. INMET — SISDAGRO (sistema de suporte a decisão na agropecuária) + boletins agroclimáticos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Instituto Nacional de Meteorologia (INMET) — MAPA
+   * - Produtos/variáveis
+     - Balanço hídrico (atual e climatológico mensal/decendial), perda de produtividade por deficiência hídrica (11 culturas: algodão, arroz, aveia, café, cana, citros, feijão, girassol, milho, soja, trigo), graus-dia (GDD), índice de vegetação por satélite, dias aptos ao manejo; boletins agroclimáticos (precipitação, temperatura, armazenamento hídrico do solo)
+   * - Cobertura
+     - Brasil
+   * - Resolução
+     - Por estação/localidade; municipal [verificar]
+   * - Período
+     - Boletins mensais correntes; séries climatológicas [verificar período]
+   * - Frequência
+     - Ferramentas sob demanda; boletins agroclimáticos mensais
+   * - Formato/saída
+     - Aplicação web interativa; boletins PDF
+   * - Tipo de acesso
+     - Portal/app web + boletins
+   * - URL oficial
+     - https://portal.inmet.gov.br/servicos/sisdagro ; https://sisdagro.inmet.gov.br/sisdagro/
+   * - Licença/custo
+     - Gratuito (órgão público federal)
+
+3. CIIAGRO — centro integrado de informações agrometeorológicas (IAC)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Instituto Agronômico de Campinas (IAC) — APTA / Secretaria de Agricultura do Estado de SP
+   * - Produtos/variáveis
+     - Informações agrometeorológicas diárias: calendário agrícola, preparo de solo, aplicação de defensivos, monitoramento de irrigação/balanço hídrico, datas de maturação/colheita, controle de pragas e doenças, geadas e fenômenos adversos; INFOSECA (sistema de informação sobre secas)
+   * - Cobertura
+     - Estado de São Paulo
+   * - Resolução
+     - Por estação (estações automáticas e mecânicas da Secretaria de Agricultura/IAC)
+   * - Período
+     - Criado em 1988; arquivo histórico desde 1890 (um dos mais antigos do Brasil)
+   * - Frequência
+     - Diária
+   * - Formato/saída
+     - Portal web (mapas/tabelas/boletins)
+   * - Tipo de acesso
+     - Portal web
+   * - URL oficial
+     - https://www.ciiagro.sp.gov.br/ (também http://ciiagro.iac.sp.gov.br/)
+   * - Licença/custo
+     - Gratuito (órgão público estadual)
+
+4. ZARC — zoneamento agrícola de risco climático + ZARC plantio certo (app)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Embrapa + MAPA (Programa Nacional de Zoneamento Agrícola de Risco Climático)
+   * - Produtos/variáveis
+     - Indicação de municípios e janelas de plantio por cultura/tipo de solo, em 3 níveis de risco (20%, 30%, 40% de frequência de perda); base no ISNA (Índice de Satisfação das Necessidades de Água); app reúne previsão do tempo, imagens de satélite, mapas de precipitação e produtividade histórica municipal
+   * - Cobertura
+     - Brasil
+   * - Resolução
+     - Municipal, por tipo de solo e cultivar
+   * - Período
+     - Programa desde 1996; portarias/calendários atualizados por safra
+   * - Frequência
+     - Publicação por safra (portarias MAPA)
+   * - Formato/saída
+     - Portarias/tabelas; app móvel; Web GIS [verificar]
+   * - Tipo de acesso
+     - Portal MAPA + app "Zarc – Plantio Certo" (iOS/Android)
+   * - URL oficial
+     - https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico
+   * - Licença/custo
+     - Gratuito (dado público)
+
+5. Embrapa — agroapi / climapi / agritec e plataformas com dado climático
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Embrapa Agricultura Digital (AgroAPI/Cnptia); unidades temáticas (Embrapa Cerrados — clima.cpac.embrapa.br; Embrapa Trigo — plataforma "Trigo no Brasil")
+   * - Produtos/variáveis
+     - AgroAPI: catálogo de ~10 APIs. ClimAPI: índices/taxas e variáveis de previsão (temperatura, chuva, evapotranspiração, umidade, nebulosidade, vento) com previsão de 10 dias, base GFS/NOAA. Agritec: datas de plantio (base ZARC), cultivares aptos (12 culturas), recomendação de adubação. Embrapa Cerrados: serviços climáticos. "Trigo no Brasil": dashboards da cadeia do trigo
+   * - Cobertura
+     - Brasil (ClimAPI por lat/long, raio ~25 km)
+   * - Resolução
+     - ClimAPI ~25 km / ponto lat-long
+   * - Período
+     - Serviços correntes
+   * - Frequência
+     - ClimAPI atualizada a cada 6 h
+   * - Formato/saída
+     - API REST (JSON); portais/dashboards
+   * - Tipo de acesso
+     - API (freemium para algumas; gratuitas as demais); portais web
+   * - URL oficial
+     - https://www.portal.agroapi.cnptia.embrapa.br/ ; http://clima.cpac.embrapa.br/
+   * - Licença/custo
+     - Mista: gratuito + freemium (planos pagos por volume de requisições) [verificar valores]
+
+6. Embrapa satveg — sistema de análise temporal da vegetação
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Embrapa Agricultura Digital (Cnptia)
+   * - Produtos/variáveis
+     - Perfis temporais de índices de vegetação NDVI e EVI (sensor MODIS — Terra/Aqua); também MSI/Sentinel-2 em ampliação; filtros de série temporal, upload de vetores
+   * - Cobertura
+     - América do Sul
+   * - Resolução
+     - 250 m (MODIS)
+   * - Período
+     - Desde fevereiro de 2000
+   * - Frequência
+     - Atualização a cada 8 dias
+   * - Formato/saída
+     - Ferramenta web (interface tipo Google Maps); séries temporais; também via AgroAPI (SATVeg API v2)
+   * - Tipo de acesso
+     - Portal web + API (AgroAPI)
+   * - URL oficial
+     - https://www.satveg.cnptia.embrapa.br/
+   * - Licença/custo
+     - Gratuito (web); API pode ter plano [verificar]
+
+7. cepagri/unicamp — centro de pesquisas meteorológicas e climáticas aplicadas à agricultura
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Cepagri — Universidade Estadual de Campinas (Unicamp)
+   * - Produtos/variáveis
+     - Previsão do tempo (temperatura, precipitação, vento, umidade; El Niño/La Niña); monitoramento por satélite e radar em tempo real; dados de estação automática (campus Unicamp); séries históricas e médias; mapa interativo (Labsat); projeções de cenários agrícolas futuros e risco climático
+   * - Cobertura
+     - Campinas/região e SP; satélite/radar regional
+   * - Resolução
+     - Por estação; produtos de satélite/radar [verificar grade]
+   * - Período
+     - Séries históricas (~30 anos); estação automática corrente
+   * - Frequência
+     - Tempo real (gráficos 24 h, 15 dias, histórico)
+   * - Formato/saída
+     - Portal web; mapa interativo; imagens satélite/radar
+   * - Tipo de acesso
+     - Portal web (também co-mantenedor do Agritempo)
+   * - URL oficial
+     - https://cepagri.unicamp.br/ ; https://www.cpa.unicamp.br/
+   * - Licença/custo
+     - Gratuito (instituição pública)
+
+8. NASA POWER — módulo agroclimatology
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - NASA Langley Research Center — projeto POWER (Prediction Of Worldwide Energy Resources)
+   * - Produtos/variáveis
+     - Parâmetros agroclimáticos para modelos de cultura: radiação solar, temperatura, precipitação, umidade, vento, ETo, etc. (comunidade "Agroclimatology")
+   * - Cobertura
+     - Global
+   * - Resolução
+     - Meteorologia ~0,5° x 0,625° (~50 km); solar 1° x 1°
+   * - Período
+     - Séries multidecadais (desde 1981 para meteorologia) [verificar data inicial exata]
+   * - Frequência
+     - Horária, diária, mensal, anual e climatologias
+   * - Formato/saída
+     - API (JSON/CSV/etc.), links copiáveis; Data Access Viewer (DAV); pacotes (ex.: R nasapower)
+   * - Tipo de acesso
+     - API + portal/viewer (sem necessidade de programação)
+   * - URL oficial
+     - https://power.larc.nasa.gov/
+   * - Licença/custo
+     - Gratuito, dados públicos (acesso livre)
+
+9. CONAB — boletim de monitoramento agrícola / agrometeorologia
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
+
+   * - Campo
+     - Conteúdo
+   * - Instituição
+     - Companhia Nacional de Abastecimento (CONAB) — MAPA; em parceria com INMET e grupo GLAM (Global Agricultural Monitoring)
+   * - Produtos/variáveis
+     - Boletim de Monitoramento Agrícola (BMA): integra dados agrometeorológicos, imagens de satélite e análises de campo; estresse/restrição hídrica, condição das lavouras (safra de verão e inverno); Boletim da Safra de Grãos (área, produtividade, produção, previsões climáticas, oferta/demanda)
+   * - Cobertura
+     - Brasil (principais regiões produtoras)
+   * - Resolução
+     - Regional/estadual; municipal em mapas [verificar]
+   * - Período
+     - Levantamentos por safra; boletins correntes
+   * - Frequência
+     - Mensal
+   * - Formato/saída
+     - Boletins PDF/e-book; portal Info Agro; calendário de safras
+   * - Tipo de acesso
+     - Boletim + portal web
+   * - URL oficial
+     - https://www.conab.gov.br/info-agro/safras
+   * - Licença/custo
+     - Gratuito (órgão público federal)
+
+URLs consultadas
+~~~~~~~~~~~~~~~~
+
+- https://www.agritempo.gov.br/
+- https://www.agritempo.gov.br/br/termo-de-uso/
+- https://www.embrapa.br/en/busca-de-solucoes-tecnologicas/-/produto-servico/10651/agritempo---sistema-de-monitoramento-agrometeorologico
+- https://www.cpa.unicamp.br/sobre/historico
+- https://portal.inmet.gov.br/servicos/sisdagro
+- https://sisdagro.inmet.gov.br/sisdagro/app/index
+- https://portal.inmet.gov.br/uploads/boletinsAgroclimatologicos/
+- https://www.ciiagro.sp.gov.br/def_0.html
+- https://www.ciiagro.sp.gov.br/index.asp
+- http://ciiagro.iac.sp.gov.br/
+- https://www.iac.sp.gov.br/produtoseservicos/orgulhonacional/servicos.php?lang=pt
+- https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/zoneamento-agricola
+- https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1136438/1/PL-ZARC-2021.pdf
+- https://www.portal.agroapi.cnptia.embrapa.br/
+- https://www.agroapi.cnptia.embrapa.br/store/apis/info?name=ClimAPI&version=v1&provider=agroapi
+- https://www.agroapi.cnptia.embrapa.br/store/apis/info?name=Agritec&version=v1&provider=agroapi
+- https://www.agroapi.cnptia.embrapa.br/store/apis/info?name=SATVeg&version=v2&provider=agroapi
+- http://clima.cpac.embrapa.br/
+- https://www.satveg.cnptia.embrapa.br/
+- https://www.embrapa.br/en/busca-de-solucoes-tecnologicas/-/produto-servico/12245/sistema-de-analise-temporal-da-vegetacao-satveg
+- https://cepagri.unicamp.br/
+- https://www.cpa.unicamp.br/
+- https://plataforma.labsat.cpa.unicamp.br/
+- https://power.larc.nasa.gov/docs/tutorials/parameters/
+- https://power.larc.nasa.gov/docs/tutorials/service-data-request/api/
+- https://www.earthdata.nasa.gov/data/tools/power-dav
+- https://www.conab.gov.br/info-agro/safras
+- https://www.gov.br/conab/pt-br/atuacao/informacoes-agropecuarias/safras/
+
+Síntese e mapa de lacunas
+-------------------------
+
+Matriz rápida — qual fonte usar por necessidade
+-----------------------------------------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Necessidade
+     - Fonte primária recomendada
+     - Alternativas / complemento
+   * - Chuva pontual medida (gleba perto de estação)
+     - INMET (automáticas/BDMEP), ANA-RHN, CEMADEN
+     - Redes estaduais (Simepar, Funceme, Epagri…)
+   * - Chuva em grade (cobertura contínua nacional)
+     - MERGE (CPTEC/INPE, ~10 km, diário)
+     - CHIRPS (~5 km, desde 1981), IMERG/GPM
+   * - Temperatura em grade
+     - SAMeT (CPTEC/INPE, ~5 km)
+     - ERA5-Land (~9 km), BR-DWGD
+   * - Série longa homogênea em grade (Brasil)
+     - BR-DWGD (Xavier et al., 1961–presente)
+     - ERA5/ERA5-Land, TerraClimate
+   * - Variáveis agroclimáticas para modelagem
+     - NASA POWER, AgERA5
+     - ERA5-Land, Agritempo
+   * - Balanço hídrico / ISNA / GDD prontos
+     - Agritempo, INMET-SISDAGRO, CIIAGRO/IAC
+     - ZARC (janelas de plantio)
+   * - Monitoramento em tempo real (nowcasting)
+     - GOES-19 (satélite), radares (REDEMET/Cemaden)
+     - Redes de raios (BrasilDAT, GLM, RINDAT)
+   * - Previsão numérica
+     - CPTEC (BAM/Eta/WRF/MONAN), GFS, ECMWF open-data
+     - Prognósticos sazonais INMET/CPTEC
+   * - Hidrologia / cheias / vazões
+     - ANA (HidroWeb/SNIRH, Sala de Situação, SACE)
+     - ONS (afluências), CPRM/SGB (alerta)
+   * - NDVI / vigor vegetativo
+     - Embrapa SATVeg (MODIS)
+     - MODIS/VIIRS, Sentinel-2
+
+Mapa de lacunas / atenções
+--------------------------
+
+- **Densidade de estações é irregular** — Norte, Semiárido e fronteira agrícola do MT são mal cobertos;
+
+daí a importância dos produtos em grade e da interpolação (ver ``interpolacao-espacial.rst``).
+
+- **Capacidade estadual desigual** — poucas UFs têm órgão de meteorologia próprio; a maioria depende de
+
+Defesa Civil + cobertura federal. Recursos hídricos e agro estaduais são mais disseminados.
+
+- **Acesso heterogêneo** — convivem APIs abertas (NASA POWER, REDEMET, ANA Dados Abertos), buckets em
+
+nuvem (GOES no AWS), CDS com login (ERA5/AgERA5), download direto (MERGE/SAMeT/INMET) e portais sem
+API (vários estaduais). Licenças formais nem sempre estão explícitas (anotado nas fichas).
+
+- **Dados de raios e radar bruto** tendem a acesso restrito/comercial (BrasilDAT, RINDAT); GLM (GOES) é
+
+aberto.
+
+- **Mudanças institucionais recentes** alteram o mapa — ver Nota de validação.
+
+Nota de validação
+-----------------
+
+**Cobertura confirmada.** 44 fontes (Parte A) e as 27 UFs (Parte B). Para cada item, a **instituição, o
+que oferece e a URL oficial** foram confirmados em fonte oficial via busca web (junho/2026).
+
+**Marcas ``[verificar]`` (111 no total, nível de campo).** Concentram-se em **detalhes granulares** não
+expostos nas páginas oficiais — p.ex. resolução numérica exata, data inicial precisa de uma série,
+texto formal de licença, ou contadores exatos de estações. **Não** são instituições/fontes inventadas:
+o item existe e está confirmado; apenas um campo específico ficou sem confirmação primária. Vários
+portais ``.gov.br`` retornaram HTTP 403 a leitura automática, exigindo confirmação por fontes indexadas.
+
+**Mudanças institucionais capturadas (estado atual registrado):**
+
+- **RS (fev/2025):** boletins/alertas hidrometeorológicos da Sala de Situação (SEMA-RS/DRHS) passaram ao
+
+**Centro de Monitoramento da Defesa Civil do RS**. FEPAGRO extinta (2017) → funções em SEAPI-RS e Emater/RS.
+
+- **SP (set/2024):** **DAEE extinto** → recursos hídricos migraram para a **SP Águas** (SAISP segue na FCTH).
+- **RJ:** **Pesagro-Rio** reestruturada/incorporada → extensão concentrada na **Emater-Rio**.
+- **PR (2019):** Águas Paraná + IAP + Mineropar → **IAT** (Instituto Água e Terra).
+- **PE:** funções do antigo **Lamepe** migraram para a **APAC**.
+- **BA:** o "Cemadec" é municipal (Salvador); o órgão estadual de defesa civil é a **SUDEC**.
+- **PI:** **Emater-PI extinta** (absorvida pela SADA).
+- **Satélite:** distribuição do **GOES-16 encerrada após 04/04/2025**; **GOES-19** é o GOES-East operacional
+
+(cobre o Brasil); arquivo histórico do GOES-16 permanece no AWS.
+
+**Recomendação para uso oficial/publicação:** antes de citar números exatos (nº de estações, resolução,
+início de série), confirmar diretamente nos catálogos/CSV das instituições; os campos ``[verificar]``
+sinalizam exatamente onde isso é necessário.
+
+*Documento gerado com assistência de IA (pesquisa, verificação de fontes e redação), sob revisão humana.
+Fontes e instituições confirmadas em portal oficial quando acessível; campos não confirmados marcados
+``[verificar]``. Total: 44 fontes de dados + 27 UFs.*

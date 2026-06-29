@@ -6,28 +6,28 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interpolação espacial &mdash; GeoCreditoRural</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/table_styling.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/tutorial.css" />
+  <title>Interpolação espacial &mdash; Fenômenos Meteorológicos</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tutorial.css" />
 
   
-    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
-    <link rel="canonical" href="https://geo-credito-rural.github.io/fenomenos-meteorologicos/analise-espacial/interpolacao-espacial.html" />
-      <script src="../../_static/jquery.js"></script>
-      <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-      <script src="../../_static/doctools.js"></script>
-      <script src="../../_static/sphinx_highlight.js"></script>
-      <script src="../../_static/clipboard.min.js"></script>
-      <script src="../../_static/copybutton.js"></script>
-      <script src="../../_static/translations.js"></script>
-    <script src="../../_static/js/theme.js"></script>
-    <link rel="index" title="Índice" href="../../genindex.html" />
-    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/analise-espacial/interpolacao-espacial.html" />
+      <script src="../_static/jquery.js"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+      <script src="../_static/doctools.js"></script>
+      <script src="../_static/sphinx_highlight.js"></script>
+      <script src="../_static/clipboard.min.js"></script>
+      <script src="../_static/copybutton.js"></script>
+      <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="Aulas práticas — análise espacial, estatística e interpolação" href="praticas/index.html" />
     <link rel="prev" title="Densidade e autocorrelação espacial" href="autocorrelacao-espacial.html" /> 
 </head>
@@ -40,12 +40,12 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            GeoCreditoRural
-              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
+          <a href="../index.html" class="icon icon-home">
+            Fenômenos Meteorológicos
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -53,32 +53,29 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Fenômenos meteorológicos</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
-<li class="toctree-l3"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
-<li class="toctree-l3"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Interpolação espacial</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#idw-inverse-distance-weighting">IDW — inverse distance weighting</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#spline-funcoes-de-base-radial">Spline (funções de base radial)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#krigagem">Krigagem</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#qual-metodo-usar">Qual método usar?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentos/index.html">Fundamentos do risco agrícola e meteorologia aplicada</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Análise espacial, estatística e técnicas de interpolação</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="estatistica.html">Estatística espacial aplicada ao risco agrícola: identificando padrões e concentrações de perdas no Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heatmap-kernel.html">Visualização preliminar: mapas de calor e densidade kernel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="imoran.html">Quantificando autocorrelação espacial: O índice I de Moran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metodos-interpolacao.html">Técnicas de interpolação espacial aplicadas ao risco agrícola</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autocorrelacao-espacial.html">Densidade e autocorrelação espacial</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interpolação espacial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#idw-inverse-distance-weighting">IDW — inverse distance weighting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spline-funcoes-de-base-radial">Spline (funções de base radial)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#krigagem">Krigagem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qual-metodo-usar">Qual método usar?</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
-<li class="toctree-l3"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="praticas/index.html">Aulas práticas — análise espacial, estatística e interpolação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#perguntas-e-respostas-modulo-2">Perguntas e respostas — módulo 2</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../sinistros/index.html">Análise de sinistros, outliers e tipologias de risco meteorológico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modelagem/index.html">Modelagem de perdas e aplicações em decisão</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sintese/index.html">Síntese final do curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências bibliográficas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../material-extra/index.html">Material de apoio — fontes, plataformas e fornecedores</a></li>
 </ul>
 
         </div>
@@ -87,15 +84,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">GeoCreditoRural</a>
+          <a href="../index.html">Fenômenos Meteorológicos</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Fenômenos meteorológicos</a></li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Análise espacial, estatística e técnicas de interpolação</a></li>
       <li class="breadcrumb-item active">Interpolação espacial</li>
       <li class="wy-breadcrumbs-aside">
@@ -123,7 +119,7 @@ depois pode ser cruzada com a localização das COPs.</p>
 <h2>IDW — inverse distance weighting<a class="headerlink" href="#idw-inverse-distance-weighting" title="Link permanente para este cabeçalho"></a></h2>
 <p>O IDW estima o valor em um ponto como uma <strong>média ponderada</strong> dos valores das estações,
 dando mais peso às mais próximas — o peso cai com o inverso da distância elevada a uma
-potência <span id="id1">[<a class="reference internal" href="../../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. É o método mais intuitivo e não exige ajuste de modelo:</p>
+potência <span id="id1">[<a class="reference internal" href="../referencias.html#id269" title="Donald Shepard. A two-dimensional interpolation function for irregularly-spaced data. In Proceedings of the 1968 23rd ACM National Conference, 517–524. ACM, 1968. doi:10.1145/800186.810616.">72</a>]</span>. É o método mais intuitivo e não exige ajuste de modelo:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Para cada ponto da grade, pondera as estações pelo inverso da distância^potência.</span>
@@ -138,7 +134,7 @@ altas concentram a influência nas estações vizinhas imediatas, gerando “bol
 de cada uma. O IDW nunca extrapola além do intervalo observado e ignora a estrutura de
 correlação espacial do fenômeno — daí seus limites.</p>
 <figure class="align-center" id="fig-fenomenos-idw">
-<a class="reference internal image-reference" href="../../_images/interpolacao_idw.png"><img alt="../../_images/interpolacao_idw.png" src="../../_images/interpolacao_idw.png" style="width: 80%;" />
+<a class="reference internal image-reference" href="../_images/interpolacao_idw.png"><img alt="../_images/interpolacao_idw.png" src="../_images/interpolacao_idw.png" style="width: 80%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Figura 32 - </span><span class="caption-text">Superfície interpolada por IDW (potência = 2) — exemplo <strong>ilustrativo</strong> com dados
@@ -165,10 +161,34 @@ uma medida de incerteza da estimativa.</p>
 </section>
 <section id="krigagem">
 <h2>Krigagem<a class="headerlink" href="#krigagem" title="Link permanente para este cabeçalho"></a></h2>
-<p>A <strong>Krigagem</strong> é o método geoestatístico de referência <span id="id2">[<a class="reference internal" href="../../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>. Em vez de pesos fixos, ela aprende
+<p>A <strong>Krigagem</strong> é o método geoestatístico de referência <span id="id2">[<a class="reference internal" href="../referencias.html#id271" title="Daniel G. Krige. A statistical approach to some basic mine valuation problems on the Witwatersrand. Journal of the Chemical, Metallurgical and Mining Society of South Africa, 52(6):119–139, 1951.">73</a>, <a class="reference internal" href="../referencias.html#id270" title="Georges Matheron. Principles of geostatistics. Economic Geology, 58(8):1246–1266, 1963. doi:10.2113/gsecongeo.58.8.1246.">74</a>]</span>. Em vez de pesos fixos, ela aprende
 a estrutura de correlação espacial do próprio dado por meio do <strong>semivariograma</strong> — uma
 curva que descreve como a diferença entre pares de estações cresce com a distância — e usa
 essa estrutura para estimar valores de forma estatisticamente ótima.</p>
+<div class="tip admonition">
+<p class="admonition-title">🖼️ Imagem sugerida (IMG-TODO)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Imagem ideal<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Esquema de um semivariograma teórico, com os eixos (distância ×
+semivariância) e os componentes anotados: efeito pepita (nugget), patamar (sill) e
+alcance (range).</p>
+</dd>
+<dt class="field-even">Função<span class="colon">:</span></dt>
+<dd class="field-even"><p>dá forma visual ao semivariograma descrito no parágrafo, base do diferencial
+da Krigagem sobre IDW e Spline.</p>
+</dd>
+<dt class="field-odd">Busca sugerida<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“semivariogram nugget sill range diagram”; “semivariograma alcance
+patamar efeito pepita esquema”</p>
+</dd>
+<dt class="field-even">Fonte provável<span class="colon">:</span></dt>
+<dd class="field-even"><p>documentação GIS (QGIS/SAGA/GRASS), Wikimedia Commons, artigos abertos</p>
+</dd>
+<dt class="field-odd">Facilidade<span class="colon">:</span></dt>
+<dd class="field-odd"><p>alta</p>
+</dd>
+</dl>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pykrige.ok</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrdinaryKriging</span>
 
 <span class="c1"># O pykrige ajusta o modelo do semivariograma (aqui, esférico) aos dados.</span>
@@ -225,7 +245,7 @@ sinistros.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x72c1019cbf50>
+<jinja2.runtime.BlockReference object at 0x70ac9637e110>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
